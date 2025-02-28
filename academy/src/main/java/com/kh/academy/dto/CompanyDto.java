@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
-public class CompanyDto {
+public class CompanyDto {//
 	private int companyNo; //기업번호
 	private String companyName; //기업명(상호명)
 	private int companyCrNumber;//사업자번호
