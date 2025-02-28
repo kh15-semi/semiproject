@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입(기업) | 잡플래닛</title>
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+ 
+    <!-- font awesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <!-- <link rel="stylesheet" type="text/css" href="./test.css"> -->
+    <style>
+        p {
+            font-size: 13px;
+            font-weight: 600;
+            color: #6a6c6e;
+        }
+        h3 {
+            color:#343536;
+        }
+        .btn {
+            border-radius: 7px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .btn-login {
+            background-color: white;
+            font-size: 13px;
+            font-weight: 600;
+            color: #32AA46;
+        }
+        .btn-signup {
+            background-color: #00C362;
+            color: white;
+        }
+        .field {
+            border-radius: 7px;
+            border-color: #c7cace;
+        }
+    </style>
+
+    <!-- 자바스크립트 작성 공간 -->
+    <script type="text/javascript">
+        
+    </script>
+</head>
+<body>
+    <div class="container w-400">
+        <div class="cell center">
+            <a href="#">
+                <img src="./images/jobplanet_logo.png" class="logo w-250">
+            </a>
+        </div>
+        <!-- <div class="cell flex-box p-10">
+            <a href="#" class="btn btn-individual w-50">개인회원</a>
+            <a href="#" class="btn btn-enterprise w-50">기업회원</a>
+        </div> -->
+        <div class="cell center p-10">
+            <div class="cell left m-10">
+                <h3>기업회원</h3>
+            </div>
+            <div class="cell">
+                <input type="text" name="member-id" class="field w-100" placeholder="아이디">
+            </div>
+            <div class="cell">
+                <input type="password" name="member-pw" class="field w-100" placeholder="비밀번호 (10자리 이상)">
+            </div>
+            <div class="cell">
+                <input type="password" name="member-pw-check" class="field w-100" placeholder="비밀번호 확인">
+            </div>
+            <div class="cell">
+                <input type="text" name="member-nickname" class="field w-100" placeholder="닉네임">
+            </div>
+            <div class="cell">
+                <input type="text" name="member-name" class="field w-100" placeholder="이름">
+            </div>
+            <div class="cell">
+                <input type="text" name="member-birth" class="field w-100" placeholder="생년월일 8자리">
+            </div>
+            <div class="cell">
+                <input type="tel" name="member-contact" class="field w-100" placeholder="연락처">
+            </div>
+            <div class="cell">
+                <input type="email" name="member-email" class="field w-100" placeholder="이메일 주소">
+            </div>
+            <div class="cell left">
+                <input type="text" name="memberPost" size="14" maxlength="6" class="field" placeholder="우편번호" readonly>
+                <button type="button" class="btn btn-neutral btn-address-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <button type="button" class="btn btn-negative btn-address-clear" style="display: none;">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="cell">
+                <input type="text" name="memberAddress1" class="field w-100" placeholder="기본주소" readonly>
+            </div>
+            <div class="cell">
+                <input type="text" name="memberAddress2" class="field w-100" placeholder="상세주소" readonly>
+            </div>
+            <div class="cell">
+                <select name="member-industry" class="field w-100">
+                    <option value="">산업</option>
+                </select>
+            </div>
+            <div class="cell">
+                <select name="member-job" class="field w-100">
+                    <option value="">직종</option>
+                </select>
+            </div>
+            <div class="cell">
+                <input type="text" name="member-cr-number" class="field w-100" placeholder="사업자 번호">
+            </div>
+            <div class="cell">
+                <input type="text" name="member-position" class="field w-100" placeholder="직책">
+            </div>
+            <div class="cell mt-30 mb-30">
+                <button class="btn btn-signup w-100"><i class="fa-solid fa-envelope"></i> 기업 회원가입</button>
+            </div>
+            <hr>
+            <p class="cell center mt-20">
+                이미 회원이세요?
+                <button class="btn btn-login">로그인</button>
+            </p>
+        </div>
+    </div>
+            
+    
+</body>
+</html>

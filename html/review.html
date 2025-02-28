@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리뷰작성 | 잡플래닛</title>
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <!-- font awesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ingttaetest/cdn/commons.css" />
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <!-- <link rel="stylesheet" type="text/css" href="./test.css"> -->
+    
+    <!-- jQuery cdn -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/hiphop5782/score@latest/score.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $(".review-score").score({
+                starColor: "#00C362",
+                editable:true,
+                integerOnly:true,
+                display: {
+                    showNumber: true,
+                    placeLimit:2,
+                    textColor: "#6a6c6e",
+                },
+            });
+        });
+    </script>
+</head>
+<body>
+    
+    <div class="container w-1000">
+        <div class="cell">
+           <h3>기업 총 평점</h3>
+           <div class="review-score w-100" data-max="5" data-rate="0"></div>
+        </div>
+        <div class="cell">
+            <h3>기업 한 줄 평</h3>
+        </div>
+        <div class="cell">
+            <label>이 기업을 한마디로 소개한다면 어떤 기업인가요?</label>
+        </div>
+        <div class="cell right  ">
+            <textarea name="q1" class="field w-100" rows="1" oninput="checkQuiz1()" placeholder="(20자 이상) 기업에 대해 작성해주세요"></textarea>
+            <div>
+                <span>0</span>
+                <span> / 최대 100자</span> 
+            </div>
+        </div>
+        <hr>
+        <div class="cell">
+            <h3>기업의 장점</h3>
+        </div>
+        <div>
+            <label>이 기업을 다니며 좋았던 점을 남겨주세요</label>
+        </div>
+        <div class="cell right">
+            <textarea name="q2" class="field w-100" rows="3" oninput="checkQuiz2()" placeholder="(30자 이상) 만족스러운 점을 작성해 주세요"></textarea>
+            <div>
+                <span>0</span>
+                <span> / 최대 1000자</span> 
+            </div>
+        </div>
+        <div class="cell">
+            <h3>기업의 단점</h3>
+        </div>
+        <div>
+            <label>기업의 단점을 객관적인 시각에서 적어주세요</label>
+        </div>
+        <div class="cell right">
+            <textarea name="q3" class="field w-100" rows="3" oninput="checkQuiz3()" placeholder="(30자 이상) 아쉬운 점을 작성해주세요"></textarea>
+            <div>
+                <span>0</span>
+                <span> / 최대 1000자</span> 
+            </div>
+        </div>
+        <div class="cell">
+            <h3>승진 기회 및 가능성</h3>
+            <div class="review-score w-100" data-max="5" data-rate="0"></div>
+        </div>
+        <div class="cell">
+            <h3>복지 및 급여</h3>
+            <div class="review-score w-100" data-max="5" data-rate="0"></div>
+        </div>
+        <div class="cell">
+            <h3>업무와 삶의 균형</h3>
+            <div class="review-score w-100" data-max="5" data-rate="0"></div>
+        </div>
+        <div class="cell">
+            <h3>사내문화</h3>
+            <div class="review-score w-100" data-max="5" data-rate="0"></div>
+        </div>
+        <div class="cell">
+            <h3>경영진</h3>
+            <div class="review-score w-100" data-max="5" data-rate="0"></div>
+        </div>
+        <div class="cell">
+            <h3>CEO에 대한 견해</h3>
+        </div>
+        <div class="cell">
+            <label>
+                <input type="checkbox" class="">
+                <span>지지해요</span>
+                <input type="checkbox" class="">
+                <span>지지하지 않아요</span>
+            </label>
+        </div>
+        <div class="cell">
+            <h3>이 기업은 1년 후 어떻게 될까요?</h3>
+        </div>
+        <div class="cell">
+            <label>
+                <input type="checkbox" class="">
+                <span>성장</span>
+                <input type="checkbox" class="">
+                <span>비슷</span>
+                <input type="checkbox" class="">
+                <span>하락</span>
+            </label>
+        </div>
+        <div class="cell">
+            <h3>이 기업을 구직자에게 추천하나요?</h3>
+        </div>
+        <div class="cell">
+            <label>
+                <input type="checkbox" class="">
+                <span>네, 추천해요</span>
+                <input type="checkbox" class="">
+                <span>아니요</span>
+            </label>
+        </div>
+    </div>
+
+</body>
+</html>
