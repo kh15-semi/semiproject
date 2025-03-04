@@ -12,6 +12,7 @@
     <!-- font awesome cdn -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ingttaetest/cdn/commons.css" />
     <link rel="stylesheet" type="text/css" href="./commons.css">
     <!-- <link rel="stylesheet" type="text/css" href="./test.css"> -->
     <style>
@@ -43,6 +44,11 @@
             border-radius: 7px;
             border-color: #c7cace;
         }
+        .field:focus {
+            border-radius: 7px;
+            border-color: #5fe075;
+            outline: none;
+        }
     </style>
 
     <!-- 자바스크립트 작성 공간 -->
@@ -69,7 +75,7 @@
                 <input type="text" name="member-id" class="field w-100" placeholder="아이디">
             </div>
             <div class="cell">
-                <input type="password" name="member-pw" class="field w-100" placeholder="비밀번호 (10자리 이상)">
+                <input type="password" name="member-pw" class="field w-100" placeholder="비밀번호 (8자리 이상)">
             </div>
             <div class="cell">
                 <input type="password" name="member-pw-check" class="field w-100" placeholder="비밀번호 확인">
@@ -84,10 +90,14 @@
                 <input type="text" name="member-birth" class="field w-100" placeholder="생년월일 8자리">
             </div>
             <div class="cell">
-                <input type="tel" name="member-contact" class="field w-100" placeholder="연락처()">
+                <input type="tel" name="member-contact" class="field w-100" placeholder="연락처(-)없이 입력">
             </div>
-            <div class="cell">
-                <input type="email" name="member-email" class="field w-100" placeholder="이메일 주소">
+            <div class="cell left">
+                <input type="email" inputmode="email" name="member-email" size="22" class="field" placeholder="이메일 주소">
+                <button type="button" class="btn btn-neutral btn-send-cert">
+                    <i class="fa-solid fa-paper-plane"></i>
+	        		<span>이메일 인증</span>
+                </button>
             </div>
             <div class="cell left">
                 <input type="text" name="memberPost" size="14" maxlength="6" class="field" placeholder="우편번호" readonly>
@@ -118,13 +128,15 @@
                 <button class="btn btn-signup w-100"><i class="fa-solid fa-envelope"></i> 개인 회원가입</button>
             </div>
             <hr>
-            <p class="cell center mt-20">
-                이미 회원이세요?
-                <button class="btn btn-login">로그인</button>
-            </p>
+            <div class="cell center mt-20">
+                <p>
+                    이미 회원이세요?
+                    <a href="#">
+                        <button class="btn btn-login">로그인</button>
+                    </a>
+                </p>
+            </div>
         </div>
     </div>
-            
-    
 </body>
 </html>
