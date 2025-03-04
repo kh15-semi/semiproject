@@ -19,13 +19,13 @@ public class ReviewDto {
 	private String reviewStrength;//기업 장점
 	private String reviewWeakness;//기업 단점
 	private int reviewSalary;//급여 만족도(별점)
-	private int reivewWorkAndLife;//워라벨 만족도(별점)
-	private int reivewPromotion;//승진기회 만족도(별점)
-	private int reivewCulture;//사내문화 만족도(별점)
-	private int reivewDirector;//경영진 만족도(별점)
-	private String reivewCeoEvalulation;//ceo에 대한 견해
-	private String reivewPrediction;//기업전망
-	private String reivewRecommend;//기업추천
+	private int reviewWorkAndLife;//워라벨 만족도(별점)
+	private int reviewPromotion;//승진기회 만족도(별점)
+	private int reviewCulture;//사내문화 만족도(별점)
+	private int reviewDirector;//경영진 만족도(별점)
+	private String reviewCeoEvalulation;//ceo에 대한 견해
+	private String reviewPrediction;//기업전망
+	private String reviewRecommend;//기업추천
 	
 	
 	
