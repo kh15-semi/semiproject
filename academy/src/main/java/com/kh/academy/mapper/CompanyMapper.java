@@ -16,7 +16,6 @@ public class CompanyMapper implements RowMapper<CompanyDto>{
 		return CompanyDto.builder()
 					.companyNo(rs.getInt("company_no"))
 					.companyName(rs.getString("company_name"))
-					.companyCrNumber(rs.getInt("company_crnumber"))
 					.companyUrl(rs.getString("company_uri"))
 					.companyContact(rs.getString("company_contact"))
 					.companyIndustry(rs.getString("company_industry"))
