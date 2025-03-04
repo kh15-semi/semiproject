@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @Data @Builder @NoArgsConstructor @AllArgsConstructor
 public class CertDto {
 	
-	private String certEmail;
-	private String certNumber;
-	private Timestamp certTime;
-	private Timestamp certConfirm;
-	}
+	private String certEmail; //이메일
+	private String certNumber; //인증번호
+	private Timestamp certTime; //보낸시간 
+	private Timestamp certConfirm; //응답시간
+	} 
 
