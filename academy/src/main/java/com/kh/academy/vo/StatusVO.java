@@ -6,5 +6,4 @@ import lombok.Data;
 public class StatusVO {
 	private String key;
 	private long value;
-	
 }
