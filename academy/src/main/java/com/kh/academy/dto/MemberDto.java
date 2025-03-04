@@ -25,7 +25,9 @@ public class MemberDto {
 	private String memberIndustry; //관심산업 (일반회원만)
 	private String memberJob; //관심직종 (일반회원만)
 	private String memberPosition; //직책 (기업회원만)
+	private String memberCrNumber; //사업자등록번호 (외래키-기업회원만) 
 	private int memberCompanyNo; //소속회사 번호 (기업회원만)
+	
 
 	
 }
