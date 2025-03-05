@@ -32,7 +32,7 @@ public class ReviewController {
 	
 	
 	//리뷰 목록 매핑
-	@GetMapping("/list")
+	@RequestMapping("/list")
 	public String list(Model model) {
 		List<ReviewDto> reviewList = reviewDao.selectList();
 		model.addAttribute("reviewList", reviewList);
@@ -88,8 +88,18 @@ public class ReviewController {
 		}
 		reviewDao.update(reviewDto);
 		return "redirect:detail?reviewNo="+reviewDto.getReviewNo();
-		
 	}
+	//리뷰 삭제 매핑
+	@RequestMapping("/delete")
+	public String delete(@RequestParam int reviewNo) {
+		ReviewDto reviewDto = reviewDao.selectOne(reviewNo);
+		if(reviewDto == null) {
+			throw new TargetNotFoundException("리뷰가 존재하지 않습니다");			
+		}
+		reviewDao.delete(reviewNo);
+		return "redirect:list";
+	}
+	
 }
 
 
