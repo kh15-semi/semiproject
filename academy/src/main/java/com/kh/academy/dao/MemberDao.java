@@ -50,6 +50,8 @@ public class MemberDao {
 		};
 		jdbcTemplate.update(sql, data);
 	}
+	
+	
 
 	// 상세조회 기능
 	public MemberDto selectOne(String memberId) {

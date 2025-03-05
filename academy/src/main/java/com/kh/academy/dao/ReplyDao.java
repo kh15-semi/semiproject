@@ -41,17 +41,19 @@ public class ReplyDao {
 			Object[] data = {replyOrigin};
 			return jdbcTemplate.query(sql, replyMapper, data);
 		}
-		public boolean delete(int replyNo) {
-			String sql = "delete reply where reply_no = ?";
-			Object[] data = {replyNo};
-			return jdbcTemplate.update(sql, data) > 0;
-		}
+
 		public ReplyDto selectOne(int replyNo) {
 			String sql = "select * from reply where reply_no = ?";
 			Object[] data = {replyNo};
 			List<ReplyDto> list = jdbcTemplate.query(sql, replyMapper, data);
 			return list.isEmpty() ? null : list.get(0);
 		}
+		
+		public boolean delete(int replyNo) {
+			String sql = "delete reply where reply_no = ?";
+			Object[] data = {replyNo};
+			return jdbcTemplate.update(sql, data) > 0;
+		}		
 		
 		public boolean update(ReplyDto replyDto) {
 			String sql = "update reply "

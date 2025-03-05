@@ -31,9 +31,7 @@ public class MemberController {
 	// 입력 처리(일반회원)
 	@PostMapping("/member/join") // POST방식만 처리하는 매핑
 	public String joinMember(@ModelAttribute MemberDto memberDto) {
-
 		memberDao.insertMember(memberDto); // 회원가입
-
 		return "redirect:joinFinish"; // joinFinish으로 쫓아내는 코드(상대경로)
 	}
 
