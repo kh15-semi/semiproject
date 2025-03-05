@@ -17,5 +17,5 @@ public class CompanyDto {//
 	private String companyPost;//우편번호
 	private String companyAddress1;//기본주소
 	private String companyAddress2;//상세주소
-
+	private String companyCrNumber;//기업 사업자번호
 }
