@@ -88,18 +88,18 @@
                     </ul>
 				</li>
 				<!-- 회원인 경우 -->
-				<c:choose>
-					<c:when test="${sessionScope.userId != null}">
+<%-- 				<c:choose> --%>
+<%-- 					<c:when test="${sessionScope.userId != null}"> --%>
 					
-					</c:when>
+<%-- 					</c:when> --%>
 				
 				
 				
-				<!-- 비회원인 경우 -->
+<!-- 				비회원인 경우 -->
 				
 				
 				
-				</c:choose>
+<%-- 				</c:choose> --%>
 				
                 <li class="menu-end">
                     <a href="#">
