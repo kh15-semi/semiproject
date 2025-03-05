@@ -25,7 +25,7 @@ public class MemberController {
 	// 회원가입 매핑(일반회원)
 	@GetMapping("/member/join") // GET방식만 처리하는 매핑
 	public String joinMember() {
-		return "/WEB-INF/views/member/join-member.jsp";
+		return "/WEB-INF/views/member/join.jsp";
 	}
 
 	// 입력 처리(일반회원)
@@ -35,20 +35,20 @@ public class MemberController {
 		return "redirect:joinFinish"; // joinFinish으로 쫓아내는 코드(상대경로)
 	}
 
-	// 회원가입 매핑(기업회원)
-	@GetMapping("/company/join") // GET방식만 처리하는 매핑
-	public String join() {
-		return "/WEB-INF/views/member/join-company.jsp";
-	}
-
-	// 입력 처리(기업회원)
-	@PostMapping("/company/join") // POST방식만 처리하는 매핑
-	public String joinCompanyMember(@ModelAttribute MemberDto memberDto) {
-
-		memberDao.insertCompanyMember(memberDto); // 회원가입
-
-		return "redirect:joinFinish"; // joinFinish으로 쫓아내는 코드(상대경로)
-	}
+//	// 회원가입 매핑(기업회원)
+//	@GetMapping("/company/join") // GET방식만 처리하는 매핑
+//	public String join() {
+//		return "/WEB-INF/views/company/join.jsp";
+//	}
+//
+//	// 입력 처리(기업회원)
+//	@PostMapping("/company/join") // POST방식만 처리하는 매핑
+//	public String joinCompanyMember(@ModelAttribute MemberDto memberDto) {
+//
+//		memberDao.insertCompanyMember(memberDto); // 회원가입
+//
+//		return "redirect:joinFinish"; // joinFinish으로 쫓아내는 코드(상대경로)
+//	}
 
 	// 완료 안내(일반회원)
 	@RequestMapping("/joinFinish") // join-finish도 가능. 다만 주소에는 대문자를 쓸수 있는곳이 있고 안되는 곳이 있음. http://localhost:8080
