@@ -89,6 +89,7 @@
                     </ul>
 				</li>
 
+				<c:choose>
 					<c:when test="${sessionScope.userId != null}">
 					<!-- 관리자인 경우 -->
 						<c:if test="${sessionScope.memberType=='관리자'}">
@@ -116,8 +117,6 @@
 							</ul>
 		                </li>							
 					</c:when>
-				
-				<c:choose>
 					
 					<c:otherwise>
 					<!-- 비회원인 경우 -->
