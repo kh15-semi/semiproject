@@ -102,15 +102,7 @@
           <artifactId>jsoup</artifactId>
           <version>1.18.3</version>
       </dependency>
-<!--	Entity 사용을 위한 도구-->
-	<dependency>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-data-jpa</artifactId>
-	</dependency>
-	
-	
 	</dependencies>
-	
 
 	<build>
 		<plugins>
