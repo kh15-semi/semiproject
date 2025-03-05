@@ -17,17 +17,21 @@ public class ReviewDao {
 	@Autowired
 	private ReviewMapper reviewMapper;
 	
+	public int sequence() {
+		String sql = "select review_seq.nextval from dual";
+		return jdbcTemplate.queryForObject(sql, Integer.class);
+	}
+	
 	public List<ReviewDto> selectList() {
 		String sql = "selcet * from reviews order by review_no desc";
 		return jdbcTemplate.query(sql, reviewMapper);		
 	}
 	
 	public void insert(ReviewDto reviewDto) {
-		String sql = "insert into review (review_no, review_writer, review_score, review_comment, review_like,"
-				+ " review_wtime, review_etime, review_strength, review_weakness, review_salary,"
-				+ " review_workandlife, review_promotion, review_culture, review_director,"
-				+ " review_ceoevaluation, review_prediction, review_recommend)"
-				+ " VALUES (review_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into review (review_no, review_writer, review_score, review_comment, review_like, "
+				+ "review_wtime, review_etime, review_strength, review_weakness, review_salary, review_workandlife, "
+				+ "review_promotion, review_culture, review_director, review_ceoevaluation, review_prediction, review_recommend) "
+                + "values (?, ?, ?, ?, 0, systimestamp, systimestamp, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		Object[] data = {
 				reviewDto.getReviewWriter(), reviewDto.getReviewScore(), reviewDto.getReviewComment(),
 				reviewDto.getReviewLike(), reviewDto.getReviewWtime(), reviewDto.getReviewEtime(), reviewDto.getReviewStrength(),
@@ -39,9 +43,42 @@ public class ReviewDao {
 	}
 	
 	public ReviewDto selectOne(int reviewNo) {
-		String sql = "select * from reviews where review_no = ?";
+		String sql = "select * from review where review_no = ?";
 		Object[] data = {reviewNo};
 		List<ReviewDto> list = jdbcTemplate.query(sql,  reviewMapper, data);
 		return list.isEmpty() ? null : list.get(0);
 	}
+	
+	public boolean update(ReviewDto reviewDto) {
+		String sql = "update review "
+				+ "set review_score=?, review_comment=?, review_etime=systimestamp, "
+				+ "review_strength=?, review_weakness=?, review_salary=?, review_workandlife=?, "
+				+ "review_promotion=?, review_culture=?, review_director=?, review_ceoevaluation=?, "
+				+ "review_prediction=?, review_recommend=? where review_no=?";
+		Object[] data = {
+				reviewDto.getReviewScore(), reviewDto.getReviewComment(), reviewDto.getReviewStrength(),
+				reviewDto.getReviewWeakness(), reviewDto.getReviewSalary(), reviewDto.getReviewWorkAndLife(),
+				reviewDto.getReviewPromotion(),  reviewDto.getReviewCulture(), reviewDto.getReviewDirector(),
+				reviewDto.getReviewCeoEvalulation(), reviewDto.getReviewPrediction(), reviewDto.getReviewRecommend(),
+				reviewDto.getReviewNo()
+		};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
+	
+	public boolean delete(int reviewNo) {
+		String sql = "delete from review where review_no = ?";
+		Object[] data = {reviewNo};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
