@@ -59,10 +59,6 @@
             border: 1px solid black;
         }
 
-         /* 회원가입버튼 */
-         .join-btn{
-            text-align: right;
-         }
         /* 로그인 버튼 */
         .login-box {
             padding: 15px;
@@ -261,11 +257,29 @@
                     console.log("아이디 또는 비밀번호가 틀렸습니다.");
                 }
             });
+
+
+            //상세페이지 속 회원가입창 이동
+            $(document).ready(function(){
+                $(".memberjoin-btn").on("click", function(){
+                    window.location.href="http://127.0.0.1:5500/ui/indetail-member-join.html";//회원가입페이지 이동
+                });
+            });
+  
+            //위치보기창 이동
+            $(document).ready(function(){
+                $(".map-btn").on("click", function(){
+                    window.open("http://127.0.0.1:5500/ui/06.map.html", "", "width=500,height=500")//맵보기 새창으로 구현
+                });
+            });
+
+            //리뷰쓰러가기이동
             $(document).ready(function () {
                 $(".write-review-btn").on("click", function () {
                     window.location.href = "http://127.0.0.1:5500/ui/04.reviewpage.html"; // review.html로 이동
                 });
             });
+
         });
     </script>
 
@@ -277,7 +291,7 @@
         <!-- 헤더 -->
         <div class="header">
             <div class="logo">
-                <img src="./image/jobplanet.png">
+                <img src="/images/jobplanet.png">
             </div>
 
             <div class="login-box">
@@ -293,7 +307,7 @@
                 <input type="text" name="memberId" placeholder="아이디 입력">PW:
                 <input type="password" name="memberPw" placeholder="비밀번호 입력">
                 <button class="btn-logincheck">Login</button>
-                <input type="button" src="#">회원가입 하러가기
+                <button class="memberjoin-btn">회원가입 하러가기</button>
             </div>
         </div>
 
@@ -303,7 +317,7 @@
             <div class="content w-100">
                 <div class="company-info">
                     <div class="company-image">
-                        <img src="./image/Instagram.png">
+                        <img src="/images/Instagram.png">
                     </div>
 
                     <div class="company-details">
@@ -320,7 +334,7 @@
                             <p>전화번호: 02-1234-5678</p>
                         </div>
                         <div class="map">
-                            <button>위치보기 →</button>
+                            <button class="map-btn">위치보기 →</button>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기업 위치 map</title>
+
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- font awesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" type="text/css" href="./css/commons.css">
+    <link rel="stylesheet" type="text/css" href="./css/test.css">
+    <style>
+        #map {
+            width: 100%;
+            height: 300px;
+        }
+    </style>
+
+    <!-- kakao map cdn -->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=430cecda328081e9c3c1420be135b9dd"></script>
+
+    <!-- jQuery cdn -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+
+            //지도를 표시할 영역 선택
+            var container = document.querySelector("#map");//JS
+
+            var options = {
+                center: new kakao.maps.LatLng(37.533829, 126.896980),
+                level: 3
+            };
+
+            var map = new kakao.maps.Map(container, options);
+            map.setDraggable(false);//드래그 잠금
+
+            var location = new kakao.maps.LatLng(37.533829, 126.896980);
+            var marker = new kakao.maps.Marker({
+                position: location,//마커의 위치
+            });
+            marker.setMap(map);
+            var iwContent = $("#infowindow-template").text();//템플릿 복제
+
+            //var iwContent = "<div>인포윈도우!</div>";//직접 생성
+            var iwContent = $("#infowindow-template").text();//템플릿 복제
+
+            //(2) HTML로 변환하여 수정
+            var div = $("<div>").html(iwContent);
+            div.find("h3").text("kh정보교육원");
+            div.find("a").attr("href", "https://kh-academy.co.kr/main/main.kh");
+            iwContent = div.html();//div를 제외한 내부 html로 인포윈도우 설정
+
+            var iw = new kakao.maps.InfoWindow({
+                position: location,//표시할 위치(마커와 동일)
+                content: iwContent,//표시할 HTML
+                removable: true,//제거 가능하도록 설정
+            });
+            
+            //iw.open(map, marker);//인포윈도우 생성(시작하자마자 표시)
+
+            //마커 클릭 시 인포윈도우를 표시
+            kakao.maps.event.addListener(marker, "click", function(){
+                iw.open(map, marker);
+            });
+        });
+    </script>
+        <script type="text/template" id="infowindow-template">
+            <div style="padding:10px;">
+                <h3>#1</h3>
+                <a href="#2">이동하기</a>
+            </div>
+        </script>
+</head>
+<body>
+    <div class="container w-600">
+        <div class="cell center">
+            <h1>Welcome</h1>
+        </div>
+        <div class="cell">
+            <div id="map"></div>
+        </div>
+</body>
+</html>
