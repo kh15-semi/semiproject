@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 | 잡플래닛</title>
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <!-- font awesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ingttaetest/cdn/commons.css" />
+    <link rel="stylesheet" type="text/css" href="./css/commons.css">
+    <!-- <link rel="stylesheet" type="text/css" href="./css/test.css"> -->
+    <style>
+        a {
+            text-decoration: none;
+            color: #3f4142;
+        }
+        a:visited {
+            text-decoration: none;
+        }
+        p {
+            font-size: 16px;
+            font-weight: 500;
+            color: #1d1e1f;
+        }
+        h3 {
+            color:#343536;
+        }
+        label {
+            accent-color: #04a052;
+        }
+        span {
+            color: #3f4142;
+        }
+        .btn {
+            border-radius: 7px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .btn-signup {
+            background-color: white;
+            font-size: 16px;
+            font-weight: 800;
+            color: #00C362;
+        }
+        .btn-login {
+            background-color: #00C362;
+            color: white;
+        }
+        .field {
+            border-radius: 7px;
+            border-color: #c7cace;
+        }
+        .field:focus {
+            border-radius: 7px;
+            border-color: #5fe075;
+            outline: none;
+        }
+    </style>
+    <!-- jQuery cdn -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+        
+    </script>
+</head>
+<body>
+    <div class="container w-400">
+        <div class="cell center">
+            <a href="#">
+                <img src="./images/jobplanet_logo.png" class="logo w-250">
+            </a>
+        </div>
+        <div class="cell center p-10">
+            <div class="cell left m-10">
+                <h3>로그인</h3>
+            </div>
+            <div class="cell">
+                <input type="text" name="member-id" class="field w-100" placeholder="아이디">
+            </div>
+            <div class="cell">
+                <input type="password" name="member-pw" class="field w-100" placeholder="비밀번호 (8자리 이상)">
+            </div>
+            <div class="cell mt-30">
+                <button class="btn btn-login w-100"><i class="fa-solid fa-envelope"></i> 로그인</button>
+            </div>
+            <div class="cell flex-box">
+                <div class="cell left w-50">
+                    <label>
+                        <input type="checkbox" name="id-remember">
+                        <span>아이디 저장하기</span>
+                    </label>
+                </div>
+                <div class="cell right w-50">
+                    <a href="#">비밀번호 찾기</a>
+                </div>
+            </div>
+            <hr>
+            <div class="cell mt-20">
+                <p>
+                    아직 회원이 아니세요?
+                    <a href="#">
+                        <button class="btn btn-signup">회원가입</button>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

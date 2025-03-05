@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비밀번호 찾기 | 잡플래닛</title>
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <!-- font awesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ingttaetest/cdn/commons.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="./css/commons.css">
+    <link rel="stylesheet" type="text/css" href="./css/test.css"> -->
+    <style>
+        p {
+            font-size: 16px;
+            font-weight: 500;
+            color: #6a6c6e;
+        }
+        h2 {
+            color:#343536;
+        }
+        .btn {
+            border-radius: 7px;
+            border: none;
+            background-color: #00C362;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .btn-reset-id {
+            background-color: white;
+            font-size: 16px;
+            font-weight: 800;
+            color: #00C362;
+        }
+        .field {
+            border-radius: 7px;
+            border-color: #c7cace;
+        }
+        .field:focus {
+            border-radius: 7px;
+            border-color: #5fe075;
+            outline: none;
+        }
+    </style>
+    <!-- jQuery cdn -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+        
+    </script>
+</head>
+<body>
+    <div class="container w-400">
+        <div class="cell center">
+            <a href="#">
+                <img src="./images/jobplanet_logo.png" class="logo w-250">
+            </a>
+        </div>
+        <div class="cell center p-10">
+            <div class="cell left m-10">
+                <h2>비밀번호 찾기</h3>
+                <p>회원가입시 등록한 아이디와 이메일을 입력해주세요.</p>
+            </div>
+            <div class="cell">
+                <input type="text" name="member-id" class="field w-100" placeholder="아이디">
+            </div>
+            <div class="cell">
+                <input type="email" inputmode="email" name="member-email" class="field w-100" placeholder="이메일 주소">
+            </div>
+            <div class="cell mt-20 mb-30">
+                <button type="submit" class="btn btn-reset-pw w-100">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>비밀번호 찾기</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
