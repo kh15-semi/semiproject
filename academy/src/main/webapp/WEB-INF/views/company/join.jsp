@@ -11,40 +11,6 @@
 
 <!-- kakao post api -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
-<script src="/js/member/join.js"></script>
-
-<script>
-    $(document).ready(function() {
-        $("#companyNo").on("blur", function() {  // 'blur' 이벤트 사용
-            var crNumber = $(this).val();
-            console.log("입력된 사업자 번호: " + crNumber);  // 입력된 값 확인
-            if (crNumber.length === 12) {  // 사업자 등록 번호는 12자리 (하이픈 포함)
-                $.ajax({
-                    url: "/company/join", // 요청 URL
-                    type: "GET",
-                    data: { crNumber: crNumber },  // 사업자 번호를 서버로 전송
-                    success: function(response) {
-                        console.log(response);  // 서버에서 받은 응답 확인
-                        if (response && response.companyName) {
-                            $("#memberName").val(response.companyName);  // 조회된 기업명을 'memberName' 텍스트 칸에 입력
-                        } else {
-                            $("#memberName").val("");  // 기업명이 없는 경우 텍스트 칸을 비운다
-                        }
-                    },
-                    error: function() {
-                        alert("기업명 조회에 실패했습니다.");
-                    }
-                });
-            } else {
-                $("#memberName").val("");  // 사업자 등록 번호가 12자리가 아닌 경우
-            }
-        });
-    });
-</script>
-
-
-
 <script src="/js/member/join.js" ></script>
 <style>
 	.field {
@@ -59,8 +25,26 @@
 	    color: #32AA46;
 	}
 </style>
-
-
+<script>
+$(function() {
+    $("#memberCrNumber").on("blur", function() { 
+        var crNumber = $(this).val();
+        $.ajax({
+            url: "/company/getCompanyName",
+            type: "GET",
+            data: { crNumber: crNumber },
+            success: function(response) {
+                if (response.companyName) {
+                    $("#companyName").val(response.companyName);
+                } else {
+                    alert("해당 사업자 등록 번호로 기업명을 찾을 수 없습니다.");
+                    $("#companyName").val("");
+                }
+            },
+        });
+    });
+});
+</script>
 
 <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
     <div class="container w-400" style="border:0; border-radius: 10px; background-color: rgb(238, 238, 238);">
@@ -92,7 +76,7 @@
 
             <div class="cell" style="padding: 5px;">
                 <div class="cell">
-                    <input type="text" name="companyName" class="field w-100" placeholder="기업명">
+                    <input type="text" id="companyName" name="companyName" class="field w-100" placeholder="기업명" value="${companyName}" readonly>
                 </div>
                 <div class="cell">
                     <select name="memberIndustry" class="field w-100">
@@ -105,7 +89,7 @@
                     </select>
                 </div>
                 <div class="cell">
-                    <input type="text" id="companyNo" name="companyNo" class="field w-100" placeholder="사업자 등록 번호">
+                    <input type="text" id="memberCrNumber" name="memberCrNumber" class="field w-100" placeholder="사업자 등록 번호">
                 </div>
                 <div class="cell left">
                     <input type="text" name="memberPost" size="14" maxlength="6" class="field" placeholder="우편번호" readonly>
