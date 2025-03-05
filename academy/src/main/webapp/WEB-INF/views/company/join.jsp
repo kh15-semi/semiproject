@@ -14,7 +14,33 @@
 <!-- kakao post api -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="/js/member/join.js" ></script>
-
+<script>
+    $(document).ready(function() {
+        $("#memberCrNumber").on("blur", function() {  // 'keyup'을 'blur'로 변경
+            var crNumber = $(this).val();
+            if (crNumber.length === 10) {  // 사업자 등록 번호는 10자리
+                $.ajax({
+                    url: "/company/join", // 요청 URL
+                    type: "GET",
+                    data: { crNumber: crNumber },  // 사업자 등록 번호를 서버로 전송
+                    success: function(response) {
+                        // 만약 서버에서 CompanyDto를 반환하고 companyName을 담았다면
+                        if (response && response.companyName) {
+                            $("#memberName").val(response.companyName);  // 조회된 기업명을 'memberName' 텍스트 칸에 입력
+                        } else {
+                            $("#memberName").val("");  // 기업명이 없는 경우 텍스트 칸을 비운다
+                        }
+                    },
+                    error: function() {
+                        alert("기업명 조회에 실패했습니다.");
+                    }
+                });
+            } else {
+                $("#memberName").val("");  // 사업자 등록 번호가 10자리가 아닌 경우
+            }
+        });
+    });
+</script>
 <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
 	
 	<div class="container w-400" style="border:0; border-radius: 10px; background-color: rgb(238, 238, 238);">

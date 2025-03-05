@@ -3,10 +3,12 @@ package com.kh.academy.dao;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.academy.dto.CompanyDto;
+import com.kh.academy.entity.Company;
 import com.kh.academy.mapper.CompanyMapper;
 
 @Repository
@@ -33,7 +35,7 @@ public class CompanyDao {
 		return jdbcTemplate.update(sql, data) > 0;
 	}		
 	
-	public boolean update(CompanyDto companyDto) { //업데이트
+	public boolean update(CompanyDto companyDto) { //업데이트 (회사이름,사업자번호는 일치해야하고 데이터에 있어야 한다)
 		String sql = "update company "
 				+ "set "
 				+ "company_name=?, company_url=?, company_contact=?, company_industry=?, "
@@ -54,5 +56,11 @@ public class CompanyDao {
 		List<CompanyDto> list = jdbcTemplate.query(sql,companyMapper, data);
 		return list.isEmpty() ? null : list.get(0);
 	}	
-	
+	public interface CompanyRepository extends JpaRepository<Company, Integer> {
+	    // 사업자등록번호로 회사 조회
+	    Company findByCompanyCrNumber(String crNumber);
+	}
+
 }
+	
+
