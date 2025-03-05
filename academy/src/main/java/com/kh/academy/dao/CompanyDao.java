@@ -56,6 +56,14 @@ public class CompanyDao {
 		List<CompanyDto> list = jdbcTemplate.query(sql,companyMapper, data);
 		return list.isEmpty() ? null : list.get(0);
 	}	
+	
+    // 상세조회 기능 (사업자번호로 조회)
+    public CompanyDto selectByCrNumber(String crNumber) {
+        String sql = "select * from company where company_cr_number = ?";
+        Object[] data = { crNumber };
+        List<CompanyDto> list = jdbcTemplate.query(sql, companyMapper, data);  // 쿼리 실행 및 매핑
+        return list.isEmpty() ? null : list.get(0);  // 첫 번째 결과 반환 (없으면 null 반환)
+    }	
 
 
 }
