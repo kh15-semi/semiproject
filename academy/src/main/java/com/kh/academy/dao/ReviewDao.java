@@ -12,7 +12,7 @@ import com.kh.academy.mapper.ReviewMapper;
 @Repository
 public class ReviewDao {
 
-	
+	 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	@Autowired
