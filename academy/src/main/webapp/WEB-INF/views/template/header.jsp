@@ -37,9 +37,10 @@
 		}
 
 		.custom-line {
-			border: 0;
+			border: none;
 			border-top: 1px solid rgb(206, 206, 206);
 			margin: 5px;
+
 		}
 
 		.recommend-box {
@@ -52,10 +53,11 @@
 			padding: 30px;
 		}
 
+
     </style>
     
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    
+
 </head>
 
 <body>
@@ -66,8 +68,7 @@
 		<div class="cell">
             <ul class="menu">
                 <li class="logo">
-					<a href="#"></a>
-					<!-- 로고 클릭시 메인 홈페이지 뜰 수 있도록 구현 -->
+					<a href="/"></a>
 				</li>
                 <li>
 					<a href="#">회사 정보</a>
@@ -87,31 +88,48 @@
                         <li><a href="#">항목4</a></li>
                     </ul>
 				</li>
-				<!-- 회원인 경우 -->
-				<c:choose>
+
 					<c:when test="${sessionScope.userId != null}">
-					
+					<!-- 관리자인 경우 -->
+						<c:if test="${sessionScope.memberType=='관리자'}">
+							 <li class="menu-end">
+							 	<a href="#">
+									<i class="fa-regular fa-circle-user grey"></i>
+									<i class="fa-solid fa-chevron-down"></i>
+							 	</a>
+							 	<ul>
+							 		<li><a href="/admin/home">관리자 메뉴</a></li>
+							 		<li><a href="/member/logout">로그아웃</a></li>
+							 	</ul>
+							 </li>
+						</c:if>
+					<!-- 회원인 경우 -->
+		                <li class="menu-end">
+		                    <a href="#">
+								<i class="fa-regular fa-circle-user grey"></i>
+								<i class="fa-solid fa-chevron-down"></i>
+							</a>
+							<ul>
+								<li><a href="/member/mypage">My</a></li>
+								<li><a href="#">기업 리뷰</a></li>
+								<li><a href="/member/logout">로그아웃</a></li>
+							</ul>
+		                </li>							
 					</c:when>
 				
-				
-				
-				<!-- 비회원인 경우 -->
-				
-				
-				
+				<c:choose>
+					
+					<c:otherwise>
+					<!-- 비회원인 경우 -->
+					 <li class="menu-end">
+						<a href="/member/login">로그인</a>
+						<ul>
+							<li><a href="/member/join">회원가입</a></li>
+						</ul>
+					</li>
+					</c:otherwise>
 				</c:choose>
 				
-                <li class="menu-end">
-                    <a href="#">
-						<i class="fa-regular fa-circle-user grey"></i>
-						<i class="fa-solid fa-chevron-down"></i>
-					</a>
-					<ul>
-						<li><a href="#">My</a></li>
-						<li><a href="#">기업 리뷰</a></li>
-						<li><a href="#">로그아웃</a></li>
-					</ul>
-                </li>
             </ul>
         </div>
 	</div>

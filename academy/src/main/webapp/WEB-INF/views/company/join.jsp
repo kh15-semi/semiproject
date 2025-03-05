@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
- 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
 <!-- Lightpick 라이브러리 -->
@@ -14,50 +12,56 @@
 <!-- kakao post api -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="/js/member/join.js" ></script>
+<style>
+	.field {
+		border-radius: 10px;
+		border-color: #ebecee;
+	}
+	 .btn-login {
+	 	border: 0;
+	    background-color: white;
+	    font-size: 13px;
+	    font-weight: 600;
+	    color: #32AA46;
+	}
+</style>
 <script>
-    $(document).ready(function() {
-        $("#memberCrNumber").on("blur", function() {  // 'keyup'을 'blur'로 변경
-            var crNumber = $(this).val();
-            if (crNumber.length === 10) {  // 사업자 등록 번호는 10자리
-                $.ajax({
-                    url: "/company/join", // 요청 URL
-                    type: "GET",
-                    data: { crNumber: crNumber },  // 사업자 등록 번호를 서버로 전송
-                    success: function(response) {
-                        // 만약 서버에서 CompanyDto를 반환하고 companyName을 담았다면
-                        if (response && response.companyName) {
-                            $("#memberName").val(response.companyName);  // 조회된 기업명을 'memberName' 텍스트 칸에 입력
-                        } else {
-                            $("#memberName").val("");  // 기업명이 없는 경우 텍스트 칸을 비운다
-                        }
-                    },
-                    error: function() {
-                        alert("기업명 조회에 실패했습니다.");
-                    }
-                });
-            } else {
-                $("#memberName").val("");  // 사업자 등록 번호가 10자리가 아닌 경우
-            }
+$(function() {
+    $("#memberCrNumber").on("blur", function() { 
+        var crNumber = $(this).val();
+        $.ajax({
+            url: "/company/getCompanyName",
+            type: "GET",
+            data: { crNumber: crNumber },
+            success: function(response) {
+                if (response.companyName) {
+                    $("#companyName").val(response.companyName);
+                } else {
+                    alert("해당 사업자 등록 번호로 기업명을 찾을 수 없습니다.");
+                    $("#companyName").val("");
+                }
+            },
         });
     });
+});
 </script>
+
 <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
-	
-	<div class="container w-400" style="border:0; border-radius: 10px; background-color: rgb(238, 238, 238);">
+    <div class="container w-400" style="border:0; border-radius: 10px; background-color: rgb(238, 238, 238);">
         <div class="cell center">
-     	      <a href="#">
-               <img src="/images/jobplanet_logo.png" class="logo w-250">
-         	   </a>
+            <a href="#">
+                <img src="/images/jobplanet_logo.png" class="logo w-250">
+            </a>
+
+			<img src="/images/jobplanet_logo.png" width="250px">
+
         </div>
-        <!-- <div class="cell flex-box p-10">
-            <a href="#" class="btn btn-individual w-50">개인회원</a>
-            <a href="#" class="btn btn-enterprise w-50">기업회원</a>
-        </div> -->
+        
         <div class="cell center p-10">
             <div class="cell left m-10">
                 <h3>회원가입</h3>
             </div>
-	
+
             <div class="cell" style="padding: 5px;">
                 <div class="cell">
                     <input type="text" name="memberId" class="field w-100" placeholder="아이디">
@@ -69,10 +73,10 @@
                     <input type="password" name="memberPwCheck" class="field w-100" placeholder="비밀번호 확인">
                 </div>
             </div>
-	
+
             <div class="cell" style="padding: 5px;">
                 <div class="cell">
-                    <input type="text" name="companyName" class="field w-100" placeholder="기업명">
+                    <input type="text" id="companyName" name="companyName" class="field w-100" placeholder="기업명" value="${companyName}" readonly>
                 </div>
                 <div class="cell">
                     <select name="memberIndustry" class="field w-100">
@@ -85,7 +89,7 @@
                     </select>
                 </div>
                 <div class="cell">
-                    <input type="text" name="companyNo" class="field w-100" placeholder="사업자 등록 번호">
+                    <input type="text" id="memberCrNumber" name="memberCrNumber" class="field w-100" placeholder="사업자 등록 번호">
                 </div>
                 <div class="cell left">
                     <input type="text" name="memberPost" size="14" maxlength="6" class="field" placeholder="우편번호" readonly>
@@ -103,10 +107,10 @@
                     <input type="text" name="memberAddress2" class="field w-100" placeholder="상세주소" readonly>
                 </div>
             </div>
-	
+
             <div class="cell" style="padding: 5px;">
                 <div class="cell">
-                    <input type="text" name="memberName" class="field w-100" placeholder="담당자 이름 (실명)">
+                    <input type="text" id="memberName" name="memberName" class="field w-100" placeholder="담당자 이름 (실명)">
                 </div>
                 <div class="cell">
                     <input type="text" name="memberEmail" class="field w-100" placeholder="명함에 기재된 이메일 주소">
@@ -118,14 +122,14 @@
                     <input type="text" name="memberPosition" class="field w-100" placeholder="직책">
                 </div>
             </div>
-	
+
             <div class="cell mt-30 mb-30">
-                <button class="btn btn-signup w-100"><i class="fa-solid fa-envelope"></i> 기업 회원가입</button>
+                <button class="btn btn-green2 w-100" style="border-radius: 10px"><i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;&nbsp;기업회원 가입하기</button>
             </div>
             <hr>
             <p class="cell center mt-20">
-                이미 기업 회원이세요?
-                &nbsp;<button class="btn btn-login">로그인</button>
+                이미 기업 회원이세요?&nbsp;
+                <a href="/member/login" class="btn btn-login" style="border-radius: 10px;" src="/member/login">로그인</a>
             </p>
         </div>
     </div>

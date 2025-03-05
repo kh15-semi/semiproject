@@ -6,7 +6,7 @@
 
 	<!-- 기업 추천 -->
 		<div class="cell m-30">
-			<h2><i class="fa-solid fa-exclamation red"></i>&nbsp;"${userDto.userName}" 님을 위한 기업 추천</h2>
+			<h2><i class="fa-solid fa-exclamation red"></i>&nbsp;${userDto.userName} 님을 위한 기업 추천</h2>
 		</div>
 
         <div class="cell flex-box">
@@ -160,8 +160,7 @@
 					</label>	
 				</div>
             </div>
-			
 		</div>
+	</div>
 
-    </div>
-    <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
