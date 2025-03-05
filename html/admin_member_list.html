@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>title</title>
+
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- font awesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" type="text/css" href="/css/commons.css">
+
+    <!-- jQuery cdn -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+        
+    </script>
+
+</head>
+<body>
+
+    <div class="cell">
+        <h2><i class="fa-regular fa-user green"></i>&nbsp; 회원 관리</h2>
+    </div>
+    <div class="cell">
+        <form action="list" method="get">
+            <select name="column" style="border: none; width: 120px;" >
+                <option value="member_id" ${pageVO.column == 'member_id' ? 'selected' : ''}>아이디</option>
+                <option value="member_id" ${pageVO.column == 'member_name' ? 'selected' : ''}>이름</option>
+                <option value="member_contact" ${pageVO.column == 'member_contact' ? 'selected' : ''}>연락처</option>
+                <option value="member_email" ${pageVO.column == 'member_email' ? 'selected' : ''}>이메일</option>
+            </select>
+            <input type="text" name="keyword" value="${pageVO.keyword}">
+            <button class="btn btn-green2" style="border-radius: 10px; ">검색</button>
+        </form>
+    </div>
+        <table border="1" width="500">
+            <thead>
+                <tr>
+                    <th>아이디</th>
+                    <th>이름</th>
+                    <th>연락처</th>
+                    <th>이메일</th>
+                    <th>회원등급</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <c:forEach var="memberDto" items=""${list}>
+                    <tr>
+                        <td>
+                            <a href="detail?memberId=${memberDto.memberId}">
+                                ${memberDto.memberId}
+                            </a>
+                        </td>
+                        <td>${memberDto.memberName}</td>
+                        <td>${memberDto.memberContact}</td>
+                        <td>${memberDto.memberEmail}</td>
+                        <td>${memberDto.memberType}</td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+
+</body>
+</html>
