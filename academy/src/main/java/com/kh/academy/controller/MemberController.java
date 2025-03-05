@@ -25,7 +25,7 @@ public class MemberController {
 	// 회원가입 매핑(일반회원)
 	@GetMapping("/member/join") // GET방식만 처리하는 매핑
 	public String joinMember() {
-		return "/WEB-INF/views/member/join-member.jsp";
+		return "/WEB-INF/views/member/join.jsp";
 	}
 
 	// 입력 처리(일반회원)
@@ -38,7 +38,7 @@ public class MemberController {
 	// 회원가입 매핑(기업회원)
 	@GetMapping("/company/join") // GET방식만 처리하는 매핑
 	public String join() {
-		return "/WEB-INF/views/member/join-company.jsp";
+		return "/WEB-INF/views/company/join.jsp";
 	}
 
 	// 입력 처리(기업회원)
