@@ -14,6 +14,8 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ingttaetest/cdn/commons.css" />
     <link rel="stylesheet" type="text/css" href="./commons.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/commons.css">
     <!-- <link rel="stylesheet" type="text/css" href="./test.css"> -->
     <style>
         p {
@@ -57,10 +59,10 @@
     </script>
 </head>
 <body>
-    <div class="container w-400">
+    <div class="container w-400" style="border:0; border-radius: 10px; background-color: rgb(238, 238, 238);">
         <div class="cell center">
             <a href="#">
-                <img src="./images/jobplanet_logo.png" class="logo w-250">
+                <img src="/images/jobplanet_logo.png" class="logo w-250">
             </a>
         </div>
         <!-- <div class="cell flex-box p-10">
@@ -68,11 +70,45 @@
             <a href="#" class="btn btn-enterprise w-50">기업회원</a>
         </div> -->
         <div class="cell center p-10">
+
             <div class="cell left m-10">
-                <h3>개인회원</h3>
+                <h3>회원가입</h3>
             </div>
-            <div class="cell">
-                <input type="text" name="member-id" class="field w-100" placeholder="아이디">
+
+            <div class="cell" style="padding: 5px;">
+                <div class="cell">
+                    <input type="text" name="memberId" class="field w-100" placeholder="아이디">
+                </div>
+                <div class="cell">
+                    <input type="password" name="memberPw" class="field w-100" placeholder="비밀번호 (10자리 이상)">
+                </div>
+                <div class="cell">
+                    <input type="password" name="memberPwCheck" class="field w-100" placeholder="비밀번호 확인">
+                </div>
+                <div class="cell">
+                    <input type="text" name="memberName" class="field w-100" placeholder="이름">
+                </div>
+                <div class="cell">
+                    <input type="tel" name="memberContact" class="field w-100" placeholder="연락처">
+                </div>
+                <div class="cell">
+                    <input type="email" name="memberEmail" class="field w-100" placeholder="이메일 주소">
+                </div>
+                <div class="cell left">
+                    <input type="text" name="memberPost" size="14" maxlength="6" class="field" placeholder="우편번호" readonly>
+                    <button type="button" class="btn btn-neutral btn-address-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <button type="button" class="btn btn-negative btn-address-clear" style="display: none;">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="cell">
+                    <input type="text" name="memberAddress1" class="field w-100" placeholder="기본주소" readonly>
+                </div>
+                <div class="cell">
+                    <input type="text" name="memberAddress2" class="field w-100" placeholder="상세주소" readonly>
+                </div>
             </div>
             <div class="cell">
                 <input type="password" name="member-pw" class="field w-100" placeholder="비밀번호 (8자리 이상)">
@@ -125,7 +161,7 @@
                 </select>
             </div>
             <div class="cell mt-30 mb-30">
-                <button class="btn btn-signup w-100"><i class="fa-solid fa-envelope"></i> 개인 회원가입</button>
+                <button class="btn btn-signup w-100"><i class="fa-solid fa-envelope"></i>&nbsp;&nbsp;개인 회원가입</button>
             </div>
             <hr>
             <div class="cell center mt-20">
