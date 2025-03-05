@@ -508,6 +508,7 @@ textarea.field {
     color: white;
 }
 
+
 /*
     입력창과 버튼을 같이 사용하면 높이가 안맞으므로 맞추도록 설정
     - 단, textarea는 높이를 제한하면 안된다
