@@ -87,6 +87,20 @@
                         <li><a href="#">항목4</a></li>
                     </ul>
 				</li>
+				<!-- 회원인 경우 -->
+				<c:choose>
+					<c:when test="${sessionScope.userId != null}">
+					
+					</c:when>
+				
+				
+				
+				<!-- 비회원인 경우 -->
+				
+				
+				
+				</c:choose>
+				
                 <li class="menu-end">
                     <a href="#">
 						<i class="fa-regular fa-circle-user grey"></i>
