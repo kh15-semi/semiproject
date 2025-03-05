@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>title</title>
+
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- font awesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" type="text/css" href="/css/commons.css">
+
+    <!-- jQuery cdn -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+        
+    </script>
+</head>
+<body>
+    <div class="container w-800">
+        <div class="cell">
+            <div class="cell">
+                <h2><i class="fa-regular fa-user green"></i> 계정 정보 수정</h2>
+            </div>
+            <label><i class="fa-solid fa-angle-right"></i> 생년월일</label>
+                <input type="date" name="memberBirth" value="${memberDto.memberBirth}" ><br><br>
+            <label><i class="fa-solid fa-angle-right"></i> 연락처</label>
+                <input type="tel" name="memberContact" value="${memberDto.memberContact}" ><br><br>
+            <label><i class="fa-solid fa-angle-right"></i> 이메일</label>
+                <input type="email" name="memberEmail" value="${memberDto.memberEmail}" ><br><br>
+            <label><i class="fa-solid fa-angle-right"></i> 주소</label><br>
+                <input type="text" name="memberPost" value="${memberDto.memberPost}" class="field" ><br>
+                <input type="text" name="memberAddress1" value="${memberDto.memberAddress1}" class="field" ><br>
+                <input type="text" name="memberAddress2" value="${memberDto.memberAddress2}" class="field" ><br><br>
+            <label><i class="fa-solid fa-angle-right"></i> 비밀번호 확인</label>
+                <input type="password" name="memberPw" value="${memberDto.memberPw}"><br>
+        </div>
+        
+        <div class="cell">
+            <button type="button" class="btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-user-pen"></i> 수정 완료</button>
+            <button type="button" class="btn btn-red" style="border-radius: 10px;"><i class="fa-solid fa-xmark"></i> 취소</button>
+        </div>
+    </div>
+</body>
+</html>
