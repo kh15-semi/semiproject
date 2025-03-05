@@ -56,10 +56,7 @@ public class CompanyDao {
 		List<CompanyDto> list = jdbcTemplate.query(sql,companyMapper, data);
 		return list.isEmpty() ? null : list.get(0);
 	}	
-	public interface CompanyRepository extends JpaRepository<Company, Integer> {
-	    // 사업자등록번호로 회사 조회
-	    Company findByCompanyCrNumber(String crNumber);
-	}
+
 
 }
 	
