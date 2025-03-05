@@ -48,12 +48,38 @@ public class MemberDao {
 				memberDto.getMemberAddress1(), memberDto.getMemberAddress2(), memberDto.getMemberIndustry(),
 				memberDto.getMemberJob(), memberDto.getMemberPosition(), memberDto.getMemberCrNumber() };
 		jdbcTemplate.update(sql, data);
+		
+		// member_company_no 업데이트
+	    updateMemberCompanyNo(memberDto.getMemberId());
+	}
+	
+	public int updateMemberCompanyNo(String memberId) {
+	    String sql = "UPDATE member SET member_company_no = (SELECT company_no FROM company WHERE company_cr_number = (SELECT member_cr_number FROM member WHERE member_id = ?)) WHERE member_id = ?";
+	    return jdbcTemplate.update(sql, memberId, memberId);
 	}
 	
 	public String getCompanyNameByCrNumber(String crNumber) {
         String sql = "SELECT bn_company_name FROM business_number WHERE bn_cr_number = ?";
         return jdbcTemplate.queryForObject(sql, String.class, crNumber);
     }
+	
+	 public int updateMemberCompanyNo() {
+	        String sql = "UPDATE member m " +
+	                "SET m.member_company_no = ( " +
+	                "    SELECT c.company_no " +
+	                "    FROM company c " +
+	                "    WHERE c.company_cr_number = m.member_cr_number " +
+	                ") " +
+	                "WHERE m.member_type = '기업회원' " +
+	                "AND m.member_cr_number IN ( " +
+	                "    SELECT company_cr_number " +
+	                "    FROM company " +
+	                "    WHERE company_no IS NOT NULL " +
+	                ") " +
+	                "AND m.member_company_no IS NULL";
+
+	        return jdbcTemplate.update(sql);
+	    }
 
 	// 상세조회 기능
 	public MemberDto selectOne(String memberId) {

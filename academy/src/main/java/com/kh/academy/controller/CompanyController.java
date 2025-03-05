@@ -8,7 +8,5 @@ import com.kh.academy.service.CompanyService;
 @RestController
 public class CompanyController {
 
-    @Autowired
-    private CompanyService companyService;
-    
+
 }
