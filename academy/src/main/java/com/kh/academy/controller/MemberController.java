@@ -22,9 +22,9 @@ public class MemberController {
 	@Autowired
 	private MemberDao memberDao;
 
-	// 회원가입 매핑
+	//일반 회원가입 매핑
 	@GetMapping("/member/join") // GET방식만 처리하는 매핑
-	public String join() {
+	public String joinMember() {
 		return "/WEB-INF/views/member/join.jsp";
 	}
 
@@ -35,6 +35,11 @@ public class MemberController {
 		memberDao.insertMember(memberDto); // 회원가입
 
 		return "redirect:joinFinish"; // joinFinish으로 쫓아내는 코드(상대경로)
+	}
+	//기업 회원가입 매핑
+	@GetMapping("/company/join")
+	public String joinCompanyMember() {
+		return "/WEB-INF/views/company/join.jsp";
 	}
 
 	// 입력 처리
