@@ -81,11 +81,13 @@
                 <div class="celㅣ">
                     <select name="memberIndustry" class="field w-100">
                         <option value="">산업군</option>
+                        <option>IT</option>
                     </select>
                 </div>
                 <div class="cell">
                     <select name="memberJob" class="field w-100">
                         <option value="">직종</option>
+                        <option>게임개발</option>
                     </select>
                 </div>
             </div>
