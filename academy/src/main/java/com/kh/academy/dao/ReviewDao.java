@@ -65,7 +65,7 @@ public class ReviewDao {
 		};
 		return jdbcTemplate.update(sql, data) > 0;
 	}
-	
+	//삭제
 	public boolean delete(int reviewNo) {
 		String sql = "delete from review where review_no = ?";
 		Object[] data = {reviewNo};
