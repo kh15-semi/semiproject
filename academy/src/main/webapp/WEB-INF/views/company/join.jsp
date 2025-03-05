@@ -13,7 +13,27 @@
 
 <!-- kakao post api -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="/js/member/join.js" ></script>
+<!-- <script src="/js/company/join.js" ></script> -->
+<script>
+$(function() {
+    $("#memberCrNumber").on("blur", function() { 
+        var crNumber = $(this).val();
+        $.ajax({
+            url: "/company/getCompanyName",
+            type: "GET",
+            data: { crNumber: crNumber },
+            success: function(response) {
+                if (response.companyName) {
+                    $("#companyName").val(response.companyName);
+                } else {
+                    alert("해당 사업자 등록 번호로 기업명을 찾을 수 없습니다.");
+                    $("#companyName").val("");
+                }
+            },
+        });
+    });
+});
+</script>
 
 <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
 	
@@ -46,7 +66,7 @@
 	
             <div class="cell" style="padding: 5px;">
                 <div class="cell">
-                    <input type="text" name="companyName" class="field w-100" placeholder="기업명">
+                    <input type="text" id="companyName" name="companyName" class="field w-100" placeholder="기업명" value="${companyName}" readonly>
                 </div>
                 <div class="cell">
                     <select name="memberIndustry" class="field w-100">
@@ -59,7 +79,7 @@
                     </select>
                 </div>
                 <div class="cell">
-                    <input type="text" name="companyNo" class="field w-100" placeholder="사업자 등록 번호">
+                    <input type="text" id="memberCrNumber" name="memberCrNumber" class="field w-100" placeholder="사업자 등록 번호">
                 </div>
                 <div class="cell left">
                     <input type="text" name="memberPost" size="14" maxlength="6" class="field" placeholder="우편번호" readonly>

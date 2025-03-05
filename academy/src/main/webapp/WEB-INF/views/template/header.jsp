@@ -88,7 +88,7 @@
                     </ul>
 				</li>
 				<!-- 회원인 경우 -->
-				<c:choose>
+				<%-- <c:choose>
 					<c:when test="${sessionScope.userId != null}">
 					
 					</c:when>
@@ -99,7 +99,7 @@
 				
 				
 				
-				</c:choose>
+				</c:choose> --%>
 				
                 <li class="menu-end">
                     <a href="#">

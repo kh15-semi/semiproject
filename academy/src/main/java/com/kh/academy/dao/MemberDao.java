@@ -49,6 +49,11 @@ public class MemberDao {
 				memberDto.getMemberJob(), memberDto.getMemberPosition(), memberDto.getMemberCrNumber() };
 		jdbcTemplate.update(sql, data);
 	}
+	
+	public String getCompanyNameByCrNumber(String crNumber) {
+        String sql = "SELECT bn_company_name FROM business_number WHERE bn_cr_number = ?";
+        return jdbcTemplate.queryForObject(sql, String.class, crNumber);
+    }
 
 	// 상세조회 기능
 	public MemberDto selectOne(String memberId) {
