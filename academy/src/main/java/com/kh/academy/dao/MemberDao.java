@@ -147,20 +147,20 @@ public class MemberDao {
 	    Object[] data = { memberId };
 	    List<MemberDto> list = jdbcTemplate.query(sql, memberMapper, data);
 
-	    if (list.isEmpty()) {
-	        return null;
-	    }
-	    //기업명이 계속 null로 나와서 구문을 바꿔봄 (기업명나옴)
-	    // 멤버 정보
-	    MemberDto memberDto = list.get(0);
+//	    if (list.isEmpty()) {
+//	        return null;
+//	    }
+//	    //기업명이 계속 null로 나와서 구문을 바꿔봄 (기업명나옴)
+//	    // 멤버 정보
+//	    MemberDto memberDto = list.get(0);
+//
+//	    // 사업자 등록번호로 기업명 조회
+//	    String companyName = getCompanyNameByCrNumber(memberDto.getMemberCrNumber());
+//	    if (companyName != null) {
+//	        memberDto.setCompanyName(companyName); // 기업명 세팅
+//	    }
 
-	    // 사업자 등록번호로 기업명 조회
-	    String companyName = getCompanyNameByCrNumber(memberDto.getMemberCrNumber());
-	    if (companyName != null) {
-	        memberDto.setCompanyName(companyName); // 기업명 세팅
-	    }
-
-	    return memberDto;
+	    return list.isEmpty() ? null : list.get(0);
 	}
 	
 
