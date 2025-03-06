@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" type="text/css" href="/css/commons.css">
-    
+       
     <style>
         .logo {
 			list-style-type: none; 
@@ -56,7 +56,9 @@
 
     </style>
     
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="/js/button.js"></script>
+
 
 </head>
 
@@ -100,7 +102,7 @@
 							 	</a>
 							 	<ul>
 							 		<li><a href="/admin/home">관리자 메뉴</a></li>
-							 		<li><a href="/member/logout">로그아웃</a></li>
+							 		<li><a href="/logout">로그아웃</a></li>
 							 	</ul>
 							 </li>
 						</c:if>
@@ -111,9 +113,10 @@
 								<i class="fa-solid fa-chevron-down"></i>
 							</a>
 							<ul>
-								<li><a href="/member/mypage">My</a></li>
+								<li><a href="/member/mypage">My</a></li> <!-- if구문으로 개인회원, 기업회원 마이페이지로 각각 떨어지게끔 구현 필요  -->
+								<li><a href="/company/member/mypage">My</a></li>
 								<li><a href="#">기업 리뷰</a></li>
-								<li><a href="/member/logout">로그아웃</a></li>
+								<li><a href="/logout">로그아웃</a></li>
 							</ul>
 		                </li>							
 					</c:when>
@@ -121,9 +124,9 @@
 					<c:otherwise>
 					<!-- 비회원인 경우 -->
 					 <li class="menu-end">
-						<a href="/member/login">로그인</a>
+						<a href="/login">로그인</a>
 						<ul>
-							<li><a href="/member/join">회원가입</a></li>
+							<li><a href="/member/join">회원가입</a></li> <!-- 기업회원, 개인회원 회원가입 버튼 및 페이지 따로 나누어서 진행 -->
 						</ul>
 					</li>
 					</c:otherwise>
