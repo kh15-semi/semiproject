@@ -1,8 +1,6 @@
 package com.kh.academy.dto;
 
-import java.sql.Timestamp;
-
-import org.springframework.format.annotation.DateTimeFormat;
+import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,11 +13,7 @@ public class CompanyHistoryDto {
 	private int companyHistoryNo; //히스토리 이력번호
     private String memberId; //회원ID
     private int companyNo; //기업번호
-    
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Timestamp companyHistoryJoinDate; //입사일
-    
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Timestamp companyHistoryLeaveDate; //퇴사일
+    private Date companyHistoryJoinDate; //입사일
+    private Date companyHistoryLeaveDate; //퇴사일
 	
 }
