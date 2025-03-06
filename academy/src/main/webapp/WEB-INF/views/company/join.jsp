@@ -24,6 +24,7 @@
 	    font-weight: 600;
 	    color: #32AA46;
 	}
+	
 </style>
 <script>
 $(function() {
