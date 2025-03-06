@@ -44,10 +44,19 @@
            
         }
     </style>
+<script type="text/javascript">
+$(function() {
+	// 사업자번호 버튼 클릭 시
+	$(".btn").click(function() {
+		
+	});
+
+});
+</script>    
 </head>
 <body>
     <h1 class="title">사업자번호</h1>
-    <input name="naverId" class="field" placeholder="회사 사업자번호 ">
+    <input name="memeberCrNumber" class="field" placeholder="회사 사업자번호 ">
     <button class="btn">등록</button>
 </body>
 </html>
