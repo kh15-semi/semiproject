@@ -65,9 +65,6 @@ public class CompanyDao {
         return list.isEmpty() ? null : list.get(0);  // 첫 번째 결과 반환 (없으면 null 반환)
     }
     
-    
-    
-    
 }
 
 
