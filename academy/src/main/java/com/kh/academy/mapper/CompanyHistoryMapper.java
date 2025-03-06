@@ -18,8 +18,8 @@ public class CompanyHistoryMapper implements RowMapper<CompanyHistoryDto> {
 				.companyHistoryNo(rs.getInt("company_history_no"))
 				.memberId(rs.getString("member_id"))
 				.companyNo(rs.getInt("company_no"))
-				.companyHistoryJoinDate(rs.getTimestamp("company_history_join_date"))
-				.companyHistoryLeaveDate(rs.getTimestamp("company_history_leave_date"))
+				.companyHistoryJoinDate(rs.getDate("company_history_join_date"))
+				.companyHistoryLeaveDate(rs.getDate("company_history_leave_date"))
 			.build();
 	}
 

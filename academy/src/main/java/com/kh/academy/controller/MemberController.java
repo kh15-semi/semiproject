@@ -113,6 +113,8 @@ public class MemberController {
     public String addCompanyHistory(
     		@ModelAttribute CompanyHistoryDto companyHistoryDto, HttpSession session, Model model) {
 
+    	System.out.println("addCompanyHistory 메서드 호출됨");
+    	
         String userId = (String) session.getAttribute("userId");
         MemberDto findDto = memberDao.selectOne(userId);
 
@@ -124,10 +126,13 @@ public class MemberController {
             model.addAttribute("errorMessage", "존재하지 않는 회사입니다. 관리자에게 문의하세요.");
             return "/WEB-INF/views/member/addCompany.jsp";
         }
+        
+    
 
         // 3. 새로운 회사 이력 추가
-        //companyHistoryDto.setMemberId(userId);
-        //companyHistoryDto.setCompanyNo(companyDto.getCompanyNo());
+        companyHistoryDto.setMemberId(userId);
+        companyHistoryDto.setCompanyNo(companyDto.getCompanyNo());
+        System.out.println("companyHistoryDto = " + companyHistoryDto);
         companyHistoryDao.insertCompanyHistory(companyHistoryDto);
         
         return "redirect:mypage"; // 처리 후 마이페이지로 리다이렉트
@@ -183,10 +188,6 @@ public class MemberController {
 		return "/WEB-INF/views/company/member/joinFinish.jsp";
 	}
 
-	// 마이페이지(내정보) 매핑 (기업회원)
-	// - 현재 로그인한 회원의 모든 정보가 화면에 출력(단, 비밀번호 제외)
-	
-	// - HttpSession에 있는 아이디를 꺼내 회원의 모든 정보를 조회
 	@RequestMapping("/company/member/mypage")
 	public String mypageCompanyMember(HttpSession session, Model model) {
 		String userId = (String) session.getAttribute("userId"); // 내 아이디 추출
@@ -251,14 +252,6 @@ public class MemberController {
 		return "/WEB-INF/views/share/login.jsp";
 	}
 
-	// HttpSession 추가
-	// - 사용자 별로 무언가 다른 정보를 기록해야 할 필요가 있을 때 사용
-	// - Model처럼 선언만 하면 자동으로 스프링이 제공해줌
-	// - 데이터 추가 : session.setAttribute("key", value);
-	// - 데이터 추출 : session.getAttribute("key");
-	// - 데이터 제거 : session.removeAttribute("key");
-	// - 목표 : 로그인 성공 시 이 회원의 정보를 세션에 저장 (PK)
-	@PostMapping("/login")
 	public String login(@ModelAttribute MemberDto memberDto, @RequestParam(required = false) String remember,
 			HttpSession session, HttpServletResponse response) { // 사용자가 입력한 정보 //아이디와 비밀번호를 String으로 받을지, Dto로 받을지 선택의
 																	// 문제
@@ -268,8 +261,7 @@ public class MemberController {
 			return "redirect:login?error"; // 로그인페이지로 쫒아낸다 //GET의 login으로 리다이렉트된다. 원래 리다이렉트는 get밖에 안되긴 함
 		}
 		// 아이디가 있으면 비밀번호 검사를 진행
-//		System.out.println(memberDto);
-//		System.out.println(findDto);
+
 		boolean isValid = findDto.getMemberPw().equals(memberDto.getMemberPw());
 		if (isValid) {// 로그인 성공 시
 
@@ -277,16 +269,6 @@ public class MemberController {
 			session.setAttribute("userId", findDto.getMemberId());
 			// (+추가)세션에 userLevel이란 이름으로 사용자의 등급을 저장
 			session.setAttribute("userType", findDto.getMemberType());
-
-			/*
-			 * //(+추가)최종 로그인 시각을 갱신 처리 memberDao.updateMemberLogin(findDto.getMemberId());
-			 * 
-			 * //(+추가)아이디 저장하기에 대해 쿠키 생성/소멸 처리 if(remember == null) { //쿠키 소멸 -> 삭제 명령이 없어서
-			 * 0초로 해둬야 함 Cookie cookie = new Cookie("saveId", memberDto.getMemberId());
-			 * cookie.setMaxAge(0); response.addCookie(cookie); } else { Cookie cookie = new
-			 * Cookie("saveId", memberDto.getMemberId()); cookie.setMaxAge(4 * 7 * 24 * 60 *
-			 * 60); //4주 response.addCookie(cookie); }
-			 */
 
 			return "redirect:/";
 		} else {// 비밀번호 다름
