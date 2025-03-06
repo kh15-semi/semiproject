@@ -197,7 +197,7 @@ public class MemberController {
 		CompanyDto companyDto = companyDao.selectOne(memberDto.getMemberCompanyNo());
 		System.out.println("companyDto" + companyDto);
 		 
-		
+	 
 		model.addAttribute("memberDto", memberDto);
 		model.addAttribute("companyDto", companyDto);
 
