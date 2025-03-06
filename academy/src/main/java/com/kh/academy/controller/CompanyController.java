@@ -23,12 +23,12 @@ public class CompanyController {
 	@Autowired
 	private CompanyDao companyDao;
 	
-	@GetMapping
-	public String list(Model model) {
-		List<CompanyDto> companyList = companyDao.selectAll();
-		model.addAttribute("companyList", companyList);
-		return "/WEB-INF/views/company/list.jsp";
-	}
+//	@GetMapping
+//	public String list(Model model) {
+//		List<CompanyDto> companyList = companyDao.selectAll();
+//		model.addAttribute("companyList", companyList);
+//		return "/WEB-INF/views/company/list.jsp";
+//	}
 	//기업 등록
 	@GetMapping("/mypage/insert")
 	public String insert() {
