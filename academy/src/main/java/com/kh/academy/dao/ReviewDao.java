@@ -71,7 +71,7 @@ public class ReviewDao {
 		Object[] data = {reviewNo};
 		return jdbcTemplate.update(sql, data) > 0;
 	}
-	
+
 }
 
 
