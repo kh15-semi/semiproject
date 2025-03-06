@@ -19,7 +19,7 @@ public class CompanyMapper implements RowMapper<CompanyDto>{
 					.companyUrl(rs.getString("company_uri"))
 					.companyContact(rs.getString("company_contact"))
 					.companyIndustry(rs.getString("company_industry"))
-					.companyJop(rs.getString("company_job"))
+					.companyJob(rs.getString("company_job"))
 					.companyPost(rs.getString("company_post"))
 					.companyAddress1(rs.getString("company_address1"))
 					.companyAddress2(rs.getString("company_address2"))

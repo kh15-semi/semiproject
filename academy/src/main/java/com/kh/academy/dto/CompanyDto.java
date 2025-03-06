@@ -13,7 +13,7 @@ public class CompanyDto {//
 	private String companyUrl;//기업 홈페이지 주소
 	private String companyContact;//기업 담당자 번호
 	private String companyIndustry;//기업 산업
-	private String companyJop;//(기업 소유 직종)
+	private String companyJob;//(기업 소유 직종)
 	private String companyPost;//우편번호
 	private String companyAddress1;//기본주소
 	private String companyAddress2;//상세주소
