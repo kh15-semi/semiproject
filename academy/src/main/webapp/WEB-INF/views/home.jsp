@@ -13,12 +13,18 @@
            
 			<div class="cell" style="margin: auto;">
                 <div class="cell center flex-box">
-                    <img src="/images/뤼이드.png" style="border-radius: 15px; width: 360px; height: 250px;">
+                	<a href="#">
+                    	<img src="/images/뤼이드.png" style="border-radius: 15px; width: 360px; height: 250px;">
+                	</a>
                 </div>
 				<div class="cell left m-10">
 					<span>
-						(주) 뤼이드<br>
-						<b>[Riiid] 사내 법무 담당자 (재택 근무 병행)</b> <br>
+						<a href="#" style="text-decoration: none; color: inherit;">
+							<b>(주) 뤼이드</b>
+						</a><br>
+						<a href="#" style="text-decoration: none; color: inherit;">
+							<b>[Riiid] 사내 법무 담당자 (재택 근무 병행)</b> 
+						</a><br>
 						<p style=" font-size: 13px; color: grey;">5년 이상, 법무, 법률 사무</p>
 					</span>
 				</div>
@@ -26,12 +32,18 @@
             
 			<div class="cell" style="margin: auto;">
                 <div class="cell center flex-box">
-                    <img src="/images/쿠팡.png" style="border-radius: 15px; width: 360px; height: 250px;">
+                	<a href="#">
+                    	<img src="/images/쿠팡.png" style="border-radius: 15px; width: 360px; height: 250px;">
+                	</a>
                 </div>
 				<div class="cell left m-10">
 					<span>
-						쿠팡(주)<br>
-						<b>[Coupang] Privacy Compliance</b> <br>
+						<a href="#" style="text-decoration: none; color: inherit;">
+							<b>쿠팡(주)</b>
+						</a><br>
+						<a href="#" style="text-decoration: none; color: inherit;">
+							<b>[Coupang] Privacy Compliance</b> 
+						</a><br>
 						<p style=" font-size: 13px; color: grey;">5년 이상, 법무, 법률 사무</p>
 					</span>
 				</div>
@@ -43,8 +55,12 @@
                 </div>
 				<div class="cell left m-10">
 					<span>
-						(주) 코인원<br>
-						<b>컴플라이언스 담당자</b> <br>
+						<a href="#" style="text-decoration: none; color: inherit;">
+							<b>(주) 코인원</b>
+						</a><br>
+						<a href="#" style="text-decoration: none; color: inherit;">
+							<b>컴플라이언스 담당자</b> 
+						</a><br>
 						<p style=" font-size: 13px; color: grey;">5년 이상, 내부 통제, 컴플라이언스, 준법감시</p>
 					</span>
 				</div>
