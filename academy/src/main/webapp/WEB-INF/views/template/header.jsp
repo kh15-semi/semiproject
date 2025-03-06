@@ -56,8 +56,8 @@
 
     </style>
     
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="/js/button.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="/js/button.js"></script>
 
 
 </head>
@@ -113,8 +113,8 @@
 								<i class="fa-solid fa-chevron-down"></i>
 							</a>
 							<ul>
-								<li><a href="/member/mypage">My</a></li> <!-- if구문으로 개인회원, 기업회원 마이페이지로 각각 떨어지게끔 구현 필요  -->
-								<li><a href="/company/member/mypage">My</a></li>
+								<li><a href="/member/mypage">memberMy</a></li> <!-- if구문으로 개인회원, 기업회원 마이페이지로 각각 떨어지게끔 구현 필요  -->
+								<li><a href="/company/member/mypage">companyMy</a></li>
 								<li><a href="#">기업 리뷰</a></li>
 								<li><a href="/logout">로그아웃</a></li>
 							</ul>

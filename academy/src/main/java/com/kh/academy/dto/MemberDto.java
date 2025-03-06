@@ -28,6 +28,11 @@ public class MemberDto {
 	private String memberCrNumber; //사업자등록번호 (외래키-기업회원만) 
 	private int memberCompanyNo; //소속회사 번호 (기업회원만)
 	
- 
+	//회사명(기업회원만)
+	private String companyName;
 	
 }
+
+
+
+

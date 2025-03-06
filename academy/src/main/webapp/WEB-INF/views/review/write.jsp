@@ -13,12 +13,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <form action="change" method="post">
-    <div class="container w-800">
 
         <!-- 헤더 -->
         <div class="header">
-            <div class="logo">
-                <img src="./image/jobplanet.png">
+            <div class="left flex-box logo">
+                <a href="http://127.0.0.1:5500/ui/main_non.html">
+                    <img src="./image/jobplanet.png">
+                </a>
             </div>
 
             <div class="login-box">
@@ -72,7 +73,7 @@
                         <h2>리뷰</h2>
                     </div>
                     <p>글은 자신의 인격입니다.존중하며 적어주세요</p>
-                        <!-- 리뷰 목록 들어가는곳 -->
+                        <!-- 리뷰 목록 -->
                             
                             <!-- 테이블 -->
                             <div class="cell center">
@@ -128,5 +129,7 @@
                 </div>
 
             </div>
+
+
 </form>
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
