@@ -65,10 +65,7 @@ public class CompanyDao {
         return list.isEmpty() ? null : list.get(0);  // 첫 번째 결과 반환 (없으면 null 반환)
     }
     
-//    public List<CompanyDto> selectAll(){
-//    	String sql = "select * from company order by company_no desc";
-//    	return jdbcTemplate.query(sql, companyMapper);
-//    }
+    
     
     
 }
