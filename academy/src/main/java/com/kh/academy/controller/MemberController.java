@@ -75,6 +75,8 @@ public class MemberController {
         model.addAttribute("companyName", companyName);
         
 		memberDao.insertCompanyMember(memberDto); // 회원가입
+		memberDao.updateMemberCompanyNo();
+		
 		return "redirect:joinFinish"; // joinFinish으로 쫓아내는 코드(상대경로)
 	}
 	
