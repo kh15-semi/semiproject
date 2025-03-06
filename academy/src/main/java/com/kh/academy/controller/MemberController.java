@@ -160,8 +160,9 @@ public class MemberController {
 		model.addAttribute("memberDto", memberDto);
 		model.addAttribute("companyDto", companyDto);
 
-		return "/WEB-INF/views/company/member/mypage.jsp";
+	    return "/WEB-INF/views/company/member/mypage.jsp"; // JSP 경로
 	}
+	
 
 	// 개인정보 변경 매핑(기업회원)
 	// - 연락처, 이메일, 주소(우편, 기본, 상세), 산업, 직종, 직책, 사업자등록번호 변경 가능
@@ -260,5 +261,9 @@ public class MemberController {
 		// session.invalidate(); //세션 소멸 명령
 		return "redirect:/";
 	}
-
+	//회사등록 매핑
+		@GetMapping("/member/addCompany")
+		public String addCompany() {
+			return "/WEB-INF/views/member/addCompany.jsp";
+		}
 }
