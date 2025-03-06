@@ -67,10 +67,12 @@
         <hr style="border: 0; border-top: 1px solid rgb(196, 196, 196)"><br>
 
         <div class="cell center" style="margin: 10px; padding: 10px;">
-            <button type="button" class="btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-pen-to-square"></i> 정보 수정</button>
-            <button type="button" class="btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-lock"></i> 비밀번호 변경</button>
-            <button type="button" class="btn btn-red" style="border-radius: 10px;"><i class="fa-solid fa-exclamation"></i> 계정삭제</button>
-            <button type="button" class="btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-house"></i> 메인</button>
+        	<a href="/company/mypage/edit">
+            	<button type="button" class="btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-pen-to-square"></i> 정보 수정</button>
+        	</a>
+            	<button type="button" class="btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-lock"></i> 비밀번호 변경</button>
+            	<button type="button" class="btn btn-red" style="border-radius: 10px;"><i class="fa-solid fa-exclamation"></i> 계정삭제</button>
+            	<button type="button" class="btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-house"></i> 메인</button>
         </div>
     </div>
 </div>
