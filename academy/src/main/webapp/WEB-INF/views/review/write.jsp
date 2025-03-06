@@ -14,101 +14,121 @@
 
 <form action="change" method="post">
 
-    <div class="container">
-        <div class="cell center header">
-            <h1>리뷰 작성</h1>
-        </div>
-        <label>기업 총 평점</label><br>
-        <div class="review-score3" data-max="5"></div>
-        <!-- 리뷰 입력하는 폼 -->
+        <!-- 헤더 -->
+        <div class="header">
+            <div class="left flex-box logo">
+                <a href="http://127.0.0.1:5500/ui/main_non.html">
+                    <img src="./image/jobplanet.png">
+                </a>
+            </div>
 
-        <div class="cell">
-            <label>기업 한줄평</label>
-            <p style="font-size: 12px;">이 기업을 한마디로 소개한다면 어떤 기업인가요?</p>
-            <textarea class="field w-100 field-answer" placeholder="(20자 이상) 기업에 대해 작성해 주세요." rows="1"></textarea>
-            <div class="text-count">
-                <span>0</span>
-                <span>/ 최대 100자</span>
+            <div class="login-box">
+                <button class="login-btn">로그인 / 회원가입</button>
             </div>
         </div>
 
-        <div class="cell">
-            <label>기업의 장점</label>
-            <div class="cell">
-                <p style="font-size: 12px;">이 기업을 다니며 좋았던 점을 남겨주세요</p>
-                <textarea class="field w-100 field-answer" rows="3" placeholder="(30자 이상) 만족스러운 점을 작성해 주세요."></textarea>
-                <div class="text-count">
-                    <span>0</span>
-                    <span>/ 최대 1000자</span>
+        <!-- 로그인 창 -->
+        <div id="loginpage" class="loginpage" style="display: none;">
+            <div class="loginscreen">
+                <span class="close">x</span>
+                <h2>로그인</h2>ID:
+                <input type="text" name="memberId" placeholder="아이디 입력">PW:
+                <input type="password" name="memberPw" placeholder="비밀번호 입력">
+                <button class="btn-logincheck">Login</button>
+                <button class="memberjoin-btn">회원가입 하러가기</button>
+            </div>
+        </div>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="main">
+            <!-- 회사 정보 -->
+            <div class="content w-100">
+                <div class="company-info">
+                    <div class="company-image">
+                        <img src="./image/Instagram.png">
+                    </div>
+
+                    <div class="company-details">
+                        <!-- 회사명과 평점을 같은 줄에 배치 -->
+                        <div class="company-header">
+                            <div class="flex company-name">Instagram</div>
+                            <div class="company-rating" data-max="5" data-rate="4"> 총 평점: </div>
+                        </div>
+                        <div class="company-extra-info">
+                            <p>업종: IT</p>
+                            <p>이메일: example@email.com</p>
+                            <p>홈페이지: www.example.com</p>
+                            <p>주소: 서울시 강남구</p>
+                            <p>전화번호: 02-1234-5678</p>
+                        </div>
+                        <div class="map">
+                            <button class="map-btn">위치보기 →</button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="cell">
-            <label>기업의 단점</label>
-            <div class="cell">
-                <p style="font-size: 12px;">기업의 단점을 객관적인 시각에서 적어주세요</p>
-                <textarea class="field w-100 field-answer" rows="3" placeholder="(30자 이상) 아쉬운 점을 작성해 주세요."></textarea>
-                <div class="text-count">
-                    <span>0</span>
-                    <span>/ 최대 1000자</span>
+                <!-- 리뷰창 -->
+                <div class="container reviews">
+                    <div class="cell centerreviews-header">
+                        <h2>리뷰</h2>
+                    </div>
+                    <p>글은 자신의 인격입니다.존중하며 적어주세요</p>
+                        <!-- 리뷰 목록 -->
+                            
+                            <!-- 테이블 -->
+                            <div class="cell center">
+                                <table class="table table-border table-hover table-ellipsis">
+                                    <thead>
+                                        <tr>
+                                            <th>번호</th>
+                                            <th>ID</th>
+                                            <th style="width:450px; max-width:450px;">한줄평</th>
+                                            <th>평점</th>
+                                            <th>좋아요</th>
+                                            <th>작성일</th>
+                                            <th>수정일</th>
+                                        </tr>
+                                    </thead>
+                                    <c:when test="${list.isEmpty()}">
+                                        <tbody>
+                                            <tr height="150">
+                                                <td colspan="7" align="center">
+                                                    등록된 게시글이 없습니다
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </c:when>
+                                </table>
+                            </div>
+                            <div>
+                                <div class="cell center">
+                                </div>
+                            <div class="review-actions">
+                                <button class="write-review-btn">리뷰 쓰러가기 →</button>
+                            </div>
+                            
+                            <!-- 페이지 네비게이터 -->
+                            <div class="cell center">
+                                <jsp:include page="/WEB-INF/views/template/pagination.jsp"></jsp:include>
+                            </div>
+                            
+                        </div>
+
                 </div>
+
+                <!-- 푸터 -->
+                <div class="footer">
+                    <span>(주)브레인커머스</span><br>
+                    서울특별시 강남구 테헤란로 509 엔씨타워 I, 10층 대표: 황희승, 윤신근 개인정보보호관리자: 윤신근<br>
+                    사업자등록번호: 120-87-92182 통신판매업 신고번호: 제2014-서울강남-02942호 유료 직업소개사업 등록번호 (국내)
+                    제2017-3220163-14-5-00046호<br>
+                    대표번호: 1644-5641 (10:00~17:00 / 매월 마지막 금요일 09:00~13:00 / 주말 및 공휴일 휴무) | 대표이메일:
+                    customer_service@jobplanet.co.kr<br>
+                    <br>
+                    &copy; Jobplanet. All rights reserved.
+                </div>
+
             </div>
-        </div>
-
-        <div class="container w-700">
-            <div class="cell category">
-                승진 기회 및 가능성
-                <div class="rating-type" data-max="5"></div>
-            </div>
-
-            <div class="cell category">
-                복지 및 급여
-                <div class="rating-type" data-max="5"></div>
-            </div>
-
-            <div class="cell category">
-                업무와 삶의 균형
-                <div class="rating-type" data-max="5"></div>
-            </div>
-
-            <div class="cell category">
-                사내 문화
-                <div class="rating-type" data-max="5"></div>
-            </div>
-
-            <div class="cell category">
-                경영진
-                <div class="rating-type" data-max="5"></div>
-            </div>
-        </div>
-
-        <div class="container w-700">
-            <form>
-                <h3>CEO에 대한 견해</h3>
-                <label><input type="checkbox" class="single-check"> 지지해요 </label>
-                <label><input type="checkbox" class="single-check"> 지지하지 않아요 </label>
-
-                <h3>이 기업은 1년 후 어떻게 될까요?</h3>
-                <label><input type="checkbox" class="single-check"> 성장 </label>
-                <label><input type="checkbox" class="single-check"> 비슷 </label>
-                <label><input type="checkbox" class="single-check"> 하락 </label>
-
-                <h3>이 기업을 구직자에게 추천하나요?</h3>
-                <label><input type="checkbox" class="single-check"> 네, 추천해요 </label>
-                <label><input type="checkbox" class="single-check"> 아니요 </label>
-            </form>
-        </div>
-
-
-
-        <div class="review-form">
-            <!-- 상세 페이지로 돌아가기 -->
-            <button type="button" class="btn btn-neutral beforebtn" onclick="goBack()">이전으로</button>
-            <button type="button" class="btn btn-positive reviewbtn">리뷰 등록</button>
-        </div>
-
-    </div>
 
 
 </form>
