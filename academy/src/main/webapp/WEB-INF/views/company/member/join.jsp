@@ -30,7 +30,7 @@ $(function() {
     $("#memberCrNumber").on("blur", function() { 
         var crNumber = $(this).val();
         $.ajax({
-            url: "/company/getCompanyName",
+            url: "/company/member/getCompanyName",
             type: "GET",
             data: { crNumber: crNumber },
             success: function(response) {
@@ -50,10 +50,10 @@ $(function() {
     <div class="container w-400" style="border:0; border-radius: 10px; background-color: rgb(238, 238, 238);">
         <div class="cell center">
             <a href="#">
-                <img src="/images/jobplanet_logo.png" class="logo w-250">
+                <img src="/images/jobplanet_logo.png" width="250px">
             </a>
 
-			<img src="/images/jobplanet_logo.png" width="250px">
+			
 
         </div>
         
@@ -75,21 +75,23 @@ $(function() {
             </div>
 
             <div class="cell" style="padding: 5px;">
+            	<div class="cell">
+                    <input type="text" id="memberCrNumber" name="memberCrNumber" class="field w-100" placeholder="사업자 등록 번호">
+                </div>
                 <div class="cell">
                     <input type="text" id="companyName" name="companyName" class="field w-100" placeholder="기업명" value="${companyName}" readonly>
                 </div>
                 <div class="cell">
                     <select name="memberIndustry" class="field w-100">
                         <option value="">산업군</option>
+                        <option>IT</option>
                     </select>
                 </div>
                 <div class="cell">
                     <select name="memberJob" class="field w-100">
                         <option value="">직종</option>
+                        <option>게임개발</option>
                     </select>
-                </div>
-                <div class="cell">
-                    <input type="text" id="memberCrNumber" name="memberCrNumber" class="field w-100" placeholder="사업자 등록 번호">
                 </div>
                 <div class="cell left">
                     <input type="text" name="memberPost" size="14" maxlength="6" class="field" placeholder="우편번호" readonly>

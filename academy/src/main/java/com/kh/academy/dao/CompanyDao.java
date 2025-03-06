@@ -35,6 +35,7 @@ public class CompanyDao {
 	}		
 	
 	public boolean update(CompanyDto companyDto) { //업데이트
+
 		String sql = "update company "
 				+ "set "
 				+ "company_name=?, company_url=?, company_contact=?, company_industry=?, "
@@ -47,6 +48,7 @@ public class CompanyDao {
 		};
 		return jdbcTemplate.update(sql, data) > 0;
 	}	
+
 	
 	//상세조회 기능
 	public CompanyDto selectOne(int companyNo) {
