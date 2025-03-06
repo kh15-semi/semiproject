@@ -10,7 +10,29 @@
 
 <!-- font awesome cdn -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script>
+    $(function () {
+        // 정보 수정 버튼 클릭 시
+        $('#editInfoBtn').click(function() {
+            window.location.href = '/edit-info';
+        });
 
+        // 비밀번호 변경 버튼 클릭 시
+        $('#changePasswordBtn').click(function() {
+            window.location.href = '/change-password';
+        });
+
+        // 계정 삭제 버튼 클릭 시
+        $('#deleteAccountBtn').click(function() {
+            window.location.href = '/delete-account';
+        });
+
+        // 메인 버튼 클릭 시
+        $('#mainBtn').click(function() {
+            window.location.href = '/';
+        });
+    });
+</script>
 <div class="container w-800">
         <div class="cell" style="margin: 10px; padding: 10px">
 
@@ -30,7 +52,7 @@
                     <p>${memberDto.companyNo}</p>
                 </div>
                 <div class="cell">
-                    <h3>산업군  및 직종</h3>
+                    <h3>산업군 및 직종</h3>
                     <p>${memberDto.memberIndustry}</p>
                     <p>${memberDto.memberJob}</p>
                 </div>
