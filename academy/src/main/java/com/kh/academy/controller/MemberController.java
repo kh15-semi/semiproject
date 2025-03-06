@@ -60,12 +60,6 @@ public class MemberController {
 	    return response;
 	}
 
-	// 회원가입 매핑(기업회원)
-	@GetMapping("/company/join") // GET방식만 처리하는 매핑
-	public String join() {
-		return "/WEB-INF/views/company/join.jsp";
-	}
-
 	// 입력 처리(기업회원)
 	@PostMapping("/company/join") // POST방식만 처리하는 매핑
 	public String joinCompanyMember(@ModelAttribute MemberDto memberDto, Model model) {
