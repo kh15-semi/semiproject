@@ -63,7 +63,18 @@ public class CompanyDao {
         Object[] data = { crNumber };
         List<CompanyDto> list = jdbcTemplate.query(sql, companyMapper, data);  // 쿼리 실행 및 매핑
         return list.isEmpty() ? null : list.get(0);  // 첫 번째 결과 반환 (없으면 null 반환)
-    }	
-
-
+    }
+    
+    
+    
+    
 }
+
+
+
+
+
+
+
+
+

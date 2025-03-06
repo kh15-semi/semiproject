@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!-- <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include> --><!-- 헤더 -->
+<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
 <div class="container w-800">
     <div class="cell" style="margin: 10px; padding: 10px">
@@ -17,7 +17,7 @@
 
         <div class="cell">
             <h3>연락처</h3>
-            <p>010-0000-0000</p>
+            <p>${memberDto.memberContact}</p>
         </div>
 
         <div class="cell">
@@ -30,15 +30,24 @@
             <p>${memberDto.memberPost}</p>
             <p>${memberDto.memberAddress1}</p>
             <p>${memberDto.memberAddress2}</p>
+       </div>
+       
+       <div>     
+            <!-- 관심산업/직종 추가 -->
+            <h3>관심 산업 및 직종</h3>
+            <p>${memberDto.memberIndustry}</p>
+            <p>${memberDto.memberJob}</p>
+            <!-- 관심산업/직종 추가 -->
         </div>
+        
     </div>
     
     <hr style="border: 0; border-top: 1px solid rgb(196, 196, 196)"><br>
 
     <div class="cell center" style="margin: 10px; padding: 10px;">
-        <button type="button" class="btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-pen-to-square"></i> 정보 수정</button>
-        <button type="button" class="btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-lock"></i> 비밀번호 변경</button>
-        <button type="button" class="btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-house"></i> 메인</button>
+        <button type="button" class="btn btn-green2" style="border-radius: 10px;"><i class="edit-btn fa-solid fa-pen-to-square"></i> 정보 수정</button>
+        <button type="button" class="btn btn-green2" style="border-radius: 10px;"><i class="changePw-btn fa-solid fa-lock"></i> 비밀번호 변경</button>
+        <button type="button" class="btn btn-green2" style="border-radius: 10px;"><i class="main-btn fa-solid fa-house"></i> 메인</button>
     </div>
 </div>
 
