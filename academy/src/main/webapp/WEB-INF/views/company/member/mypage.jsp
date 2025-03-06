@@ -50,7 +50,6 @@
                 <div class="cell">
                     <h3>사업자 등록 번호</h3>
                     <p>${memberDto.memberCrNumber}</p> 
-
                 </div>
                 <div class="cell">
                     <h3>산업군 및 직종</h3>

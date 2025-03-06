@@ -42,11 +42,11 @@ public class MemberDao {
 				+ "member_industry, member_job, " // 산업, 직종은 필수
 				+ "member_position, member_cr_number) "
 				+ "values(?, ?, '기업회원', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
+		
 		Object[] data = { memberDto.getMemberId(), memberDto.getMemberPw(), memberDto.getMemberName(),
 				memberDto.getMemberContact(), memberDto.getMemberEmail(), memberDto.getMemberPost(),
 				memberDto.getMemberAddress1(), memberDto.getMemberAddress2(), memberDto.getMemberIndustry(),
-				memberDto.getMemberJob(), memberDto.getMemberPosition(), memberDto.getMemberCrNumber() };
+				memberDto.getMemberJob(), memberDto.getMemberPosition(), memberDto.getMemberCrNumber(), memberDto.getMemberCompanyNo() };
 		jdbcTemplate.update(sql, data);
 		
 		// member_company_no 업데이트
@@ -117,6 +117,10 @@ public class MemberDao {
 				memberDto.getMemberEmail(), memberDto.getMemberPost(), memberDto.getMemberAddress1(),
 				memberDto.getMemberAddress2(), memberDto.getMemberIndustry(), memberDto.getMemberJob(),
 				memberDto.getMemberPosition(), memberDto.getMemberCrNumber(), memberDto.getMemberId() };
+		
+		// member_company_no 업데이트
+	    updateMemberCompanyNo(memberDto.getMemberId());
+		
 		return jdbcTemplate.update(sql, data) > 0;
 	}
 
