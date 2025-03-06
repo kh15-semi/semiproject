@@ -23,11 +23,11 @@
                 <label style="font-weight: 500; color: grey">* 기업 정보</label>
                 <div class="cell">
                     <h3>기업명</h3>
-                    <p>${memberDto.companyName}</p>
+                    <p>${companyDto.companyName}</p>
                 </div>
                 <div class="cell">
                     <h3>사업자 등록 번호</h3>
-                    <p>${memberDto.companyNo}</p>
+                    <p>${memberDto.memberCrNumber}</p>
                 </div>
                 <div class="cell">
                     <h3>산업군 및 직종</h3>
