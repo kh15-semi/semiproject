@@ -44,20 +44,36 @@
            
         }
     </style>
-<script type="text/javascript">
+<script>
 $(function() {
-	// 사업자번호 버튼 클릭 시
-	$(".btn").click(function() {
-		
-	});
-
+    $("#memberCrNumber").on("blur", function() { 
+        var crNumber = $(this).val();
+        $.ajax({
+            url: "/company/member/getCompanyName",
+            type: "GET",
+            data: { crNumber: crNumber },
+            success: function(response) {
+                if (response.companyName) {
+                    $("#companyName").val(response.companyName);
+                } else {
+                    alert("해당 사업자 등록 번호로 기업명을 찾을 수 없습니다.");
+                    $("#companyName").val("");
+                }
+            },
+        });
+    });
 });
-</script>    
+</script>   
 </head>
 <body>
-    <h1 class="title">사업자번호</h1>
-    <input name="memeberCrNumber" class="field" placeholder="회사 사업자번호 ">
-    <button class="btn">등록</button>
+    <h1 class="title">회사 이력 등록</h1>
+    <form action="/member/addCompany" method="post">
+    	<input type="text" id="memberCrNumber" name="memberCrNumber" class="field w-100" placeholder="사업자 등록 번호">
+        <input type="text" id="companyName" name="companyName" class="field w-100" placeholder="기업명" value="${companyName}" readonly>
+        <input type="date" name="companyHistoryJoinDate" class="field" placeholder="입사일" pattern="yyyy-MM-dd">
+        <input type="date" name="companyHistoryLeaveDate" class="field" placeholder="퇴사일 (재직 중인 경우 비워두세요)" pattern="yyyy-MM-dd">
+        <button type="submit" class="btn">등록 요청</button>
+    </form>
 </body>
 </html>
 

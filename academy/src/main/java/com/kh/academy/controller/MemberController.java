@@ -1,5 +1,6 @@
 package com.kh.academy.controller;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.academy.dao.CompanyDao;
+import com.kh.academy.dao.CompanyHistoryDao;
 import com.kh.academy.dao.MemberDao;
 import com.kh.academy.dto.CompanyDto;
+import com.kh.academy.dto.CompanyHistoryDto;
 import com.kh.academy.dto.MemberDto;
 
 import jakarta.servlet.http.HttpServletResponse;
@@ -29,6 +32,9 @@ public class MemberController {
 	
 	@Autowired
 	private CompanyDao companyDao;
+	
+	@Autowired
+	private CompanyHistoryDao companyHistoryDao;
 
 	// 회원가입 매핑(일반회원)
 	@GetMapping("/member/join") // GET방식만 처리하는 매핑
@@ -88,12 +94,44 @@ public class MemberController {
 		findDto.setMemberPost(memberDto.getMemberPost());
 		findDto.setMemberAddress1(memberDto.getMemberAddress1());
 		findDto.setMemberAddress2(memberDto.getMemberAddress2());
-		findDto.setMemberAddress2(memberDto.getMemberIndustry());
-		findDto.setMemberAddress2(memberDto.getMemberJob());
+		findDto.setMemberIndustry(memberDto.getMemberIndustry());
+		findDto.setMemberJob(memberDto.getMemberJob());
 
 		memberDao.updateMember(findDto);
 		return "redirect:mypage";
 	}
+	
+	
+	// 회사 이력 등록 페이지 요청 처리 (GET)
+    @GetMapping("/member/addCompany")
+    public String addCompanyHistory() {
+        return "/WEB-INF/views/member/addCompany.jsp"; // 회사 이력 등록 폼 페이지
+    }
+
+    // 회사 이력 등록 요청 처리 (POST)
+    @PostMapping("/member/addCompany")
+    public String addCompanyHistory(
+    		@ModelAttribute CompanyHistoryDto companyHistoryDto, HttpSession session, Model model) {
+
+        String userId = (String) session.getAttribute("userId");
+        MemberDto findDto = memberDao.selectOne(userId);
+
+        // 1. 회사 테이블에 있는지 확인
+        CompanyDto companyDto = companyDao.selectByCrNumber(findDto.getMemberCrNumber());
+
+        // 2. 회사가 존재하지 않는 경우, 회사 테이블에 추가 (기업회원만 가능하도록 변경 고려)
+        if (companyDto == null) {
+            model.addAttribute("errorMessage", "존재하지 않는 회사입니다. 관리자에게 문의하세요.");
+            return "/WEB-INF/views/member/addCompany.jsp";
+        }
+
+        // 3. 새로운 회사 이력 추가
+        //companyHistoryDto.setMemberId(userId);
+        //companyHistoryDto.setCompanyNo(companyDto.getCompanyNo());
+        companyHistoryDao.insertCompanyHistory(companyHistoryDto);
+        
+        return "redirect:mypage"; // 처리 후 마이페이지로 리다이렉트
+    }
 
 	/*
 	 * -----------------------------------------------------------------------------
@@ -261,9 +299,5 @@ public class MemberController {
 		// session.invalidate(); //세션 소멸 명령
 		return "redirect:/";
 	}
-	//회사등록 매핑
-		@GetMapping("/member/addCompany")
-		public String addCompany() {
-			return "/WEB-INF/views/member/addCompany.jsp";
-		}
+
 }
