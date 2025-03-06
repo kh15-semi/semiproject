@@ -228,5 +228,9 @@ public class MemberController {
 		// session.invalidate(); //세션 소멸 명령
 		return "redirect:/";
 	}
-
+	//회사등록 매핑
+		@GetMapping("/member/addCompany")
+		public String addCompany() {
+			return "/WEB-INF/views/member/addCompany.jsp";
+		}
 }

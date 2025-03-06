@@ -19,6 +19,10 @@ $(function() {
 	$(".main-btn").click(function() {
 		window.location.href = "/";
 	});
+	// 회사등록 버튼 클릭 시
+	$(".addCompany-btn").click(function() {
+		window.location.href = "/member/addCompany";
+	});
 });
 </script>
 <div class="container w-800">
@@ -64,9 +68,10 @@ $(function() {
     <hr style="border: 0; border-top: 1px solid rgb(196, 196, 196)"><br>
 
     <div class="cell center" style="margin: 10px; padding: 10px;">
-        <button type="button" class="btn btn-green2" style="border-radius: 10px;"><i class="edit-btn fa-solid fa-pen-to-square"></i> 정보 수정</button>
-        <button type="button" class="btn btn-green2" style="border-radius: 10px;"><i class="changePw-btn fa-solid fa-lock"></i> 비밀번호 변경</button>
-        <button type="button" class="btn btn-green2" style="border-radius: 10px;"><i class="main-btn fa-solid fa-house"></i> 메인</button>
+        <button type="button" class="addCompany-btn btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-pen-to-square"></i> 회사등록</button>    
+        <button type="button" class="edit-btn btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-pen-to-square"></i> 정보 수정</button>
+        <button type="button" class="changePw-btn btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-lock"></i> 비밀번호 변경</button>
+        <button type="button" class="main-btn btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-house"></i> 메인</button>
     </div>
 </div>
 
