@@ -30,7 +30,7 @@ $(function() {
     $("#memberCrNumber").on("blur", function() { 
         var crNumber = $(this).val();
         $.ajax({
-            url: "/company/getCompanyName",
+            url: "/company/member/getCompanyName",
             type: "GET",
             data: { crNumber: crNumber },
             success: function(response) {
