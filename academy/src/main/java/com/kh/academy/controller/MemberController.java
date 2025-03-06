@@ -45,64 +45,6 @@ public class MemberController {
 	public String joinMemberFinish() {
 		return "/WEB-INF/views/member/joinFinish.jsp";
 	}
-	
-	// 로그인 매핑 (통합)
-	@GetMapping("/login")
-	public String login() {
-		return "/WEB-INF/views/member/login.jsp";
-	}
-	
-	//HttpSession 추가
-	//- 사용자 별로 무언가 다른 정보를 기록해야 할 필요가 있을 때 사용
-	//- Model처럼 선언만 하면 자동으로 스프링이 제공해줌
-	//- 데이터 추가 : session.setAttribute("key", value);
-	//- 데이터 추출 : session.getAttribute("key");
-	//- 데이터 제거 : session.removeAttribute("key");
-	//- 목표 : 로그인 성공 시 이 회원의 정보를 세션에 저장 (PK)
-	@PostMapping("/login")
-	public String login(@ModelAttribute MemberDto memberDto, 
-						@RequestParam(required = false) String remember, 
-						HttpSession session, 
-						HttpServletResponse response) { // 사용자가 입력한 정보 //아이디와 비밀번호를 String으로 받을지, Dto로 받을지 선택의 문제
-		MemberDto findDto = memberDao.selectOne(memberDto.getMemberId()); // 데이터베이스에 있는 정보 - findDto
-		// 아이디가 없으면 findDto는 null이다
-		if (findDto == null) {
-			return "redirect:login?error"; // 로그인페이지로 쫒아낸다 //GET의 login으로 리다이렉트된다. 원래 리다이렉트는 get밖에 안되긴 함
-		}
-		// 아이디가 있으면 비밀번호 검사를 진행
-//		System.out.println(memberDto);
-//		System.out.println(findDto);
-		boolean isValid = findDto.getMemberPw().equals(memberDto.getMemberPw());
-		if (isValid) {// 로그인 성공 시
-			
-			//(+추가)세션에 userId란 이름으로 사용자의 ID를 저장
-			session.setAttribute("userId", findDto.getMemberId()); 
-			//(+추가)세션에 userLevel이란 이름으로 사용자의 등급을 저장
-			session.setAttribute("userType", findDto.getMemberType());
-			
-			/*
-			//(+추가)최종 로그인 시각을 갱신 처리
-			memberDao.updateMemberLogin(findDto.getMemberId());
-			
-			//(+추가)아이디 저장하기에 대해 쿠키 생성/소멸 처리
-			if(remember == null) { //쿠키 소멸 -> 삭제 명령이 없어서 0초로 해둬야 함
-				Cookie cookie = new Cookie("saveId", memberDto.getMemberId()); 
-				cookie.setMaxAge(0); 
-				response.addCookie(cookie);
-			}
-			else {
-				Cookie cookie = new Cookie("saveId", memberDto.getMemberId()); 
-				cookie.setMaxAge(4 * 7 * 24 * 60 * 60); //4주 
-				response.addCookie(cookie); 
-			}
-			*/
-			
-			return "redirect:/";
-		} 
-		else {// 비밀번호 다름
-			return "redirect:login?error";// 로그인 페이지로 쫓아낸다
-		}
-	}
 
 	// 개인정보 변경 매핑(개인회원)
 	// - 비밀번호는 검사용으로 사용
@@ -119,7 +61,8 @@ public class MemberController {
 	public String editMember(@ModelAttribute MemberDto memberDto, HttpSession session) {
 		String userId = (String) session.getAttribute("userId");
 		MemberDto findDto = memberDao.selectOne(userId);
-		boolean isValid = findDto.getMemberPw().equals(memberDto.getMemberPw()); // 사용자가 입력한 비밀번호가 데이터베이스 비밀번호와 일치하지 않을 경우
+		boolean isValid = findDto.getMemberPw().equals(memberDto.getMemberPw()); // 사용자가 입력한 비밀번호가 데이터베이스 비밀번호와 일치하지 않을
+																					// 경우
 		if (!isValid) {
 			return "redirect:edit?error";
 		}
@@ -185,6 +128,68 @@ public class MemberController {
 	// 여기에는 대소문자 구분이 안됨을 알아야함!
 	public String joinCompanyMemberFinish() {
 		return "/WEB-INF/views/company/member/joinFinish.jsp";
+	}
+
+	/*
+	 * -----------------------------------------------------------------------------
+	 * --------------------------------------------------
+	 */
+
+//로그인 매핑 (통합)
+	@GetMapping("/login")
+	public String login() {
+		return "/WEB-INF/views/member/login.jsp";
+	}
+
+	// HttpSession 추가
+	// - 사용자 별로 무언가 다른 정보를 기록해야 할 필요가 있을 때 사용
+	// - Model처럼 선언만 하면 자동으로 스프링이 제공해줌
+	// - 데이터 추가 : session.setAttribute("key", value);
+	// - 데이터 추출 : session.getAttribute("key");
+	// - 데이터 제거 : session.removeAttribute("key");
+	// - 목표 : 로그인 성공 시 이 회원의 정보를 세션에 저장 (PK)
+	@PostMapping("/login")
+	public String login(@ModelAttribute MemberDto memberDto, @RequestParam(required = false) String remember,
+			HttpSession session, HttpServletResponse response) { // 사용자가 입력한 정보 //아이디와 비밀번호를 String으로 받을지, Dto로 받을지 선택의
+																	// 문제
+		MemberDto findDto = memberDao.selectOne(memberDto.getMemberId()); // 데이터베이스에 있는 정보 - findDto
+		// 아이디가 없으면 findDto는 null이다
+		if (findDto == null) {
+			return "redirect:login?error"; // 로그인페이지로 쫒아낸다 //GET의 login으로 리다이렉트된다. 원래 리다이렉트는 get밖에 안되긴 함
+		}
+		// 아이디가 있으면 비밀번호 검사를 진행
+//		System.out.println(memberDto);
+//		System.out.println(findDto);
+		boolean isValid = findDto.getMemberPw().equals(memberDto.getMemberPw());
+		if (isValid) {// 로그인 성공 시
+
+			// (+추가)세션에 userId란 이름으로 사용자의 ID를 저장
+			session.setAttribute("userId", findDto.getMemberId());
+			// (+추가)세션에 userLevel이란 이름으로 사용자의 등급을 저장
+			session.setAttribute("userType", findDto.getMemberType());
+
+			/*
+			 * //(+추가)최종 로그인 시각을 갱신 처리 memberDao.updateMemberLogin(findDto.getMemberId());
+			 * 
+			 * //(+추가)아이디 저장하기에 대해 쿠키 생성/소멸 처리 if(remember == null) { //쿠키 소멸 -> 삭제 명령이 없어서
+			 * 0초로 해둬야 함 Cookie cookie = new Cookie("saveId", memberDto.getMemberId());
+			 * cookie.setMaxAge(0); response.addCookie(cookie); } else { Cookie cookie = new
+			 * Cookie("saveId", memberDto.getMemberId()); cookie.setMaxAge(4 * 7 * 24 * 60 *
+			 * 60); //4주 response.addCookie(cookie); }
+			 */
+
+			return "redirect:/";
+		} else {// 비밀번호 다름
+			return "redirect:login?error";// 로그인 페이지로 쫓아낸다
+		}
+	}
+
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("userId");
+		session.removeAttribute("userLevel");
+		// session.invalidate(); //세션 소멸 명령
+		return "redirect:/";
 	}
 
 }
