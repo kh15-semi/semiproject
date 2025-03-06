@@ -3,6 +3,8 @@
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
+<form action="login" method="post">
+
 <div class="container w-400 center">
         <div class="cell">
             <a href="/">
@@ -37,5 +39,8 @@
         </div>
     </div>
 </div>
+
+</form>
+
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
