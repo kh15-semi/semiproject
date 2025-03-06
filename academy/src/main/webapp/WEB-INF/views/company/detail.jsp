@@ -67,21 +67,51 @@
                 </div>
 
                 <!-- 리뷰창 -->
-                <div class="reviews">
-                    <div class="reviews-header">
-                        <div class="reviews-title">리뷰창</div>
-                        <div class="review-actions">
-                            <button class="write-review-btn">리뷰 쓰러가기 →</button>
+                <div class="container reviews">
+                    <div class="cell centerreviews-header">
+                        <h2>리뷰</h2>
+                    </div>
+                    <p>글은 자신의 인격입니다.존중하며 적어주세요</p>
+                        <!-- 리뷰 목록 들어가는곳 -->
+                            
+                            <!-- 테이블 -->
+                            <div class="cell center">
+                                <table class="table table-border table-hover table-ellipsis">
+                                    <thead>
+                                        <tr>
+                                            <th>번호</th>
+                                            <th>ID</th>
+                                            <th style="width:450px; max-width:450px;">한줄평</th>
+                                            <th>평점</th>
+                                            <th>좋아요</th>
+                                            <th>작성일</th>
+                                            <th>수정일</th>
+                                        </tr>
+                                    </thead>
+                                    <c:when test="${list.isEmpty()}">
+                                        <tbody>
+                                            <tr height="150">
+                                                <td colspan="7" align="center">
+                                                    등록된 게시글이 없습니다
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </c:when>
+                                </table>
+                            </div>
+                            <div>
+                                <div class="cell center">
+                                </div>
+                            <div class="review-actions">
+                                <button class="write-review-btn">리뷰 쓰러가기 →</button>
+                            </div>
+                            
+                            <!-- 페이지 네비게이터 -->
+                            <div class="cell center">
+                                <jsp:include page="/WEB-INF/views/template/pagination.jsp"></jsp:include>
+                            </div>
+                            
                         </div>
-                    </div>
-
-                    <div class="flex review-list">
-                        <!-- 리뷰 목록 -->
-                         <div>
-                            <textarea class="preview w-600">회사 복지가 좋았어요!</textarea>
-                            <div class="review-content-rating" data-max="5" data-rate="5"></div></div>
-                            <button class="remark-btn">등록하기</button>
-                    </div>
 
                 </div>
 
@@ -98,6 +128,5 @@
                 </div>
 
             </div>
-
 </form>
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
