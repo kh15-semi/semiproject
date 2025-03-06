@@ -10,7 +10,29 @@
 
 <!-- font awesome cdn -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script>
+    $(function () {
+        // 정보 수정 버튼 클릭 시
+        $('#editInfoBtn').click(function() {
+            window.location.href = '/edit-info';
+        });
 
+        // 비밀번호 변경 버튼 클릭 시
+        $('#changePasswordBtn').click(function() {
+            window.location.href = '/change-password';
+        });
+
+        // 계정 삭제 버튼 클릭 시
+        $('#deleteAccountBtn').click(function() {
+            window.location.href = '/delete-account';
+        });
+
+        // 메인 버튼 클릭 시
+        $('#mainBtn').click(function() {
+            window.location.href = '/';
+        });
+    });
+</script>
 <div class="container w-800">
         <div class="cell" style="margin: 10px; padding: 10px">
 
@@ -23,11 +45,11 @@
                 <label style="font-weight: 500; color: grey">* 기업 정보</label>
                 <div class="cell">
                     <h3>기업명</h3>
-                    <p>${memberDto.companyName}</p>
+                    <p>${companyDto.companyName}</p>
                 </div>
                 <div class="cell">
                     <h3>사업자 등록 번호</h3>
-                    <p>${memberDto.companyNo}</p>
+                    <p>${memberDto.memberCrNumber}</p> 
                 </div>
                 <div class="cell">
                     <h3>산업군 및 직종</h3>
