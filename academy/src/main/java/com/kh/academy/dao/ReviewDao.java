@@ -30,8 +30,8 @@ public class ReviewDao {
 	
 	public void insert(ReviewDto reviewDto) {
 		String sql = "insert into review (review_no, review_writer, review_score, review_comment, review_like, "
-				+ "review_wtime, review_etime, review_strength, review_weakness, review_salary, review_workandlife, "
-				+ "review_promotion, review_culture, review_director, review_ceoevaluation, review_prediction, review_recommend) "
+				+ "review_wtime, review_etime, review_strength, review_weakness, review_salary, review_work_and_life, "
+				+ "review_promotion, review_culture, review_director, review_ceo_evaluation, review_prediction, review_recommend) "
                 + "values (?, ?, ?, ?, 0, systimestamp, systimestamp, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		Object[] data = {
 				reviewDto.getReviewWriter(), reviewDto.getReviewScore(), reviewDto.getReviewComment(),
@@ -53,8 +53,8 @@ public class ReviewDao {
 	public boolean update(ReviewDto reviewDto) {
 		String sql = "update review "
 				+ "set review_score=?, review_comment=?, review_etime=systimestamp, "
-				+ "review_strength=?, review_weakness=?, review_salary=?, review_workandlife=?, "
-				+ "review_promotion=?, review_culture=?, review_director=?, review_ceoevaluation=?, "
+				+ "review_strength=?, review_weakness=?, review_salary=?, review_work_and_life=?, "
+				+ "review_promotion=?, review_culture=?, review_director=?, review_ceo_evaluation=?, "
 				+ "review_prediction=?, review_recommend=? where review_no=?";
 		Object[] data = {
 				reviewDto.getReviewScore(), reviewDto.getReviewComment(), reviewDto.getReviewStrength(),
