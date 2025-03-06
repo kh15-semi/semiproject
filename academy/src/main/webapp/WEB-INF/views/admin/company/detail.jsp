@@ -7,57 +7,50 @@
 	<div class="cell" style="margin: 10px; padding: 10px">
 	
 	    <div class="cell">
-	        <h2><i class="fa-regular fa-user"></i> 회원 상세 정보</h2>
+	        <h2><i class="fa-solid fa-building"></i> 업체 상세 정보</h2>
 	    </div>
 		    
 	    <div class="cell">
-	        <h3>아이디</h3>
-	        <p>${memberDto.memberId}</p>
+	        <h3>업체명</h3>
+	        <p>${companyDto.companyName}</p>
 	    </div>
 	    
 	    <div class="cell">
-	        <h3>이름</h3>
-	        <p>${memberDto.memberName}</p>
+	        <h3>사업자 등록번호</h3>
+	        <p>${companyDto.companyCrNumber}</p>
 	    </div>
 	
 	    <div class="cell">
-	        <h3>생년월일 </h3>
-	        <p>${memberDto.memberBirth}</p>
+	        <h3>산업 </h3>
+	        <p>${companyDto.companyIndustry}</p>
 	    </div>
 	
 	    <div class="cell">
-	        <h3>연락처</h3>
-	        <p>${memberDto.memberContact}</p>
+	        <h3>직종</h3>
+	        <p>${companyDto.companyJob}</p>
 	    </div>
 		
 	    <div class="cell">
-	        <h3>이메일</h3>
-	        <p>${memberDto.memberEmail}</p>
+	        <h3>연락처</h3>
+	        <p>${companyDto.companyContact}</p>
 	    </div>
 		
 	    <div class="cell">
 	        <h3>주소</h3>
-	        <p>(${memberDto.memberPost})</p>
-	        <p>${memberDto.memberAddress1}</p>
-	        <p>${memberDto.memberAddress2}</p>
+	        <p>(${companyDto.companyPost})</p>
+	        <p>${companyDto.companyAddress1}</p>
+	        <p>${companyDto.companyAddress2}</p>
 	    </div>
 	    
 	    <div class="cell">
-	        <h3>회원 등급</h3>
-	        <p>${memberDto.memberType}</p>
-	    </div>
-	    
-	    <div class="cell">
-	        <h3>가입일시</h3>
-	        <p>
-	        	<fmt:formatDate value="${memberDto.memberJoin}" pattern="y년 M월 d일 a h시 m분 s초"/>
-	        </p>
-	    </div>	    
+	        <h3>업체 홈페이지</h3>
+	        <p>${companyDto.companyUrl}</p>
+	    </div>    
 
 <div class="cell center" style="margin: 10px; padding: 10px;">
     <a href="#" class="btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-lock"></i> 임시 비밀번호 발급</a>
-    <a href="edit?memberId=${memberDto.memberId}" class="btn btn-green2" style="border-radius: 10px;"><i class="fa-regular fa-pen-to-square"></i> 개인정보 변경</a>
-    <a href="delete?memberId=${memberDto.memberId}" class="btn btn-red" style="border-radius: 10px;"><i class="fa-solid fa-xmark"></i> 회원 탈퇴</a>
+    <a href="edit?companyName=${companyDto.companyName}" class="btn btn-green2" style="border-radius: 10px;"><i class="fa-regular fa-pen-to-square"></i> 개인정보 변경</a>
+    <a href="delete?companyName=${companyDto.companyName}" class="btn btn-red" style="border-radius: 10px;"><i class="fa-solid fa-xmark"></i> 회원 탈퇴</a>
     <a href="#" class="btn btn-red" style="border-radius: 10px;"><i class="fa-solid fa-xmark"></i> 블랙리스트 등록</a>
     <a href="list" class="btn btn-blue" style="border-radius: 10px;"><i class="fa-solid fa-list-ul"></i> 리스트</a>
 </div>

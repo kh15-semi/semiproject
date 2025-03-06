@@ -46,6 +46,18 @@ public class MemberController {
 		return "/WEB-INF/views/member/joinFinish.jsp";
 	}
 
+	// 마이페이지(내정보) 매핑 (개인회원)
+	// - 현재 로그인한 회원의 모든 정보가 화면에 출력(단, 비밀번호 제외)
+	// - HttpSession에 있는 아이디를 꺼내 회원의 모든 정보를 조회
+	@RequestMapping("/member/mypage")
+	public String mypageMember(HttpSession session, Model model) {
+		String userId = (String) session.getAttribute("userId"); // 내 아이디 추출
+		MemberDto memberDto = memberDao.selectOne(userId); // 내 정보 획득
+		model.addAttribute("memberDto", memberDto);
+
+		return "/WEB-INF/views/member/mypage.jsp";
+	}
+
 	// 개인정보 변경 매핑(개인회원)
 	// - 비밀번호는 검사용으로 사용
 	// - 닉네임, 생년월일, 연락처, 이메일, 주소(우편, 기본, 상세) 변경 가능
@@ -130,6 +142,18 @@ public class MemberController {
 		return "/WEB-INF/views/company/member/joinFinish.jsp";
 	}
 
+	// 마이페이지(내정보) 매핑 (기업회원)
+	// - 현재 로그인한 회원의 모든 정보가 화면에 출력(단, 비밀번호 제외)
+	// - HttpSession에 있는 아이디를 꺼내 회원의 모든 정보를 조회
+	@RequestMapping("/company/member/mypage")
+	public String mypageCompanyMember(HttpSession session, Model model) {
+		String userId = (String) session.getAttribute("userId"); // 내 아이디 추출
+		MemberDto memberDto = memberDao.selectOne(userId); // 내 정보 획득
+		model.addAttribute("memberDto", memberDto);
+
+		return "/WEB-INF/views/company/member/mypage.jsp";
+	}
+
 	/*
 	 * -----------------------------------------------------------------------------
 	 * --------------------------------------------------
@@ -138,7 +162,7 @@ public class MemberController {
 //로그인 매핑 (통합)
 	@GetMapping("/login")
 	public String login() {
-		return "/WEB-INF/views/member/login.jsp";
+		return "/WEB-INF/views/share/login.jsp";
 	}
 
 	// HttpSession 추가
@@ -187,7 +211,7 @@ public class MemberController {
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("userId");
-		session.removeAttribute("userLevel");
+		session.removeAttribute("userType");
 		// session.invalidate(); //세션 소멸 명령
 		return "redirect:/";
 	}

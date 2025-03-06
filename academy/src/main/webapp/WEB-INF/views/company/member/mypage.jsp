@@ -30,7 +30,7 @@
                     <p>${memberDto.companyNo}</p>
                 </div>
                 <div class="cell">
-                    <h3>산업군  및 직종</h3>
+                    <h3>산업군 및 직종</h3>
                     <p>${memberDto.memberIndustry}</p>
                     <p>${memberDto.memberJob}</p>
                 </div>
