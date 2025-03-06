@@ -12,7 +12,7 @@
     <form action="list" method="get">
         <select name="column" style="border: none; width: 120px;" >
             <option value="member_id" ${pageVO.column == 'member_id' ? 'selected' : ''}>아이디</option>
-            <option value="member_id" ${pageVO.column == 'member_name' ? 'selected' : ''}>이름</option>
+            <option value="member_name" ${pageVO.column == 'member_name' ? 'selected' : ''}>이름</option>
             <option value="member_contact" ${pageVO.column == 'member_contact' ? 'selected' : ''}>연락처</option>
             <option value="member_email" ${pageVO.column == 'member_email' ? 'selected' : ''}>이메일</option>
         </select>
