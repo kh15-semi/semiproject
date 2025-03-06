@@ -24,7 +24,7 @@ public class CompanyController {
         
      // 기업명 추가
         String companyName = memberDao.getCompanyNameByCrNumber(memberDto.getMemberCrNumber());
-        memberDto.setCompanyName(companyName);
+        //memberDto.setCompanyName(companyName);
 
         model.addAttribute("memberDto", memberDto);
 

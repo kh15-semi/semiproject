@@ -185,15 +185,17 @@ public class MemberController {
 
 	// 마이페이지(내정보) 매핑 (기업회원)
 	// - 현재 로그인한 회원의 모든 정보가 화면에 출력(단, 비밀번호 제외)
+	
 	// - HttpSession에 있는 아이디를 꺼내 회원의 모든 정보를 조회
 	@RequestMapping("/company/member/mypage")
 	public String mypageCompanyMember(HttpSession session, Model model) {
 		String userId = (String) session.getAttribute("userId"); // 내 아이디 추출
 		
 		MemberDto memberDto = memberDao.selectOne(userId); // 내 정보 획득
-		System.out.println("memberDto.getMemberCompanyNo() = " + memberDto.getMemberCompanyNo());
-		
+		//.out.println("memberDto = " + memberDto);
 		CompanyDto companyDto = companyDao.selectOne(memberDto.getMemberCompanyNo());
+		System.out.println("companyDto" + companyDto);
+		
 		
 		model.addAttribute("memberDto", memberDto);
 		model.addAttribute("companyDto", companyDto);

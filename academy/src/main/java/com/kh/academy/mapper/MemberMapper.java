@@ -30,7 +30,7 @@ public class MemberMapper implements RowMapper<MemberDto> {
 		memberDto.setMemberJoin(rs.getTimestamp("member_join"));
 		memberDto.setMemberLogin(rs.getTimestamp("member_login"));
 		memberDto.setMemberChange(rs.getTimestamp("member_change"));
-		memberDto.setMemberIndustry(rs.getString("member_change"));
+		memberDto.setMemberIndustry(rs.getString("member_industry"));
 		memberDto.setMemberJob(rs.getString("member_job"));
 		memberDto.setMemberPosition(rs.getString("member_position"));
 		memberDto.setMemberCrNumber(rs.getString("member_cr_number"));
