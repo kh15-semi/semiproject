@@ -1,5 +1,6 @@
 package com.kh.academy.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,7 @@ public class CompanyController {
 		model.addAttribute("companyDto", companyDto);
 		return "/WEB-INF/views/company/detail.jsp";
 	}
-	
+
 }
 
 

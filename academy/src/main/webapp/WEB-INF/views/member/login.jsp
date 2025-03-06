@@ -3,6 +3,7 @@
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
+<form action="login" method="post" class = "form-login">
 <div class="container w-400 center">
         <div class="cell">
             <a href="/">
@@ -20,14 +21,14 @@
         </div>
         <hr>
         <div class="cell">
-            <input type="text" placeholder="아이디" class="field w-100" style="border-radius: 10px;">
+            <input type="text" name="memberId" placeholder="아이디" class="field w-100" style="border-radius: 10px;">
         </div>
         <div class="cell">
-            <input type="password" placeholder="비밀번호" class="field w-100" style="border-radius: 10px;">
+            <input type="password" name="memberPw"  placeholder="비밀번호" class="field w-100" style="border-radius: 10px;">
         </div>
-        <button type="button" class="btn btn-green1 field w-100" style="border-radius: 10px; font-weight: 700;">
+        <button type="submit" class="btn btn-green1 field w-100" style="border-radius: 10px; font-weight: 700;">
             <i class="fa-solid fa-arrow-right-to-bracket"></i> 로그인</button>
-        <div class="cell" style="display: flex; justify-content: space-between; width: 100%;"">
+        <div class="cell" style="display: flex; justify-content: space-between; width: 100%;">
             <label><input type="checkbox"> 로그인 상태 유지</label>
             <a href="/member/password" style="text-decoration: none; color: inherit;">비밀번호 찾기</a>
         </div>
@@ -37,5 +38,6 @@
         </div>
     </div>
 </div>
+</form>
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

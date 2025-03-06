@@ -30,6 +30,12 @@
             <p>${memberDto.memberPost}</p>
             <p>${memberDto.memberAddress1}</p>
             <p>${memberDto.memberAddress2}</p>
+            
+            <!-- 관심산업/직종 추가 -->
+            <p>${memberDto.memberIndustry}</p>
+            <p>${memberDto.memberJob}</p>
+            <!-- 관심산업/직종 추가 -->
+            
         </div>
     </div>
     
