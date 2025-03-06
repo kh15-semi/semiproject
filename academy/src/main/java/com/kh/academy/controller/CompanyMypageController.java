@@ -25,22 +25,18 @@ public class CompanyMypageController {
 	@Autowired
 	private MemberDao memberDao;
 	
-	 // 기업 마이페이지 메인
-    @GetMapping("")
-    public String mypage() {
-        return "/WEB-INF/views/company/mypage/detail.jsp";
-    }
-    // 기업 등록 페이지
-    @GetMapping("/insert")
-    public String insert() {
-        return "/WEB-INF/views/company/mypage/insert.jsp";
-    }
-
-    @PostMapping("/insert")
-    public String insert(@ModelAttribute CompanyDto companyDto) {
-        companyDao.insert(companyDto);
-        return "redirect:/company/mypage";
-    }
+	
+//    // 기업 등록 페이지
+//    @GetMapping("/insert")
+//    public String insert() {
+//        return "/WEB-INF/views/company/mypage/insert.jsp";
+//    }
+//
+//    @PostMapping("/insert")
+//    public String insert(@ModelAttribute CompanyDto companyDto) {
+//        companyDao.insert(companyDto);
+//        return "redirect:/company/mypage";
+//    }
 	
     // 기업 상세 페이지
     @GetMapping("/detail")
@@ -73,12 +69,12 @@ public class CompanyMypageController {
         return "redirect:detail?companyNo=" + companyDto.getCompanyNo();
     }
     //기업 회원 탈퇴
-	@GetMapping("/mypage/delete")
+	@GetMapping("/delete")
 	public String delete(@RequestParam int companyNo, HttpSession session) {
 		session.invalidate(); //세션 삭제(로그아웃처리)
 		return "redirect:/";
 	}
-	@GetMapping("/delete")
+	@GetMapping("/mypage/delete")
 	public String delete() {
 	    return "/WEB-INF/views/company/mypage/delete.jsp";
 	}
