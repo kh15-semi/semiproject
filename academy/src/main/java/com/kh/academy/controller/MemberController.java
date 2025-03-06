@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.academy.dao.CompanyDao;
 import com.kh.academy.dao.MemberDao;
+import com.kh.academy.dto.CompanyDto;
 import com.kh.academy.dto.MemberDto;
 
 import jakarta.servlet.http.HttpServletResponse;
@@ -24,6 +26,8 @@ public class MemberController {
 
 	@Autowired
 	private MemberDao memberDao;
+	@Autowired
+	private CompanyDao companyDao;
 
 	// 회원가입 매핑(일반회원)
 	@GetMapping("/member/join") // GET방식만 처리하는 매핑
@@ -146,12 +150,22 @@ public class MemberController {
 	// - HttpSession에 있는 아이디를 꺼내 회원의 모든 정보를 조회
 	@RequestMapping("/company/member/mypage")
 	public String mypageCompanyMember(HttpSession session, Model model) {
-		String userId = (String) session.getAttribute("userId"); // 내 아이디 추출
-		MemberDto memberDto = memberDao.selectOne(userId); // 내 정보 획득
-		model.addAttribute("memberDto", memberDto);
+	    // 세션에서 사용자 ID 추출
+	    String userId = (String) session.getAttribute("userId"); 
+	    
+	    // 사용자 ID로 회원 정보 조회
+	    MemberDto memberDto = memberDao.selectOne(userId);
+	    
+	    // 회원 소속 회사 번호로 회사 정보 조회
+	    CompanyDto companyDto = companyDao.selectOne(memberDto.getMemberCompanyNo());
+	    
+	    // 회원 정보와 회사 정보를 JSP로 전달
+	    model.addAttribute("memberDto", memberDto);
+	    model.addAttribute("companyDto", companyDto); // 회사 정보가 없으면 null로 전달
 
-		return "/WEB-INF/views/company/member/mypage.jsp";
+	    return "/WEB-INF/views/company/member/mypage.jsp"; // JSP 경로
 	}
+	
 
 	/*
 	 * -----------------------------------------------------------------------------
