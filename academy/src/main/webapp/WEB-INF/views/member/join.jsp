@@ -18,7 +18,12 @@
 		border-radius: 10px;
 		border-color: #ebecee;
 	}
-	 .btn-login {
+	.field:focus {
+     	border-radius: 10px;
+      	border-color: #5fe075;
+    	outline: none;
+   	}
+	.btn-login {
 	 	border: 0;
 	    background-color: white;
 	    font-size: 13px;
@@ -33,17 +38,21 @@
 	}
 	
 </style>
+
 <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
 	<div class="container w-500" style="border:0; border-radius: 10px; background-color: rgb(238, 238, 238);">
+
         <div class="cell center">
-        	<img src="/images/jobplanet_logo.png" width="250px">
+        	<a href="/">
+        		<img src="/images/jobplanet_logo.png" width="250px">
+        	</a>
         </div>
         <!-- <div class="cell flex-box p-10">
             <a href="#" class="btn btn-individual w-50">개인회원</a>
             <a href="#" class="btn btn-enterprise w-50">기업회원</a>
         </div> -->
         
-        <div class="cell center p-10">
+        <div class="cell p-10">
 
             <div class="cell left m-10">
                 <h3>회원가입</h3>
@@ -54,7 +63,7 @@
                     <input type="text" name="memberId" class="field w-100" placeholder="아이디">
                 </div>
                 <div class="cell">
-                    <input type="password" name="memberPw" class="field w-100" placeholder="비밀번호 (10자리 이상)">
+                    <input type="password" name="memberPw" class="field w-100" placeholder="비밀번호 (8자리 이상)">
                 </div>
                 <div class="cell">
                     <input type="password" name="memberPwCheck" class="field w-100" placeholder="비밀번호 확인">
@@ -81,7 +90,24 @@
                     <input type="text" name="memberAddress1" class="field w-100" placeholder="기본주소" readonly>
                 </div>
                 <div class="cell">
-                    <input type="text" name="memberAddress2" class="field w-100" placeholder="상세주소" readonly>
+                    <input type="text" name="memberAddress2" class="field w-100" placeholder="상세주소" >
+                	<div class="fail-feedback m-10">주소를 모두 작성해주세요.</div>
+                </div>
+            </div>
+
+            <div class="cell left" style="padding: 5px;">
+                <p><i class="fa-solid fa-star-of-life red"></i> 선택 입력 사항</p>
+                <div class="celㅣ">
+                    <select name="memberIndustry" class="field w-100">
+                        <option value="">산업군</option>
+                        <option>IT</option>
+                    </select>
+                </div>
+                <div class="cell">
+                    <select name="memberJob" class="field w-100">
+                        <option value="">직종</option>
+                        <option>게임개발</option>
+                    </select>
                 </div>
             </div>
 
@@ -117,7 +143,7 @@
 	            </select>
 	        </div>
             
-            
+
             <div class="cell mt-30 mb-30">
                 <button class="btn btn-green2 w-100" style="border-radius: 10px"><i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;&nbsp;개인 회원가입</button>
             </div>

@@ -816,10 +816,10 @@ textarea.field {
     }
 
     .field.success {
-    border-color: #0984e3;
+    border-color: #5fe075;
     }
-.field.fail,
-.field.fail2 {
+	.field.fail,
+	.field.fail2 {
     border-color: #d63031;
     }
     /* 성공은 한가지 뿐이지만, 실패는 여러가지 방법이 있을 수 있음 */
