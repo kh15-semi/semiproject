@@ -25,5 +25,5 @@ public class CompanyMapper implements RowMapper<CompanyDto>{
 					.companyAddress2(rs.getString("company_address2"))
 				.build();
 	}
-	
+	 
 }
