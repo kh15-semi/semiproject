@@ -20,7 +20,7 @@
         </div>
         <label>기업 총 평점</label><br>
         <div class="review-score3" data-max="5"></div>
-        <!-- 리뷰 입력 폼 -->
+        <!-- 리뷰 입력하는 폼 -->
 
         <div class="cell">
             <label>기업 한줄평</label>
