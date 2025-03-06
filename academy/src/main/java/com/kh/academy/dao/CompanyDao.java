@@ -51,12 +51,15 @@ public class CompanyDao {
 	
 	//상세조회 기능
 	public CompanyDto selectOne(int companyNo) {
+		System.out.println("Company No: " + companyNo); 
 		String sql = "select * from company where company_no=?";
 		Object[] data = {companyNo};
 		List<CompanyDto> list = jdbcTemplate.query(sql,companyMapper, data);
 		return list.isEmpty() ? null : list.get(0);
+		
 	}	
-	
+
+		
     // 상세조회 기능 (사업자번호로 조회)
     public CompanyDto selectByCrNumber(String crNumber) {
         String sql = "select * from company where company_cr_number = ?";

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.academy.dto.CompanyDto;
 import com.kh.academy.dto.MemberDto;
 import com.kh.academy.mapper.MemberMapper;
 
@@ -17,6 +18,9 @@ public class MemberDao {
 
 	@Autowired
 	private MemberMapper memberMapper;
+	
+	@Autowired
+	private CompanyDao companyDao;
 
 	// 가입(등록) 메소드(일반회원)
 	public void insertMember(MemberDto memberDto) {
@@ -46,7 +50,7 @@ public class MemberDao {
 		Object[] data = { memberDto.getMemberId(), memberDto.getMemberPw(), memberDto.getMemberName(),
 				memberDto.getMemberContact(), memberDto.getMemberEmail(), memberDto.getMemberPost(),
 				memberDto.getMemberAddress1(), memberDto.getMemberAddress2(), memberDto.getMemberIndustry(),
-				memberDto.getMemberJob(), memberDto.getMemberPosition(), memberDto.getMemberCrNumber(), memberDto.getMemberCompanyNo() };
+				memberDto.getMemberJob(), memberDto.getMemberPosition(), memberDto.getMemberCrNumber() };
 		jdbcTemplate.update(sql, data);
 		
 		// member_company_no 업데이트
@@ -166,6 +170,7 @@ public class MemberDao {
 
 	    return list.isEmpty() ? null : list.get(0);
 	}
+	
 	
 
 }

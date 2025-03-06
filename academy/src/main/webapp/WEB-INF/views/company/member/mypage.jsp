@@ -62,6 +62,7 @@
                     <p>${memberDto.memberAddress1}</p>
                     <p>${memberDto.memberAddress2}</p>
                 </div>            
+                
             </div>
 
             <hr style="border: 0; border-top: 1px solid rgb(196, 196, 196)"><br>

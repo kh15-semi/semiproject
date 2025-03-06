@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class MemberDto {
 
@@ -31,6 +32,17 @@ public class MemberDto {
 	//회사명(기업회원만)
 	private String companyName;
 	
+    // 기업 정보를 담기 위한 CompanyDto 필드 추가
+    private CompanyDto companyDto; // 필드 선언
+
+    public void setCompanyDto(CompanyDto companyDto) {
+        this.companyDto = companyDto;
+    }
+
+    // 추가: 기업 정보를 반환하는 getter 메소드
+    public CompanyDto getCompanyDto() {
+        return this.companyDto;
+    }
 }
 
 

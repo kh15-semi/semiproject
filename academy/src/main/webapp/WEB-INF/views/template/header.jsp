@@ -113,12 +113,18 @@
 								<i class="fa-solid fa-chevron-down"></i>
 							</a>
 							<ul>
-								<li><a href="/member/mypage">memberMy</a></li> <!-- if구문으로 개인회원, 기업회원 마이페이지로 각각 떨어지게끔 구현 필요  -->
-								<li><a href="/company/member/mypage">companyMy</a></li>
+								<c:choose>
+									<c:when test="${sessionScope.userType == '일반회원'}">
+										<li><a href="/member/mypage">memberMy</a></li>
+									</c:when>
+									<c:when test="${sessionScope.userType == '기업회원'}">
+										<li><a href="/company/member/mypage">companyMy</a></li>
+									</c:when>
+								</c:choose>
 								<li><a href="#">기업 리뷰</a></li>
 								<li><a href="/logout">로그아웃</a></li>
 							</ul>
-		                </li>							
+						</li>							
 					</c:when>
 					
 					<c:otherwise>

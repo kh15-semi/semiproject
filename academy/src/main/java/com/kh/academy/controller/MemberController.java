@@ -134,13 +134,13 @@ public class MemberController {
 		memberDao.insertCompanyMember(memberDto); // 회원가입
 		memberDao.updateMemberCompanyNo();
 
-		return "redirect:joinFinish"; // joinFinish으로 쫓아내는 코드(상대경로)
+		return "/WEB-INF/views/company/member/joinFinish.jsp"; // joinFinish으로 쫓아내는 코드(상대경로)
 	}
 
 	// 완료 안내(기업회원)
 	@RequestMapping("/company/member/joinFinish") // join-finish도 가능. 다만 주소에는 대문자를 쓸수 있는곳이 있고 안되는 곳이 있음.
 													// http://localhost:8080
-	// 여기에는 대소문자 구분이 안됨을 알아야함!
+	// 여기에는 대소문자 구분이 안됨을 알아야함! 
 	public String joinCompanyMemberFinish() {
 		return "/WEB-INF/views/company/member/joinFinish.jsp";
 	}
@@ -153,10 +153,10 @@ public class MemberController {
 		String userId = (String) session.getAttribute("userId"); // 내 아이디 추출
 		
 		MemberDto memberDto = memberDao.selectOne(userId); // 내 정보 획득
-		System.out.println("memberDto.getMemberCompanyNo() = " + memberDto.getMemberCompanyNo());
 		
 		CompanyDto companyDto = companyDao.selectOne(memberDto.getMemberCompanyNo());
 		
+		System.out.println(companyDto);
 		model.addAttribute("memberDto", memberDto);
 		model.addAttribute("companyDto", companyDto);
 
