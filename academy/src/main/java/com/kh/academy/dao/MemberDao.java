@@ -21,14 +21,14 @@ public class MemberDao {
 	// 가입(등록) 메소드(일반회원)
 	public void insertMember(MemberDto memberDto) {
 		String sql = "insert into member(member_id, member_pw, member_type,"
-				+ " member_name, member_contact, member_email,"
+				+ " member_name, member_id_card_num, member_contact, member_email,"
 				+ " member_post, member_address1, member_address2,"
 				+ " member_industry, member_job" // 산업, 직종은 선택
 				+ ") "
 				+ "values(?, ?, '일반회원', ?, ?, ?, ?, ?, ?, ?, ?)";
-		Object[] data = { memberDto.getMemberId(), memberDto.getMemberPw(), memberDto.getMemberName(),
-				memberDto.getMemberContact(), memberDto.getMemberEmail(), memberDto.getMemberPost(),
-				memberDto.getMemberAddress1(), memberDto.getMemberAddress2(),
+		Object[] data = { memberDto.getMemberId(), memberDto.getMemberPw(), memberDto.getMemberName(), 
+				memberDto.getMemberIdCardNum(), memberDto.getMemberContact(), memberDto.getMemberEmail(), 
+				memberDto.getMemberPost(), memberDto.getMemberAddress1(), memberDto.getMemberAddress2(),
 				memberDto.getMemberIndustry(), memberDto.getMemberJob()
 		};
 		jdbcTemplate.update(sql, data);
@@ -102,12 +102,12 @@ public class MemberDao {
 	// 수정 기능(일반회원)
 	public boolean updateMember(MemberDto memberDto) {
 		String sql = "update member set " 
-				+ "member_pw = ?, member_name = ?, member_contact = ?, "
+				+ "member_contact = ?, "
 				+ "member_email = ?, member_post = ?, "
 				+ "member_address1 = ?, member_address2 = ?, "
 				+ "member_industry = ?, member_job = ? "
 				+ "where member_id = ?";
-		Object[] data = { memberDto.getMemberPw(), memberDto.getMemberName(), memberDto.getMemberContact(),
+		Object[] data = { memberDto.getMemberContact(),
 				memberDto.getMemberEmail(), memberDto.getMemberPost(), memberDto.getMemberAddress1(),
 				memberDto.getMemberAddress2(), memberDto.getMemberIndustry(), memberDto.getMemberJob(),
 				memberDto.getMemberId() };
@@ -117,19 +117,18 @@ public class MemberDao {
 	// 수정 기능(기업회원)
 	public boolean updateCompanyMember(MemberDto memberDto) {
 		String sql = "update member set "
-				+ "member_pw = ?, member_name = ?, member_contact = ?, "
-				+ "member_email = ?, member_post = ?, "
-				+ "member_address1 = ?, member_address2 = ?, "
+				+ "member_contact = ?, member_email = ?, "
+				+ "member_post = ?, member_address1 = ?, member_address2 = ?, "
 				+ "member_industry = ?, member_job = ?, "
 				+ "member_position = ?, member_cr_number = ?"
 				+ "where member_id = ?";
-		Object[] data = { memberDto.getMemberPw(), memberDto.getMemberName(), memberDto.getMemberContact(),
-				memberDto.getMemberEmail(), memberDto.getMemberPost(), memberDto.getMemberAddress1(),
-				memberDto.getMemberAddress2(), memberDto.getMemberIndustry(), memberDto.getMemberJob(),
+		Object[] data = { memberDto.getMemberContact(), memberDto.getMemberEmail(), 
+				memberDto.getMemberPost(), memberDto.getMemberAddress1(), memberDto.getMemberAddress2(), 
+				memberDto.getMemberIndustry(), memberDto.getMemberJob(),
 				memberDto.getMemberPosition(), memberDto.getMemberCrNumber(), memberDto.getMemberId() };
 		
 		// member_company_no 업데이트
-	    updateMemberCompanyNo(memberDto.getMemberId());
+	    //updateMemberCompanyNo(memberDto.getMemberId());
 		
 		return jdbcTemplate.update(sql, data) > 0;
 	}
