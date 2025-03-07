@@ -113,10 +113,14 @@
 								<i class="fa-solid fa-chevron-down"></i>
 							</a>
 							<ul>
+								<c:if test="${sessionScope.userType == '관리자'}">
+									<li><a href="/member/mypage">관리자 메뉴</a></li>
+								</c:if>
 								<li><a href="/member/mypage">memberMy</a></li> <!-- if구문으로 개인회원, 기업회원 마이페이지로 각각 떨어지게끔 구현 필요 --> 
 								<li><a href="/company/member/mypage">companyMy</a></li>
 								<li><a href="#">기업 리뷰</a></li>
 								<li><a href="/logout">로그아웃</a></li>
+								
 							</ul>
 		                </li>							
 					</c:when>
