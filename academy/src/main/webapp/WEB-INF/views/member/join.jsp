@@ -14,6 +14,15 @@
 <script src="/js/job_select.js"></script>
 
 <style>
+	.selectBox {
+		border-radius: 10px;
+		border-color: #ebecee;
+	}
+	.selectBox:focus {
+		border-radius: 10px;
+      	border-color: #5fe075;
+    	outline: none;
+	}
 	.field {
 		border-radius: 10px;
 		border-color: #ebecee;
@@ -25,7 +34,7 @@
    	}
 	.btn-login {
 	 	border: 0;
-	    background-color: white;
+	    background-color: rgb(238, 238, 238);
 	    font-size: 13px;
 	    font-weight: 600;
 	    color: #32AA46;	
@@ -39,7 +48,7 @@
 	
 </style>
 
-<form action="" method="post" enctype="multipart/form-data" autocomplete="off">
+<form action="join" method="post" enctype="multipart/form-data" autocomplete="off">
 	<div class="container w-500" style="border:0; border-radius: 10px; background-color: rgb(238, 238, 238);">
 
         <div class="cell center">
@@ -47,38 +56,56 @@
         		<img src="/images/jobplanet_logo.png" width="250px">
         	</a>
         </div>
-        <!-- <div class="cell flex-box p-10">
-            <a href="#" class="btn btn-individual w-50">개인회원</a>
-            <a href="#" class="btn btn-enterprise w-50">기업회원</a>
-        </div> -->
         
-        <div class="cell p-10">
+        	<div class="cell center">
+            	<a href="/company/member/join" class="btn btn-positive w-50">기업회원</a>
+        	</div>
+        	
+        <div class="cell p-20">
 
             <div class="cell left m-10">
-                <h3>회원가입</h3>
+                <h3>회원가입(개인)</h3>
             </div>
 
+        
             <div class="cell" style="padding: 5px;">
                 <div class="cell">
                     <input type="text" name="memberId" class="field w-100" placeholder="아이디">
+                    <div class="success-feedback">사용 가능한 아이디입니다.</div>
+                    <div class="fail-feedback">영문 소문자로 시작하는 5~20글자 이내여야 합니다.</div>
+                    <div class="fail2-feedback">이미 사용중인 아이디입니다.</div>
                 </div>
                 <div class="cell">
                     <input type="password" name="memberPw" class="field w-100" placeholder="비밀번호 (8자리 이상)">
+                    <div class="success-feedback">비밀번호가 올바른 형식입니다.</div>
+                    <div class="fail-feedback">8~16자로 영문 대 소문자, 숫자, 특수문자를 조합해서 사용하세요.</div>
                 </div>
                 <div class="cell">
-                    <input type="password" name="memberPwCheck" class="field w-100" placeholder="비밀번호 확인">
+                    <input type="password" id="memberPwCheck" class="field w-100" placeholder="비밀번호 확인">
+                	<div class="success-feedback">비밀번호가 일치합니다.</div>
+                	<div class="fail-feedback">비밀번호가 일치하지 않습니다.</div>
+                	<div class="fail2-feedback">비밀번호를 먼저 형식에 맞게 작성하세요.</div>
                 </div>
                 <div class="cell">
                     <input type="text" name="memberName" class="field w-100" placeholder="이름">
+                    <div class="fail-feedback">이름을 입력해주세요.</div>
+                    <div class="fail2-feedback">이름은 한글 2~5자로만 작성 가능합니다.</div>
+                </div>
+                <div class="cell">
+                	<input type="text" name="" class="field" size="12" maxlength="6" placeholder="주민번호 앞자리">
+                	-
+                	<input type="text" name="" class="field" size="12" maxlength="7" placeholder="주민번호 뒷자리">
+                	<div class="fail-feedback">주민번호를 작성해주세요.</div>
                 </div>
                 <div class="cell">
                     <input type="text" name="memberIdCardNum" class="field w-100" placeholder="주민등록번호">
                 </div>
                 <div class="cell">
                     <input type="tel" name="memberContact" class="field w-100" placeholder="연락처">
+                    <div class="fail-feedback">연락처를 작성해주세요.</div>
                 </div>
                 <div class="cell">
-                    <input type="email" name="memberEmail" class="field w-100" placeholder="이메일 주소">
+                    <input type="email" inputmode="email" name="memberEmail" class="field w-100" placeholder="이메일 (선택사항)">
                 </div>
                 <div class="cell left">
                     <input type="text" name="memberPost" size="14" maxlength="6" class="field" placeholder="우편번호" readonly>
@@ -94,13 +121,13 @@
                 </div>
                 <div class="cell">
                     <input type="text" name="memberAddress2" class="field w-100" placeholder="상세주소" >
-                	<div class="fail-feedback m-10">주소를 모두 작성해주세요.</div>
+                	<div class="fail-feedback">주소를 모두 작성해주세요.</div>
                 </div>
             </div>
 
             <div class="cell left" style="padding: 5px;">
                 <p><i class="fa-solid fa-star-of-life red"></i> 선택 입력 사항</p>
-                <div class="celㅣ">
+                <div class="cell">
                     <select name="memberIndustry" class="field w-100">
                         <option value="">산업군</option>
                         <option>IT</option>
@@ -114,8 +141,8 @@
                 </div>
             </div>
 
-	 		<div class="cell left">
-	            <label for="firstSelect">* </label>
+	 		<div class="cell center" style="padding:5px;">
+	            <label for="firstSelect"></label>
 	            <select id="firstSelect" onchange="updateSecondSelect()" class="selectBox">
 	                <option value="">1차 직종 선택</option>
 	                <option value="dev">개발</option>
