@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
-
+ 
 <div class="container w-800">
 	<div class="cell">
 		<h2><i class="fa-solid fa-angles-right"></i> 일반/기업 회원 현황</h2>
