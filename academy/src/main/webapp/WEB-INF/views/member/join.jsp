@@ -72,6 +72,9 @@
                     <input type="text" name="memberName" class="field w-100" placeholder="이름">
                 </div>
                 <div class="cell">
+                    <input type="text" name="memberIdCardNum" class="field w-100" placeholder="주민등록번호">
+                </div>
+                <div class="cell">
                     <input type="tel" name="memberContact" class="field w-100" placeholder="연락처">
                 </div>
                 <div class="cell">

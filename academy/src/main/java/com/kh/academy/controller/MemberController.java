@@ -61,7 +61,13 @@ public class MemberController {
 	@RequestMapping("/member/mypage")
 	public String mypageMember(HttpSession session, Model model) {
 		String userId = (String) session.getAttribute("userId"); // 내 아이디 추출
-		MemberDto memberDto = memberDao.selectOne(userId); // 내 정보 획득
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto"); // 세션에서 정보 획득
+		
+		if (memberDto == null) {
+	        memberDto = memberDao.selectOne(userId); // 세션에 정보가 없으면 DB에서 획득
+	        session.setAttribute("memberDto", memberDto); // DB에서 가져온 정보를 세션에 저장
+	    }
+		
 		model.addAttribute("memberDto", memberDto);
 
 		return "/WEB-INF/views/member/mypage.jsp";
@@ -82,8 +88,7 @@ public class MemberController {
 	public String editMember(@ModelAttribute MemberDto memberDto, HttpSession session) {
 		String userId = (String) session.getAttribute("userId");
 		MemberDto findDto = memberDao.selectOne(userId);
-		boolean isValid = findDto.getMemberPw().equals(memberDto.getMemberPw()); // 사용자가 입력한 비밀번호가 데이터베이스 비밀번호와 일치하지 않을
-																					// 경우
+		boolean isValid = findDto.getMemberPw().equals(memberDto.getMemberPw()); // 사용자가 입력한 비밀번호가 데이터베이스 비밀번호와 일치하지 않을 경우
 		if (!isValid) {
 			return "redirect:edit?error";
 		}
@@ -98,9 +103,12 @@ public class MemberController {
 		findDto.setMemberJob(memberDto.getMemberJob());
 
 		memberDao.updateMember(findDto);
-		return "redirect:mypage";
+		
+		// 세션에 업데이트된 정보를 저장
+	    session.setAttribute("memberDto", findDto);
+		
+		return "redirect:/member/mypage";
 	}
-	
 	
 	// 회사 이력 등록 페이지 요청 처리 (GET)
     @GetMapping("/member/addCompany")
@@ -113,7 +121,6 @@ public class MemberController {
     public String addCompanyHistory(
     		@ModelAttribute CompanyHistoryDto companyHistoryDto, HttpSession session, Model model) {
 
-    	System.out.println("addCompanyHistory 메서드 호출됨");
     	
         String userId = (String) session.getAttribute("userId");
         MemberDto findDto = memberDao.selectOne(userId);
@@ -132,7 +139,6 @@ public class MemberController {
         // 3. 새로운 회사 이력 추가
         companyHistoryDto.setMemberId(userId);
         companyHistoryDto.setCompanyNo(companyDto.getCompanyNo());
-        System.out.println("companyHistoryDto = " + companyHistoryDto);
         companyHistoryDao.insertCompanyHistory(companyHistoryDto);
         
         return "redirect:mypage"; // 처리 후 마이페이지로 리다이렉트
@@ -191,8 +197,13 @@ public class MemberController {
 	@RequestMapping("/company/member/mypage")
 	public String mypageCompanyMember(HttpSession session, Model model) {
 		String userId = (String) session.getAttribute("userId"); // 내 아이디 추출
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto"); // 세션에서 정보 획득
 		
-		MemberDto memberDto = memberDao.selectOne(userId); // 내 정보 획득
+		// 세션에 회원 정보가 없다면 DB에서 조회
+        if (memberDto == null) {
+            memberDto = memberDao.selectOne(userId);
+            session.setAttribute("memberDto", memberDto); // 세션에 정보 저장
+        }
 		CompanyDto companyDto = companyDao.selectOne(memberDto.getMemberCompanyNo());
 	 
 		model.addAttribute("memberDto", memberDto);
@@ -233,9 +244,17 @@ public class MemberController {
 		findDto.setMemberCrNumber(memberDto.getMemberCrNumber());
 		
 		findDto.setMemberCompanyNo(memberDto.getMemberCompanyNo());
+		
+		// member_company_no 업데이트 먼저 실행
+	    //memberDao.updateMemberCompanyNo(findDto.getMemberId());
+	    
+		System.out.println("memberDto = " + memberDto);
 		memberDao.updateCompanyMember(findDto);
 		
-		return "redirect:mypage";
+		session.setAttribute("memberDto", findDto); // 세션에 업데이트된 정보를 저장
+		
+		
+		return "redirect:/company/member/mypage";
 	}
 
 	/*
@@ -267,6 +286,7 @@ public class MemberController {
 			session.setAttribute("userId", findDto.getMemberId());
 			// (+추가)세션에 userLevel이란 이름으로 사용자의 등급을 저장
 			session.setAttribute("userType", findDto.getMemberType());
+			session.setAttribute("memberDto", findDto); // memberDto를 세션에 저장
 
 			return "redirect:/";
 		} else {// 비밀번호 다름
@@ -280,6 +300,43 @@ public class MemberController {
 		session.removeAttribute("userType");
 		// session.invalidate(); //세션 소멸 명령
 		return "redirect:/";
+	}
+	
+	//비밀번호 변경 매핑
+	@GetMapping("/share/password")
+	public String password() {
+		return "/WEB-INF/views/share/password.jsp"; //포워드
+	}
+		
+	@PostMapping("/share/password")
+	public String password(@RequestParam String currentPw, @RequestParam String newPw, HttpSession session) { //아이디를 꺼내야 됨
+		String userId = (String) session.getAttribute("userId"); // 세션은 꺼낼 때 아무거나 꺼낼 수 있도록 Object형태로 꺼내기 때문에 다운캐스팅 필요함
+		String userType = (String) session.getAttribute("userType");
+		MemberDto memberDto = memberDao.selectOne(userId);
+		boolean isValid = currentPw.equals(memberDto.getMemberPw());
+		if (isValid == false) { // 비밀번호가 일치하지 않는 경우
+			return "redirect:password?error=1";
+		}
+
+		// (+추가) 동일한 비밀번호를 변경할 수 없도록 차단 처리
+		if (currentPw.equals(newPw)) {
+			return "redirect:password?error=2"; // 위와 다른 에러이기 때문에 구분해야 함
+		}
+
+		memberDto.setMemberPw(newPw); // 비밀번호 변경
+		memberDao.updateMemberPassword(memberDto);
+		
+		if(userType.equals("일반회원")) {
+			return "redirect:/member/mypage";
+		}
+		else if(userType.equals("기업회원")) {
+			return "redirect:/company/member/mypage";
+		}
+		else {
+			//(+확인필요)관리자 마이페이지 = 개인회원 마이페이지로 설정되어있는 상태	
+			return "redirect:/member/mypage"; 
+		}
+		
 	}
 
 }
