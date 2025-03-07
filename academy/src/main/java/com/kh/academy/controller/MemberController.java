@@ -263,12 +263,12 @@ public class MemberController {
 	 */
 
 	//로그인 매핑 (통합)
-	@GetMapping("/login")
+	@GetMapping("/share/login")
 	public String login() {
 		return "/WEB-INF/views/share/login.jsp";
 	}
 
-	@PostMapping("/login")
+	@PostMapping("/share/login")
 	public String login(@ModelAttribute MemberDto memberDto, @RequestParam(required = false) String remember,
 			HttpSession session, HttpServletResponse response) { // 사용자가 입력한 정보 //아이디와 비밀번호를 String으로 받을지, Dto로 받을지 선택의
 																	// 문제
@@ -338,5 +338,33 @@ public class MemberController {
 		}
 		
 	}
+	
+	//회원 탈퇴 매핑
+		@GetMapping("/share/exit")
+		public String exit(HttpSession session, Model model) {
+			String userId = (String) session.getAttribute("userId");
+			MemberDto memberDto = memberDao.selectOne(userId);
+			model.addAttribute("memberDto", memberDto);
+			return "/WEB-INF/views/share/exit.jsp";
+		}
+		
+		@PostMapping("/share/exit")
+		public String exit(@RequestParam String memberPw, HttpSession session) {
+			String userId = (String) session.getAttribute("userId");
+			MemberDto memberDto = memberDao.selectOne(userId);
+			boolean isValidPw = memberPw.equals(memberDto.getMemberPw()); 
+			if(isValidPw == false) {
+				return "redirect:exit?error";
+			}
+			memberDao.delete(userId);
+			//return "redirect:logout";
+			session.removeAttribute("userId");
+			return "redirect:exitFinish";
+		}
+		
+		@RequestMapping("/share/exitFinish")
+		public String exitFinish() {
+			return "/WEB-INF/views/share/exitFinish.jsp";
+		}
 
 }
