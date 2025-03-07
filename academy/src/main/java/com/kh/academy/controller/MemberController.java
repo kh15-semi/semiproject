@@ -175,7 +175,6 @@ public class MemberController {
 		model.addAttribute("companyName", companyName);
 
 		memberDao.insertCompanyMember(memberDto); // 회원가입
-		memberDao.updateMemberCompanyNo();
 
 		return "redirect:joinFinish"; // joinFinish으로 쫓아내는 코드(상대경로)
 	}
@@ -185,6 +184,7 @@ public class MemberController {
 													// http://localhost:8080
 	// 여기에는 대소문자 구분이 안됨을 알아야함!
 	public String joinCompanyMemberFinish() {
+		memberDao.updateMemberCompanyNo();
 		return "/WEB-INF/views/company/member/joinFinish.jsp";
 	}
 
@@ -193,10 +193,7 @@ public class MemberController {
 		String userId = (String) session.getAttribute("userId"); // 내 아이디 추출
 		
 		MemberDto memberDto = memberDao.selectOne(userId); // 내 정보 획득
-		//.out.println("memberDto = " + memberDto);
 		CompanyDto companyDto = companyDao.selectOne(memberDto.getMemberCompanyNo());
-		System.out.println("companyDto" + companyDto);
-		 
 	 
 		model.addAttribute("memberDto", memberDto);
 		model.addAttribute("companyDto", companyDto);

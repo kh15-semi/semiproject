@@ -14,6 +14,7 @@ public class MemberDto {
 	private String memberPw; //비밀번호
 	private String memberType; //회원유형
 	private String memberName; //이름
+	private String memberIdCardNum; //주민등록번호(일반회원만)
 	private String memberContact;//연락처
 	private String memberEmail;//이메일
 	private String memberPost;//우편번호

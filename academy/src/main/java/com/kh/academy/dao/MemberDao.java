@@ -21,14 +21,14 @@ public class MemberDao {
 	// 가입(등록) 메소드(일반회원)
 	public void insertMember(MemberDto memberDto) {
 		String sql = "insert into member(member_id, member_pw, member_type,"
-				+ " member_name, member_contact, member_email,"
+				+ " member_name, member_id_card_num, member_contact, member_email,"
 				+ " member_post, member_address1, member_address2,"
 				+ " member_industry, member_job" // 산업, 직종은 선택
 				+ ") "
 				+ "values(?, ?, '일반회원', ?, ?, ?, ?, ?, ?, ?, ?)";
-		Object[] data = { memberDto.getMemberId(), memberDto.getMemberPw(), memberDto.getMemberName(),
-				memberDto.getMemberContact(), memberDto.getMemberEmail(), memberDto.getMemberPost(),
-				memberDto.getMemberAddress1(), memberDto.getMemberAddress2(),
+		Object[] data = { memberDto.getMemberId(), memberDto.getMemberPw(), memberDto.getMemberName(), 
+				memberDto.getMemberIdCardNum(), memberDto.getMemberContact(), memberDto.getMemberEmail(), 
+				memberDto.getMemberPost(), memberDto.getMemberAddress1(), memberDto.getMemberAddress2(),
 				memberDto.getMemberIndustry(), memberDto.getMemberJob()
 		};
 		jdbcTemplate.update(sql, data);
@@ -36,6 +36,15 @@ public class MemberDao {
 
 	// 가입(등록) 메소드(기업회원)
 	public void insertCompanyMember(MemberDto memberDto) {
+		
+		// 1. 기존에 같은 사업자등록번호를 가진 회원이 있는지 확인
+	    String checkSql = "SELECT COUNT(*) FROM member WHERE member_cr_number = ?";
+	    int count = jdbcTemplate.queryForObject(checkSql, Integer.class, memberDto.getMemberCrNumber());
+	    
+	    if (count > 0) {
+	        throw new IllegalStateException("이미 가입된 사업자등록번호입니다."); //(+추후 수정)프론트에서 blur처리로 나오게끔 수정 필요!!!!!!!!!
+	    }
+		
 		String sql = "insert into member(member_id, member_pw, member_type, "
 				+ "member_name, member_contact, member_email, "
 				+ "member_post, member_address1, member_address2, "
@@ -46,11 +55,12 @@ public class MemberDao {
 		Object[] data = { memberDto.getMemberId(), memberDto.getMemberPw(), memberDto.getMemberName(),
 				memberDto.getMemberContact(), memberDto.getMemberEmail(), memberDto.getMemberPost(),
 				memberDto.getMemberAddress1(), memberDto.getMemberAddress2(), memberDto.getMemberIndustry(),
-				memberDto.getMemberJob(), memberDto.getMemberPosition(), memberDto.getMemberCrNumber(), memberDto.getMemberCompanyNo() };
+				memberDto.getMemberJob(), memberDto.getMemberPosition(), memberDto.getMemberCrNumber()
+				};
 		jdbcTemplate.update(sql, data);
 		
 		// member_company_no 업데이트
-	    updateMemberCompanyNo(memberDto.getMemberId());
+	    // updateMemberCompanyNo(memberDto.getMemberId());
 	}
 	
 	public int updateMemberCompanyNo(String memberId) {
@@ -92,12 +102,12 @@ public class MemberDao {
 	// 수정 기능(일반회원)
 	public boolean updateMember(MemberDto memberDto) {
 		String sql = "update member set " 
-				+ "member_pw = ?, member_name = ?, member_contact = ?, "
+				+ "member_contact = ?, "
 				+ "member_email = ?, member_post = ?, "
 				+ "member_address1 = ?, member_address2 = ?, "
 				+ "member_industry = ?, member_job = ? "
 				+ "where member_id = ?";
-		Object[] data = { memberDto.getMemberPw(), memberDto.getMemberName(), memberDto.getMemberContact(),
+		Object[] data = { memberDto.getMemberContact(),
 				memberDto.getMemberEmail(), memberDto.getMemberPost(), memberDto.getMemberAddress1(),
 				memberDto.getMemberAddress2(), memberDto.getMemberIndustry(), memberDto.getMemberJob(),
 				memberDto.getMemberId() };
@@ -107,19 +117,18 @@ public class MemberDao {
 	// 수정 기능(기업회원)
 	public boolean updateCompanyMember(MemberDto memberDto) {
 		String sql = "update member set "
-				+ "member_pw = ?, member_name = ?, member_contact = ?, "
-				+ "member_email = ?, member_post = ?, "
-				+ "member_address1 = ?, member_address2 = ?, "
+				+ "member_contact = ?, member_email = ?, "
+				+ "member_post = ?, member_address1 = ?, member_address2 = ?, "
 				+ "member_industry = ?, member_job = ?, "
 				+ "member_position = ?, member_cr_number = ?"
 				+ "where member_id = ?";
-		Object[] data = { memberDto.getMemberPw(), memberDto.getMemberName(), memberDto.getMemberContact(),
-				memberDto.getMemberEmail(), memberDto.getMemberPost(), memberDto.getMemberAddress1(),
-				memberDto.getMemberAddress2(), memberDto.getMemberIndustry(), memberDto.getMemberJob(),
+		Object[] data = { memberDto.getMemberContact(), memberDto.getMemberEmail(), 
+				memberDto.getMemberPost(), memberDto.getMemberAddress1(), memberDto.getMemberAddress2(), 
+				memberDto.getMemberIndustry(), memberDto.getMemberJob(),
 				memberDto.getMemberPosition(), memberDto.getMemberCrNumber(), memberDto.getMemberId() };
 		
 		// member_company_no 업데이트
-	    updateMemberCompanyNo(memberDto.getMemberId());
+	    //updateMemberCompanyNo(memberDto.getMemberId());
 		
 		return jdbcTemplate.update(sql, data) > 0;
 	}
