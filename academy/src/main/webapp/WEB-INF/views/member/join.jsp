@@ -98,6 +98,9 @@
                 	<div class="fail-feedback">주민번호를 작성해주세요.</div>
                 </div>
                 <div class="cell">
+                    <input type="text" name="memberIdCardNum" class="field w-100" placeholder="주민등록번호">
+                </div>
+                <div class="cell">
                     <input type="tel" name="memberContact" class="field w-100" placeholder="연락처">
                     <div class="fail-feedback">연락처를 작성해주세요.</div>
                 </div>

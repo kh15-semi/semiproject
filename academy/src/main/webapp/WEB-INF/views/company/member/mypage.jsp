@@ -10,26 +10,26 @@
 
 <!-- font awesome cdn -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<script>
+<script type="text/javascript">
     $(function () {
         // 정보 수정 버튼 클릭 시
-        $('#editInfoBtn').click(function() {
-            window.location.href = '/edit-info';
+        $(".btn-edit").click(function() {
+            window.location.href = "/company/member/edit";
         });
 
         // 비밀번호 변경 버튼 클릭 시
-        $('#changePasswordBtn').click(function() {
-            window.location.href = '/change-password';
+        $(".btn-changePw").click(function() {
+            window.location.href = "/share/password";
         });
 
         // 계정 삭제 버튼 클릭 시
-        $('#deleteAccountBtn').click(function() {
-            window.location.href = '/delete-account';
+        $(".btn-delete").click(function() {
+            window.location.href = "/";
         });
 
         // 메인 버튼 클릭 시
-        $('#mainBtn').click(function() {
-            window.location.href = '/';
+        $(".btn-main").click(function() {
+            window.location.href = "/";
         });
     });
 </script>
@@ -89,18 +89,10 @@
         <hr style="border: 0; border-top: 1px solid rgb(196, 196, 196)"><br>
 
         <div class="cell center" style="margin: 10px; padding: 10px;">
-        	<a href="/company/mypage/edit?companyNo=${memberDto.memberCompanyNo}">
-            	<button type="button" class="btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-pen-to-square"></i> 정보 수정</button>
-        	</a>
-       		<a href="/company/mypage/password?companyNo=${memberDto.memberCompanyNo}">
-	            <button type="button" class="btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-lock"></i> 비밀번호 변경</button>
-       		</a>
-            <a href="/company/mypage/delete?companyNo=${memberDto.memberCompanyNo }">
-	            <button type="button" class="btn btn-red" style="border-radius: 10px;"><i class="fa-solid fa-exclamation"></i> 계정삭제</button>
-            </a>
-            <a href="/">
-	            <button type="button" class="btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-house"></i> 메인</button>
-            </a>
+            <button type="button" class="btn-edit btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-pen-to-square"></i> 정보 수정</button>
+	        <button type="button" class="btn-changePw btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-lock"></i> 비밀번호 변경</button>
+	        <button type="button" class="btn-delete btn btn-red" style="border-radius: 10px;"><i class="fa-solid fa-exclamation"></i> 계정삭제</button>
+	        <button type="button" class="btn-mainbtn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-house"></i> 메인</button>
         </div>
     </div>
 </div>

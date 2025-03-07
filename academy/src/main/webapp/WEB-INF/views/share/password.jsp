@@ -10,13 +10,13 @@
             <h2>비밀번호 변경</h2>
         </div>
         <div class="cell mt-30">
-            <input type="password" name="" class="field w-100" placeholder="기존 비밀번호 입력">
+            <input type="password" name="currentPw" class="field w-100" placeholder="기존 비밀번호 입력">
         </div>
         <div class="cell">
-            <input type="password" name="" class="field w-100" placeholder="변경할 비밀번호 입력">
+            <input type="password" name="newPw" class="field w-100" placeholder="변경할 비밀번호 입력">
         </div>
         <div class="cell mt-20">
-            <button type="submit" name="" class="btn w-100">비밀번호 변경</button>
+            <button type="submit" class="btn w-100">비밀번호 변경</button>
         </div>
         <!-- error message -->
 		<c:if test="${param.error == '1'}">
