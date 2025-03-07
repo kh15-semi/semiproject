@@ -25,7 +25,7 @@ public class MemberDao {
 				+ " member_post, member_address1, member_address2,"
 				+ " member_industry, member_job" // 산업, 직종은 선택
 				+ ") "
-				+ "values(?, ?, '일반회원', ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "values(?, ?, '일반회원', ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		Object[] data = { memberDto.getMemberId(), memberDto.getMemberPw(), memberDto.getMemberName(), 
 				memberDto.getMemberIdCardNum(), memberDto.getMemberContact(), memberDto.getMemberEmail(), 
 				memberDto.getMemberPost(), memberDto.getMemberAddress1(), memberDto.getMemberAddress2(),
@@ -120,7 +120,7 @@ public class MemberDao {
 				+ "member_contact = ?, member_email = ?, "
 				+ "member_post = ?, member_address1 = ?, member_address2 = ?, "
 				+ "member_industry = ?, member_job = ?, "
-				+ "member_position = ?, member_cr_number = ?"
+				+ "member_position = ?, member_cr_number = ? "
 				+ "where member_id = ?";
 		Object[] data = { memberDto.getMemberContact(), memberDto.getMemberEmail(), 
 				memberDto.getMemberPost(), memberDto.getMemberAddress1(), memberDto.getMemberAddress2(), 
@@ -128,7 +128,7 @@ public class MemberDao {
 				memberDto.getMemberPosition(), memberDto.getMemberCrNumber(), memberDto.getMemberId() };
 		
 		// member_company_no 업데이트
-	    //updateMemberCompanyNo(memberDto.getMemberId());
+	    updateMemberCompanyNo(memberDto.getMemberId());
 		
 		return jdbcTemplate.update(sql, data) > 0;
 	}
