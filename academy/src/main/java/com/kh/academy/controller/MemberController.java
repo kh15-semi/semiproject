@@ -252,6 +252,7 @@ public class MemberController {
 		return "/WEB-INF/views/share/login.jsp";
 	}
 
+	@PostMapping("/login")
 	public String login(@ModelAttribute MemberDto memberDto, @RequestParam(required = false) String remember,
 			HttpSession session, HttpServletResponse response) { // 사용자가 입력한 정보 //아이디와 비밀번호를 String으로 받을지, Dto로 받을지 선택의
 																	// 문제
