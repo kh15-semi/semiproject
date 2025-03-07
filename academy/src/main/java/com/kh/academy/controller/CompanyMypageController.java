@@ -57,6 +57,8 @@ public class CompanyMypageController {
             throw new TargetNotFoundException("존재하지 않는 기업입니다.");
         }
         model.addAttribute("companyDto", companyDto);
+    	
+//    	MemberDto memberDto = memberDao.selectOne(null)
         return "/WEB-INF/views/company/mypage/edit.jsp";
     }
 
