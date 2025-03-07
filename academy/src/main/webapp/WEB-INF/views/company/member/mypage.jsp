@@ -86,7 +86,7 @@
 
         </div>
         
-        <hr style="border: 0; border-top: 1px solid rgb(196, 196, 196)"><br>
+        <hr style="border: none; border-top: 1px solid rgb(196, 196, 196)"><br>
 
         <div class="cell center" style="margin: 10px; padding: 10px;">
         	<a href="/company/mypage/edit?companyNo=${memberDto.memberCompanyNo}">

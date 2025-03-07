@@ -432,7 +432,7 @@ textarea.field {
     padding: 0.5em 0.75em;
     color: #2d3436;
     border: 1px solid #2d3436;
-    border-radius: 0.1em;
+    border-radius: 10px !important;
     cursor: pointer;
     /* a태그를 위한 추가 디자인 */
     text-decoration: none;
