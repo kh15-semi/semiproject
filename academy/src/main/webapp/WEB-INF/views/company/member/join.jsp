@@ -47,7 +47,7 @@ $(function() {
 });
 </script>
 
-<form action="" method="post" enctype="multipart/form-data" autocomplete="off">
+<form action="join" method="post" enctype="multipart/form-data" autocomplete="off">
     <div class="container w-400" style="border:0; border-radius: 10px; background-color: rgb(238, 238, 238);">
         <div class="cell center">
             <a href="#">
