@@ -234,7 +234,7 @@ $(function() {
             <hr>
             <p class="cell center mt-20">
                 이미 기업 회원이세요?&nbsp;
-                <a href="/member/login" class="btn btn-login" style="border-radius: 10px;" src="/member/login">로그인</a>
+                <a href="/share/login" class="btn btn-login" style="border-radius: 10px;">로그인</a>
             </p>
         </div>
     </div>
