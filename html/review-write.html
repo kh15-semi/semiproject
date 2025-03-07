@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리뷰내용</title>
+
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- font awesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" type="text/css" href="./commons.css">
+    <link rel="stylesheet" type="text/css" href="./test.css">
+
+    <!-- jQuery cdn -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/hiphop5782/score@latest/score.js"></script>
+
+
+    <style>
+
+    </style>
+    <!-- 자바스크립트 작성 공간 -->
+    <script type="text/javascript">
+        var comments = [];
+
+        //게시글 수정
+        function editPost(reviewNo) {
+            window.location.href = "editBoard.jsp?review_no=" + reviewNo;
+        }
+
+        //게시글 삭제
+        function deletePost(reviewNo) {
+            if (confirm("정말 게시글을 삭제하시겠습니까?")) {
+                alert("게시글이 삭제되었습니다."); // Spring 연동 시 AJAX 요청 필요
+                window.location.href = "boardList.jsp"; // 삭제 후 목록으로 이동
+            }
+        }
+
+        //댓글 추가
+        function addComment() {
+            var writer = $("#comment-writer").val();
+            var content = $("#comment-content").val();
+            var time = new Date().toLocaleString();
+
+            if (writer.trim() === "" || content.trim() === "") {
+                alert("작성자와 내용을 입력해주세요.");
+                return;
+            }
+
+            var newComment = {
+                writer: writer,
+                content: content,
+                time: time
+            };
+
+            comments.push(newComment);
+            renderComments();
+
+            // 입력 필드 초기화
+            $("#comment-writer").val("");
+            $("#comment-content").val("");
+        }
+
+        // 댓글 목록 렌더링
+        function renderComments() {
+            $("#comment-table").empty(); // 기존 목록 삭제
+
+            for (var i = 0; i < comments.length; i++) {
+                var comment = comments[i];
+                var row = `
+        <tr>
+            <td>${comment.writer}</td>
+            <td>${comment.content}</td>
+            <td>${comment.time}</td>
+            <td><button onclick="editComment()">수정</button></td>
+            <td><button onclick="deleteComment()">삭제</button></td>
+        </tr>
+    `;
+                $("#comment-table").append(row);
+            }
+        }
+
+        // 댓글 수정
+        function editComment(index) {
+            var newContent = prompt("수정할 내용을 입력하세요:", comments[index].content);
+            if (newContent !== null) {
+                comments[index].content = newContent;
+                renderComments();
+            }
+        }
+
+        //댓글 삭제
+        function deleteComment(index) {
+            if (confirm("정말 삭제하시겠습니까?")) {
+                comments.splice(index, 1);
+                renderComments();
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <div class="container w-800">
+        <h1>${boardDto.boardTitle}</h1>
+
+        <div>
+            ${boardDto.boardWtime} | 조회 ${boardDto.boardRead}
+        </div>
+
+        <hr>
+
+        <div class="container w-800">${boardDto.boardContent}</div>
+
+        <hr>
+
+        <div class="cell">
+            좋아요 ${boardDto.boardLike} | 댓글 ${boardDto.boardReply}
+        </div>
+
+        <!-- 게시글 관리 버튼 추가 -->
+        <div class="cell review-actions">
+            <button onclick="history.back()">이전</button>
+            <button onclick="editPost(${boardDto.review_no})">게시글 수정</button>
+            <button onclick="deletePost(${boardDto.review_no})">게시글 삭제</button>
+        </div>
+
+        <hr>
+
+        <!-- 댓글 목록 -->
+        <h3>댓글 목록</h3>
+        <div class="comment-list">
+            <table class="table table-border">
+                <thead>
+                    <tr>
+                        <th>작성자</th>
+                        <th>내용</th>
+                        <th>작성일</th>
+                        <th>수정</th>
+                        <th>삭제</th>
+                    </tr>
+                </thead>
+                <tbody id="comment-table">
+                    <!-- 댓글이 JavaScript로 추가될 공간 -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 댓글 입력 폼 -->
+        <h3>댓글 입력</h3>
+        <div class="comment-form">
+            <input type="text" id="comment-writer" placeholder="작성자 (기업명)">
+            <textarea id="comment-content" placeholder="댓글을 입력하세요"></textarea>
+            <button onclick="addComment()">댓글 작성</button>
+        </div>
+    </div>
+
+</body>
+
+</html>
