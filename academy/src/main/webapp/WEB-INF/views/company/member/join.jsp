@@ -213,21 +213,6 @@ $(function() {
                 </div>
             </div>
 
-			<div class="cell" style="padding: 5px;">
-			    <div class="cell">
-			        <input type="text" id="memberName" name="memberName" class="field w-100" placeholder="담당자 이름 (실명)">
-			    </div>
-			    <div class="cell">
-			        <input type="text" name="memberEmail" class="field w-100" placeholder="명함에 기재된 이메일 주소">
-			    </div>
-			    <div class="cell">
-			        <input type="tel" name="memberContact" class="field w-100" placeholder="연락처">
-			    </div>
-			    <div class="cell">
-			        <input type="text" name="memberPosition" class="field w-100" placeholder="직책">
-			    </div>
-			</div>
-
             <div class="cell mt-30 mb-30">
                 <button class="btn btn-green2 w-100" style="border-radius: 10px"><i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;&nbsp;기업회원 가입하기</button>
             </div>
