@@ -447,13 +447,15 @@ textarea.field {
 
 /* 긍정 버튼 */
 .btn.btn-positive {
-    border-color: #63bafd;
-    background-color: #63bafd;
+	border-radius: 10px;
+    border-color: #32AA46;
+    background-color: #32AA46;
     color: white;
 }
 
 /* 부정 버튼 */
 .btn.btn-negative {
+	border-radius: 10px;
     border-color: #f39292;
     background-color: #f39292;
     color: white;
@@ -461,6 +463,7 @@ textarea.field {
 
 /* 중립 버튼 */
 .btn.btn-neutral {
+	border-radius: 10px;
     border-color: #b8bbbd;
     background-color: #b8bbbd;
     color: white;
@@ -805,7 +808,7 @@ textarea.field {
         - 실패 시, .fail 을 추가
     */
     .success-feedback {
-    color: #0984e3;
+    color: #32AA46;
     display: none;
     }
     

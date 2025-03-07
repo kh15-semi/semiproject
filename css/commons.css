@@ -454,6 +454,7 @@ textarea.field {
 
 /* 부정 버튼 */
 .btn.btn-negative {
+	border-radius: 10px;
     border-color: #f39292;
     background-color: #f39292;
     color: white;
@@ -461,6 +462,7 @@ textarea.field {
 
 /* 중립 버튼 */
 .btn.btn-neutral {
+	border-radius: 10px;
     border-color: #b8bbbd;
     background-color: #b8bbbd;
     color: white;
@@ -468,6 +470,7 @@ textarea.field {
 
 /* 컬러 버튼 - 보라 */
 .btn.btn-purple {
+	border-radius: 10px;
     border-color: #dbb1f8;
     background-color: #dbb1f8;
     color: white;

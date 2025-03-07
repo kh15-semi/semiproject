@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
+<<<<<<< HEAD
 <!-- Lightpick 라이브러리 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightpick@1.6.2/css/lightpick.min.css">
 <script src="https://cdn.jsdelivr.net/npm/moment@2.30.1/moment.min.js"></script>
@@ -32,6 +33,24 @@
 
 
 <form action="change" method="post">
+=======
+<script type="text/javascript">
+$(function() {
+	// 정보 수정 완료 버튼 클릭 시
+	$(".btn-edit-complete").click(function() {
+		window.location.href = "/member/mypage";
+	});
+	
+	// 정보 수정 취소 버튼 클릭 시
+	$(".btn-edit-cancel").click(function() {
+		window.location.href = "/member/mypage";
+	});
+	
+});
+</script>
+
+<form action="/member/edit" method="post">
+>>>>>>> refs/heads/main
     <div class="container w-800">
         <div class="cell">
             <div class="cell">
@@ -98,8 +117,8 @@
         </div>
         
         <div class="cell">
-            <button type="button" class="btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-user-pen"></i> 수정 완료</button>
-            <button type="button" class="btn btn-red" style="border-radius: 10px;"><i class="fa-solid fa-xmark"></i> 취소</button>
+            <button type="submit" class="btn-edit-complete btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-user-pen"></i> 수정 완료</button>
+            <button type="button" class="btn-edit-cancel btn btn-red" style="border-radius: 10px;"><i class="fa-solid fa-xmark"></i> 취소</button>
         </div>
     </div>
     
