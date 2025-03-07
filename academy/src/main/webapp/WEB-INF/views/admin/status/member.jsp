@@ -18,8 +18,8 @@
 		</div>
 	</div>
 	<div class="cell">
-		<a href="/admin/home" class="btn btn-green2" style="border-radius: 10px"><i class="fa-solid fa-user-tie black"></i> 관리자 홈</a>
-		<a href="/" class="btn btn-green2" style="border-radius: 10px"><i class="fa-solid fa-house"></i> 메인</a>
+	<a href="/admin/home" class="btn btn-green2"><i class="fa-solid fa-user-tie"></i> 관리자 홈</a>
+		<a href="/" class="btn btn-blue" style="border-radius: 10px"><i class="fa-solid fa-house"></i> 메인</a>
 	</div>
 </div>
 

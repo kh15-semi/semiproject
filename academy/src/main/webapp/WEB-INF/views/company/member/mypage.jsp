@@ -86,7 +86,7 @@
 
         </div>
         
-        <hr style="border: 0; border-top: 1px solid rgb(196, 196, 196)"><br>
+        <hr style="border: none; border-top: 1px solid rgb(196, 196, 196)"><br>
 
         <div class="cell center" style="margin: 10px; padding: 10px;">
             <button type="button" class="btn-edit btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-pen-to-square"></i> 정보 수정</button>

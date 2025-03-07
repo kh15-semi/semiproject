@@ -41,9 +41,9 @@
 	}
 	.selectBox {
 		border:none;
-		width: 200px;
+		width: 100%;
+		margin: 5px;
 		padding: 5px;
-		font-weight: 700;
 	}
 	
 </style>
@@ -123,8 +123,39 @@
                     <input type="text" name="memberAddress2" class="field w-100" placeholder="상세주소" >
                 	<div class="fail-feedback">주소를 모두 작성해주세요.</div>
                 </div>
-            </div>
+                <div class="cell center">
+	            	<select id="firstSelect" onchange="updateSecondSelect()" class="selectBox field" name="memberIndustry">
+		                <option value="">1차 직종 선택</option>
+		                <option value="dev">개발</option>
+		                <option value="edu">교육</option>
+		                <option value="fin">금융/재무</option>
+		                <option value="pm">기획/경영</option>
+		                <option value="data">데이터</option>
+		                <option value="design">디자인</option>
+		                <option value="mr">마케팅/시장조사</option>
+		                <option value="mp">미디어/홍보</option>
+		                <option value="legal">법률/법무</option>
+		                <option value="mf">생산/제조</option>
+		                <option value="qc">생산관리/품질관리</option>
+		                <option value="sv">서비스/고객지원</option>
+		                <option value="eng">엔지니어링</option>
+		                <option value="rd">연구개발</option>
+		                <option value="db">영업/제휴</option>
+		                <option value="b2b">유통/무역</option>
+		                <option value="med">의약</option>
+		                <option value="hr">인사/총무</option>
+		                <option value="pro">전문직</option>
+		                <option value="csr">특수계층/공공</option>
+	            	</select>
 
+		            <select id="secondSelect" class="selectBox field" name="memberJob">
+		                <option value="">2차 직종 선택</option>
+		            </select>
+		        </div>
+                
+                
+           </div>
+<!-- 
             <div class="cell left" style="padding: 5px;">
                 <p><i class="fa-solid fa-star-of-life red"></i> 선택 입력 사항</p>
                 <div class="cell">
@@ -140,6 +171,17 @@
                     </select>
                 </div>
             </div>
+<<<<<<< HEAD
+ -->
+           <div class="cell mt-30 mb-30">
+               <button class="btn btn-green2 w-100" style="border-radius: 10px"><i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;&nbsp;개인 회원가입</button>
+           </div>
+           <hr>
+           <p class="cell center mt-20">
+               이미 회원이세요?&nbsp;
+               <a href="/member/login" class="btn btn-login" style="border-radius: 10px;" src="/member/login">로그인</a>
+           </p>
+=======
 
 	 		<div class="cell center" style="padding:5px;">
 	            <label for="firstSelect"></label>
@@ -182,6 +224,7 @@
                 이미 회원이세요?&nbsp;
                 <a href="/member/login" class="btn btn-login" style="border-radius: 10px;" src="/member/login">로그인</a>
             </p>
+>>>>>>> refs/heads/main
         </div>
     </div>
 </form>
