@@ -61,7 +61,7 @@ public class MemberDao {
 	public String getCompanyNameByCrNumber(String crNumber) {
 		String sql = "SELECT bn_company_name FROM business_number WHERE bn_cr_number = ?";
         return jdbcTemplate.queryForObject(sql, String.class, crNumber);
-    }
+    } 
 	
 	 public int updateMemberCompanyNo() {
 	        String sql = "UPDATE member m " +

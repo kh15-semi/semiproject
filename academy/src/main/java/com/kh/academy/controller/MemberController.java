@@ -188,16 +188,16 @@ public class MemberController {
 		return "/WEB-INF/views/company/member/joinFinish.jsp";
 	}
 
-	// 마이페이지(내정보) 매핑 (기업회원)
 	@RequestMapping("/company/member/mypage")
 	public String mypageCompanyMember(HttpSession session, Model model) {
 		String userId = (String) session.getAttribute("userId"); // 내 아이디 추출
 		
 		MemberDto memberDto = memberDao.selectOne(userId); // 내 정보 획득
-		System.out.println("memberDto.getMemberCompanyNo() = " + memberDto.getMemberCompanyNo());
-		
+		//.out.println("memberDto = " + memberDto);
 		CompanyDto companyDto = companyDao.selectOne(memberDto.getMemberCompanyNo());
-		
+		System.out.println("companyDto" + companyDto);
+		 
+	 
 		model.addAttribute("memberDto", memberDto);
 		model.addAttribute("companyDto", companyDto);
 
