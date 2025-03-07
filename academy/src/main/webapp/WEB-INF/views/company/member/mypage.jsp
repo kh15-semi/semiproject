@@ -95,7 +95,7 @@
        		<a href="/company/mypage/password?companyNo=${memberDto.memberCompanyNo}">
 	            <button type="button" class="btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-lock"></i> 비밀번호 변경</button>
        		</a>
-            <a href="/company/mypage/delete?companyNo=${memberDto.memberCompanyNo }">
+            <a href="/company/mypage/exit?companyNo=${memberDto.memberCompanyNo }">
 	            <button type="button" class="btn btn-red" style="border-radius: 10px;"><i class="fa-solid fa-exclamation"></i> 계정삭제</button>
             </a>
             <a href="/">
