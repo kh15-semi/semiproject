@@ -36,6 +36,15 @@ public class MemberDao {
 
 	// 가입(등록) 메소드(기업회원)
 	public void insertCompanyMember(MemberDto memberDto) {
+		
+		// 1. 기존에 같은 사업자등록번호를 가진 회원이 있는지 확인
+	    String checkSql = "SELECT COUNT(*) FROM member WHERE member_cr_number = ?";
+	    int count = jdbcTemplate.queryForObject(checkSql, Integer.class, memberDto.getMemberCrNumber());
+	    
+	    if (count > 0) {
+	        throw new IllegalStateException("이미 가입된 사업자등록번호입니다."); //(+추후 수정)프론트에서 blur처리로 나오게끔 수정 필요!!!!!!!!!
+	    }
+		
 		String sql = "insert into member(member_id, member_pw, member_type, "
 				+ "member_name, member_contact, member_email, "
 				+ "member_post, member_address1, member_address2, "
@@ -46,11 +55,12 @@ public class MemberDao {
 		Object[] data = { memberDto.getMemberId(), memberDto.getMemberPw(), memberDto.getMemberName(),
 				memberDto.getMemberContact(), memberDto.getMemberEmail(), memberDto.getMemberPost(),
 				memberDto.getMemberAddress1(), memberDto.getMemberAddress2(), memberDto.getMemberIndustry(),
-				memberDto.getMemberJob(), memberDto.getMemberPosition(), memberDto.getMemberCrNumber(), memberDto.getMemberCompanyNo() };
+				memberDto.getMemberJob(), memberDto.getMemberPosition(), memberDto.getMemberCrNumber()
+				};
 		jdbcTemplate.update(sql, data);
 		
 		// member_company_no 업데이트
-	    updateMemberCompanyNo(memberDto.getMemberId());
+	    // updateMemberCompanyNo(memberDto.getMemberId());
 	}
 	
 	public int updateMemberCompanyNo(String memberId) {
