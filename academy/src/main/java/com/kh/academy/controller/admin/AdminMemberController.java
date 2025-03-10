@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kh.academy.dao.CompanyDao;
 import com.kh.academy.dao.MemberDao;
 import com.kh.academy.vo.PageVO;
+import com.kh.academy.dto.CompanyDto;
 import com.kh.academy.dto.MemberDto;
 import com.kh.academy.error.TargetNotFoundException;
 
@@ -20,6 +22,9 @@ public class AdminMemberController {
 
 	@Autowired
 	private MemberDao memberDao;
+	
+	@Autowired
+	private CompanyDao companyDao;
 	
 	@RequestMapping("/member/list")
 	public String memerList(Model model,
@@ -71,6 +76,26 @@ public class AdminMemberController {
 		return "redirect:detail?memberId="+memberDto.getMemberId();
 	}
 	
+	//기업 목록
+	@RequestMapping("/company/list")
+	public String companyList(@ModelAttribute("pageVO") PageVO pageVO, Model model) {
+	    model.addAttribute("list", companyDao.selectList(pageVO));
+	    
+	    int count = companyDao.count(pageVO);
+	    pageVO.setCount(count);
+	    
+	    return "/WEB-INF/views/admin/company/list.jsp";
+	}
+	//기업 상세 정보
+	 @RequestMapping("/company/detail")
+	    public String companyDetail(@RequestParam int companyNo, Model model) {
+	        CompanyDto companyDto = companyDao.selectOne(companyNo);
+	        if (companyDto == null) {
+	            throw new TargetNotFoundException("존재하지 않는 기업");
+	        }
+	        model.addAttribute("companyDto", companyDto);
+	        return "/WEB-INF/views/admin/company/detail.jsp";
+	    }
 	
 }
 
