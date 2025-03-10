@@ -20,12 +20,7 @@
 	        <p>${memberDto.memberName}</p>
 	    </div>
 	
-	    <div class="cell">
-	        <h3>생년월일 </h3>
-	        <p>${memberDto.memberBirth}</p>
-	    </div>
-	
-	    <div class="cell">
+	   <div class="cell">
 	        <h3>연락처</h3>
 	        <p>${memberDto.memberContact}</p>
 	    </div>
