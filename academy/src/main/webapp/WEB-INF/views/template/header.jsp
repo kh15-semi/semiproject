@@ -79,6 +79,7 @@
                     </ul>
 				</li>
 				<c:choose>
+
     				<c:when test="${sessionScope.userId != null}">
         				<c:choose>
             				<%-- 관리자인 경우 --%>
