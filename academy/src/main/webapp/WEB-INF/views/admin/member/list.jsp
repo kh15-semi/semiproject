@@ -30,7 +30,7 @@
 	    <h2><i class="fa-regular fa-user green"></i>&nbsp; 회원 관리</h2>
 	</div>
 	<div class="cell">
-	    <form action="list" method="get">
+	    <form action="list" method="get" autocomplete="off">
 	        <select name="column" style="border: none; width: 100px; font-size: 16px" >
 	            <option value="member_id" ${pageVO.column == 'member_id' ? 'selected' : ''}>아이디</option>
 	            <option value="member_name" ${pageVO.column == 'member_name' ? 'selected' : ''}>이름</option>
@@ -40,38 +40,41 @@
 	        </select>
 	        <input type="text" name="keyword" value="${pageVO.keyword}" class="field" style="border-radius: 10px; width: 300px">
 	        <button class="btn btn-green2" style="border-radius: 10px; ">검색</button>
+	       	<a href="/admin/home" class="btn btn-neutral"><i class="fa-solid fa-user-tie"></i> 관리자 홈</a>
 	    </form>
-	</div>
+	    
+	    </div>
 	
-	<div class="cell">
-	<table border="1" width="800">
-	    <thead>
-	        <tr>
-	            <th>아이디</th>
-	            <th>이름</th>
-	            <th>연락처</th>
-	            <th>이메일</th>
-	            <th>회원등급</th>
-	        </tr>
-	    </thead>
-	
-	    <tbody>
-	        <c:forEach var="memberDto" items="${list}">
-	            <tr>
-	                <td>
-	                    <a href="detail?memberId=${memberDto.memberId}">
-	                        ${memberDto.memberId}
-	                    </a>
-	                </td>
-	                <td>${memberDto.memberName}</td>
-	                <td>${memberDto.memberContact}</td>
-	                <td>${memberDto.memberEmail}</td>
-	                <td>${memberDto.memberType}</td>
-	            </tr>
-	        </c:forEach>
-	    </tbody>
-	</table>
-	</div>
+		<div class="cell">
+		<table border="1" width="1000">
+		    <thead>
+		        <tr>
+		            <th>아이디</th>
+		            <th>이름</th>
+		            <th>연락처</th>
+		            <th>이메일</th>
+		            <th>회원등급</th>
+		        </tr>
+		    </thead>
+		
+		    <tbody>
+		        <c:forEach var="memberDto" items="${list}">
+		            <tr>
+		                <td>
+		                    <a href="detail?memberId=${memberDto.memberId}">
+		                        ${memberDto.memberId}
+		                    </a>
+		                </td>
+		                <td>${memberDto.memberName}</td>
+		                <td>${memberDto.memberContact}</td>
+		                <td>${memberDto.memberEmail}</td>
+		                <td>${memberDto.memberType}</td>
+		            </tr>
+		        </c:forEach>
+		    </tbody>
+		</table>
+		</div>
+
 </div>
 
 <jsp:include page="/WEB-INF/views/template/pagination.jsp"></jsp:include>

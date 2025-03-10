@@ -28,28 +28,29 @@
 
 <div class="container w-1000">
 	<div class="cell">
-	    <h2><i class="fa-regular fa-user green"></i>&nbsp; 회원 관리</h2>
+	    <h2><i class="fa-solid fa-building green"></i>&nbsp;기업 관리</h2>
 	</div>
 	<div class="cell">
-		<form action="list" method="get">
-	        <select name="column" style="border: none; width: 120px;" >
+		<form action="list" method="get" autocomplete="off">
+	        <select name="column" style="border: none; width: 100px; font-size: 16px" >
 	            <option value="company_name" ${pageVO.column == 'company_name' ? 'selected' : ''}>회사명</option>
-	            <option value="company_industry" ${pageVO.column == 'company_industry' ? 'selected' : ''}></option>
-	            <option value="company_job" ${pageVO.column == 'company_job' ? 'selected' : ''}>산업</option>
-	            <option value="" ${pageVO.column == 'company_' ? 'selected' : ''}>직종</option>
+	            <option value="company_industry" ${pageVO.column == 'company_industry' ? 'selected' : ''}>산업군</option>
+	            <option value="company_job" ${pageVO.column == 'company_job' ? 'selected' : ''}>직종</option>
+	            <option value="company_contact" ${pageVO.column == 'company_contact' ? 'selected' : ''}>연락처</option>
 	        </select>
-	        <input type="text" name="keyword" value="${pageVO.keyword}">
+	        <input type="text" name="keyword" value="${pageVO.keyword}" class="field" style="border-radius: 10px; width: 300px">
 	        <button class="btn btn-green2" style="border-radius: 10px; ">검색</button>
+	        <a href="/admin/home" class="btn btn-neutral"><i class="fa-solid fa-user-tie"></i> 관리자 홈</a>
 		</form>
 	</div>
 	
 	<div class="cell">
-	<table border="1" width="800">
+	<table border="1" width="1000">
     <thead>
         <tr>
             <th>회사명</th>
             <th>사업자 등록번호</th>
-            <th>산업</th>
+            <th>산업군</th>
             <th>직종</th>
             <th>연락처</th>
             <th>업체 홈페이지</th>
