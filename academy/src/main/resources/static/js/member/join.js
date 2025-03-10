@@ -83,7 +83,7 @@ $(function(){
 	//주민번호 관련 처리
 	
 	//연락처 관련 처리
-	$("[name=memberContact").on("input",function(){
+	/*$("[name=memberContact").on("input",function(){
 		var current = $(this).val();
 		var convert = current.replace(/[^0-9]+/g, "");
 		
@@ -98,10 +98,10 @@ $(function(){
 		}
 		
 		$(this).val(convert);
-	}); 
+	}); */
 	$("[name=memberContact]").blur(function(){
 		var regex = /^010[0-9]{8}$/;
-		var isValid = $(this).val().length > 0;
+		var isValid =  $(this).val().length == 0 || regex.test($(this).val());
 		$(this).removeClass("success fail").addClass(isValid ? "success" : "fail");
 		status.memberContact = isValid;
 	});
