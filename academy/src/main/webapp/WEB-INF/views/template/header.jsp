@@ -92,64 +92,65 @@
 				</li>
 
 				<c:choose>
-    				<c:when test="${sessionScope.userId != null}">
-        				<c:choose>
-            				<%-- 관리자인 경우 --%>
-            				<c:when test="${sessionScope.userType == '관리자'}">
-                				<li class="menu-end">
-                    				<a href="#">
-                        				<i class="fa-regular fa-circle-user grey"></i>
-                        				<i class="fa-solid fa-chevron-down"></i>
-                    				</a>
-                    				<ul>
-                        				<li><a href="/admin/home">관리자 메뉴</a></li>
-                        				<li><a href="/logout">로그아웃</a></li>
-                    				</ul>
-                				</li>
-            			</c:when>
+    <c:when test="${sessionScope.userId != null}">
+        <c:choose>
+            <%-- 관리자인 경우 --%>
+            <c:when test="${sessionScope.memberType == '관리자'}">
+                <li class="menu-end">
+                    <a href="#">
+                        <i class="fa-regular fa-circle-user"></i>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </a>
+                    <ul>
+                        <li><a href="/admin/home">관리자 메뉴</a></li>
+                        <li><a href="/logout">로그아웃</a></li>
+                    </ul>
+                </li>
+            </c:when>
 
-            			<%-- 일반회원인 경우 --%>
-            			<c:when test="${sessionScope.userType == '일반회원'}">
-                            <li class="menu-end">
-                                <a href="#">
-                                    <i class="fa-regular fa-circle-user grey"></i>
-                                    <i class="fa-solid fa-chevron-down"></i>
-                                </a>
-                                <ul>
-                                    <li><a href="/member/mypage">회원정보</a></li>
-                                    <li><a href="#">기업 리뷰</a></li>
-                                    <li><a href="/logout">로그아웃</a></li>
-                                </ul>
-                            </li>
-                        </c:when>
-                        <%-- 기업회원인 경우 --%>
-                        <c:when test="${sessionScope.userType == '기업회원'}">
-                            <li class="menu-end">
-                                <a href="#">
-                                    <i class="fa-regular fa-circle-user grey"></i>
-                                    <i class="fa-solid fa-chevron-down"></i>
-                                </a>
-                                <ul>
-                                    <li><a href="/company/member/mypage">기업회원정보</a></li>
-                                    <li><a href="#">기업 리뷰</a></li>
-                                    <li><a href="/logout">로그아웃</a></li>
-                                </ul>
-                            </li>
-                        </c:when>
-                    </c:choose>
-                </c:when>
+            <%-- 일반회원인 경우 --%>
+            <c:when test="${sessionScope.memberType == '일반회원'}">
+                <li class="menu-end">
+                    <a href="#">
+                        <i class="fa-regular fa-circle-user"></i>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </a>
+                    <ul>
+                        <li><a href="/member/mypage">일반회원 정보</a></li>
+                        <li><a href="#">기업 리뷰</a></li>
+                        <li><a href="/logout">로그아웃</a></li>
+                    </ul>
+                </li>
+            </c:when>
 
-    			<%-- 비회원인 경우 --%>
-    			<c:otherwise>
-        			<li class="menu-end">
-            			<a href="/login">로그인</a>
-            			<ul>
-                			<li><a href="/member/join">회원가입</a></li>
-            			</ul>
-        			</li>
-    			</c:otherwise>
-			</c:choose>
+            <%-- 기업회원인 경우 --%>
+            <c:when test="${sessionScope.memberType == '기업회원'}">
+                <li class="menu-end">
+                    <a href="#">
+                        <i class="fa-regular fa-circle-user"></i>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </a>
+                    <ul>
+                        <li><a href="/company/member/mypage">기업회원 정보</a></li>
+                        <li><a href="#">기업 리뷰</a></li>
+                        <li><a href="/logout">로그아웃</a></li>
+                    </ul>
+                </li>
+            </c:when>
+        </c:choose>
+    </c:when>
 
+    <%-- 비회원인 경우 --%>
+    <c:otherwise>
+        <li class="menu-end">
+            <a href="/share/login">로그인</a>
+            <ul>
+                <li><a href="/member/join">회원가입</a></li>
+            </ul>
+        </li>
+    </c:otherwise>
+</c:choose>
+		
 
             </ul>
         </div>

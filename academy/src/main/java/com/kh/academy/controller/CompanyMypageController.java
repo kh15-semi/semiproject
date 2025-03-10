@@ -71,14 +71,15 @@ public class CompanyMypageController {
         }
         return "redirect:detail?companyNo=" + companyDto.getCompanyNo();
     }
- // 기업 회원 탈퇴 페이지
-    @GetMapping("/exit")
+    
+    // 기업 회원 탈퇴 페이지
+    @GetMapping("/share/exit")
     public String exit() {
-        return "/WEB-INF/views/company/mypage/exit.jsp";
+        return "/WEB-INF/views/share/exit.jsp";
     }
 
     // 기업 회원 탈퇴 처리
-    @PostMapping("/exit")
+    @PostMapping("/share/exit")
     public String exit(@RequestParam String memberPw, HttpSession session) {
         String userId = (String) session.getAttribute("userId");
         MemberDto memberDto = memberDao.selectOne(userId);
@@ -92,11 +93,13 @@ public class CompanyMypageController {
         session.invalidate();
         return "redirect:exitFinish";
     }
+    
     // 회원 탈퇴 완료 페이지
-    @RequestMapping("/exitFinish")
+    @RequestMapping("/share/exitFinish")
     public String exitFinish() {
-        return "/WEB-INF/views/company/mypage/exitFinish.jsp";
+        return "/WEB-INF/views/share/exitFinish.jsp";
     }
+    
     // 기업 회원 비밀번호 변경 페이지
     @GetMapping("/password")
     public String password() {

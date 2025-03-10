@@ -6,7 +6,7 @@
 
 	<!-- 기업 추천 -->
 		<div class="cell m-30">
-			<h2><i class="fa-solid fa-exclamation red"></i>&nbsp;${userDto.userName} 님을 위한 기업 추천</h2>
+			<h2><i class="fa-solid fa-exclamation red"></i>&nbsp; ${memberDto.memberName} 님을 위한 기업 추천</h2>
 		</div>
 
         <div class="cell flex-box">
@@ -51,7 +51,9 @@
 
 			<div class="cell" style="margin: auto;">
                 <div class="cell center flex-box">
+                	<a href="#">
                     <img src="/images/코인원.png" style="border-radius: 15px; width: 360px; height: 250px;">
+                    </a>
                 </div>
 				<div class="cell left m-10">
 					<span>
