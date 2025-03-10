@@ -20,7 +20,7 @@
         <button class="btn btn-green2" style="border-radius: 10px; ">검색</button>
     </form>
 </div>
-<table border="1" width="500">
+<table border="1" width="700">
     <thead>
         <tr>
             <th>아이디</th>
@@ -32,7 +32,7 @@
     </thead>
 
     <tbody>
-        <c:forEach var="memberDto" items=""${list}>
+        <c:forEach var="memberDto" items="${list}">
             <tr>
                 <td>
                     <a href="detail?memberId=${memberDto.memberId}">
