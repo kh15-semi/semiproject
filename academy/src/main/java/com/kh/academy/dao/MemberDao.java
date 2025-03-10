@@ -242,5 +242,12 @@ public class MemberDao {
 	    
 	    return jdbcTemplate.update(sql, data) > 0;
 	}
+	
+	public MemberDto selectOneByMemberName(String memberName) {
+		String sql = "select * from member where member_name=?";
+		Object[] data = {memberName};
+		List<MemberDto> list = jdbcTemplate.query(sql, memberMapper, data);
+		return list.isEmpty() ? null : list.get(0);
+	}
 
 }
