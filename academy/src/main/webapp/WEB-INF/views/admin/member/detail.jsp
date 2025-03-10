@@ -7,7 +7,7 @@
 	<div class="cell" style="margin: 10px; padding: 30px">
 	
 	    <div class="cell">
-	        <h2><i class="fa-regular fa-user"></i> 회원 상세 정보</h2>
+	        <h2><i class="fa-regular fa-user green"></i> 회원 상세 정보</h2>
 	    </div>
 		    
 	    <div class="cell">
