@@ -50,10 +50,9 @@
 	    </div>	    
 
 <div class="cell center" style="margin: 10px; padding: 10px;">
-    <a href="edit?memberId=${memberDto.memberId}" class="btn btn-green2" style="border-radius: 10px;"><i class="fa-regular fa-pen-to-square"></i> 개인정보 변경</a>
-    <a href="delete?memberId=${memberDto.memberId}" class="btn btn-red" style="border-radius: 10px;"><i class="fa-solid fa-xmark"></i> 회원 탈퇴</a>
-    <a href="#" class="btn btn-red" style="border-radius: 10px;"><i class="fa-solid fa-xmark"></i> 블랙리스트 등록</a>
-    <a href="list" class="btn btn-blue" style="border-radius: 10px;"><i class="fa-solid fa-list-ul"></i> 리스트</a>
+    <a href="edit?memberId=${memberDto.memberId}" class="btn btn-green2" style="border-radius: 10px;"><i class="fa-regular fa-pen-to-square"></i>&nbsp;정보 변경</a>
+    <a href="delete?memberId=${memberDto.memberId}" class="btn btn-red" style="border-radius: 10px;"><i class="fa-solid fa-xmark"></i>&nbsp;삭제</a>
+    <a href="list" class="btn btn-blue" style="border-radius: 10px;"><i class="fa-solid fa-list-ul"></i>&nbsp;목록</a>
 </div>
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
