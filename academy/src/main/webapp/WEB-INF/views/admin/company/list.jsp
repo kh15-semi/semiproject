@@ -33,7 +33,7 @@
     </thead>
 
     <tbody>
-        <c:forEach var="companyDto" items=""${list}>
+        <c:forEach var="companyDto" items="${list}">
             <tr>
                 <td>
                     <a href="detail?companyName=${companyDto.companyName}">
