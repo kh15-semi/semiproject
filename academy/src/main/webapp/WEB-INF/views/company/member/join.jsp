@@ -15,11 +15,15 @@
 <script src="/js/job_select.js"></script>
 <style>
 	.selectBox {
-		border-radius: 10px;
-		border:none;
-		width: 100%;
-		margin: 5px;
-		padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #ebecee;
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    display: block; /* 블록 요소로 변경하여 input과 동일한 동작 */
+    height: 40px; /* input과 동일한 높이 설정 */
+    line-height: normal; /* 기본 select의 정렬 문제 해결 */
+    color: #b0b0b0; /* placeholder와 유사한 색상 */
 	}
 	.selectBox:focus {
 		border-radius: 10px;
@@ -42,7 +46,6 @@
 	    font-weight: 600;
 	    color: #32AA46;	
 	}
-	
 </style>
 <script>
 $(function() {
@@ -76,12 +79,12 @@ $(function() {
 
         </div>
         
-        	<div class="cell center">
-            	<a href="/member/join" class="btn btn-positive w-50">개인회원</a>
-        	</div>
+        <div class="cell center" style="color: #2d3436;">
+            <p>개인회원이신가요? &nbsp;&nbsp;<a href="/member/join" style="text-decoration: none; color: #32AA46; font-weight: 800;">개인회원</a></p>
+        </div>	
         
         <div class="cell p-20">
-        
+        	<hr>
             <div class="cell left m-10">
                 <h3>회원가입(기업)</h3>
             </div>
@@ -114,38 +117,24 @@ $(function() {
                     <input type="text" id="companyName" name="companyName" class="field w-100" placeholder="기업명" value="${companyName}" readonly>
                 </div>
                 
-            <div class="cell" style="padding: 5px;">
-                <div class="celㅣ">
-                    <select name="memberIndustry" class="field w-100">
+            <div class="cell">
+                <div class="cell">
+                    <select name="memberIndustry" class="selectBox">
                         <option value="">산업군</option>
                         <option>IT</option>
                     </select>
                 </div>
                 <div class="cell">
-                    <select name="memberJob" class="field w-100">
+                    <select name="memberJob" class="selectBox">
                         <option value="">직종</option>
                         <option>게임개발</option>
                     </select>
                 </div>
-
-                <div class="cell left">
-                    <input type="text" name="memberPost" size="14" maxlength="6" class="field" placeholder="우편번호" readonly>
-                    <button type="button" class="btn btn-neutral btn-address-search">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                    <button type="button" class="btn btn-negative btn-address-clear" style="display: none;">
-                        <i class="fa-solid fa-xmark"></i>
-                  	 </button>
-                </div>
-                <div class="cell">
-                    <input type="text" name="memberAddress1" class="field w-100" placeholder="기본주소" readonly>
-                </div>
-                <div class="cell">
-                    <input type="text" name="memberAddress2" class="field w-100" placeholder="상세주소">
-                	<div class="fail-feedback">주소를 모두 작성해주세요.</div>
-                </div>
-
             </div>
+            
+            <div class="cell left">
+	            <label for="firstSelect"></label>
+	            <select id="firstSelect" onchange="updateSecondSelect()" class="selectBox">
 			<div class="cell center">
             	<select id="firstSelect" onchange="updateSecondSelect()" class="selectBox field" name="memberIndustry">
 	                <option value="">1차 직종 선택</option>
@@ -209,8 +198,11 @@ $(function() {
                 </div>
             </div>
 
+            <div class="cell mt-10 mb-30">
+                <button class="btn btn-green2 w-100" style="border-radius: 10px"><i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;&nbsp;기업 회원가입</button>
+
             <div class="cell mt-30 mb-30">
-                <button class="btn btn-green2 w-100" style="border-radius: 10px"><i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;&nbsp;기업회원 가입하기</button>
+
             </div>
             <hr>
             <p class="cell center mt-20">
