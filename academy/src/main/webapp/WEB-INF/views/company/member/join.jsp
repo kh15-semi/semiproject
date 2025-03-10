@@ -16,7 +16,10 @@
 <style>
 	.selectBox {
 		border-radius: 10px;
-		border-color: #ebecee;
+		border:none;
+		width: 100%;
+		margin: 5px;
+		padding: 5px;
 	}
 	.selectBox:focus {
 		border-radius: 10px;
@@ -35,16 +38,11 @@
 	.btn-login {
 	 	border: 0;
 	    background-color: rgb(238, 238, 238);
-	    font-size: 13px;
+	    font-size: 16px;
 	    font-weight: 600;
 	    color: #32AA46;	
 	}
-	.selectBox {
-		border:none;
-		width: 200px;
-		padding: 5px;
-		font-weight: 700;
-	}
+	
 </style>
 <script>
 $(function() {
@@ -148,9 +146,8 @@ $(function() {
                 </div>
 
             </div>
-            <div class="cell left">
-	            <label for="firstSelect">* </label>
-	            <select id="firstSelect" onchange="updateSecondSelect()" class="selectBox">
+			<div class="cell center">
+            	<select id="firstSelect" onchange="updateSecondSelect()" class="selectBox field" name="memberIndustry">
 	                <option value="">1차 직종 선택</option>
 	                <option value="dev">개발</option>
 	                <option value="edu">교육</option>
@@ -172,10 +169,9 @@ $(function() {
 	                <option value="hr">인사/총무</option>
 	                <option value="pro">전문직</option>
 	                <option value="csr">특수계층/공공</option>
-	            </select>
-	        
-	            <label for="secondSelect"></label>
-	            <select id="secondSelect" class="selectBox">
+            	</select>
+
+	            <select id="secondSelect" class="selectBox field" name="memberJob">
 	                <option value="">2차 직종 선택</option>
 	            </select>
 	        </div>
