@@ -177,7 +177,7 @@
     			<%-- 비회원인 경우 --%>
     			<c:otherwise>
         			<li class="menu-end">
-            			<a href="/login">로그인</a>
+            			<a href="share/login">로그인</a>
             			<ul>
                 			<li><a href="/member/join">회원가입</a></li>
             			</ul>
