@@ -37,5 +37,5 @@ public class AdminStatusController {
 		model.addAttribute("list", statusDao.reviewWrite());
 		return "/WEB-INF/views/admin/status/review-write.jsp";
 	}
-	
+
 }

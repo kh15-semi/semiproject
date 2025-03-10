@@ -14,15 +14,16 @@ public class AdminLoginInterceptor implements HandlerInterceptor{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 		throws Exception {
-			HttpSession session = request.getSession();
-			String memberType = (String) session.getAttribute("memberType");
+		//비회원이나 관리자가 아닌 회원이 통과하는 것을 차단
+		HttpSession session = request.getSession();
+		String userType = (String) session.getAttribute("userType");
 			
-			if(memberType == null) {
-				throw new NoPermissionException("로그인 필요");
-			}
-			if(memberType.equals("관리자") == false) {
-				throw new NoPermissionException("권한 부족");
-			}
-			return true;
+		if(userType == null) {
+			throw new NoPermissionException("로그인 필요");
+		}
+		if(userType.equals("관리자") == false) {
+			throw new NoPermissionException("관리자 이외에는 들어갈 수 없는 페이지입니다.");
+		}
+		return true;
 	}
 }
