@@ -5,22 +5,46 @@
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
-<div class="cell">
-    <h2><i class="fa-solid fa-building"></i>&nbsp; 기업 관리</h2>
-</div>
-<div class="cell">
-    <form action="list" method="get">
-        <select name="column" style="border: none; width: 120px;" >
-            <option value="company_name" ${pageVO.column == 'company_name' ? 'selected' : ''}>회사명</option>
-            <option value="company_industry" ${pageVO.column == 'company_industry' ? 'selected' : ''}></option>
-            <option value="company_job" ${pageVO.column == 'company_job' ? 'selected' : ''}>산업</option>
-            <option value="" ${pageVO.column == 'company_' ? 'selected' : ''}>직종</option>
-        </select>
-        <input type="text" name="keyword" value="${pageVO.keyword}">
-        <button class="btn btn-green2" style="border-radius: 10px; ">검색</button>
-    </form>
-</div>
-<table border="1" width="500">
+<style>
+	table {
+		border:none;
+		border-collapse: collapse;
+	}
+	th {
+		border: none;
+		border-radius: 10px;
+		border-style: none;
+		background-color: #2abb2d;
+		padding: 5px 10px;
+		color: white;
+		font-weight: 400;
+	}
+	td {
+		border: none;
+		text-align: center;
+		border-bottom: 1px solid #97bfac;
+	}
+</style>
+
+<div class="container w-1000">
+	<div class="cell">
+	    <h2><i class="fa-regular fa-user green"></i>&nbsp; 회원 관리</h2>
+	</div>
+	<div class="cell">
+		<form action="list" method="get">
+	        <select name="column" style="border: none; width: 120px;" >
+	            <option value="company_name" ${pageVO.column == 'company_name' ? 'selected' : ''}>회사명</option>
+	            <option value="company_industry" ${pageVO.column == 'company_industry' ? 'selected' : ''}></option>
+	            <option value="company_job" ${pageVO.column == 'company_job' ? 'selected' : ''}>산업</option>
+	            <option value="" ${pageVO.column == 'company_' ? 'selected' : ''}>직종</option>
+	        </select>
+	        <input type="text" name="keyword" value="${pageVO.keyword}">
+	        <button class="btn btn-green2" style="border-radius: 10px; ">검색</button>
+		</form>
+	</div>
+	
+	<div class="cell">
+	<table border="1" width="800">
     <thead>
         <tr>
             <th>회사명</th>
@@ -31,13 +55,12 @@
             <th>업체 홈페이지</th>
         </tr> 
     </thead>
-
-    <tbody>
-        <c:forEach var="companyDto" items=""${list}>
-            <tr>
-                <td>
-                    <a href="detail?companyName=${companyDto.companyName}">
-                        ${companyDto.companyName}
+	<tbody>
+		<c:forEach var="companyDto" items=""${list}>
+			<tr>
+				<td>
+					<a href="detail?companyName=${companyDto.companyName}">
+						${companyDto.companyName}
                     </a>
                 </td>
                 <td>${companyDto.companyCrNumber}</td>
@@ -47,8 +70,10 @@
                 <td>${companyDto.companyUrl}</td>
             </tr>
         </c:forEach>
-    </tbody>
-</table>
+	</tbody>
+	</table>
+	</div>
+</div>
 
 
 <jsp:include page="/WEB-INF/views/template/pagination.jsp"></jsp:include>
