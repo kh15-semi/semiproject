@@ -36,7 +36,7 @@
 	        <p>${memberDto.memberAddress1}</p>
 	        <p>${memberDto.memberAddress2}</p>
 	    </div>
-	    
+	     
 	    <div class="cell">
 	        <h3>회원 등급</h3>
 	        <p>${memberDto.memberType}</p>
