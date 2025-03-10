@@ -8,6 +8,9 @@
 <script src="https://cdn.jsdelivr.net/npm/moment@2.30.1/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lightpick@1.6.2/lightpick.min.js"></script>
 
+<!-- font awesome cdn -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <!-- kakao post api -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="/js/member/join.js" ></script>
@@ -19,6 +22,7 @@
     border: 1px solid #ebecee;
     width: 100%;
     padding: 5px;
+    padding-left: 8px;
     box-sizing: border-box;
     display: block; /* 블록 요소로 변경하여 input과 동일한 동작 */
     height: 40px; /* input과 동일한 높이 설정 */
@@ -33,12 +37,17 @@
       	border-color: #5fe075;
     	outline: none;
    	}
-	.btn-login {
-	 	border: 0;
-	    background-color: rgb(238, 238, 238);
-	    font-size: 16px;
-	    font-weight: 600;
-	    color: #32AA46;	
+	.flex-between {
+    	display: flex;
+    	justify-content: space-between; /* 양쪽 정렬 */
+    	align-items: center; /* 세로 중앙 정렬 */
+    	width: 100%;
+	}
+	.left {
+    	text-align: left;
+	}
+	.right {
+    	text-align: right;
 	}
 </style>
 
@@ -51,15 +60,18 @@
         	</a>
         </div>
         
-        <div class="cell center" style="color: #2d3436;">
-            <p>기업회원이신가요? &nbsp;&nbsp;<a href="/company/member/join" style="text-decoration: none; color: #32AA46; font-weight: 800;">기업회원</a></p>
-        </div>
         
         <div class="cell p-20">
+            <div class="cell flex-between m-10">
+        		<div class="left">
+            		<h3>회원가입 (개인)</h3>
+        		</div>
+        		<div class="right me-20" style="color: #2d3436;">
+            		<p>기업회원이신가요? &nbsp;&nbsp;<a href="/company/member/join" style="text-decoration: none; color: #32AA46; font-weight: 800;">기업회원</a></p>
+        		</div>
+    		</div>
+    		
 			<hr>
-            <div class="cell left m-10">
-                <h3>회원가입 (개인)</h3>
-            </div>
 
             <div class="cell" style="padding: 5px;">
                 <div class="cell">
@@ -80,12 +92,13 @@
                 	<div class="fail2-feedback">비밀번호를 먼저 형식에 맞게 작성하세요.</div>
                 </div>
                 <div class="cell">
-                    <input type="text" name="memberName" class="field w-100" placeholder="이름">
+                    <input type="text" name="memberName" class="field w-100" placeholder="이름 (실명)">
                     <div class="fail-feedback">이름을 입력해주세요.</div>
                     <div class="fail2-feedback">이름은 한글 2~5자로만 작성 가능합니다.</div>
                 </div>
                 <div class="cell">
                     <input type="text" name="memberIdCardNum" class="field w-100" placeholder="주민등록번호">
+                    <div class="fail-feedback">주민번호 형식에 맞지 않습니다, 다시 입력해주세요.</div>
                 </div>
                 <div class="cell">
                     <input type="tel" name="memberContact" class="field w-100" placeholder="연락처">
@@ -93,6 +106,7 @@
                 </div>
                 <div class="cell">
                     <input type="email" inputmode="email" name="memberEmail" class="field w-100" placeholder="이메일 (선택사항)">
+                    <div class="fail-feedback">이메일을 형식에 맞게 작성해주세요.</div>
                 </div>
                 <div class="cell left">
                     <input type="text" name="memberPost" size="14" maxlength="6" class="field" placeholder="우편번호" readonly>
@@ -141,7 +155,7 @@
 		            </select>
 		        </div>
 
-           </div>
+           	</div>
 
             <div class="cell mt-10 mb-30">
                 <button class="btn btn-green2 w-100" style="border-radius: 10px"><i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;&nbsp;개인 회원가입</button>

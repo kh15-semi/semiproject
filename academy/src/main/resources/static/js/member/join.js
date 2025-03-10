@@ -76,40 +76,58 @@ $(function(){
 	$("[name=memberName]").blur(function(){
 		var regex = /^[가-힣]{2,5}$/;
 		var isValid = regex.test($(this).val());
-		$(this).removeClass("success fail fail2").addClass(isValid ? "success" : "fail");
-		status.memberName = isValid;
+		var memberName = $(this).val();
+		$(this).removeClass("success fail fail2");
+		if (memberName.length == 0) {
+			$(this).addClass("fail");
+		}
+		else if (!isValid) {
+			$(this).addClass("fail2");
+		}
+		else {
+			$(this).addClass("success");
+			status.memberName= true;
+		}
 	});
 	
 	//주민번호 관련 처리
-	
-	//연락처 관련 처리
-	/*$("[name=memberContact").on("input",function(){
+	$("[name=memberIdCardNum]").on("input", function(){
 		var current = $(this).val();
 		var convert = current.replace(/[^0-9]+/g, "");
 		
-		if(convert.lenth <= 3) {
-			
+		if (convert.length > 13) {
+			convert = convert.substring(0, 13);
 		}
-		else if(convert.length <= 7) {
-			convert = convert.replace(/([0-9]{3})([0-9]{1,4})/, "$1-$2");
-		}
-		else {
-			convert = convert.replace(/([0-9]{3})([0-9]{4})([0-9]{1,4})/, "$1-$2-$3");
+
+		if (convert.length > 6) {
+			convert = convert.replace(/([0-9]{6})([0-9]*)/, "$1-$2");
 		}
 		
 		$(this).val(convert);
-	}); */
+	});
+	$("[name=memberIdCardNum]").blur(function(){
+		var regex = /^[0-9]{6}-[0-9]{7}$/;
+		var isValid = $(this).val().length == 0 || regex.test($(this).val());
+		$(this).removeClass("success fail").addClass(isValid ? "success" : "fail");
+		status.memberIdCardNum = isValid;
+	});
+	
+	//연락처 관련 처리
 	$("[name=memberContact]").blur(function(){
 		var regex = /^010[0-9]{8}$/;
 		var isValid =  $(this).val().length == 0 || regex.test($(this).val());
 		$(this).removeClass("success fail").addClass(isValid ? "success" : "fail");
 		status.memberContact = isValid;
 	});
+	
+	//이메일 관련 처리
 	$("[name=memberEmail]").blur(function(){
+		var regex = /^[A-Za-z0-9]+@[A-Za-z0-9.]+$/;
 		var isValid = $(this).val().length == 0 || regex.test($(this).val());
 		$(this).removeClass("success fail").addClass(isValid ? "success" : "fail");
 		status.memberContact = isValid;
 	});
+	
 	//주소 관련 처리
             $("[name=memberPost]").on("input", function () {
                 var current = $(this).val();
