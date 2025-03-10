@@ -146,6 +146,7 @@
             			<a href="/share/login">로그인</a>
             			<ul>
                 			<li><a href="/member/join">회원가입</a></li>
+                			<li><a href="/company/member/join">기업 회원가입</a></li>
             			</ul>
         			</li>
     			</c:otherwise>

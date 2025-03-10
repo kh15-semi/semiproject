@@ -116,41 +116,9 @@ $(function() {
                     <input type="text" id="companyName" name="companyName" class="field w-100" placeholder="기업명" value="${companyName}" readonly>
                 </div>
                 
-            <div class="cell" style="padding: 5px;">
-                <div class="celㅣ">
-                    <select name="memberIndustry" class="field w-100">
-                        <option value="">산업군</option>
-                        <option>IT</option>
-                    </select>
-                </div>
-                <div class="cell">
-                    <select name="memberJob" class="field w-100">
-                        <option value="">직종</option>
-                        <option>게임개발</option>
-                    </select>
-                </div>
-
-                <div class="cell left">
-                    <input type="text" name="memberPost" size="14" maxlength="6" class="field" placeholder="우편번호" readonly>
-                    <button type="button" class="btn btn-neutral btn-address-search">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                    <button type="button" class="btn btn-negative btn-address-clear" style="display: none;">
-                        <i class="fa-solid fa-xmark"></i>
-                  	 </button>
-                </div>
-                <div class="cell">
-                    <input type="text" name="memberAddress1" class="field w-100" placeholder="기본주소" readonly>
-                </div>
-                <div class="cell">
-                    <input type="text" name="memberAddress2" class="field w-100" placeholder="상세주소">
-                	<div class="fail-feedback">주소를 모두 작성해주세요.</div>
-                </div>
-
-            </div>
             <div class="cell left">
 	            <label for="firstSelect">* </label>
-	            <select id="firstSelect" onchange="updateSecondSelect()" class="selectBox">
+	            <select name="memberIndustry" id="firstSelect" onchange="updateSecondSelect()" class="selectBox">
 	                <option value="">1차 직종 선택</option>
 	                <option value="dev">개발</option>
 	                <option value="edu">교육</option>
@@ -175,7 +143,7 @@ $(function() {
 	            </select>
 	        
 	            <label for="secondSelect"></label>
-	            <select id="secondSelect" class="selectBox">
+	            <select name="memberJob" id="secondSelect" class="selectBox">
 	                <option value="">2차 직종 선택</option>
 	            </select>
 	        </div>
@@ -193,7 +161,7 @@ $(function() {
 			        <input type="text" name="memberAddress1" class="field w-100" placeholder="기본주소" readonly>
 			    </div>
 			    <div class="cell">
-			        <input type="text" name="memberAddress2" class="field w-100" placeholder="상세주소" readonly>
+			        <input type="text" name="memberAddress2" class="field w-100" placeholder="상세주소">
 			    </div>
 			</div>
 
@@ -212,21 +180,6 @@ $(function() {
                     <input type="text" name="memberPosition" class="field w-100" placeholder="직책">
                 </div>
             </div>
-
-			<div class="cell" style="padding: 5px;">
-			    <div class="cell">
-			        <input type="text" id="memberName" name="memberName" class="field w-100" placeholder="담당자 이름 (실명)">
-			    </div>
-			    <div class="cell">
-			        <input type="text" name="memberEmail" class="field w-100" placeholder="명함에 기재된 이메일 주소">
-			    </div>
-			    <div class="cell">
-			        <input type="tel" name="memberContact" class="field w-100" placeholder="연락처">
-			    </div>
-			    <div class="cell">
-			        <input type="text" name="memberPosition" class="field w-100" placeholder="직책">
-			    </div>
-			</div>
 
             <div class="cell mt-30 mb-30">
                 <button class="btn btn-green2 w-100" style="border-radius: 10px"><i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;&nbsp;기업회원 가입하기</button>

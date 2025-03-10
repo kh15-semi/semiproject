@@ -78,19 +78,11 @@ $(function() {
     <hr style="border: 0; border-top: 1px solid rgb(196, 196, 196)"><br>
 
     <div class="cell center" style="margin: 10px; padding: 10px;">
-<<<<<<< HEAD
-        <button type="button" class="addCompany-btn btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-pen-to-square"></i> 회사등록</button>    
-        <button type="button" class="edit-btn btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-pen-to-square"></i> 정보 수정</button>
-        <button type="button" class="changePw-btn btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-lock"></i> 비밀번호 변경</button>
-		<button type="button" class="btn btn-red" style="border-radius: 10px;"><i class="fa-solid fa-exclamation"></i> 계정삭제</button>
-        <button type="button" class="main-btn btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-house"></i> 메인</button>
-=======
         <!-- <button type="button" class="btn-addCompany btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-pen-to-square"></i> 회사등록</button> -->    
         <button type="button" class="btn-edit btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-pen-to-square"></i> 정보 수정</button>
         <button type="button" class="btn-changePw btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-lock"></i> 비밀번호 변경</button>
         <button type="button" class="btn-delete btn btn-red" style="border-radius: 10px;"><i class="fa-solid fa-exclamation"></i> 계정삭제</button>
         <button type="button" class="btn-main btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-house"></i> 메인</button>
->>>>>>> refs/heads/main
     </div> 
 </div>
 

@@ -20,7 +20,8 @@ import com.kh.academy.service.AttachmentService;
 
 import jakarta.servlet.http.HttpSession;
 
-@Controller("/review")
+@Controller
+@RequestMapping("/review")
 public class ReviewController {
 
 	@Autowired
@@ -55,8 +56,7 @@ public class ReviewController {
 		return "/WEB-INF/views/review/write.jsp";
 	}
 	@PostMapping("/write")
-	public String write(@ModelAttribute ReviewDto reviewDto,
-								HttpSession session) {
+	public String write(@ModelAttribute ReviewDto reviewDto, HttpSession session) {
 		MemberDto memberDto = (MemberDto) session.getAttribute("userId");
 		if(memberDto != null) {
 			reviewDto.setReviewWriter(memberDto.getMemberId());			

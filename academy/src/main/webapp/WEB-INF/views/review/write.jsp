@@ -15,27 +15,27 @@
 <form action="change" method="post">
 
     <div class="container w-800">
-        <h1>${boardDto.boardTitle}</h1>
+        <h1>${reviewDto.reviewTitle}</h1>
 
         <div>
-            ${boardDto.boardWtime} | 조회 ${boardDto.boardRead}
+            ${reviewDto.reviewWtime} | 조회 ${reviewDto.reviewRead}
         </div>
 
         <hr>
 
-        <div class="container w-800">${boardDto.boardContent}</div>
+        <div class="container w-800">${reviewDto.reviewContent}</div>
 
         <hr>
 
         <div class="cell">
-            좋아요 ${boardDto.boardLike} | 댓글 ${boardDto.boardReply}
+            좋아요 ${reviewDto.reviewLike} | 댓글 ${replyDto.reviewContent}
         </div>
 
         <!-- 게시글 관리 버튼 추가 -->
         <div class="cell review-actions">
             <button onclick="history.back()">이전</button>
-            <button onclick="editPost(${boardDto.review_no})">게시글 수정</button>
-            <button onclick="deletePost(${boardDto.review_no})">게시글 삭제</button>
+            <button onclick="editPost(${reviewDto.reviewNo})">게시글 수정</button>
+            <button onclick="deletePost(${reviewDto.reviewNo})">게시글 삭제</button>
         </div>
 
         <hr>

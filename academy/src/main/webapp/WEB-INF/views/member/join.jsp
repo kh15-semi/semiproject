@@ -155,24 +155,7 @@
                 
                 
            </div>
-<!-- 
-            <div class="cell left" style="padding: 5px;">
-                <p><i class="fa-solid fa-star-of-life red"></i> 선택 입력 사항</p>
-                <div class="cell">
-                    <select name="memberIndustry" class="field w-100">
-                        <option value="">산업군</option>
-                        <option>IT</option>
-                    </select>
-                </div>
-                <div class="cell">
-                    <select name="memberJob" class="field w-100">
-                        <option value="">직종</option>
-                        <option>게임개발</option>
-                    </select>
-                </div>
-            </div>
-<<<<<<< HEAD
- -->
+
            <div class="cell mt-30 mb-30">
                <button class="btn btn-green2 w-100" style="border-radius: 10px"><i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;&nbsp;개인 회원가입</button>
            </div>
@@ -181,7 +164,6 @@
                이미 회원이세요?&nbsp;
                <a href="/member/login" class="btn btn-login" style="border-radius: 10px;" src="/member/login">로그인</a>
            </p>
-=======
 
 	 		<div class="cell center" style="padding:5px;">
 	            <label for="firstSelect"></label>
@@ -214,7 +196,6 @@
 	                <option value="">2차 직종 선택</option>
 	            </select>
 	        </div>
-            
 
             <div class="cell mt-30 mb-30">
                 <button class="btn btn-green2 w-100" style="border-radius: 10px"><i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;&nbsp;개인 회원가입</button>
@@ -224,7 +205,6 @@
                 이미 회원이세요?&nbsp;
                 <a href="/share/login" class="btn btn-login" style="border-radius: 10px;">로그인</a>
             </p>
->>>>>>> refs/heads/main
         </div>
     </div>
 </form>
