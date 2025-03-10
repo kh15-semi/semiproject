@@ -15,8 +15,8 @@
 <form action="change" method="post">
 
      <div class="container">
-         <h1>${boardDto.boardTitle}</h1>
-         <div>${boardDto.boardWtime} | 조회 ${boardDto.boardRead}</div>
+         <h1>${reviewDto.reviewComment}</h1>
+         <div>${reviewDto.reviewWtime} | 조회 ${reviewDto.boardRead}</div>
          <hr>
          <div>${boardDto.boardContent}</div>
          <hr>

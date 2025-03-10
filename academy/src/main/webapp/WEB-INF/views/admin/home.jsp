@@ -20,7 +20,7 @@
 			    <a href="/admin/status/member" class="btn btn-green2" style="border-radius: 10px;">회원 현황</a>
 			    <a href="/admin/status/member-join" class="btn btn-green2" style="border-radius: 10px;">회원가입 현황</a>
 			    <a href="/admin/status/company" a class="btn btn-green2" style="border-radius: 10px;">기업 현황</a>
-			    <a href="/admin/status/board-write" class="btn btn-green2" style="border-radius: 10px;">게시글 현황</a>
+			    <a href="/admin/status/review-write" class="btn btn-green2" style="border-radius: 10px;">게시글 현황</a>
 			</div>
 	</div>
 
