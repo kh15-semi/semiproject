@@ -25,6 +25,11 @@
     line-height: normal; /* 기본 select의 정렬 문제 해결 */
     color: #b0b0b0; /* placeholder와 유사한 색상 */
 	}
+	.selectBox:focus {
+		border-radius: 10px;
+      	border-color: #5fe075;
+    	outline: none;
+	}
 	.field {
 		border-radius: 10px;
 		border-color: #ebecee;
@@ -37,7 +42,7 @@
 	.btn-login {
 	 	border: 0;
 	    background-color: rgb(238, 238, 238);
-	    font-size: 13px;
+	    font-size: 16px;
 	    font-weight: 600;
 	    color: #32AA46;	
 	}
@@ -130,6 +135,8 @@ $(function() {
             <div class="cell left">
 	            <label for="firstSelect"></label>
 	            <select id="firstSelect" onchange="updateSecondSelect()" class="selectBox">
+			<div class="cell center">
+            	<select id="firstSelect" onchange="updateSecondSelect()" class="selectBox field" name="memberIndustry">
 	                <option value="">1차 직종 선택</option>
 	                <option value="dev">개발</option>
 	                <option value="edu">교육</option>
@@ -151,10 +158,9 @@ $(function() {
 	                <option value="hr">인사/총무</option>
 	                <option value="pro">전문직</option>
 	                <option value="csr">특수계층/공공</option>
-	            </select>
-	        
-	            <label for="secondSelect"></label>
-	            <select id="secondSelect" class="selectBox">
+            	</select>
+
+	            <select id="secondSelect" class="selectBox field" name="memberJob">
 	                <option value="">2차 직종 선택</option>
 	            </select>
 	        </div>
@@ -194,6 +200,9 @@ $(function() {
 
             <div class="cell mt-10 mb-30">
                 <button class="btn btn-green2 w-100" style="border-radius: 10px"><i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;&nbsp;기업 회원가입</button>
+
+            <div class="cell mt-30 mb-30">
+
             </div>
             <hr>
             <p class="cell center mt-20">

@@ -36,7 +36,7 @@
 	.btn-login {
 	 	border: 0;
 	    background-color: rgb(238, 238, 238);
-	    font-size: 13px;
+	    font-size: 16px;
 	    font-weight: 600;
 	    color: #32AA46;	
 	}
@@ -58,7 +58,7 @@
         <div class="cell p-20">
 			<hr>
             <div class="cell left m-10">
-                <h3>회원가입(개인)</h3>
+                <h3>회원가입 (개인)</h3>
             </div>
 
             <div class="cell" style="padding: 5px;">
@@ -140,7 +140,7 @@
 		                <option value="">관심 직종 선택</option>
 		            </select>
 		        </div>
-                
+
            </div>
 
             <div class="cell mt-10 mb-30">
@@ -150,6 +150,7 @@
             <div class="cell center" style="color: #2d3436;">
             	<p>이미 회원이세요? &nbsp;&nbsp;<a href="/share/login" style="text-decoration: none; color: #32AA46; font-weight: 800;">로그인</a></p>
         	</div>
+
         </div>
     </div>
 </form>
