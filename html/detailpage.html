@@ -54,10 +54,6 @@
             gap: 20px;
         }
 
-        .write {
-            padding: 10px 15px;
-            border: 1px solid black;
-        }
 
         /* 로그인 버튼 */
         .login-box {
@@ -130,9 +126,6 @@
         }
 
         /* 리뷰 섹션 */
-        .reviews {
-            padding-top: 20px;
-        }
 
         .reviews-header {
             display: flex;
@@ -147,12 +140,9 @@
             height: 200px;
         }
 
-        .review-content {
-            border: 1px solid white(0, 0, 0, 0); /* 테두리만 투명하게 */
-            padding: 0.1px;
+        .review-actions {
             text-align: left;
-            display: flex;
-            background-color: white;/* 내용 배경 유지 */
+            margin-left: auto;
         }
 
         .review-content-rating {
@@ -233,8 +223,18 @@
             $(".company-rating").score();
         });
         $(function () {
-            $(".review-content-rating").score();
+            $(".review-content-rating").score({
+                starColor: "#00C362",
+                editable:true,
+                integerOnly:true,
+                display: {
+                    showNumber: true,
+                    placeLimit:2,
+                    textColor: "#6a6c6e",
+                },
+            });
         });
+
 
         $(function () {
             // 로그인 기능 
@@ -280,6 +280,7 @@
                 });
             });
 
+
         });
     </script>
 
@@ -290,8 +291,10 @@
 
         <!-- 헤더 -->
         <div class="header">
-            <div class="logo">
-                <img src="/images/jobplanet.png">
+            <div class="left flex-box logo">
+                <a href="http://127.0.0.1:5500/ui/main_non.html">
+                    <img src="./image/jobplanet.png">
+                </a>
             </div>
 
             <div class="login-box">
@@ -308,7 +311,7 @@
                 <input type="password" name="memberPw" placeholder="비밀번호 입력">
                 <button class="btn-logincheck">Login</button>
                 <button class="memberjoin-btn">회원가입 하러가기</button>
-            </div>
+            </div> 
         </div>
 
         <!-- 메인 콘텐츠 -->
@@ -317,7 +320,7 @@
             <div class="content w-100">
                 <div class="company-info">
                     <div class="company-image">
-                        <img src="/images/Instagram.png">
+                        <img src="./image/Instagram.png">
                     </div>
 
                     <div class="company-details">
@@ -340,49 +343,52 @@
                 </div>
 
                 <!-- 리뷰창 -->
-                <div class="reviews">
-                    <div class="reviews-header">
-                        <div class="reviews-title">리뷰창</div>
-                        <div class="review-actions">
-                            <button class="write-review-btn">리뷰 쓰러가기 →</button>
-                        </div>
+                <div class="container reviews">
+                    <div class="cell centerreviews-header">
+                        <h2>리뷰</h2>
                     </div>
-
-                    <div class="review-list">
+                    <p>글은 자신의 인격입니다.존중하며 적어주세요</p>
                         <!-- 리뷰 목록 -->
-                        <div class="review-content">
-                            <div class="flex preview">회사 복지가 좋았어요!</div>
-                            <div class="review-content-rating" data-max="5" data-rate="5"></div>
+                            
+                            <!-- 테이블 -->
+                            <div class="cell center">
+                                <table class="table table-border table-hover table-ellipsis">
+                                    <thead>
+                                        <tr>
+                                            <th>번호</th>
+                                            <th>ID</th>
+                                            <th style="width:450px; max-width:450px;">한줄평</th>
+                                            <th>평점</th>
+                                            <th>좋아요</th>
+                                            <th>작성일</th>
+                                            <th>수정일</th>
+                                        </tr>
+                                    </thead>
+                                    <c:when test="${list.isEmpty()}">
+                                        <tbody>
+                                            <tr height="150">
+                                                <td colspan="7" align="center">
+                                                    등록된 게시글이 없습니다
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </c:when>
+                                </table>
+                            </div>
+                            <div>
+                                <div class="cell center">
+                                </div>
+                            <div class="review-actions">
+                                <button class="write-review-btn">리뷰 쓰러가기 →</button>
+                            </div>
+                            
+                            <!-- 페이지 네비게이터 -->
+                            <div class="cell center">
+                                <jsp:include page="/WEB-INF/views/template/pagination.jsp"></jsp:include>
+                            </div>
+                            
                         </div>
-                        <div class="review-content">
-                            <div class="flex preview">층고가 높은데 엘리베이터가 너무 적어요</div>
-                            <div class="review-content-rating" data-max="5" data-rate="3"></div>
-                        </div>
-                        <div class="review-content">
-                            <div class="flex preview">칼퇴할 수 있어요!</div>
-                            <div class="review-content-rating" data-max="5" data-rate="5"></div>
-                        </div>
-                        <div class="review-content">
-                            <div class="flex preview">연봉이 짜요...</div>
-                            <div class="review-content-rating" data-max="5" data-rate="3"></div>
-                        </div>
-                        <div class="review-content">
-                            <div class="flex preview">일하는 사람들이 친근하고 좋아요</div>
-                            <div class="review-content-rating" data-max="5" data-rate="5"></div>
-                        </div>
-                        <div class="review-content">
-                            <div class="flex preview">사수들이 텃세가 없어요</div>
-                            <div class="review-content-rating" data-max="5" data-rate="5"></div>
-                        </div>
-                        <div class="review-content">
-                            <div class="flex preview">개념없는 엠지가 없는 편이에요</div>
-                            <div class="review-content-rating" data-max="5" data-rate="4"></div>
-                        </div>
-                        <div class="review-content">
-                            <div class="flex preview">회식강요 있어요;</div>
-                            <div class="review-content-rating" data-max="5" data-rate="2"></div>
-                        </div>
-                    </div>
+
                 </div>
 
                 <!-- 푸터 -->
@@ -391,8 +397,8 @@
                     서울특별시 강남구 테헤란로 509 엔씨타워 I, 10층 대표: 황희승, 윤신근 개인정보보호관리자: 윤신근<br>
                     사업자등록번호: 120-87-92182 통신판매업 신고번호: 제2014-서울강남-02942호 유료 직업소개사업 등록번호 (국내)
                     제2017-3220163-14-5-00046호<br>
-                    대표번호: 1644-5641 (10:00~17:00 / 매월 마지막 금요일 09:00~13:00 / 주말 및 공휴일 휴무) | 대표이메일:
-                    customer_service@jobplanet.co.kr<br>
+                    대표번호: 1644-5641 (10:00~17:00 / 매월 마지막 금요일 09:00~13:00 / 주말 및 공휴일 휴무)<br>
+                    대표이메일: customer_service@jobplanet.co.kr<br>
                     <br>
                     &copy; Jobplanet. All rights reserved.
                 </div>

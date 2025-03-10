@@ -16,7 +16,10 @@
 <style>
 	.selectBox {
 		border-radius: 10px;
-		border-color: #ebecee;
+		border:none;
+		width: 100%;
+		margin: 5px;
+		padding: 5px;
 	}
 	.selectBox:focus {
 		border-radius: 10px;
@@ -35,16 +38,11 @@
 	.btn-login {
 	 	border: 0;
 	    background-color: rgb(238, 238, 238);
-	    font-size: 13px;
+	    font-size: 16px;
 	    font-weight: 600;
 	    color: #32AA46;	
 	}
-	.selectBox {
-		border:none;
-		width: 200px;
-		padding: 5px;
-		font-weight: 700;
-	}
+	
 </style>
 <script>
 $(function() {
@@ -116,9 +114,26 @@ $(function() {
                     <input type="text" id="companyName" name="companyName" class="field w-100" placeholder="기업명" value="${companyName}" readonly>
                 </div>
                 
-            <div class="cell left">
-	            <label for="firstSelect">* </label>
-	            <select name="memberIndustry" id="firstSelect" onchange="updateSecondSelect()" class="selectBox">
+                <div class="cell left">
+                    <input type="text" name="memberPost" size="14" maxlength="6" class="field" placeholder="우편번호" readonly>
+                    <button type="button" class="btn btn-neutral btn-address-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <button type="button" class="btn btn-negative btn-address-clear" style="display: none;">
+                        <i class="fa-solid fa-xmark"></i>
+                  	 </button>
+                </div>
+                <div class="cell">
+                    <input type="text" name="memberAddress1" class="field w-100" placeholder="기본주소" readonly>
+                </div>
+                <div class="cell">
+                    <input type="text" name="memberAddress2" class="field w-100" placeholder="상세주소">
+                	<div class="fail-feedback">주소를 모두 작성해주세요.</div>
+                </div>
+
+            </div>
+			<div class="cell center">
+            	<select id="firstSelect" onchange="updateSecondSelect()" class="selectBox field" name="memberIndustry">
 	                <option value="">1차 직종 선택</option>
 	                <option value="dev">개발</option>
 	                <option value="edu">교육</option>
@@ -143,7 +158,7 @@ $(function() {
 	            </select>
 	        
 	            <label for="secondSelect"></label>
-	            <select name="memberJob" id="secondSelect" class="selectBox">
+	            <select name="memberJob" id="secondSelect" class="selectBox field">
 	                <option value="">2차 직종 선택</option>
 	            </select>
 	        </div>
@@ -156,7 +171,6 @@ $(function() {
 			    <button type="button" class="btn btn-negative btn-address-clear" style="display: none;">
 			            <i class="fa-solid fa-xmark"></i>
 			      	 </button>
-			    </div>
 			    <div class="cell">
 			        <input type="text" name="memberAddress1" class="field w-100" placeholder="기본주소" readonly>
 			    </div>
