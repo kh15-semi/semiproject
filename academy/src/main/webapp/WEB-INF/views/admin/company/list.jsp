@@ -55,12 +55,13 @@
             <th>업체 홈페이지</th>
         </tr> 
     </thead>
-	<tbody>
-		<c:forEach var="companyDto" items=""${list}>
-			<tr>
-				<td>
-					<a href="detail?companyName=${companyDto.companyName}">
-						${companyDto.companyName}
+	
+    <tbody>
+        <c:forEach var="companyDto" items="${list}">
+            <tr>
+                <td>
+                    <a href="detail?companyName=${companyDto.companyName}">
+                        ${companyDto.companyName}
                     </a>
                 </td>
                 <td>${companyDto.companyCrNumber}</td>
