@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
-<div class="container w-1200">
+<div class="container w-1000">
 	<div class="cell" style="margin: 10px; padding: 30px">
 	
 	    <div class="cell">
