@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.academy.dto.MemberDto;
 import com.kh.academy.mapper.MemberMapper;
+import com.kh.academy.vo.PageVO;
 
 @Repository
 public class MemberDao {
@@ -175,6 +176,78 @@ public class MemberDao {
 
 	    return list.isEmpty() ? null : list.get(0);
 	}
+	public List<MemberDto> selectList(PageVO pageVO) {
+		if(pageVO.isList()) {
+			String sql = "select * from ("
+								+ "select rownum rn, TMP.* from ("
+									+ "select * from member order by member_id asc"
+								+ ")TMP"
+							+ ") "
+							+ "where rn between ? and ?";
+			Object[] data = {pageVO.getStartRownum(), pageVO.getFinishRownum()};
+			return jdbcTemplate.query(sql, memberMapper, data);
+		}
+		else {
+			String sql = "select * from ("
+								+ "select rownum rn, TMP.* from ("
+									+ "select * from member "
+									+ "where instr(#1, ?) > 0 "
+									+ "order by #1 asc, member_id asc"
+								+ ")TMP"
+							+ ") "
+							+ "where rn between ? and ?";
+			sql = sql.replace("#1", pageVO.getColumn());
+			Object[] data = {
+				pageVO.getKeyword(), 
+				pageVO.getStartRownum(),
+				pageVO.getFinishRownum()
+			};
+			return jdbcTemplate.query(sql, memberMapper, data);
+		}
+	}
+	public int count(PageVO pageVO) {
+		if(pageVO.isList()) {
+			String sql = "select count(*) from member";
+			return jdbcTemplate.queryForObject(sql, int.class);
+		}
+		else {
+			String sql = "select count(*) from member "
+							+ "where instr(#1, ?) > 0";
+			sql = sql.replace("#1", pageVO.getColumn());
+			Object[] data = {pageVO.getKeyword()};
+			return jdbcTemplate.queryForObject(sql, int.class, data);
+		}
+	}
+	//개인정보변경 매핑
+	public boolean update(MemberDto memberDto) {
+	    String sql = "UPDATE member SET "
+	                 + "member_pw=?, member_contact=?, "
+	                 + "member_email=?, member_post=?, "
+	                 + "member_address1=?, member_address2=?, "
+	                 + "member_type=?, member_industry=?, "
+	                 + "member_job=?, member_position=?, "
+	                 + "member_cr_number=?, member_company_no=?, "
+	                 + "member_change=CURRENT_TIMESTAMP " // 비밀번호 변경일시 업데이트
+	                 + "WHERE member_id=?";
+	    
+	    Object[] data = {
+	        memberDto.getMemberPw(), memberDto.getMemberContact(),
+	        memberDto.getMemberEmail(), memberDto.getMemberPost(),
+	        memberDto.getMemberAddress1(), memberDto.getMemberAddress2(),
+	        memberDto.getMemberType(), memberDto.getMemberIndustry(),
+	        memberDto.getMemberJob(), memberDto.getMemberPosition(),
+	        memberDto.getMemberCrNumber(), memberDto.getMemberCompanyNo(),
+	        memberDto.getMemberId()
+	    };
+	    
+	    return jdbcTemplate.update(sql, data) > 0;
+	}
 	
+	public MemberDto selectOneByMemberName(String memberName) {
+		String sql = "select * from member where member_name=?";
+		Object[] data = {memberName};
+		List<MemberDto> list = jdbcTemplate.query(sql, memberMapper, data);
+		return list.isEmpty() ? null : list.get(0);
+	}
 
 }
