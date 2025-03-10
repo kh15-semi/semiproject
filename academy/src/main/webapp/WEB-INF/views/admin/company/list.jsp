@@ -12,9 +12,8 @@
     <form action="list" method="get">
         <select name="column" style="border: none; width: 120px;" >
             <option value="company_name" ${pageVO.column == 'company_name' ? 'selected' : ''}>회사명</option>
-            <option value="company_industry" ${pageVO.column == 'company_industry' ? 'selected' : ''}></option>
-            <option value="company_job" ${pageVO.column == 'company_job' ? 'selected' : ''}>산업</option>
-            <option value="" ${pageVO.column == 'company_' ? 'selected' : ''}>직종</option>
+            <option value="company_industry" ${pageVO.column == 'company_industry' ? 'selected' : ''}>산업</option>
+            <option value="company_job" ${pageVO.column == 'company_job' ? 'selected' : ''}>직종</option>
         </select>
         <input type="text" name="keyword" value="${pageVO.keyword}">
         <button class="btn btn-green2" style="border-radius: 10px; ">검색</button>
@@ -36,7 +35,7 @@
         <c:forEach var="companyDto" items="${list}">
             <tr>
                 <td>
-                    <a href="detail?companyName=${companyDto.companyName}">
+                    <a href="detail?companyNo=${companyDto.companyNo}">
                         ${companyDto.companyName}
                     </a>
                 </td>
