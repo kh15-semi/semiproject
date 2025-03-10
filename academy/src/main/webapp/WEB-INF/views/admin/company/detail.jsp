@@ -34,7 +34,7 @@
 	        <h3>연락처</h3>
 	        <p>${companyDto.companyContact}</p>
 	    </div>
-		
+		 
 	    <div class="cell">
 	        <h3>주소</h3>
 	        <p>(${companyDto.companyPost})</p>
