@@ -631,7 +631,7 @@ textarea.field {
 
 .page-navigator>a {
     text-decoration: none;
-    color: #a994af;
+    color: rgb(147, 223, 100);
     font-size: 16px;
     padding: 0.5em;
     display: inline-block;
@@ -644,8 +644,8 @@ textarea.field {
 .page-navigator>a:hover,
 .page-navigator>a.on {
     /* border: 1px solid #636e72; */
-    box-shadow: 0 0 2px 0 #ffcbef;
-    color: #ffcbef;
+    box-shadow: 0 0 2px #1ca350;
+    color: #1ca350;
 }
 
 /*
