@@ -42,17 +42,9 @@
 				<i class="fa-solid fa-xmark"></i></button><br>
 	    	<input type="text" name="memberAddress1" value="${memberDto.memberAddress1}" class="field" size="50" ><br>
     		<input type="text" name="memberAddress2" value="${memberDto.memberAddress2}" class="field" size="50"><br>
-    	</div>
+    	</div><br>
 	</div>
 	
-	<div class="cell">
-		<label style="font-weight: 600">회원 등급</label>&nbsp;
-		<select name="memberType" class="field">
-			<option ${memberDto.memberType == '일반회원' ? 'selected' : ''}>일반회원</option>
-			<option ${memberDto.memberType == '기업회원' ? 'selected' : ''}>기업회원</option>
-		</select>
-		<br><br>
-	</div>
 
 	<div class="cell center">
 		<a href="/admin/member/list" class="btn btn-neutral"><i class="fa-solid fa-caret-left"></i> back</a>
