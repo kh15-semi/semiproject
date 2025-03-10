@@ -29,7 +29,7 @@
             <th>직종</th>
             <th>연락처</th>
             <th>업체 홈페이지</th>
-        </tr>
+        </tr> 
     </thead>
 
     <tbody>

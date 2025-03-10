@@ -3,8 +3,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
-<div class="container w-600">
-	<div class="cell" style="margin: 10px; padding: 10px">
+<div class="container w-1200">
+	<div class="cell" style="margin: 10px; padding: 30px">
 	
 	    <div class="cell">
 	        <h2><i class="fa-regular fa-user"></i> 회원 상세 정보</h2>
@@ -20,12 +20,7 @@
 	        <p>${memberDto.memberName}</p>
 	    </div>
 	
-	    <div class="cell">
-	        <h3>생년월일 </h3>
-	        <p>${memberDto.memberBirth}</p>
-	    </div>
-	
-	    <div class="cell">
+	   <div class="cell">
 	        <h3>연락처</h3>
 	        <p>${memberDto.memberContact}</p>
 	    </div>
@@ -41,7 +36,7 @@
 	        <p>${memberDto.memberAddress1}</p>
 	        <p>${memberDto.memberAddress2}</p>
 	    </div>
-	    
+	     
 	    <div class="cell">
 	        <h3>회원 등급</h3>
 	        <p>${memberDto.memberType}</p>
@@ -55,7 +50,6 @@
 	    </div>	    
 
 <div class="cell center" style="margin: 10px; padding: 10px;">
-    <a href="#" class="btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-lock"></i> 임시 비밀번호 발급</a>
     <a href="edit?memberId=${memberDto.memberId}" class="btn btn-green2" style="border-radius: 10px;"><i class="fa-regular fa-pen-to-square"></i> 개인정보 변경</a>
     <a href="delete?memberId=${memberDto.memberId}" class="btn btn-red" style="border-radius: 10px;"><i class="fa-solid fa-xmark"></i> 회원 탈퇴</a>
     <a href="#" class="btn btn-red" style="border-radius: 10px;"><i class="fa-solid fa-xmark"></i> 블랙리스트 등록</a>
