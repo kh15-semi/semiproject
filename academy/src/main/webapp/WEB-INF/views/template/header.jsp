@@ -92,52 +92,7 @@
 				</li>
 
 				<c:choose>
-<<<<<<< HEAD
-					<c:when test="${sessionScope.userId != null}">
-					<!-- 관리자인 경우 -->
-						<c:if test="${sessionScope.memberType=='관리자'}">
-							 <li class="menu-end">
-							 	<a href="#">
-									<i class="fa-regular fa-circle-user"></i>
-									<i class="fa-solid fa-chevron-down"></i>
-							 	</a>
-							 	<ul>
-							 		<li><a href="/admin/home">관리자 메뉴</a></li>
-							 		<li><a href="/logout">로그아웃</a></li>
-							 	</ul>
-							 </li>
-						</c:if>
-					<!-- 회원인 경우 -->
-		                <li class="menu-end">
-		                    <a href="#">
-								<i class="fa-regular fa-circle-user"></i>
-								<i class="fa-solid fa-chevron-down"></i>
-							</a>
-							<ul>
-								
-									<li><a href="/member/mypage">일반회원</a></li> <!-- if구문으로 개인회원, 기업회원 마이페이지로 각각 떨어지게끔 구현 필요 -->
-								
-								
-									<li><a href="/company/member/mypage">기업회원</a></li>
-									
-								<li><a href="#">기업 리뷰</a></li>
-								<li><a href="/logout">로그아웃</a></li>
-							</ul>
-		                </li>							
-					</c:when>
-					
-					<c:otherwise>
-					<!-- 비회원인 경우 -->
-					 <li class="menu-end">
-						<a href="/login">로그인</a>
-						<ul>
-							<li><a href="/member/join">회원가입</a></li> <!-- 기업회원, 개인회원 회원가입 버튼 및 페이지 따로 나누어서 진행 -->
-						</ul>
-					</li>
-					</c:otherwise>
-				</c:choose>
-				
-=======
+
     				<c:when test="${sessionScope.userId != null}">
         				<c:choose>
             				<%-- 관리자인 경우 --%>
@@ -196,8 +151,6 @@
     			</c:otherwise>
 			</c:choose>
 
-
->>>>>>> refs/heads/main
             </ul>
         </div>
 	</div>
