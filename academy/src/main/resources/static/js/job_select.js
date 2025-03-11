@@ -3,13 +3,13 @@ function updateSecondSelect() {
     var firstSelect = document.getElementById("firstSelect");
     var secondSelect = document.getElementById("secondSelect");
     
-    secondSelect.innerHTML = "<option value=''> 2차 직종 선택</option>";
+    secondSelect.innerHTML = "<option value=''> 직종 선택</option>";
 
     var selectedValue = firstSelect.value;
     var options = [];
 
     if(selectedValue === "") {options = [
-        "2차 직종 선택"
+        "직종 선택"
         ];
     }
      else if (selectedValue === "dev") {options = [
