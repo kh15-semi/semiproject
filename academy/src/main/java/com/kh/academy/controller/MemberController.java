@@ -1,6 +1,5 @@
 package com.kh.academy.controller;
 
-import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,6 +20,7 @@ import com.kh.academy.dto.CompanyDto;
 import com.kh.academy.dto.CompanyHistoryDto;
 import com.kh.academy.dto.MemberDto;
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
@@ -255,7 +255,19 @@ public class MemberController {
 			// (+추가)세션에 userLevel이란 이름으로 사용자의 등급을 저장
 			session.setAttribute("userType", findDto.getMemberType());
 			session.setAttribute("memberDto", findDto); // memberDto를 세션에 저장
-
+		
+			//(+추가) 아이디 저장하기에 대해 쿠키 생성/소멸 처리
+			if(remember == null) {//쿠키 소멸
+				Cookie cookie = new Cookie("saveId", memberDto.getMemberId());
+				cookie.setMaxAge(0);
+				response.addCookie(cookie);
+			}
+			else {//쿠키 생성
+				Cookie cookie = new Cookie("saveId", memberDto.getMemberId());
+				cookie.setMaxAge(4*7*24*60*60);//4주
+				response.addCookie(cookie);
+			}
+		
 			return "redirect:/";
 		} else {// 비밀번호 다름
 			return "redirect:login?error";// 로그인 페이지로 쫓아낸다
