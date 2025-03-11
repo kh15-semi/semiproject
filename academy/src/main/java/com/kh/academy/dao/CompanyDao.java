@@ -109,6 +109,11 @@ public class CompanyDao {
         }
     }
 
+	public List<CompanyDto> selectList() {
+		String sql = "select * from company order by company_no asc";
+		return jdbcTemplate.query(sql, companyMapper);
+	}
+
     
 }
 
