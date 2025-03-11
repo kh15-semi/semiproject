@@ -28,8 +28,6 @@ public class ReviewController {
 	private ReviewDao reviewDao;
 	@Autowired
 	private MemberDao memberDao;
-	@Autowired
-	private AttachmentService attachmentService;
 
 	//리뷰 목록 매핑
 	@GetMapping("/list")
@@ -51,12 +49,13 @@ public class ReviewController {
 	}
 	//리뷰 작성 매핑
 	@GetMapping("/write")
-	public String write(Model model) {
+	public String write(@RequestParam int companyNo, Model model) {
+		model.addAttribute("companyNo", companyNo); // 폼 객체 전달
 		model.addAttribute("reviewDto", new ReviewDto()); // 폼 객체 전달
 		return "/WEB-INF/views/company/review/write.jsp";
 	}
 	@PostMapping("/write")
-	public String write(@ModelAttribute ReviewDto reviewDto, HttpSession session) {
+	public String write(@ModelAttribute ReviewDto reviewDto, @RequestParam int companyNo, HttpSession session) {
 		String userId = (String) session.getAttribute("userId");
 		reviewDto.setReviewWriter(userId);
 		
@@ -66,7 +65,7 @@ public class ReviewController {
 		//리뷰 DB 저장
 		int reviewNo = reviewDao.sequence();
 		reviewDto.setReviewNo(reviewNo);
-		reviewDao.insert(reviewDto);	
+		reviewDao.insert(reviewDto, companyNo);	
 		
 		System.out.println("reviewDto = " + reviewDto);
 		

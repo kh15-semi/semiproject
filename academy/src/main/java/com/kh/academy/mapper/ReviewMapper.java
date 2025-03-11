@@ -16,6 +16,7 @@ public class ReviewMapper implements RowMapper<ReviewDto>{
 		return ReviewDto.builder()
 				.reviewNo(rs.getInt("review_no"))
                 .reviewWriter(rs.getString("review_writer"))
+                .reviewCompanyNo(rs.getInt("review_company_no"))
                 .reviewScore(rs.getInt("review_score"))
                 .reviewComment(rs.getString("review_comment"))
                 .reviewLike(rs.getInt("review_like"))

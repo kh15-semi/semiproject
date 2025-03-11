@@ -27,15 +27,15 @@ public class ReviewDao {
 		return jdbcTemplate.query(sql, reviewMapper);		
 	}
 	
-	public void insert(ReviewDto reviewDto) {
-		String sql = "insert into review (review_no, review_writer, review_score, review_comment, review_wtime, "
+	public void insert(ReviewDto reviewDto, int companyNo) {
+		String sql = "insert into review (review_no, review_writer, review_company_no, review_score, review_comment, review_wtime, "
 				+ "review_strength, review_weakness, review_salary, review_work_and_life, "
 				+ "review_promotion, review_culture, review_director, "
 				+ "review_ceo_evaluation, review_prediction, review_recommend) "
                 + "values (?, ?, ?, ?, systimestamp, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		Object[] data = {
 				reviewDto.getReviewNo(), 
-				reviewDto.getReviewWriter(), reviewDto.getReviewScore(), reviewDto.getReviewComment(), 
+				reviewDto.getReviewWriter(), companyNo, reviewDto.getReviewScore(), reviewDto.getReviewComment(), 
 				reviewDto.getReviewStrength(), reviewDto.getReviewWeakness(), 
 				reviewDto.getReviewSalary(), reviewDto.getReviewWorkAndLife(), 
 				reviewDto.getReviewPromotion(), reviewDto.getReviewCulture(), reviewDto.getReviewDirector(),
