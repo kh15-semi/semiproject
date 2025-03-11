@@ -81,56 +81,39 @@
 		-->
 				
 		<div class="cell m-30">
-			<p>전/현직자가 직접 평가한</p>
-			<h2>&nbsp;기업 리뷰&nbsp;<i class="fa-regular fa-thumbs-up"></i></h2>
+			<p><i class="fa-solid fa-user-pen grey"></i>&nbsp;기업의 전/현직자가 직접 평가하는</p>
+			<h2>&nbsp;기업 리뷰&nbsp;<i class="fa-regular fa-newspaper"></i></h2>
 		</div>
 
 		<div class="cell flex-box">
 
 			<div class="cell" style="margin: auto;">
 				<div class="cell left m-10">
-					<span>
+					<span style="display: flex; align-items: center;">
 						<img src="https://placehold.co/30x30"><!-- 기업 로고 -->
 						<b>&nbsp;기업명&nbsp;<i class="fa-regular fa-bookmark"></i></b>
 					</span>
 				</div>
-                <div class="cell flex-box recommend-box">
-					<i class="fa-solid fa-quote-left grey"></i>&nbsp;
-					<label>
-						체계적인 일처리가 좋음
-						<p>
-							<i class="fa-solid fa-star yellow"></i>
-							<i class="fa-solid fa-star yellow"></i>
-							<i class="fa-solid fa-star yellow"></i>
-							<i class="fa-solid fa-star yellow"></i>
-							<i class="fa-regular fa-star yellow"></i>
-						</p>
-					</label>		
+                <div class="cell recommend-box">
+					<i class="fa-solid fa-quote-left grey"></i>
+					<p>체계적인 일처리가 좋음</p>
+					<i class="fa-solid fa-quote-right grey"></i>
 				</div>
             </div>
 
 			<div class="cell" style="margin: auto;">
 				<div class="cell left m-10">
-					<span>
+					<span style="display: flex; align-items: center;">
 						<img src="https://placehold.co/30x30"><!-- 기업 로고 -->
 						<b>&nbsp;기업명&nbsp;<i class="fa-regular fa-bookmark"></i></b>
 					</span>
 				</div>
-                <div class="cell flex-box recommend-box">
-					<i class="fa-solid fa-quote-left grey"></i>&nbsp;
-					<label>
-						기업 문화가 좋음, 노후화된 시스템
-						<p>
-							<i class="fa-solid fa-star yellow"></i>
-							<i class="fa-solid fa-star yellow"></i>
-							<i class="fa-solid fa-star yellow"></i>
-							<i class="fa-solid fa-star yellow"></i>
-							<i class="fa-regular fa-star yellow"></i>
-						</p>
-					</label>	
+                <div class="cell recommend-box">
+					<i class="fa-solid fa-quote-left grey"></i>
+					<p>기업 문화가 좋음, 노후화된 시스템</p>
+					<i class="fa-solid fa-quote-right grey"></i>
 				</div>
-            </div>
-
+			</div>
 		</div>
 
 		
@@ -138,48 +121,33 @@
 
 			<div class="cell" style="margin: auto;">
 				<div class="cell left m-10">
-					<span>
+					<span style="display: flex; align-items: center;">
 						<img src="https://placehold.co/30x30"><!-- 기업 로고 -->
 						<b>&nbsp;기업명&nbsp;<i class="fa-regular fa-bookmark"></i></b>
 					</span>
 				</div>
-                <div class="cell flex-box recommend-box">
-					<i class="fa-solid fa-quote-left grey"></i>&nbsp;
-					<label>
-						외국계 기업으로서 자유로운 분위기
-						<p>
-							<i class="fa-solid fa-star yellow"></i>
-							<i class="fa-solid fa-star yellow"></i>
-							<i class="fa-solid fa-star yellow"></i>
-							<i class="fa-solid fa-star yellow"></i>
-							<i class="fa-regular fa-star yellow"></i>
-						</p>
-					</label>	
-                </div>
+                <div class="cell recommend-box">
+					<i class="fa-solid fa-quote-left grey"></i>
+					<p>외국계 기업으로서 자유로운 분위기</p>
+					<i class="fa-solid fa-quote-right grey"></i>
+				</div>
             </div>
 
 			<div class="cell" style="margin: auto;">
 				<div class="cell left m-10">
-					<span>
+					<span style="display: flex; align-items: center;">
 						<img src="https://placehold.co/30x30"><!-- 기업 로고 -->
 						<b>&nbsp;기업명&nbsp;<i class="fa-regular fa-bookmark"></i></b>
 					</span>
 				</div>
-                <div class="cell flex-box recommend-box">
-					<i class="fa-solid fa-quote-left grey"></i>&nbsp;
-					<label>
-						수평적인 문화, 워라밸 보장
-						<p>
-							<i class="fa-solid fa-star yellow"></i>
-							<i class="fa-solid fa-star yellow"></i>
-							<i class="fa-solid fa-star yellow"></i>
-							<i class="fa-solid fa-star yellow"></i>
-							<i class="fa-regular fa-star yellow"></i>
-						</p>
-					</label>	
+                <div class="cell recommend-box">
+					<i class="fa-solid fa-quote-left grey"></i>
+					<p>수평적인 문화, 워라밸 보장</p>
+					<i class="fa-solid fa-quote-right grey"></i>
 				</div>
             </div>
 		</div>
+		<br>
 	</div>
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
