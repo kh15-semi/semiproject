@@ -93,7 +93,7 @@
                 <label><input type="checkbox" class="single-check"> 성장 </label>
                 <label><input type="checkbox" class="single-check"> 비슷 </label>
                 <label><input type="checkbox" class="single-check"> 하락 </label>
-
+  
                 <h3>이 기업을 구직자에게 추천하나요?</h3>
                 <label><input type="checkbox" class="single-check"> 네, 추천해요 </label>
                 <label><input type="checkbox" class="single-check"> 아니요 </label>
