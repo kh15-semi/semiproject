@@ -24,16 +24,17 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
         registry.addInterceptor(memberLoginInterceptor)
                 .addPathPatterns(List.of(
                         "/member/**",            // 회원 관련 페이지
-                        "/company/member/**",    // 기업회원 관련 페이지
+                        //"/company/member/**",    // 기업회원 관련 페이지
                         "/share/exit",           // 회원 탈퇴
                         "/share/password"        // 비밀번호 변경
                 ))
                 .excludePathPatterns(List.of(
                         "/member/login",         // 로그인
                         "/member/join",          // 회원가입
-                        "/member/joinFinish"    // 회원가입 완료
+                        "/member/joinFinish",    // 회원가입 완료
 //                        "/member/findPw",        // 비밀번호 찾기
 //                        "/member/reset"          // 비밀번호 재설정
+                        "/company/member/join"
                 ));
 
         // 관리자 전용 페이지에 대해 인터셉터를 등록

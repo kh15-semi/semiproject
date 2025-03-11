@@ -116,7 +116,9 @@ public class MemberController {
 	public Map<String, String> getCompanyName(@RequestParam String crNumber) {
 		Map<String, String> response = new HashMap<>();
 		String companyName = memberDao.getCompanyNameByCrNumber(crNumber);
+		
 		response.put("companyName", companyName != null ? companyName : "");
+		System.out.println("response = " + response);
 
 		return response;
 	}

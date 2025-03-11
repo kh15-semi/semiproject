@@ -28,7 +28,7 @@ $(function(){
 		
 		if(regex.test(memberId)) {//통과
 			$.ajax({
-				url:"",
+				url:"/rest/member/checkMemberId",
 				method:"post",
 				data:{ memberId : memberId },
 				success: function(response) {
@@ -113,6 +113,13 @@ $(function(){
 	});
 	
 	//연락처 관련 처리
+	$("[name=memberContact]").on("input", function(){
+		var current = $(this).val();
+		var convert = current.replace(/[^0-9]+/g, "");
+		
+		$(this).val(convert);
+	});
+	
 	$("[name=memberContact]").blur(function(){
 		var regex = /^010[0-9]{8}$/;
 		var isValid =  $(this).val().length == 0 || regex.test($(this).val());
@@ -122,7 +129,7 @@ $(function(){
 	
 	//이메일 관련 처리
 	$("[name=memberEmail]").blur(function(){
-		var regex = /^[A-Za-z0-9]+@[A-Za-z0-9.]+$/;
+		var regex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 		var isValid = $(this).val().length == 0 || regex.test($(this).val());
 		$(this).removeClass("success fail").addClass(isValid ? "success" : "fail");
 		status.memberContact = isValid;
@@ -186,4 +193,9 @@ $(function(){
                     $(".btn-address-clear").fadeOut();
                 }
             }
+	//선택 사항 입력 처리
+	$("[name=memberIndustry], [name=memberJob]").on("change", function() {
+		var isValid = $(this).val().length > 0;
+		$(this).removeClass("success fail").addClass(isValid ? "success" : "fail");
+	});
 });
