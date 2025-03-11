@@ -30,16 +30,14 @@ public class ReviewDao {
 	public void insert(ReviewDto reviewDto, int companyNo) {
 		String sql = "insert into review (review_no, review_writer, review_company_no, review_score, review_comment, review_wtime, "
 				+ "review_strength, review_weakness, review_salary, review_work_and_life, "
-				+ "review_promotion, review_culture, review_director, "
-				+ "review_ceo_evaluation, review_prediction, review_recommend) "
-                + "values (?, ?, ?, ?, systimestamp, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "review_promotion, review_culture, review_director "
+                + "values (?, ?, ?, ?, systimestamp, ?, ?, ?, ?, ?, ?, ?)";
 		Object[] data = {
 				reviewDto.getReviewNo(), 
 				reviewDto.getReviewWriter(), companyNo, reviewDto.getReviewScore(), reviewDto.getReviewComment(), 
 				reviewDto.getReviewStrength(), reviewDto.getReviewWeakness(), 
 				reviewDto.getReviewSalary(), reviewDto.getReviewWorkAndLife(), 
-				reviewDto.getReviewPromotion(), reviewDto.getReviewCulture(), reviewDto.getReviewDirector(),
-				reviewDto.getReviewCeoEvaluation(), reviewDto.getReviewPrediction(), reviewDto.getReviewRecommend()
+				reviewDto.getReviewPromotion(), reviewDto.getReviewCulture(), reviewDto.getReviewDirector()
 		};
 		jdbcTemplate.update(sql, data);
 	}
@@ -56,15 +54,13 @@ public class ReviewDao {
 				+ "set review_score = ?, review_comment = ?, review_etime = systimestamp, "
 				+ "review_strength = ?, review_weakness = ?, "
 				+ "review_salary = ?, review_work_and_life = ?, "
-				+ "review_promotion = ?, review_culture = ?, review_director = ?, "
-				+ "review_ceo_evaluation = ?, review_prediction = ?, review_recommend = ? "
+				+ "review_promotion = ?, review_culture = ?, review_director = ? "
 				+ "where review_no = ?";
 		Object[] data = {
 				reviewDto.getReviewScore(), reviewDto.getReviewComment(), 
 				reviewDto.getReviewStrength(), reviewDto.getReviewWeakness(), 
 				reviewDto.getReviewSalary(), reviewDto.getReviewWorkAndLife(),
 				reviewDto.getReviewPromotion(), reviewDto.getReviewCulture(), reviewDto.getReviewDirector(),
-				reviewDto.getReviewCeoEvaluation(), reviewDto.getReviewPrediction(), reviewDto.getReviewRecommend(),
 				reviewDto.getReviewNo()
 		};
 		return jdbcTemplate.update(sql, data) > 0;
