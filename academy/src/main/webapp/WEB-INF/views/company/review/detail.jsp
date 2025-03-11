@@ -1,60 +1,65 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+    
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
-<!-- google font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+<div class="container w-700" style="border: 1px solid rgb(197, 197, 197); border-radius: 10px;">
+	<div class="cell m-10">
+		<div>
+			<p style="color: grey; font-size: 12px;">
+				${companyDto.companyIndustry} | ${compantDto.companyJob} | ${reviewDto.reviewWtime}
+		    </p>
+		    <h2>${reviewDto.reviewComment}</h2> <!--한줄평(=제목)-->
+		</div>
+		<hr>
+		<div class="cell m-10" style="display: inline-block; width: 100px; vertical-align: top">
+		    <h3><i class="fa-solid fa-star green"></i> 2.0</h3><!--총 평점-->
+		    <!-- ${reviewDto.reviewScore} -->
+		    <label>승진기회</label>
+		    <p style="font-weight: 700;">1.0</p>
+		    <!-- <p style="font-weight: 700;">${reviewDto.reviewPromotion}</p> -->
+		    <label>복지/급여</label>
+		    <p style="font-weight: 700;">1.0</p>
+		    <!-- <p style="font-weight: 700;">${reviewDto,reviewSalary}</p> -->
+		    <label>워라밸</label>
+		    <p style="font-weight: 700;">1.0</p>
+		    <!-- <p>${reviewDto,reviewWorkAndLife}</p> -->
+		    <label>사내문화</label>
+		    <p style="font-weight: 700;">1.0</p>
+		    <!-- <p style="font-weight: 700;">${reviewDto,reviewCulture}</p> -->
+		    <label>경영진</label>
+		    <p style="font-weight: 700;">2.0</p>
+		    <!-- <p style="font-weight: 700;">${reviewDto,reviewDirector}</p> -->
+		</div>
+		<div class="cell" style="display: inline-block; width: 500px; vertical-align: top">
+		    <label style="font-size: 15px; border-radius: 3px; text-align: center; color: white; background-color: rgb(111, 182, 240); padding: 2px;">
+		        장점
+		    </label>
+		    <h5>${revirwDto.reviewStrength}</h5>
+		    <label style="font-size: 15px; border-radius: 3px; text-align: center; color: white; background-color: rgb(250, 138, 138); padding: 2px;">
+		        단점
+		    </label>
+		    <h5>${revirwDto.reviewWeakness}</h5>
+		    <label style="font-size: 15px; border-radius: 3px; text-align: center; color: rgb(73, 71, 71); background-color: rgb(223, 221, 221); padding: 2px;">
+		        경영진에 바라는 점
+		    </label>
+		    <h5>${reviewDto.reviewCeoEvaluation}</h5>
+		    <br>
+		    <div class="cell" style="font-size: 12px; color: grey;">
+		        도움이 돼요&nbsp;<i class="fa-solid fa-thumbs-up"></i> 좋아요수
+		        <!-- &nbsp;${reviewDto.reviewLike} -->
+		    </div>
+		</div>
+		<hr>
+		<div class="cell m-10" style="padding: 5px;">
+		    <p><i class="fa-solid fa-user-tie"></i> 담당자 피드백</p>
+		    <div style="display: flex; align-items: center;">
+			    <textarea class="field" style="width: 85%;" rows="4" placeholder="해당 기업의 담당자만 피드백을 할 수 있습니다"></textarea>
+			    <button type="button" class="btn btn-green2"style="margin-left: 10px;"><i class="fa-solid fa-check"></i>&nbsp;등록</button>
+	   		</div>
+	    </div>
+	</div>
+</div>
 
-    <!-- font awesome cdn -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-<form action="change" method="post">
-
-     <div class="container">
-         <h1>${reviewDto.reviewComment}</h1>
-         <div>${reviewDto.reviewWtime} | 조회 ${reviewDto.boardRead}</div>
-         <hr>
-         <div>${boardDto.boardContent}</div>
-         <hr>
-         <div class="cell">
-             좋아요 <span id="like-count">${boardDto.boardLike}</span> | 댓글 <span
-                 id="comment-count">${boardDto.boardReply}</span>
-         </div>
- 
-         <div class="button-group">
-             <button onclick="goBack()">이전</button>
-             <button onclick="editPost(${boardDto.review_no})">게시글 수정</button>
-             <button onclick="deletePost(${boardDto.review_no})">게시글 삭제</button>
-         </div>
- 
-         <hr>
- 
-         <h3>댓글 목록</h3>
-         <div class="comment-list">
-             <table>
-                 <thead>
-                     <tr>
-                         <th>작성자</th>
-                         <th>내용</th>
-                         <th>작성일</th>
-                         <th>수정</th>
-                         <th>삭제</th>
-                     </tr>
-                 </thead>
-                 <tbody id="comment-table"></tbody>
-             </table>
-         </div>
- 
-         <h3>댓글 입력</h3>
-         <div class="comment-form">
-             <input type="text" id="comment-writer" placeholder="작성자 (기업명)">
-             <textarea id="comment-content" placeholder="댓글을 입력하세요"></textarea>
-             <button onclick="addComment()">댓글 작성</button>
-         </div>
-     </div>
-</form>
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
