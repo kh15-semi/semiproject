@@ -23,18 +23,31 @@ public class CompanyController {
 	@Autowired
 	private CompanyDao companyDao;
 	
+
 	//모든 회사 목록 불러오기
 	@RequestMapping("/")
 	public String home(Model model) {
 		List<CompanyDto> companyList = companyDao.selectList();
 		model.addAttribute("companyList", companyList);
 		return "/home";
-	}
-	@RequestMapping("/detail")
-	public String companyDetail(@RequestParam  int companyNo, Model model) {
-		CompanyDto companyDto = companyDao.selectOne(companyNo);
-		model.addAttribute("companyDto", companyDto);
-		return "/WEB-INF/views/company/detail.jsp";
+//	@RequestMapping("/company/detail")
+//	public String CompanyMypage(HttpSession session, Model model) {
+//		String userId = (String) session.getAttribute("userId"); // 내 아이디 추출
+//        MemberDto memberDto = memberDao.selectOne(userId); // 내 정보 획득
+//        
+//        // 기업명 추가
+//        String companyName = memberDao.getCompanyNameByCrNumber(memberDto.getMemberCrNumber());
+//        //memberDto.setCompanyName(companyName);
+//
+//        model.addAttribute("memberDto", memberDto);
+//
+//        return "/WEB-INF/views/company/detail.jsp";
+//	}
+//	@RequestMapping("/detail")
+//	public String companyDetail(@RequestParam  int companyNo, Model model) {
+//		CompanyDto companyDto = companyDao.selectOne(companyNo);
+//		model.addAttribute("companyDto", companyDto);
+//		return "/WEB-INF/views/company/detail.jsp";
 		}
 
 }

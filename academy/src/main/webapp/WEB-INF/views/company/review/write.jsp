@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+    
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
 <script type="text/javascript">
@@ -59,6 +61,10 @@
 </style>
 
 <form action="/company/review/write" method="post" autocomplete="off">
+	<c:if test="${param.company_no != null}">
+		<input type="hidden" name="companyNo" value="${param.company_no}" class="field w-100">
+	</c:if>
+
 
 	<div class="container w-700">
 	 <!-- 기업 총 평점 / 기업 한 줄 평 -->

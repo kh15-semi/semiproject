@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 public class ReviewDto {
 	private int reviewNo; //리뷰번호
 	private String reviewWriter;//아이디
+	private int reviewCompanyNo; //회사번호
 	private int reviewScore;//리뷰평점
 	private String reviewComment;//리뷰한줄평
 	private int reviewLike;//리뷰좋아요

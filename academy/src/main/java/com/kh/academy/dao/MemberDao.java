@@ -64,6 +64,7 @@ public class MemberDao {
 	    updateMemberCompanyNo(memberDto.getMemberId());
 	}
 	
+	// 기업 회원의 사업자 등록번호로 기업명 조회
 	public String getCompanyNameByCrNumber(String crNumber) {
 		String sql = "SELECT bn_company_name FROM business_number WHERE bn_cr_number = ?";
         return jdbcTemplate.queryForObject(sql, String.class, crNumber);
@@ -81,13 +82,13 @@ public class MemberDao {
 	    return jdbcTemplate.update(sql, memberId, memberId) > 0;
 	}
 	
-//	// 상세조회 기능
-//	public MemberDto selectOne(String memberId) {
-//		String sql = "select * from member where member_id = ?";
-//		Object[] data = { memberId };
-//		List<MemberDto> list = jdbcTemplate.query(sql, memberMapper, data);
-//		return list.isEmpty() ? null : list.get(0);
-//	}
+	// 상세조회 기능
+	public MemberDto selectOne(String memberId) {
+		String sql = "select * from member where member_id = ?";
+		Object[] data = { memberId };
+		List<MemberDto> list = jdbcTemplate.query(sql, memberMapper, data);
+		return list.isEmpty() ? null : list.get(0);
+	}
 
 	// 수정 기능(일반회원)
 	public boolean updateMember(MemberDto memberDto) {
@@ -144,27 +145,6 @@ public class MemberDao {
 		return jdbcTemplate.update(sql, data) > 0;
 	}
 	
-	public MemberDto selectOne(String memberId) {
-	    // 기존 SQL로 멤버 정보 조회
-	    String sql = "select * from member where member_id = ?";
-	    Object[] data = { memberId };
-	    List<MemberDto> list = jdbcTemplate.query(sql, memberMapper, data);
-
-//	    if (list.isEmpty()) {
-//	        return null;
-//	    }
-//	    //기업명이 계속 null로 나와서 구문을 바꿔봄 (기업명나옴)
-//	    // 멤버 정보
-//	    MemberDto memberDto = list.get(0);
-//
-//	    // 사업자 등록번호로 기업명 조회
-//	    String companyName = getCompanyNameByCrNumber(memberDto.getMemberCrNumber());
-//	    if (companyName != null) {
-//	        memberDto.setCompanyName(companyName); // 기업명 세팅
-//	    }
-
-	    return list.isEmpty() ? null : list.get(0);
-	}
 	public List<MemberDto> selectList(PageVO pageVO) {
 		if(pageVO.isList()) {
 			String sql = "select * from ("
