@@ -18,4 +18,6 @@ public class CompanyDto {//
 	private String companyAddress1;//기본주소
 	private String companyAddress2;//상세주소
 	private String companyCrNumber;//기업 사업자번호
+	
+	private String companyImageUrl; //이미지 url을 저장할 필드 추가
 }
