@@ -61,12 +61,7 @@ public class MemberDao {
 		jdbcTemplate.update(sql, data);
 		
 		// member_company_no 업데이트
-	    // updateMemberCompanyNo(memberDto.getMemberId());
-	}
-	
-	public int updateMemberCompanyNo(String memberId) {
-	    String sql = "UPDATE member SET member_company_no = (SELECT company_no FROM company WHERE company_cr_number = (SELECT member_cr_number FROM member WHERE member_id = ?)) WHERE member_id = ?";
-	    return jdbcTemplate.update(sql, memberId, memberId);
+	    updateMemberCompanyNo(memberDto.getMemberId());
 	}
 	
 	public String getCompanyNameByCrNumber(String crNumber) {
@@ -74,24 +69,18 @@ public class MemberDao {
         return jdbcTemplate.queryForObject(sql, String.class, crNumber);
     } 
 	
-	 public int updateMemberCompanyNo() {
-	        String sql = "UPDATE member m " +
-	                "SET m.member_company_no = ( " +
-	                "    SELECT c.company_no " +
-	                "    FROM company c " +
-	                "    WHERE c.company_cr_number = m.member_cr_number " +
-	                ") " +
-	                "WHERE m.member_type = '기업회원' " +
-	                "AND m.member_cr_number IN ( " +
-	                "    SELECT company_cr_number " +
-	                "    FROM company " +
-	                "    WHERE company_no IS NOT NULL " +
-	                ") " +
-	                "AND m.member_company_no IS NULL";
-
-	        return jdbcTemplate.update(sql);
-	    }
-
+	// 일반 회원의 company_no 업데이트
+	public void updateMemberCompanyNoForIndividual(String memberId, int companyNo) {
+	    String sql = "UPDATE member SET member_company_no = ? WHERE member_id = ?";
+	    jdbcTemplate.update(sql, companyNo, memberId);
+	}
+	
+	// 기업 회원의 company_no 업데이트
+	public boolean updateMemberCompanyNo(String memberId) {
+	    String sql = "UPDATE member SET member_company_no = (SELECT company_no FROM company WHERE company_cr_number = (SELECT member_cr_number FROM member WHERE member_id = ?)) WHERE member_id = ?";
+	    return jdbcTemplate.update(sql, memberId, memberId) > 0;
+	}
+	
 //	// 상세조회 기능
 //	public MemberDto selectOne(String memberId) {
 //		String sql = "select * from member where member_id = ?";
