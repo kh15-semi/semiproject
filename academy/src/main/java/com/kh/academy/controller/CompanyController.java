@@ -36,7 +36,7 @@ public class CompanyController {
 	public String companyDetail(@RequestParam("companyNo") int companyNo, Model model) {
 		CompanyDto companyDto = companyDao.selectOne(companyNo);
 		if(companyDto == null) {
-			return "Redirect:/company/list";
+			return "redirect:/company/list";
 		}
 		//사업자번호 뒤 5자리 *로 변경
 		 String crNumber = companyDto.getCompanyCrNumber();

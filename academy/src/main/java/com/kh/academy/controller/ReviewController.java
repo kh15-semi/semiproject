@@ -40,10 +40,8 @@ public class ReviewController {
 	@RequestMapping("/detail")
 	public String detail(@RequestParam int reviewNo, Model model) {
 		ReviewDto reviewDto = reviewDao.selectOne(reviewNo);
-
 		if(reviewDto.getReviewWriter() != null) {
-			MemberDto memberDto = memberDao.selectOne(reviewDto.getReviewWriter());
-			model.addAttribute("memberDto", memberDto);
+			model.addAttribute("reviewDto", reviewDto);
 		}
 		return "/WEB-INF/views/company/review/detail.jsp";
 	}
