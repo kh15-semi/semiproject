@@ -24,7 +24,7 @@ $(function() {
 <form action="/company/member/edit" method="post">
 <div class="container w-800">
         <div class="cell">
-            <h2><i class="fa-solid fa-building green"></i> 계정 정보 수정 (기업회원)</h2>
+            <h2><i class="fa-solid fa-building green"></i> 회원 정보 수정 (기업회원)</h2>
         </div>
         <div class="cell">
             <p style="color: grey;">* 기업 정보</p>
@@ -66,16 +66,18 @@ $(function() {
                <label><i class="fa-solid fa-angle-right"></i> 기업 주소</label><br>
                 <div class="cell">
                     <input type="text" name="memberPost" size="6" maxlength="6" class="field" value="${memberDto.memberPost}">
-                    <button type="button" class="btn btn-blue"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    <button type="button" class="btn btn-red btn-address-clear" style="display: none;">
+                    <button type="button" class="btn btn-neutral btn-address-search">
+                    	<i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <button type="button" class="btn btn-negative btn-address-clear" style="display: none;">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
                 <div class="cell">
-                    <input type="text" name="memberAddress1" class="field" style="width: 400px;" value="${memberDto.memberAddress1}">
+                    <input type="text" name="memberAddress1" value="${memberDto.memberAddress1}" class="field" size="40" maxlength="60">
                 </div>
                 <div class="cell">
-                    <input type="text" name="memberAddress2" class="field" style="width: 400px;" value="${memberDto.memberAddress2}">
+                    <input type="text" name="memberAddress2" value="${memberDto.memberAddress2}" class="field" size="40" maxlength="60">
                 </div>
                 
             </div>

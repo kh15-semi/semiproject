@@ -37,7 +37,7 @@
         <div class="cell" style="margin: 10px; padding: 10px">
 
             <div class="cell">
-                <h2><i class="fa-solid fa-building green"></i> 계정 정보(기업 회원) </h2>
+                <h2><i class="fa-solid fa-building green"></i> 기업 회원 정보</h2>
             </div>
             <hr style="border: 0; border-top: 1px solid rgb(196, 196, 196)">
 
