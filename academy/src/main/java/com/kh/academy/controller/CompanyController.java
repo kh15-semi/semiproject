@@ -35,18 +35,13 @@ public class CompanyController {
 	@GetMapping("/detail")
 	public String companyDetail(@RequestParam("companyNo") int companyNo, Model model) {
 		CompanyDto companyDto = companyDao.selectOne(companyNo);
+		System.out.println("companyCrNumber = " + companyDto.getCompanyCrNumber());
 		if(companyDto == null) {
 			return "redirect:/company/list";
-		}
-		//사업자번호 뒤 5자리 *로 변경
-		 String crNumber = companyDto.getCompanyCrNumber();
-		 if (crNumber != null && crNumber.length() > 5) {
-		     crNumber = crNumber.substring(0, crNumber.length() - 5) + "*****";
 		}
 		 //리뷰 목록 가져오기(reviewListDao필요)
 		 
 		model.addAttribute("companyDto", companyDto);
-		model.addAttribute("maskedCrNumber", crNumber);
 		return "/WEB-INF/views/company/detail.jsp";
 	}
 }
