@@ -14,7 +14,7 @@
             $(this).closest(".page").hide().prev(".page").show();
         });
     });
-
+ 
     window.addEventListener("load", function(){
         var answers = document.querySelectorAll(".field-answer, .review-title");
         for(var i=0; i < answers.length; i++) {
