@@ -45,8 +45,18 @@ public class MemberController {
 	// 입력 처리(일반회원)
 	@PostMapping("/member/join") // POST방식만 처리하는 매핑
 	public String joinMember(@ModelAttribute MemberDto memberDto) {
-		memberDao.insertMember(memberDto); // 회원가입
-		return "redirect:/share/joinFinish"; // joinFinish으로 쫓아내는 코드(상대경로)
+		
+		// company_history 테이블 조회
+        CompanyHistoryDto companyHistoryDto = companyHistoryDao.selectCompanyHistoryByMemberIdCardNum(memberDto.getMemberIdCardNum());
+
+        // company_no 업데이트
+        if (companyHistoryDto != null) {
+            memberDao.insertMember(memberDto); // 회원가입
+            memberDao.updateMemberCompanyNoForIndividual(memberDto.getMemberId(), companyHistoryDto.getCompanyNo());
+        }
+        System.out.println("memberDto = " + memberDto);
+        return "redirect:/share/joinFinish"; // joinFinish으로 쫓아내는 코드(상대경로)
+		
 	}
 
 	// 마이페이지(내정보) 매핑 (개인회원)
