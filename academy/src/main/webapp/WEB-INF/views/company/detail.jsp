@@ -11,12 +11,270 @@
 
     <!-- font awesome cdn -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+        /* 전체 컨테이너 */
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* 헤더 */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 2px solid black;
+            background-color: #f5f5f5;
+            /* 배경 추가 */
+        }
+
+        /* 로고 */
+        .logo img {
+            width: 150px;
+            height: auto;
+        }
+
+        /* 네비게이션 */
+        .cell {
+            display: flex;
+            gap: 20px;
+        }
+
+
+        /* 로그인 버튼 */
+        .login-box {
+            padding: 15px;
+            border: 1px solid black;
+            margin-top: 20px;
+            margin-left: 230px;
+        }
+
+        /* 메인 레이아웃 */
+        .main {
+            display: flex;
+        }
+
+        /* 왼쪽 추가 이미지 영역 */
+        .aside {
+            width: 20%;
+            padding: 20px;
+            border-right: 2px solid black;
+        }
+
+        /* 메인 콘텐츠 영역 */
+        .content {
+            width: 80%;
+            padding: 20px;
+        }
+
+        /* 회사 정보 섹션 */
+        .company-info {
+            display: flex;
+            gap: 20px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid black;
+        }
+
+        /* 회사 이미지 */
+        .company-image img {
+            width: 200px;
+            height: 200px;
+            background-color: #ddd;
+        }
+
+        /* 회사 정보 상세 */
+        .company-details {
+            flex: 1;
+        }
+
+        .company-header {
+            display: grid;
+            grid-template-columns: auto 2fr;
+            align-items: center;
+            width: 100%;
+        }
+
+        .company-name {
+            display: flex;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .company-rating {
+            text-align: right;
+            margin-left: auto;
+        }
+
+        .company-extra-info {
+            font-size: 14px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        /* 리뷰 섹션 */
+
+        .reviews-header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 2px solid black;
+            padding-bottom: 10px;
+        }
+
+        .review-list {
+            margin-top: 10px;
+            border: 1px solid black;
+            height: 200px;
+        }
+
+        .review-actions {
+            text-align: left;
+            margin-left: auto;
+        }
+
+        .review-content-rating {
+            text-align: right;
+            margin-left: auto;
+        }
+
+        .preview {
+            border: none;
+            border-radius: 5px;
+        }
+
+        /* 푸터 */
+        .footer {
+            width: 100%;
+            /* 전체 화면 너비 */
+            max-width: 1200px;
+            /* 컨테이너 최대 너비 */
+            margin: 20px auto;
+            /* 자동 가운데 정렬 */
+            padding: 15px 20px;
+            /* 내부 여백 추가 */
+            background-color: #f5f5f5;
+            /* 연한 배경색 */
+            text-align: left;
+            /* 왼쪽 정렬 */
+            font-size: 14px;
+            /* 글자 크기 줄임 */
+            color: #666;
+            /* 글자 색상을 회색으로 */
+            line-height: 1.6;
+            /* 줄 간격 조정 */
+            border-top: 1px solid #ddd;
+            /* 위쪽 테두리 추가 */
+        }
+
+        /* 로그인 모달 스타일 */
+        .loginscreen {
+            display: contents;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            padding: 20px;
+            background: white;
+            border: 2px solid black;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .loginpage {
+            text-align: center;
+            background: rgb(208, 245, 210);
+        }
+
+        .close {
+            float: right;
+            cursor: pointer;
+        }
+
+        .logincheck {
+            margin-top: 10px;
+            padding: 8px;
+            background: black;
+            color: white;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .map {
+            text-align: right;
+            margin-left: auto;
+        }
+    </style>
+    
+    <script type="text/javascript">
+        $(function () {
+            $(".company-rating").score();
+        });
+        $(function () {
+            $(".review-content-rating").score({
+                starColor: "#00C362",
+                editable:true,
+                integerOnly:true,
+                display: {
+                    showNumber: true,
+                    placeLimit:2,
+                    textColor: "#6a6c6e",
+                },
+            });
+        });
+
+
+        $(function () {
+            // 로그인 기능 
+            $(".login-btn").on("click", function () {
+                $("#loginpage").show();
+            });
+
+            $(".close").on("click", function () {
+                $("#loginpage").hide();
+            });
+
+            $(".btn-logincheck").on("click", function () {
+                var memberId = $("#memberId").val();
+                var memberPw = $("#memberPw").val();
+
+                if (memberId == "admin" && memberPw == "1234") {
+                    console.log("로그인 성공!");
+                    $("#loginpage").hide();
+                } else {
+                    console.log("아이디 또는 비밀번호가 틀렸습니다.");
+                }
+            });
+
+
+            //상세페이지 속 회원가입창 이동
+            $(document).ready(function(){
+                $(".memberjoin-btn").on("click", function(){
+                    window.location.href="http://127.0.0.1:5500/ui/indetail-member-join.html";//회원가입페이지 이동
+                });
+            });
+  
+            //위치보기창 이동
+            $(document).ready(function(){
+                $(".map-btn").on("click", function(){
+                    window.open("http://127.0.0.1:5500/ui/06.map.html", "", "width=500,height=500")//맵보기 새창으로 구현
+                });
+            });
+
+            //리뷰쓰러가기이동
+            $(document).ready(function () {
+                $(".write-review-btn").on("click", function () {
+                    window.location.href = "http://127.0.0.1:5500/ui/04.reviewpage.html"; // review.html로 이동
+                });
+            });
+
+
+        });
+    </script>
+
 
 <form action="change" method="post">
    <div class="container w-800">
 
-        <!-- 헤더 -->
-        <div class="header">
             <div class="left flex-box logo">
                 <a href="http://127.0.0.1:5500/ui/main_non.html">
                     <img src="./image/jobplanet.png">
@@ -118,7 +376,6 @@
                 </div>
 
                 <!-- 푸터 -->
-                <div class="footer">
                     <span>(주)브레인커머스</span><br>
                     서울특별시 강남구 테헤란로 509 엔씨타워 I, 10층 대표: 황희승, 윤신근 개인정보보호관리자: 윤신근<br>
                     사업자등록번호: 120-87-92182 통신판매업 신고번호: 제2014-서울강남-02942호 유료 직업소개사업 등록번호 (국내)
