@@ -29,9 +29,6 @@ public class ReviewMapper implements RowMapper<ReviewDto>{
                 .reviewPromotion(rs.getInt("review_promotion")) 
                 .reviewCulture(rs.getInt("review_culture"))
                 .reviewDirector(rs.getInt("review_director"))
-                .reviewCeoEvaluation(rs.getString("review_ceo_evaluation"))
-                .reviewPrediction(rs.getString("review_prediction"))
-                .reviewRecommend(rs.getString("review_recommend")) 
             .build();
 	}
 	

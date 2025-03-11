@@ -24,7 +24,5 @@ public class ReviewDto {
 	private int reviewPromotion;//승진기회 만족도(별점)
 	private int reviewCulture;//사내문화 만족도(별점)
 	private int reviewDirector;//경영진 만족도(별점)
-	private String reviewCeoEvaluation;//ceo에 대한 견해
-	private String reviewPrediction;//기업전망
-	private String reviewRecommend;//기업추천
+
 }
