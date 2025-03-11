@@ -35,7 +35,7 @@
                 <h2>로그인</h2>ID:
                 <input type="text" name="memberId" placeholder="아이디 입력">PW:
                 <input type="password" name="memberPw" placeholder="비밀번호 입력">
-                <button class="btn-logincheck">Login</button>
+                <button type="submit"  class="btn-logincheck">Login</button>
                 <button class="memberjoin-btn">회원가입 하러가기</button>
             </div>
         </div>
