@@ -40,7 +40,7 @@ $(function() {
     <div class="cell" style="margin: 30px; padding: 30px">
 
         <div class="cell">
-            <h2><i class="fa-regular fa-user green"></i> 계정 정보</h2>
+            <h2><i class="fa-regular fa-user green"></i> 회원 정보</h2>
         </div>
         <hr style="border: 0; border: 1px solid rgb(196, 196, 196)">
         
