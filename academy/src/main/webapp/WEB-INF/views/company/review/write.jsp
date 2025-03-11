@@ -61,9 +61,7 @@
 </style>
 
 <form action="/company/review/write" method="post" autocomplete="off">
-	<c:if test="${param.company_no != null}">
-		<input type="hidden" name="companyNo" value="${param.company_no}" class="field w-100">
-	</c:if>
+	<input type="hidden" name="companyNo" value="${companyNo}" class="field w-100">
 
 <div class="container w-700">
 
@@ -93,7 +91,7 @@
         </div>
         <br>
         <div class="w-100 center">
-            <button class="btn btn-green2 btn-next">다음 <i class="fa-solid fa-right-long"></i></button>
+            <button type="button" class="btn btn-green2 btn-next">다음 <i class="fa-solid fa-right-long"></i></button>
         </div>
     </div>
 
@@ -123,8 +121,8 @@
         </div>
         <br>
         <div class="w-100 center">
-            <button class="btn btn-green2 btn-prev"><i class="fa-solid fa-left-long"></i> 이전</button>
-            <button class="btn btn-green2 btn-next">다음 <i class="fa-solid fa-right-long"></i></button>
+            <button type="button" class="btn btn-green2 btn-prev"><i class="fa-solid fa-left-long"></i> 이전</button>
+            <button type="button" class="btn btn-green2 btn-next">다음 <i class="fa-solid fa-right-long"></i></button>
         </div>
     </div>
 
@@ -189,8 +187,8 @@
                 </div>
                 <br><br>
                 <div class="w-100 center">
-                    <button class="btn btn-neutral btn-prev"><i class="fa-solid fa-left-long"></i> 이전</button>
-                    <button class="btn btn-green2">작성 완료</button>
+                    <button type="button" class="btn btn-neutral btn-prev"><i class="fa-solid fa-left-long"></i> 이전</button>
+                    <button type="submit" class="btn btn-green2">작성 완료</button>
                 </div>
         </div>
     </div>

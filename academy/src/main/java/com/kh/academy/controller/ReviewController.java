@@ -60,14 +60,12 @@ public class ReviewController {
 		reviewDto.setReviewWriter(userId);
 		
 		if(userId == null) {
-			return "redirect:write?error";
+			return "redirect:/company/review/write?error";
 		}
 		//리뷰 DB 저장
 		int reviewNo = reviewDao.sequence();
 		reviewDto.setReviewNo(reviewNo);
 		reviewDao.insert(reviewDto, companyNo);	
-		
-		System.out.println("reviewDto = " + reviewDto);
 		
 		return "redirect:detail?reviewNo=" + reviewNo; // reviewNo 파라미터 전달
 	}
