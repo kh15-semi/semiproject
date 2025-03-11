@@ -16,7 +16,7 @@ public class CompanyHistoryMapper implements RowMapper<CompanyHistoryDto> {
 	public CompanyHistoryDto mapRow(ResultSet rs, int rowNum) throws SQLException {
 		return CompanyHistoryDto.builder()
 				.companyHistoryNo(rs.getInt("company_history_no"))
-				.memberId(rs.getString("member_id"))
+				.memberIdCardNum(rs.getString("member_id_card_num"))
 				.companyNo(rs.getInt("company_no"))
 				.companyHistoryJoinDate(rs.getDate("company_history_join_date"))
 				.companyHistoryLeaveDate(rs.getDate("company_history_leave_date"))

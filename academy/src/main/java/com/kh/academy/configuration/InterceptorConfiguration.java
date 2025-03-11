@@ -24,7 +24,7 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
         registry.addInterceptor(memberLoginInterceptor)
                 .addPathPatterns(List.of(
                         "/member/**",            // 회원 관련 페이지
-                        "/company/member/**",    // 기업회원 관련 페이지
+                        //"/company/member/**",    // 기업회원 관련 페이지
                         "/share/exit",           // 회원 탈퇴
                         "/share/password"        // 비밀번호 변경
                 ))
