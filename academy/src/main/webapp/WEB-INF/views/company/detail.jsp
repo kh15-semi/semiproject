@@ -293,34 +293,7 @@
                         <div class="cell center">
                             <jsp:include page="/WEB-INF/views/template/pagination.jsp"></jsp:include>
                         </div>
-
                     </div>
-
-                </div>
-
             </div>
-
-
-                                    </thead>
-                                    <c:when test="${list.isEmpty()}">
-                                        <tbody>
-                                            <tr height="150">
-                                                <td colspan="7" align="center">
-                                                    등록된 게시글이 없습니다
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </c:when>
-                                </table>
-                            </div>
-                            <div>
-                                <div class="cell center">
-                                </div>
-                            <div class="review-actions">
-                                <button class="write-review-btn">리뷰 쓰러가기 →</button>
-                            </div>
-                            
-		</div>
-	</div>
 </form>
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
