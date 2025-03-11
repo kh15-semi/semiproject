@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -24,30 +25,30 @@ public class CompanyController {
 	private CompanyDao companyDao;
 	
 
-	//모든 회사 목록 불러오기
-	@RequestMapping("/")
-	public String home(Model model) {
+	//기업목록을 가져와 home.jsp에 전달
+	@RequestMapping("/list")
+	public String list(Model model) {
 		List<CompanyDto> companyList = companyDao.selectList();
 		model.addAttribute("companyList", companyList);
 		return "/home";
-//	@RequestMapping("/company/detail")
-//	public String CompanyMypage(HttpSession session, Model model) {
-//		String userId = (String) session.getAttribute("userId"); // 내 아이디 추출
-//        MemberDto memberDto = memberDao.selectOne(userId); // 내 정보 획득
-//        
-//        // 기업명 추가
-//        String companyName = memberDao.getCompanyNameByCrNumber(memberDto.getMemberCrNumber());
-//        //memberDto.setCompanyName(companyName);
-//
-//        model.addAttribute("memberDto", memberDto);
-//
-//        return "/WEB-INF/views/company/detail.jsp";
-//	}
-//	@RequestMapping("/detail")
-//	public String companyDetail(@RequestParam  int companyNo, Model model) {
-//		CompanyDto companyDto = companyDao.selectOne(companyNo);
-//		model.addAttribute("companyDto", companyDto);
-//		return "/WEB-INF/views/company/detail.jsp";
+	}
+	@GetMapping("/detail")
+	public String companyDetail(@RequestParam("companyNo") int companyNo, Model model) {
+		CompanyDto companyDto = companyDao.selectOne(companyNo);
+		if(companyDto == null) {
+			return "Redirect:/company/list";
 		}
-
+		//사업자번호 뒤 5자리 *로 변경
+		 String crNumber = companyDto.getCompanyCrNumber();
+		 if (crNumber != null && crNumber.length() > 5) {
+		     crNumber = crNumber.substring(0, crNumber.length() - 5) + "*****";
+		}
+		 //리뷰 목록 가져오기(reviewListDao필요)
+		 
+		 
+		 
+		model.addAttribute("companyDto", companyDto);
+		model.addAttribute("maskedCrNumber", crNumber);
+		return "/WEB-INF/views/company/detail.jsp";
+	}
 }

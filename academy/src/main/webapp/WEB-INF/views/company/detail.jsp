@@ -26,15 +26,15 @@
                     <div class="company-details">
                         <!-- 회사명과 평점을 같은 줄에 배치 -->
                         <div class="company-header">
-                            <div class="flex company-name">Instagram</div>
-                            <div class="company-rating" data-max="5" data-rate="4"> 총 평점: </div>
+                            <div class="flex company-name">${companyDto.companyName}</div>
+                            <div class="company-rating" data-max="5" data-rate="4"> 총 평점: ${reviewDto.reviewScore}</div>
                         </div>
                         <div class="company-extra-info">
-                            <p>업종: IT</p>
-                            <p>이메일: example@email.com</p>
-                            <p>홈페이지: www.example.com</p>
-                            <p>주소: 서울시 강남구</p>
-                            <p>전화번호: 02-1234-5678</p>
+                            <p>업종: ${companyDto.companyIndustry}</p>
+                            <p>회사 번호: ${companyDto.companyContact}</a></p>
+                            <p>홈페이지: ${companyDto.companyUrl}</p>
+                            <p>주소: ${companyDto.companyAddress1}  ${companyDto.companyAddress2}</p>
+                            <p>사업자번호: ${maskedCrNumber}</p>
                         </div>
                         <div class="map">
                             <button class="map-btn">위치보기 →</button>
@@ -64,25 +64,37 @@
                                             <th>수정일</th>
                                         </tr>
                                     </thead>
-                                    <c:when test="${list.isEmpty()}">
-                                        <tbody>
-                                            <tr height="150">
-                                                <td colspan="7" align="center">
-                                                    등록된 게시글이 없습니다
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </c:when>
+                                    <tbody>
+                						<c:if test="${empty reviewListDto}">
+                    						<tr height="150">
+                        						<td colspan="7" align="center">
+                           							 등록된 게시글이 없습니다.
+                        						</td>
+                    						</tr>
+                						</c:if>
+                						<c:forEach var="review" items="${reviewListDto}">
+                    						<tr>
+                        						<td>${review.reviewNo}</td>
+                        						<td>${review.reviewWriter}</td>
+                        						<td>${review.reviewComment}</td>
+                        						<td>${review.reviewScore}</td>
+                        						<td>${review.reviewLike}</td>
+                        						<td>${review.reviewWtime}</td>
+                        						<td>${review.reviewEtime}</td>
+                    						</tr>
+                						</c:forEach>
+            						</tbody>
                                 </table>
                             </div>
                             <div>
                                 <div class="cell center">
                                 </div>
-                            <div class="review-actions">
-                                <button class="write-review-btn">리뷰 쓰러가기 →</button>
-                            </div>
-                            
 		</div>
 	</div>
 </form>
+<div class="review-actions">
+	<a href="/company/review/write?companyNo=${companyDto.companyNo}">
+		<button type="button" class="write-review-btn">리뷰 쓰러가기 →</button>
+	</a>
+</div>
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
