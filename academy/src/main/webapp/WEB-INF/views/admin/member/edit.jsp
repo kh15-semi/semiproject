@@ -47,7 +47,7 @@
 	
 
 	<div class="cell center">
-		<a href="/admin/member/list" class="btn btn-neutral"><i class="fa-solid fa-caret-left"></i> back</a>
+		<a href="detail?memberId=${memberDto.memberId}" class="btn btn-neutral"><i class="fa-solid fa-caret-left"></i> back</a>
 		<button class="btn btn-green2"><i class="fa-solid fa-user-pen"></i> 정보 수정</button>
 	</div>
 	
