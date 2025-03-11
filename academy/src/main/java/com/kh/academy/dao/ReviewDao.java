@@ -28,10 +28,10 @@ public class ReviewDao {
 	}
 	
 	public void insert(ReviewDto reviewDto, int companyNo) {
-		String sql = "insert into review (review_no, review_writer, review_company_no, review_score, review_comment, review_wtime, "
-				+ "review_strength, review_weakness, review_salary, review_work_and_life, "
-				+ "review_promotion, review_culture, review_director "
-                + "values (?, ?, ?, ?, systimestamp, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into review (review_no, review_writer, review_company_no, review_score, review_comment, "
+		        + "review_strength, review_weakness, review_salary, review_work_and_life, "
+		        + "review_promotion, review_culture, review_director) "
+		        + "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		Object[] data = {
 				reviewDto.getReviewNo(), 
 				reviewDto.getReviewWriter(), companyNo, reviewDto.getReviewScore(), reviewDto.getReviewComment(), 

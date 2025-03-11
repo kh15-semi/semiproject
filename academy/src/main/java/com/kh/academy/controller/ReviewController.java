@@ -40,10 +40,8 @@ public class ReviewController {
 	@RequestMapping("/detail")
 	public String detail(@RequestParam int reviewNo, Model model) {
 		ReviewDto reviewDto = reviewDao.selectOne(reviewNo);
-
 		if(reviewDto.getReviewWriter() != null) {
-			MemberDto memberDto = memberDao.selectOne(reviewDto.getReviewWriter());
-			model.addAttribute("memberDto", memberDto);
+			model.addAttribute("reviewDto", reviewDto);
 		}
 		return "/WEB-INF/views/company/review/detail.jsp";
 	}
@@ -60,14 +58,12 @@ public class ReviewController {
 		reviewDto.setReviewWriter(userId);
 		
 		if(userId == null) {
-			return "redirect:write?error";
+			return "redirect:/company/review/write?error";
 		}
 		//리뷰 DB 저장
 		int reviewNo = reviewDao.sequence();
 		reviewDto.setReviewNo(reviewNo);
 		reviewDao.insert(reviewDto, companyNo);	
-		
-		System.out.println("reviewDto = " + reviewDto);
 		
 		return "redirect:detail?reviewNo=" + reviewNo; // reviewNo 파라미터 전달
 	}
