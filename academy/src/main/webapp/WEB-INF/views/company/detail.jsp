@@ -11,7 +11,7 @@
 
     <!-- font awesome cdn -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<style>
+    <style>
         /* 전체 컨테이너 */
         .container {
             max-width: 1200px;
@@ -40,15 +40,6 @@
         .cell {
             display: flex;
             gap: 20px;
-        }
-
-
-        /* 로그인 버튼 */
-        .login-box {
-            padding: 15px;
-            border: 1px solid black;
-            margin-top: 20px;
-            margin-left: 230px;
         }
 
         /* 메인 레이아웃 */
@@ -167,36 +158,9 @@
             /* 위쪽 테두리 추가 */
         }
 
-        /* 로그인 모달 스타일 */
-        .loginscreen {
-            display: contents;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            width: 300px;
-            padding: 20px;
-            background: white;
-            border: 2px solid black;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .loginpage {
-            text-align: center;
-            background: rgb(208, 245, 210);
-        }
-
         .close {
             float: right;
             cursor: pointer;
-        }
-
-        .logincheck {
-            margin-top: 10px;
-            padding: 8px;
-            background: black;
-            color: white;
-            cursor: pointer;
-            text-align: center;
         }
 
         .map {
@@ -205,7 +169,7 @@
         }
     </style>
     
-    <script type="text/javascript">
+       <script type="text/javascript">
         $(function () {
             $(".company-rating").score();
         });
@@ -221,30 +185,6 @@
                 },
             });
         });
-
-
-        $(function () {
-            // 로그인 기능 
-            $(".login-btn").on("click", function () {
-                $("#loginpage").show();
-            });
-
-            $(".close").on("click", function () {
-                $("#loginpage").hide();
-            });
-
-            $(".btn-logincheck").on("click", function () {
-                var memberId = $("#memberId").val();
-                var memberPw = $("#memberPw").val();
-
-                if (memberId == "admin" && memberPw == "1234") {
-                    console.log("로그인 성공!");
-                    $("#loginpage").hide();
-                } else {
-                    console.log("아이디 또는 비밀번호가 틀렸습니다.");
-                }
-            });
-
 
             //상세페이지 속 회원가입창 이동
             $(document).ready(function(){
@@ -266,37 +206,21 @@
                     window.location.href = "http://127.0.0.1:5500/ui/04.reviewpage.html"; // review.html로 이동
                 });
             });
-
-
-        });
     </script>
 
 
 <form action="change" method="post">
-   <div class="container w-800">
+    <div class="container w-800">
 
+        <!-- 헤더 -->
+        <div class="header">
             <div class="left flex-box logo">
                 <a href="http://127.0.0.1:5500/ui/main_non.html">
                     <img src="./image/jobplanet.png">
                 </a>
             </div>
-
-            <div class="login-box">
-                <button class="login-btn">로그인 / 회원가입</button>
-            </div>
         </div>
 
-        <!-- 로그인 창 -->
-        <div id="loginpage" class="loginpage" style="display: none;">
-            <div class="loginscreen">
-                <span class="close">x</span>
-                <h2>로그인</h2>ID:
-                <input type="text" name="memberId" placeholder="아이디 입력">PW:
-                <input type="password" name="memberPw" placeholder="비밀번호 입력">
-                <button type="submit"  class="btn-logincheck">Login</button>
-                <button class="memberjoin-btn">회원가입 하러가기</button>
-            </div>
-        </div>
 
         <!-- 메인 콘텐츠 -->
         <div class="main">
@@ -330,6 +254,9 @@
                 <div class="container reviews">
                     <div class="cell centerreviews-header">
                         <h2>리뷰</h2>
+                        <div class="review-actions">
+                            <button class="write-review-btn">리뷰 쓰러가기 →</button>
+                        </div>
                     </div>
                     <p>글은 자신의 인격입니다.존중하며 적어주세요</p>
                         <!-- 리뷰 목록 -->
@@ -362,9 +289,7 @@
                             <div>
                                 <div class="cell center">
                                 </div>
-                            <div class="review-actions">
-                                <button class="write-review-btn">리뷰 쓰러가기 →</button>
-                            </div>
+
                             
                             <!-- 페이지 네비게이터 -->
                             <div class="cell center">
@@ -376,12 +301,13 @@
                 </div>
 
                 <!-- 푸터 -->
+                <div class="footer">
                     <span>(주)브레인커머스</span><br>
                     서울특별시 강남구 테헤란로 509 엔씨타워 I, 10층 대표: 황희승, 윤신근 개인정보보호관리자: 윤신근<br>
                     사업자등록번호: 120-87-92182 통신판매업 신고번호: 제2014-서울강남-02942호 유료 직업소개사업 등록번호 (국내)
                     제2017-3220163-14-5-00046호<br>
-                    대표번호: 1644-5641 (10:00~17:00 / 매월 마지막 금요일 09:00~13:00 / 주말 및 공휴일 휴무) <br>
-                    대표이메일: customer_service@jobplanet.co.kr<br>
+                    대표번호: 1644-5641 (10:00~17:00 / 매월 마지막 금요일 09:00~13:00 / 주말 및 공휴일 휴무) | 대표이메일:
+                    customer_service@jobplanet.co.kr<br>
                     <br>
                     &copy; Jobplanet. All rights reserved.
                 </div>
