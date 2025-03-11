@@ -40,7 +40,6 @@
 			border: none;
 			border-top: 1px solid rgb(206, 206, 206);
 			margin: 5px;
-
 		}
 
 		.recommend-box {
@@ -49,8 +48,9 @@
 			background-color: rgb(234, 245, 234);
 			border-radius: 15px;
 			font-size: 25px;
-			font-weight: 300;
 			padding: 30px;
+			text-align: center;
+			align-content: center;
 		}
 
 
