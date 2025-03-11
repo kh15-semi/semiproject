@@ -65,13 +65,15 @@ public class MemberController {
 	public String mypageMember(HttpSession session, Model model) {
 		String userId = (String) session.getAttribute("userId"); // 내 아이디 추출
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto"); // 세션에서 정보 획득
-
+		CompanyHistoryDto companyHistoryDto = companyHistoryDao.selectCompanyHistoryByMemberIdCardNum(memberDto.getMemberCrNumber());
+						
 		if (memberDto == null) {
 			memberDto = memberDao.selectOne(userId); // 세션에 정보가 없으면 DB에서 획득
 			session.setAttribute("memberDto", memberDto); // DB에서 가져온 정보를 세션에 저장
 		}
 
 		model.addAttribute("memberDto", memberDto);
+		model.addAttribute("companyHistoryDto", companyHistoryDto);
 
 		return "/WEB-INF/views/member/mypage.jsp";
 	}
@@ -126,7 +128,9 @@ public class MemberController {
 	public Map<String, String> getCompanyName(@RequestParam String crNumber) {
 		Map<String, String> response = new HashMap<>();
 		String companyName = memberDao.getCompanyNameByCrNumber(crNumber);
+		
 		response.put("companyName", companyName != null ? companyName : "");
+		System.out.println("response = " + response);
 
 		return response;
 	}

@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
-<<<<<<< HEAD
 <!-- Lightpick 라이브러리 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightpick@1.6.2/css/lightpick.min.css">
 <script src="https://cdn.jsdelivr.net/npm/moment@2.30.1/moment.min.js"></script>
@@ -32,8 +31,11 @@
 </style>
 
 
+
+<form action="edit" method="post">
+
 <form action="change" method="post">
-=======
+
 <script type="text/javascript">
 $(function() {
 	// 정보 수정 완료 버튼 클릭 시
@@ -50,7 +52,6 @@ $(function() {
 </script>
 
 <form action="/member/edit" method="post">
->>>>>>> refs/heads/main
     <div class="container w-800">
         <div class="cell">
             <div class="cell">
@@ -123,8 +124,9 @@ $(function() {
     </div>
     
 	<c:if test="${param.error != null}">
-		<h3 style="color:red">비밀번호가 일치하지 않습니다</h2>
+		<h3 style="color:red">비밀번호가 일치하지 않습니다</h3>
 	</c:if>
     
 </form>
+
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
