@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
@@ -13,7 +14,7 @@
 
 <!-- kakao post api -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="/js/member/join.js" ></script>
+<script src="/js/member/login.js" ></script>
 <script src="/js/job_select.js"></script>
 
 <style>
@@ -45,13 +46,18 @@
             	<h3>로그인</h3>
         	</div>
         		<hr>
-        	<div class="cell left">
-            	<input type="text" name="memberId" placeholder="아이디" class="field w-100 mt-10" style="border-radius: 10px;">
+        	<div class="cell">
+            	<input type="text" name="memberId" placeholder="아이디" class="field w-100 mt-10" style="border-radius: 10px;" autocomplete="off">
         	</div>
-        	<div class="cell mb-20">
+        	<div class="cell">
             	<input type="password" name="memberPw"  placeholder="비밀번호" class="field w-100" style="border-radius: 10px;">
+    			<c:if test="${param.error != null}">
+					<div class="cell center red" style="font-size: 13px">
+						존재하지 않는 아이디거나 비밀번호가 일치하지 않습니다.
+					</div>
+				</c:if>
         	</div>
-        	<button type="submit" class="btn btn-green1 field w-100" style="border-radius: 10px; font-weight: 700;">
+        	<button type="submit" class="btn btn-green1 field w-100 mt-10" style="border-radius: 10px; font-weight: 700;">
             	<i class="fa-solid fa-arrow-right-to-bracket"></i> 로그인
             </button>
         	<div class="cell" style="display: flex; justify-content: space-between; width: 100%;">
@@ -63,6 +69,8 @@
             	<p>아직 회원이 아니세요? &nbsp;&nbsp;<a href="/member/join" style="text-decoration: none; color: #32AA46; font-weight: 800;">회원가입</a></p>
         	</div>
     	</div>
+    	
+    	
 	</div>
 	
 </form>
