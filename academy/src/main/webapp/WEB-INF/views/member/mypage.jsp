@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
 <script type="text/javascript">
@@ -85,11 +86,14 @@ $(function() {
     <hr style="border: 0; border: 1px solid rgb(196, 196, 196)">
 
 	<div class="cell">
-            <h3>재직 이력</h3>
-            <p>기업명 : ${companyHistoryDto.company_name}</p>
-            <p>입사일 : ${companyHistoryDto.company_join_date}</p>
-            <p>퇴사일 : ${companyHistoryDto.company_leave_date}</p>
-       </div>
+		<c:if test="${companyHistoryDto == null}">
+        	<p>재직 이력이 없습니다.</p>
+    	</c:if>
+        <h3>재직 이력</h3>
+    	<p>기업명 : ${companyName}</p>
+        <p>입사일 : ${companyHistoryDto.companyHistoryJoinDate}</p>
+        <p>퇴사일 : ${companyHistoryDto.companyHistoryLeaveDate}</p>
+    </div>
 
     </div>
     <div class="cell center" style="margin: 10px; padding: 10px;">
