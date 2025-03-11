@@ -30,12 +30,6 @@
 	
 </style>
 
-
-
-<form action="edit" method="post">
-
-<form action="change" method="post">
-
 <script type="text/javascript">
 $(function() {
 	// 정보 수정 완료 버튼 클릭 시

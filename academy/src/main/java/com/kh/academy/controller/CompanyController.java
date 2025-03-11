@@ -45,8 +45,6 @@ public class CompanyController {
 		}
 		 //리뷰 목록 가져오기(reviewListDao필요)
 		 
-		 
-		 
 		model.addAttribute("companyDto", companyDto);
 		model.addAttribute("maskedCrNumber", crNumber);
 		return "/WEB-INF/views/company/detail.jsp";

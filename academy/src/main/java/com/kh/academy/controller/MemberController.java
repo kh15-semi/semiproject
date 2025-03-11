@@ -152,6 +152,11 @@ public class MemberController {
 		model.addAttribute("companyName", companyName);
 
 		memberDao.insertCompanyMember(memberDto); // 회원가입
+		
+		if(memberDto.getMemberType() == "기업회원") {
+		//if(session.getAttribute("userType") == "기업회원") {
+			memberDao.updateMemberCompanyNo(memberDto.getMemberId());
+		}
 
 		return "redirect:/share/joinFinish"; // joinFinish으로 쫓아내는 코드(상대경로)
 	}
@@ -331,12 +336,17 @@ public class MemberController {
 	public String exit(@RequestParam String memberPw, HttpSession session) {
 		String userId = (String) session.getAttribute("userId");
 		MemberDto memberDto = memberDao.selectOne(userId);
+		
 		boolean isValidPw = memberPw.equals(memberDto.getMemberPw());
 		if (isValidPw == false) {
 			return "redirect:exit?error";
 		}
+		
+		if(memberDto.getMemberType().equals("기업회원")) {
+			companyDao.delete(memberDto.getMemberCompanyNo());
+		}
+		
 		memberDao.delete(userId);
-		// return "redirect:logout";
 		session.removeAttribute("userId");
 		return "redirect:exitFinish";
 	}
