@@ -130,6 +130,9 @@ public class MemberDao {
 		Object[] data = { memberId };
 		return jdbcTemplate.update(sql, data) > 0;
 	}
+	
+	//
+    //public void deleteCompanyMember(String memberId) {
 
 	// 최종 로그인 시각 갱신 메소드
 	public boolean updateMemberLogin(String memberId) {

@@ -136,7 +136,7 @@ $(function() {
 			        <input type="text" name="memberAddress1" class="field w-100" placeholder="기본주소" readonly>
 			    </div>
 			    <div class="cell">
-			        <input type="text" name="memberAddress2" class="field w-100" placeholder="상세주소" readonly>
+			        <input type="text" name="memberAddress2" class="field w-100" placeholder="상세주소">
 			    </div>
 			    <p><i class="fa-solid fa-star-of-life red"></i> 필수 입력 사항</p>
             <div class="cell">
