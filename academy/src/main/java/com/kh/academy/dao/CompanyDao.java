@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.academy.dto.CompanyDto;
 import com.kh.academy.dto.ReplyDto;
 import com.kh.academy.mapper.CompanyMapper;
+import com.kh.academy.vo.PageVO;
 
 @Repository
 public class CompanyDao {
@@ -65,6 +66,54 @@ public class CompanyDao {
         List<CompanyDto> list = jdbcTemplate.query(sql, companyMapper, data);  // 쿼리 실행 및 매핑
         return list.isEmpty() ? null : list.get(0);  // 첫 번째 결과 반환 (없으면 null 반환)
     }
+    
+    public List<CompanyDto> selectList(PageVO pageVO) {
+        if (pageVO.isList()) {
+            String sql = "select * from ("
+                        + "select rownum rn, TMP.* from ("
+                        + "select * from company order by company_no asc"
+                        + ")TMP"
+                        + ") "
+                        + "where rn between ? and ?";
+            Object[] data = {pageVO.getStartRownum(), pageVO.getFinishRownum()};
+            return jdbcTemplate.query(sql, companyMapper, data);
+        } else {
+            String sql = "select * from ("
+                        + "select rownum rn, TMP.* from ("
+                        + "select * from company "
+                        + "where instr(#1, ?) > 0 "
+                        + "order by #1 asc, company_no asc"
+                        + ")TMP"
+                        + ") "
+                        + "where rn between ? and ?";
+            sql = sql.replace("#1", pageVO.getColumn()); // 검색할 컬럼 동적으로 교체
+            Object[] data = {
+                pageVO.getKeyword(), 
+                pageVO.getStartRownum(),
+                pageVO.getFinishRownum()
+            };
+            return jdbcTemplate.query(sql, companyMapper, data);
+        }
+    }
+
+    public int count(PageVO pageVO) {
+        if (pageVO.isList()) {
+            String sql = "select count(*) from company";
+            return jdbcTemplate.queryForObject(sql, int.class);
+        } else {
+            String sql = "select count(*) from company "
+                        + "where instr(#1, ?) > 0";
+            sql = sql.replace("#1", pageVO.getColumn()); // 검색할 컬럼 동적으로 교체
+            Object[] data = {pageVO.getKeyword()};
+            return jdbcTemplate.queryForObject(sql, int.class, data);
+        }
+    }
+
+	public List<CompanyDto> selectList() {
+		String sql = "select * from company order by company_no asc";
+		return jdbcTemplate.query(sql, companyMapper);
+	}
+
     
 }
 

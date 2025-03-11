@@ -20,23 +20,21 @@ import com.kh.academy.service.AttachmentService;
 
 import jakarta.servlet.http.HttpSession;
 
-@Controller("/review")
+@Controller
+@RequestMapping("/company/review")
 public class ReviewController {
 
 	@Autowired
 	private ReviewDao reviewDao;
 	@Autowired
 	private MemberDao memberDao;
-	@Autowired
-	private AttachmentService attachmentService;
-
 
 	//리뷰 목록 매핑
 	@GetMapping("/list")
 	public String list(Model model) {
 		List<ReviewDto> reviewList = reviewDao.selectList();
 		model.addAttribute("reviewList", reviewList);
-		return "/WEB-INF/views/review/list.jsp";
+		return "/WEB-INF/views/company/review/list.jsp";
 	}
 	//리뷰 상세 매핑
 	@RequestMapping("/detail")
@@ -47,31 +45,38 @@ public class ReviewController {
 			MemberDto memberDto = memberDao.selectOne(reviewDto.getReviewWriter());
 			model.addAttribute("memberDto", memberDto);
 		}
-		return "/WEB-INF/views/review/detail.jsp";
+		return "/WEB-INF/views/company/review/detail.jsp";
 	}
 	//리뷰 작성 매핑
 	@GetMapping("/write")
-	public String write() {
-		return "/WEB-INF/views/review/write.jsp";
+	public String write(@RequestParam int companyNo, Model model) {
+		model.addAttribute("companyNo", companyNo); // 폼 객체 전달
+		model.addAttribute("reviewDto", new ReviewDto()); // 폼 객체 전달
+		return "/WEB-INF/views/company/review/write.jsp";
 	}
 	@PostMapping("/write")
-	public String write(@ModelAttribute ReviewDto reviewDto,
-								HttpSession session) {
-		MemberDto memberDto = (MemberDto) session.getAttribute("userId");
-		if(memberDto != null) {
-			reviewDto.setReviewWriter(memberDto.getMemberId());			
+	public String write(@ModelAttribute ReviewDto reviewDto, @RequestParam int companyNo, HttpSession session) {
+		String userId = (String) session.getAttribute("userId");
+		reviewDto.setReviewWriter(userId);
+		
+		if(userId == null) {
+			return "redirect:write?error";
 		}
 		//리뷰 DB 저장
-		reviewDto.setReviewNo(reviewDao.sequence());
-		reviewDao.insert(reviewDto);	
-		return "redirect:list";
+		int reviewNo = reviewDao.sequence();
+		reviewDto.setReviewNo(reviewNo);
+		reviewDao.insert(reviewDto, companyNo);	
+		
+		System.out.println("reviewDto = " + reviewDto);
+		
+		return "redirect:detail?reviewNo=" + reviewNo; // reviewNo 파라미터 전달
 	}
 	//리뷰 수정 매핑
 	@GetMapping("/edit")
 	public String edit(@RequestParam int reviewNo, Model model) {
 		ReviewDto reviewDto = reviewDao.selectOne(reviewNo);
 		model.addAttribute("reviewDto", reviewDto);
-		return "/WEB-INF/views/review/edit.jsp";
+		return "/WEB-INF/views/company/review/edit.jsp";
 	}
 	@PostMapping("/edit")
 	public String edit(@ModelAttribute ReviewDto reviewDto, HttpSession session) {

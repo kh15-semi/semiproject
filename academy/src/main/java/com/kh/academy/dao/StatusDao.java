@@ -46,7 +46,7 @@ public class StatusDao {
 	
 	// 리뷰 현황 (/admin/review 미구현 / review 구현 후 기준 작성)
 	public List<StatusVO> reviewWrite() {
-		String sql = "";
+		String sql = "select '리뷰 수' key, count(*) value from review";
 		return jdbcTemplate.query(sql, statusMapper);
 	}
 	

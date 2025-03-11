@@ -37,4 +37,5 @@ public class StatusRestController {
 	public List<StatusVO> reviewWrite() {
 		return statusDao.reviewWrite();
 	}
+	
 }

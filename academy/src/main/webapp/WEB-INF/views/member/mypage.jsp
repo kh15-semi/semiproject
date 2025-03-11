@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
 <script type="text/javascript">
@@ -48,49 +49,59 @@ $(function() {
             <p>${memberDto.memberName}</p>
         </div>
 
+	<hr style="border: 0; border-top: 1px solid rgb(196, 196, 196)">
+
         <div class="cell">
             <h3>연락처</h3>
             <p>${memberDto.memberContact}</p>
         </div>
+
+	<hr style="border: 0; border-top: 1px solid rgb(196, 196, 196)">
 
         <div class="cell">
             <h3>이메일</h3>
             <p>${memberDto.memberEmail}</p>
         </div>
 
+	<hr style="border: 0; border-top: 1px solid rgb(196, 196, 196)">
+
         <div class="cell">
             <h3>주소</h3>
-            <p>${memberDto.memberPost}</p>
-            <p>${memberDto.memberAddress1}</p>
-            <p>${memberDto.memberAddress2}</p>
+            <p>우편번호 : ${memberDto.memberPost}</p>
+            <p>기본주소 : ${memberDto.memberAddress1}</p>
+            <p>상세주소 : ${memberDto.memberAddress2}</p>
        </div>
        
+	<hr style="border: 0; border-top: 1px solid rgb(196, 196, 196)">
+
        <div>     
             <!-- 관심산업/직종 추가 -->
-            <h3>관심 산업 및 직종</h3>
-            <p>${memberDto.memberIndustry}</p>
-            <p>${memberDto.memberJob}</p>
+            <h3>관심 산업군 및 직종</h3>
+            <p>관심 산업군 : ${memberDto.memberIndustry}</p>
+            <p>관심 직종 : ${memberDto.memberJob}</p>
             <!-- 관심산업/직종 추가 -->
         </div>
         
-    </div>
     
-    <hr style="border: 0; border-top: 1px solid rgb(196, 196, 196)"><br>
+    <hr style="border: 0; border: 1px solid rgb(196, 196, 196)">
 
+	<div class="cell">
+		<c:if test="${companyHistoryDto == null}">
+        	<p>재직 이력이 없습니다.</p>
+    	</c:if>
+        <h3>재직 이력</h3>
+    	<p>기업명 : ${companyName}</p>
+        <p>입사일 : ${companyHistoryDto.companyHistoryJoinDate}</p>
+        <p>퇴사일 : ${companyHistoryDto.companyHistoryLeaveDate}</p>
+    </div>
+
+    </div>
     <div class="cell center" style="margin: 10px; padding: 10px;">
-<<<<<<< HEAD
-        <button type="button" class="addCompany-btn btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-pen-to-square"></i> 회사등록</button>    
-        <button type="button" class="edit-btn btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-pen-to-square"></i> 정보 수정</button>
-        <button type="button" class="changePw-btn btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-lock"></i> 비밀번호 변경</button>
-		<button type="button" class="btn btn-red" style="border-radius: 10px;"><i class="fa-solid fa-exclamation"></i> 계정삭제</button>
-        <button type="button" class="main-btn btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-house"></i> 메인</button>
-=======
         <!-- <button type="button" class="btn-addCompany btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-pen-to-square"></i> 회사등록</button> -->    
         <button type="button" class="btn-edit btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-pen-to-square"></i> 정보 수정</button>
         <button type="button" class="btn-changePw btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-lock"></i> 비밀번호 변경</button>
         <button type="button" class="btn-delete btn btn-red" style="border-radius: 10px;"><i class="fa-solid fa-exclamation"></i> 계정삭제</button>
         <button type="button" class="btn-main btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-house"></i> 메인</button>
->>>>>>> refs/heads/main
     </div> 
 </div>
 

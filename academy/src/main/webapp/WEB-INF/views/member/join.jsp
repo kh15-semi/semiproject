@@ -8,6 +8,9 @@
 <script src="https://cdn.jsdelivr.net/npm/moment@2.30.1/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lightpick@1.6.2/lightpick.min.js"></script>
 
+<!-- font awesome cdn -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <!-- kakao post api -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="/js/member/join.js" ></script>
@@ -15,13 +18,15 @@
 
 <style>
 	.selectBox {
-		border-radius: 10px;
-		border-color: #ebecee;
-	}
-	.selectBox:focus {
-		border-radius: 10px;
-      	border-color: #5fe075;
-    	outline: none;
+    border-radius: 10px;
+    border: 1px solid #ebecee;
+    width: 100%;
+    padding: 5px;
+    padding-left: 8px;
+    box-sizing: border-box;
+    display: block; /* 블록 요소로 변경하여 input과 동일한 동작 */
+    height: 40px; /* input과 동일한 높이 설정 */
+    line-height: normal; /* 기본 select의 정렬 문제 해결 */
 	}
 	.field {
 		border-radius: 10px;
@@ -32,20 +37,18 @@
       	border-color: #5fe075;
     	outline: none;
    	}
-	.btn-login {
-	 	border: 0;
-	    background-color: rgb(238, 238, 238);
-	    font-size: 13px;
-	    font-weight: 600;
-	    color: #32AA46;	
+	.flex-between {
+    	display: flex;
+    	justify-content: space-between; /* 양쪽 정렬 */
+    	align-items: center; /* 세로 중앙 정렬 */
+    	width: 100%;
 	}
-	.selectBox {
-		border:none;
-		width: 100%;
-		margin: 5px;
-		padding: 5px;
+	.left {
+    	text-align: left;
 	}
-	
+	.right {
+    	text-align: right;
+	}
 </style>
 
 <form action="join" method="post" enctype="multipart/form-data" autocomplete="off">
@@ -57,17 +60,19 @@
         	</a>
         </div>
         
-        	<div class="cell center">
-            	<a href="/company/member/join" class="btn btn-positive w-50">기업회원</a>
-        	</div>
-        	
-        <div class="cell p-20">
-
-            <div class="cell left m-10">
-                <h3>회원가입(개인)</h3>
-            </div>
-
         
+        <div class="cell p-20">
+            <div class="cell flex-between m-10">
+        		<div class="left">
+            		<h3>회원가입 (개인)</h3>
+        		</div>
+        		<div class="right me-20" style="color: #2d3436;">
+            		<p>기업회원이신가요? &nbsp;&nbsp;<a href="/company/member/join" style="text-decoration: none; color: #32AA46; font-weight: 800;">기업회원</a></p>
+        		</div>
+    		</div>
+    		
+			<hr>
+
             <div class="cell" style="padding: 5px;">
                 <div class="cell">
                     <input type="text" name="memberId" class="field w-100" placeholder="아이디">
@@ -87,25 +92,21 @@
                 	<div class="fail2-feedback">비밀번호를 먼저 형식에 맞게 작성하세요.</div>
                 </div>
                 <div class="cell">
-                    <input type="text" name="memberName" class="field w-100" placeholder="이름">
+                    <input type="text" name="memberName" class="field w-100" placeholder="이름 (실명)">
                     <div class="fail-feedback">이름을 입력해주세요.</div>
                     <div class="fail2-feedback">이름은 한글 2~5자로만 작성 가능합니다.</div>
                 </div>
                 <div class="cell">
-                	<input type="text" name="" class="field" size="12" maxlength="6" placeholder="주민번호 앞자리">
-                	-
-                	<input type="text" name="" class="field" size="12" maxlength="7" placeholder="주민번호 뒷자리">
-                	<div class="fail-feedback">주민번호를 작성해주세요.</div>
-                </div>
-                <div class="cell">
                     <input type="text" name="memberIdCardNum" class="field w-100" placeholder="주민등록번호">
+                    <div class="fail-feedback">주민번호 형식에 맞지 않습니다, 다시 입력해주세요.</div>
                 </div>
                 <div class="cell">
                     <input type="tel" name="memberContact" class="field w-100" placeholder="연락처">
-                    <div class="fail-feedback">연락처를 작성해주세요.</div>
+                    <div class="fail-feedback">연락처를 형식에 맞게 작성해주세요.</div>
                 </div>
                 <div class="cell">
                     <input type="email" inputmode="email" name="memberEmail" class="field w-100" placeholder="이메일 (선택사항)">
+                    <div class="fail-feedback">이메일을 형식에 맞게 작성해주세요.</div>
                 </div>
                 <div class="cell left">
                     <input type="text" name="memberPost" size="14" maxlength="6" class="field" placeholder="우편번호" readonly>
@@ -123,9 +124,10 @@
                     <input type="text" name="memberAddress2" class="field w-100" placeholder="상세주소" >
                 	<div class="fail-feedback">주소를 모두 작성해주세요.</div>
                 </div>
-                <div class="cell center">
+                <div class="cell">
+                <p><i class="fa-solid fa-star-of-life red"></i> 선택 입력 사항</p>
 	            	<select id="firstSelect" onchange="updateSecondSelect()" class="selectBox field" name="memberIndustry">
-		                <option value="">1차 직종 선택</option>
+		                <option value="">관심 산업군 선택</option>
 		                <option value="dev">개발</option>
 		                <option value="edu">교육</option>
 		                <option value="fin">금융/재무</option>
@@ -149,82 +151,20 @@
 	            	</select>
 
 		            <select id="secondSelect" class="selectBox field" name="memberJob">
-		                <option value="">2차 직종 선택</option>
+		                <option value="">관심 직종 선택</option>
 		            </select>
 		        </div>
-                
-                
-           </div>
-<!-- 
-            <div class="cell left" style="padding: 5px;">
-                <p><i class="fa-solid fa-star-of-life red"></i> 선택 입력 사항</p>
-                <div class="cell">
-                    <select name="memberIndustry" class="field w-100">
-                        <option value="">산업군</option>
-                        <option>IT</option>
-                    </select>
-                </div>
-                <div class="cell">
-                    <select name="memberJob" class="field w-100">
-                        <option value="">직종</option>
-                        <option>게임개발</option>
-                    </select>
-                </div>
-            </div>
-<<<<<<< HEAD
- -->
-           <div class="cell mt-30 mb-30">
-               <button class="btn btn-green2 w-100" style="border-radius: 10px"><i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;&nbsp;개인 회원가입</button>
-           </div>
-           <hr>
-           <p class="cell center mt-20">
-               이미 회원이세요?&nbsp;
-               <a href="/member/login" class="btn btn-login" style="border-radius: 10px;" src="/member/login">로그인</a>
-           </p>
-=======
 
-	 		<div class="cell center" style="padding:5px;">
-	            <label for="firstSelect"></label>
-	            <select id="firstSelect" onchange="updateSecondSelect()" class="selectBox">
-	                <option value="">1차 직종 선택</option>
-	                <option value="dev">개발</option>
-	                <option value="edu">교육</option>
-	                <option value="fin">금융/재무</option>
-	                <option value="pm">기획/경영</option>
-	                <option value="data">데이터</option>
-	                <option value="design">디자인</option>
-	                <option value="mr">마케팅/시장조사</option>
-	                <option value="mp">미디어/홍보</option>
-	                <option value="legal">법률/법무</option>
-	                <option value="mf">생산/제조</option>
-	                <option value="qc">생산관리/품질관리</option>
-	                <option value="sv">서비스/고객지원</option>
-	                <option value="eng">엔지니어링</option>
-	                <option value="rd">연구개발</option>
-	                <option value="db">영업/제휴</option>
-	                <option value="b2b">유통/무역</option>
-	                <option value="med">의약</option>
-	                <option value="hr">인사/총무</option>
-	                <option value="pro">전문직</option>
-	                <option value="csr">특수계층/공공</option>
-	            </select>
-	        
-	            <label for="secondSelect"></label>
-	            <select id="secondSelect" class="selectBox">
-	                <option value="">2차 직종 선택</option>
-	            </select>
-	        </div>
-            
+           	</div>
 
-            <div class="cell mt-30 mb-30">
+            <div class="cell mt-10 mb-30">
                 <button class="btn btn-green2 w-100" style="border-radius: 10px"><i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;&nbsp;개인 회원가입</button>
             </div>
             <hr>
-            <p class="cell center mt-20">
-                이미 회원이세요?&nbsp;
-                <a href="/share/login" class="btn btn-login" style="border-radius: 10px;">로그인</a>
-            </p>
->>>>>>> refs/heads/main
+            <div class="cell center" style="color: #2d3436;">
+            	<p>이미 회원이세요? &nbsp;&nbsp;<a href="/share/login" style="text-decoration: none; color: #32AA46; font-weight: 800;">로그인</a></p>
+        	</div>
+
         </div>
     </div>
 </form>

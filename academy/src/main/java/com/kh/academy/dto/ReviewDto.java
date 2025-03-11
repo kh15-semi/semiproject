@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 public class ReviewDto {
 	private int reviewNo; //리뷰번호
 	private String reviewWriter;//아이디
+	private int reviewCompanyNo; //회사번호
 	private int reviewScore;//리뷰평점
 	private String reviewComment;//리뷰한줄평
 	private int reviewLike;//리뷰좋아요
@@ -23,20 +24,5 @@ public class ReviewDto {
 	private int reviewPromotion;//승진기회 만족도(별점)
 	private int reviewCulture;//사내문화 만족도(별점)
 	private int reviewDirector;//경영진 만족도(별점)
-	private String reviewCeoEvalulation;//ceo에 대한 견해
-	private String reviewPrediction;//기업전망
-	private String reviewRecommend;//기업추천
-	
-	
-	
-	
+
 }
-
-
-
-
-
-
-
-
-

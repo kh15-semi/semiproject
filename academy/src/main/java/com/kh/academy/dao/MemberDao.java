@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.academy.dto.MemberDto;
 import com.kh.academy.mapper.MemberMapper;
+import com.kh.academy.vo.PageVO;
 
 @Repository
 public class MemberDao {
@@ -60,44 +61,34 @@ public class MemberDao {
 		jdbcTemplate.update(sql, data);
 		
 		// member_company_no 업데이트
-	    // updateMemberCompanyNo(memberDto.getMemberId());
+	    updateMemberCompanyNo(memberDto.getMemberId());
 	}
 	
-	public int updateMemberCompanyNo(String memberId) {
-	    String sql = "UPDATE member SET member_company_no = (SELECT company_no FROM company WHERE company_cr_number = (SELECT member_cr_number FROM member WHERE member_id = ?)) WHERE member_id = ?";
-	    return jdbcTemplate.update(sql, memberId, memberId);
-	}
-	
+	// 기업 회원의 사업자 등록번호로 기업명 조회
 	public String getCompanyNameByCrNumber(String crNumber) {
 		String sql = "SELECT bn_company_name FROM business_number WHERE bn_cr_number = ?";
         return jdbcTemplate.queryForObject(sql, String.class, crNumber);
     } 
 	
-	 public int updateMemberCompanyNo() {
-	        String sql = "UPDATE member m " +
-	                "SET m.member_company_no = ( " +
-	                "    SELECT c.company_no " +
-	                "    FROM company c " +
-	                "    WHERE c.company_cr_number = m.member_cr_number " +
-	                ") " +
-	                "WHERE m.member_type = '기업회원' " +
-	                "AND m.member_cr_number IN ( " +
-	                "    SELECT company_cr_number " +
-	                "    FROM company " +
-	                "    WHERE company_no IS NOT NULL " +
-	                ") " +
-	                "AND m.member_company_no IS NULL";
-
-	        return jdbcTemplate.update(sql);
-	    }
-
-//	// 상세조회 기능
-//	public MemberDto selectOne(String memberId) {
-//		String sql = "select * from member where member_id = ?";
-//		Object[] data = { memberId };
-//		List<MemberDto> list = jdbcTemplate.query(sql, memberMapper, data);
-//		return list.isEmpty() ? null : list.get(0);
-//	}
+	// 일반 회원의 company_no 업데이트
+	public void updateMemberCompanyNoForIndividual(String memberId, int companyNo) {
+	    String sql = "UPDATE member SET member_company_no = ? WHERE member_id = ?";
+	    jdbcTemplate.update(sql, companyNo, memberId);
+	}
+	
+	// 기업 회원의 company_no 업데이트
+	public boolean updateMemberCompanyNo(String memberId) {
+	    String sql = "UPDATE member SET member_company_no = (SELECT company_no FROM company WHERE company_cr_number = (SELECT member_cr_number FROM member WHERE member_id = ?)) WHERE member_id = ?";
+	    return jdbcTemplate.update(sql, memberId, memberId) > 0;
+	}
+	
+	// 상세조회 기능
+	public MemberDto selectOne(String memberId) {
+		String sql = "select * from member where member_id = ?";
+		Object[] data = { memberId };
+		List<MemberDto> list = jdbcTemplate.query(sql, memberMapper, data);
+		return list.isEmpty() ? null : list.get(0);
+	}
 
 	// 수정 기능(일반회원)
 	public boolean updateMember(MemberDto memberDto) {
@@ -154,27 +145,71 @@ public class MemberDao {
 		return jdbcTemplate.update(sql, data) > 0;
 	}
 	
-	public MemberDto selectOne(String memberId) {
-	    // 기존 SQL로 멤버 정보 조회
-	    String sql = "select * from member where member_id = ?";
-	    Object[] data = { memberId };
-	    List<MemberDto> list = jdbcTemplate.query(sql, memberMapper, data);
-
-//	    if (list.isEmpty()) {
-//	        return null;
-//	    }
-//	    //기업명이 계속 null로 나와서 구문을 바꿔봄 (기업명나옴)
-//	    // 멤버 정보
-//	    MemberDto memberDto = list.get(0);
-//
-//	    // 사업자 등록번호로 기업명 조회
-//	    String companyName = getCompanyNameByCrNumber(memberDto.getMemberCrNumber());
-//	    if (companyName != null) {
-//	        memberDto.setCompanyName(companyName); // 기업명 세팅
-//	    }
-
-	    return list.isEmpty() ? null : list.get(0);
+	public List<MemberDto> selectList(PageVO pageVO) {
+		if(pageVO.isList()) {
+			String sql = "select * from ("
+								+ "select rownum rn, TMP.* from ("
+									+ "select * from member order by member_id asc"
+								+ ")TMP"
+							+ ") "
+							+ "where rn between ? and ?";
+			Object[] data = {pageVO.getStartRownum(), pageVO.getFinishRownum()};
+			return jdbcTemplate.query(sql, memberMapper, data);
+		}
+		else {
+			String sql = "select * from ("
+								+ "select rownum rn, TMP.* from ("
+									+ "select * from member "
+									+ "where instr(#1, ?) > 0 "
+									+ "order by #1 asc, member_id asc"
+								+ ")TMP"
+							+ ") "
+							+ "where rn between ? and ?";
+			sql = sql.replace("#1", pageVO.getColumn());
+			Object[] data = {
+				pageVO.getKeyword(), 
+				pageVO.getStartRownum(),
+				pageVO.getFinishRownum()
+			};
+			return jdbcTemplate.query(sql, memberMapper, data);
+		}
 	}
-	
+	public int count(PageVO pageVO) {
+		if(pageVO.isList()) {
+			String sql = "select count(*) from member";
+			return jdbcTemplate.queryForObject(sql, int.class);
+		}
+		else {
+			String sql = "select count(*) from member "
+							+ "where instr(#1, ?) > 0";
+			sql = sql.replace("#1", pageVO.getColumn());
+			Object[] data = {pageVO.getKeyword()};
+			return jdbcTemplate.queryForObject(sql, int.class, data);
+		}
+	}
+	//개인정보변경 매핑
+	public boolean update(MemberDto memberDto) {
+	    String sql = "UPDATE member SET "
+	                 + "member_pw=?, member_contact=?, "
+	                 + "member_email=?, member_post=?, "
+	                 + "member_address1=?, member_address2=?, "
+	                 + "member_type=?, member_industry=?, "
+	                 + "member_job=?, member_position=?, "
+	                 + "member_cr_number=?, member_company_no=?, "
+	                 + "member_change=CURRENT_TIMESTAMP " // 비밀번호 변경일시 업데이트
+	                 + "WHERE member_id=?";
+	    
+	    Object[] data = {
+	        memberDto.getMemberPw(), memberDto.getMemberContact(),
+	        memberDto.getMemberEmail(), memberDto.getMemberPost(),
+	        memberDto.getMemberAddress1(), memberDto.getMemberAddress2(),
+	        memberDto.getMemberType(), memberDto.getMemberIndustry(),
+	        memberDto.getMemberJob(), memberDto.getMemberPosition(),
+	        memberDto.getMemberCrNumber(), memberDto.getMemberCompanyNo(),
+	        memberDto.getMemberId()
+	    };
+	    
+	    return jdbcTemplate.update(sql, data) > 0;
+	}
 
 }
