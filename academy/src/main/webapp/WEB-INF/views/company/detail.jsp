@@ -56,7 +56,6 @@
                                     <thead>
                                         <tr>
                                             <th>번호</th>
-                                            <th>ID</th>
                                             <th style="width:450px; max-width:450px;">한줄평</th>
                                             <th>평점</th>
                                             <th>좋아요</th>
@@ -65,24 +64,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                						<c:if test="${empty reviewListDto}">
-                    						<tr height="150">
-                        						<td colspan="7" align="center">
-                           							 등록된 게시글이 없습니다.
-                        						</td>
-                    						</tr>
-                						</c:if>
-                						<c:forEach var="review" items="${reviewListDto}">
+                                    <c:choose>
+										<c:when test="${list.isEmpty()}">				
+											<tr height = "150">
+												<td colspan="6">등록된 게시글이 없습니다</td>
+											</tr>
+										</c:when>
+										<c:otherwise>
+                						<c:forEach var="reviewListViewDto" items="${list}">
                     						<tr>
-                        						<td>${review.reviewNo}</td>
-                        						<td>${review.reviewWriter}</td>
-                        						<td>${review.reviewComment}</td>
-                        						<td>${review.reviewScore}</td>
-                        						<td>${review.reviewLike}</td>
-                        						<td>${review.reviewWtime}</td>
-                        						<td>${review.reviewEtime}</td>
+                        						<td>${reviewListViewDto.reviewNo}</td>
+                        						<td>${reviewListViewDto.reviewComment}</td>
+                        						<td>${reviewListViewDto.reviewScore}</td>
+                        						<td>${reviewListViewDto.reviewLike}</td>
+                        						<td>${reviewListViewDto.reviewWtime}</td>
+                        						<td>${reviewListViewDto.reviewEtime}</td>
                     						</tr>
                 						</c:forEach>
+                						</c:otherwise>
+									</c:choose>
             						</tbody>
                                 </table>
                             </div>
