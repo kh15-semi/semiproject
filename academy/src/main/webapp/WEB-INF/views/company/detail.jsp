@@ -185,13 +185,6 @@
                 },
             });
         });
-
-            //상세페이지 속 회원가입창 이동
-            $(document).ready(function(){
-                $(".memberjoin-btn").on("click", function(){
-                    window.location.href="http://127.0.0.1:5500/ui/indetail-member-join.html";//회원가입페이지 이동
-                });
-            });
   
             //위치보기창 이동
             $(document).ready(function(){
