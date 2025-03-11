@@ -28,6 +28,6 @@ public class CompanyController {
 
         model.addAttribute("memberDto", memberDto);
 
-        return "/WEB-INF/views/company/member/mypage.jsp";
+        return "/WEB-INF/views/company/detail.jsp";
 	}
 }
