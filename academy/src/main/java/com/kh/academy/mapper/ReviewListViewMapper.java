@@ -27,24 +27,24 @@ public class ReviewListViewMapper implements RowMapper<ReviewListViewDto> {
 		reviewListViewDto.setReviewEtime(rs.getTimestamp("review_etime"));
 		
 		//member 부분
-		reviewListViewDto.setMemberId(rs.getString("member_id"));
-		reviewListViewDto.setMemberPw(rs.getString("member_pw"));
-		reviewListViewDto.setMemberType(rs.getString("member_type"));
 		reviewListViewDto.setMemberName(rs.getString("member_name"));
-		reviewListViewDto.setMemberIdCardNum(rs.getString("member_id_card_num"));
-		reviewListViewDto.setMemberContact(rs.getString("member_contact"));
-		reviewListViewDto.setMemberEmail(rs.getString("member_email"));
-		reviewListViewDto.setMemberPost(rs.getString("member_post"));
-		reviewListViewDto.setMemberAddress1(rs.getString("member_address1"));
-		reviewListViewDto.setMemberAddress2(rs.getString("member_address2"));
-		reviewListViewDto.setMemberJoin(rs.getTimestamp("member_join"));
-		reviewListViewDto.setMemberLogin(rs.getTimestamp("member_login"));
-		reviewListViewDto.setMemberChange(rs.getTimestamp("member_change"));
 		reviewListViewDto.setMemberIndustry(rs.getString("member_industry"));
 		reviewListViewDto.setMemberJob(rs.getString("member_job"));
-		reviewListViewDto.setMemberPosition(rs.getString("member_position"));
-		reviewListViewDto.setMemberCrNumber(rs.getString("member_cr_number"));
-		reviewListViewDto.setMemberCompanyNo(rs.getInt("member_company_no"));
+//		reviewListViewDto.setMemberId(rs.getString("member_id"));
+//		reviewListViewDto.setMemberPw(rs.getString("member_pw"));
+//		reviewListViewDto.setMemberType(rs.getString("member_type"));
+//		reviewListViewDto.setMemberIdCardNum(rs.getString("member_id_card_num"));
+//		reviewListViewDto.setMemberContact(rs.getString("member_contact"));
+//		reviewListViewDto.setMemberEmail(rs.getString("member_email"));
+//		reviewListViewDto.setMemberPost(rs.getString("member_post"));
+//		reviewListViewDto.setMemberAddress1(rs.getString("member_address1"));
+//		reviewListViewDto.setMemberAddress2(rs.getString("member_address2"));
+//		reviewListViewDto.setMemberJoin(rs.getTimestamp("member_join"));	
+//		reviewListViewDto.setMemberLogin(rs.getTimestamp("member_login"));
+//		reviewListViewDto.setMemberChange(rs.getTimestamp("member_change"));
+//		reviewListViewDto.setMemberPosition(rs.getString("member_position"));
+//		reviewListViewDto.setMemberCrNumber(rs.getString("member_cr_number"));
+//		reviewListViewDto.setMemberCompanyNo(rs.getInt("member_company_no"));
 		
 		return reviewListViewDto;
 	}
