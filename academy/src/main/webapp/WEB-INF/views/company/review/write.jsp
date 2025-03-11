@@ -82,7 +82,7 @@
             <div class="cell">
                 <p style="font-size: 13px; color: green;">이 기업을 한마디로 소개한다면 어떤 기업인가요?</p>
                 <!-- 입력 칸이 선택되었을 때, 해당 구문이 나타날 수 있도록 구현 필요 -->
-                <input name="reviewComment" type="text" class="field w-100 review-title" placeholder="(20자 이상) 기업에 대해 작성해 주세요.">
+                <input name="reviewComment" type="text" class="field w-100 review-title" placeholder="기업에 대해 작성해 주세요.">
                 <div style="font-size: 12px; color: grey; float: right;">
                     <span>0</span>
                     <span> / 최대 100자</span>

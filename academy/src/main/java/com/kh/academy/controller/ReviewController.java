@@ -68,7 +68,6 @@ public class ReviewController {
 		// 리뷰 DB 저장
 		int reviewNo = reviewDao.sequence();
 		reviewDto.setReviewNo(reviewNo);
-		System.out.println("companyNo=" + companyNo);
 		reviewDao.insert(reviewDto, companyNo);
 
 		return "redirect:detail?reviewNo=" + reviewNo; // reviewNo 파라미터 전달

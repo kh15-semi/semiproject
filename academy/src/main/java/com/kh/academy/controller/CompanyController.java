@@ -38,10 +38,11 @@ public class CompanyController {
 	@GetMapping("/detail")
 	public String companyDetail(@RequestParam("companyNo") int companyNo, Model model, @ModelAttribute("pageVO") PageVO pageVO) {
 		CompanyDto companyDto = companyDao.selectOne(companyNo);
+		System.out.println("companyCrNumber = " + companyDto.getCompanyCrNumber());
 		if(companyDto == null) {
 			return "redirect:/company/list";
 		}
-		//리뷰 목록 가져오기(reviewListDao필요)
+		 //리뷰 목록 가져오기(reviewListDao필요)
 		 
 		model.addAttribute("companyDto", companyDto);
 		model.addAttribute("list", reviewListViewDao.selectList(pageVO));
