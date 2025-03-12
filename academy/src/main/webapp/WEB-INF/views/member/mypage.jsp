@@ -36,13 +36,13 @@ $(function() {
 	
 });
 </script>
-<div class="container w-800">
-    <div class="cell" style="margin: 10px; padding: 10px">
+<div class="container w-700" style="border:0; border-radius: 10px; background-color: rgb(238, 238, 238);">
+    <div class="cell" style="margin: 30px; padding: 30px">
 
         <div class="cell">
-            <h2><i class="fa-regular fa-user green"></i> 계정 정보</h2>
+            <h2><i class="fa-regular fa-user green"></i> 회원 정보</h2>
         </div>
-        <hr style="border: 0; border-top: 1px solid rgb(196, 196, 196)">
+        <hr style="border: 0; border: 1px solid rgb(196, 196, 196)">
         
         <div class="cell">
             <h3>이름</h3>
@@ -85,7 +85,7 @@ $(function() {
     
     <hr style="border: 0; border: 1px solid rgb(196, 196, 196)">
 
-	<div class="cell">
+	<div class="cell mb-20">
 		<c:if test="${companyHistoryDto == null}">
         	<p>재직 이력이 없습니다.</p>
     	</c:if>
@@ -95,14 +95,20 @@ $(function() {
         <p>퇴사일 : ${companyHistoryDto.companyHistoryLeaveDate}</p>
     </div>
 
-    </div>
-    <div class="cell center" style="margin: 10px; padding: 10px;">
+	<hr style="border: 0; border: 1px solid rgb(196, 196, 196)">
+
+    <div class="cell">
         <!-- <button type="button" class="btn-addCompany btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-pen-to-square"></i> 회사등록</button> -->    
-        <button type="button" class="btn-edit btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-pen-to-square"></i> 정보 수정</button>
-        <button type="button" class="btn-changePw btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-lock"></i> 비밀번호 변경</button>
-        <button type="button" class="btn-delete btn btn-red" style="border-radius: 10px;"><i class="fa-solid fa-exclamation"></i> 계정삭제</button>
-        <button type="button" class="btn-main btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-house"></i> 메인</button>
+        <div class="cell" style="display: inline-block; width: 75%; text-align: left;">
+        	<button type="button" class="btn-main btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-house"></i> 메인</button>
+        	<button type="button" class="btn-edit btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-pen-to-square"></i> 정보 수정</button>
+        	<button type="button" class="btn-changePw btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-lock"></i> 비밀번호 변경</button>
+        </div>
+        <div class="cell" style="display: inline-block; width: 24%; text-align: right;">
+        	<button type="button" class="btn-delete btn btn-red" style="border-radius: 10px;"><i class="fa-solid fa-exclamation"></i> 회원탈퇴</button>
+        </div>
     </div> 
+    </div>
 </div>
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

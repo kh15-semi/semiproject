@@ -23,6 +23,7 @@ public class CompanyMapper implements RowMapper<CompanyDto>{
 					.companyPost(rs.getString("company_post"))
 					.companyAddress1(rs.getString("company_address1"))
 					.companyAddress2(rs.getString("company_address2"))
+					.companyCrNumber(rs.getString("company_cr_number"))
 				.build();
 	}
 	 

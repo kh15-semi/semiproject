@@ -54,7 +54,6 @@ public class CompanyDao {
 	public CompanyDto selectOne(int companyNo) {
 		String sql = "select * from company where company_no=?";
 		Object[] data = {companyNo};
-		 System.out.println("companyNo: " + companyNo);  // 값 확인
 		List<CompanyDto> list = jdbcTemplate.query(sql,companyMapper, data);
 		return list.isEmpty() ? null : list.get(0);
 	}	
@@ -116,12 +115,3 @@ public class CompanyDao {
 
     
 }
-
-
-
-
-
-
-
-
-

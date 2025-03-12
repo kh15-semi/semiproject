@@ -47,7 +47,8 @@
         	</div>
         		<hr>
         	<div class="cell">
-            	<input type="text" name="memberId" placeholder="아이디" class="field w-100 mt-10" style="border-radius: 10px;" autocomplete="off">
+            	<input type="text" name="memberId" placeholder="아이디" class="field w-100 mt-10" style="border-radius: 10px;" autocomplete="off"
+            			value="${cookie.saveId.value}">
         	</div>
         	<div class="cell">
             	<input type="password" name="memberPw"  placeholder="비밀번호" class="field w-100" style="border-radius: 10px;">
@@ -61,8 +62,12 @@
             	<i class="fa-solid fa-arrow-right-to-bracket"></i> 로그인
             </button>
         	<div class="cell" style="display: flex; justify-content: space-between; width: 100%;">
-           		<label><input type="checkbox"> 아이디 기억하기</label>
-            	<a href="/member/password" style="text-decoration: none; color: inherit;">비밀번호 찾기</a>
+           		<label>
+           			<input type="checkbox" name="remember"
+           					${cookie.saveId !=null ? 'checked' : ''}>
+           			<span>아이디 기억하기</span>
+           		</label>
+            	<a href="/member/findPw" style="text-decoration: none; color: inherit;">비밀번호 찾기</a>
         	</div>
         	<hr>
         	<div class="cell">
