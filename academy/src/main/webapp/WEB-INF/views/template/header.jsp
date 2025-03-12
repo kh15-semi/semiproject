@@ -22,8 +22,8 @@
     <style>
         .logo {
 			list-style-type: none; 
-			background-image: url("https://common.jobplanet.co.kr/images/ssrimg/common/jp_wordmark_green.svg");
-			background-size: 120px auto;
+			background-image: url('/images/semi_logo.png');
+			background-size: 80px auto;
 			background-repeat: no-repeat;
 			background-position: center;
 			height: 50px; 

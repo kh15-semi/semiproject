@@ -34,7 +34,7 @@
 	}
 	.field:focus {
      	border-radius: 10px;
-      	border-color: #5fe075;
+      	border-color: #57ad9c;
     	outline: none;
    	}
 	.flex-between {
@@ -54,20 +54,19 @@
 <form action="join" method="post" enctype="multipart/form-data" autocomplete="off">
 	<div class="container w-500" style="border:0; border-radius: 10px; background-color: rgb(238, 238, 238);">
 
-        <div class="cell center">
-        	<a href="/">
-        		<img src="/images/jobplanet_logo.png" width="250px">
-        	</a>
-        </div>
-        
-        
-        <div class="cell p-20">
+
+     	<div class="cell p-20">
+        	<div class="cell center">
+        		<a href="/">
+        			<img src="/images/semi_logo.png" width="200px">
+        		</a>
+        	</div>
             <div class="cell flex-between m-10">
         		<div class="left">
             		<h3>회원가입 (개인)</h3>
         		</div>
         		<div class="right me-20" style="color: #2d3436;">
-            		<p>기업회원이신가요? &nbsp;&nbsp;<a href="/company/member/join" style="text-decoration: none; color: #32AA46; font-weight: 800;">기업회원</a></p>
+            		<p>기업회원이신가요? &nbsp;&nbsp;<a href="/company/member/join" style="text-decoration: none; color: #479081; font-weight: 800;">기업회원</a></p>
         		</div>
     		</div>
     		
@@ -162,7 +161,7 @@
             </div>
             <hr>
             <div class="cell center" style="color: #2d3436;">
-            	<p>이미 회원이세요? &nbsp;&nbsp;<a href="/share/login" style="text-decoration: none; color: #32AA46; font-weight: 800;">로그인</a></p>
+            	<p>이미 회원이세요? &nbsp;&nbsp;<a href="/share/login" style="text-decoration: none; color: #479081; font-weight: 800;">로그인</a></p>
         	</div>
 
         </div>

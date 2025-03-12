@@ -19,7 +19,7 @@
 	}
 	.field:focus {
      	border-radius: 10px;
-      	border-color: #5fe075;
+      	border-color: #57ad9c;
     	outline: none;
    	}
 </style>
@@ -42,7 +42,7 @@
         <button class="btn btn-green2">확인</button>
     </div>
     <c:if test="${param.error != null}">
-		<div class="cell center mt-20" style="color:red">비밀번호가 일치하지 않습니다.</div>
+		<div class="cell center mt-20" style="color:#d63031">비밀번호가 일치하지 않습니다.</div>
 	</c:if>
         
 </div>
