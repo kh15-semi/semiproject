@@ -113,7 +113,9 @@
             	</div><br>
    	    	 </div>
             <div class="cell center">
-                <button type="submit" class="btn btn-green2" style="border-radius: 10px;">기업 등록</button>
+            	<a href="/company/detail?companyCrNumber=${companyDto.companyCrNumber}">
+                	<button type="submit" class="btn btn-green2" style="border-radius: 10px;">기업 등록</button>
+            	</a>
                 <a href="/" class="btn btn-neutral"> 취소</a>
             </div>
         </div>

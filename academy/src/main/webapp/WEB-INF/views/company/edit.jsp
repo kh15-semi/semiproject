@@ -54,6 +54,8 @@
 				</div>
 
 				<div class="cell">
+				    <h3>기업 홈페이지 URL</h3>
+				    <input type="text" name="companyUrl" class="field" size="50" style="border-radius: 10px;" value="${companyDto.companyUrl}">
 				    <h3>홈페이지 URL</h3>
 				    <input type="text" name="companyURL" class="field" size="50" style="border-radius: 10px;" value="${companyDto.companyURL}">
 				</div>		

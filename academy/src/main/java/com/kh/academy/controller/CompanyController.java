@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -51,6 +52,43 @@ public class CompanyController {
 		pageVO.setCount(count);
 		return "/WEB-INF/views/company/detail.jsp";
 	}
-	
+//	@GetMapping("/insert")
+//	public String companyInsert() {
+//		return "/WEB-INF/views/company/insert.jsp";
+//	}
+//	@PostMapping("/insert")
+//	public String companyInsert(@ModelAttribute CompanyDto companyDto) {
+//		companyDao.insert(companyDto);
+//		return "redirect:detail?companyCrNumber=" + companyDto.getCompanyCrNumber(); 
+//	}
+	@GetMapping("/edit")
+	public String companyEdit(@RequestParam String companyCrNumber, Model model) {
+		CompanyDto companyDto = companyDao.selectByCrNumber(companyCrNumber);
+		model.addAttribute("companyDto", companyDto);
+		return "/WEB-INF/views/company/edit.jsp";
+	}
+	@PostMapping("/edit")
+	public String companyEdit(@ModelAttribute CompanyDto companyDto) {
+		companyDao.update(companyDto);
+		return "redirect:detail?companyNo=" + companyDto.getCompanyNo();
+	}
+	@GetMapping("/mycompany")
+	public String companyMypageDetail(@RequestParam("companyCrNumber") String companyCrNumber,
+														Model model, @ModelAttribute PageVO pageVO) {
+		CompanyDto companyDto = companyDao.selectByCrNumber(companyCrNumber);
+		model.addAttribute("companyDto", companyDto);
+		return "/WEB-INF/views/company/mycompany.jsp";
+		}
+		
 	
 }
+
+
+
+
+
+
+
+
+
+
