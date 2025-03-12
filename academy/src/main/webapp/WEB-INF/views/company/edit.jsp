@@ -30,6 +30,7 @@
 
 
 <form action="/company/edit" method="post" enctype="multipart/form-data" autocomplete="off">
+	<input type="hidden" name="companyNo" value="${companyDto.companyNo}">
     <div class="container w-800">
         <div class="cell" style="margin: 10px; padding: 10px">
      	   <div class="cell">
@@ -56,8 +57,6 @@
 				<div class="cell">
 				    <h3>기업 홈페이지 URL</h3>
 				    <input type="text" name="companyUrl" class="field" size="50" style="border-radius: 10px;" value="${companyDto.companyUrl}">
-				    <h3>홈페이지 URL</h3>
-				    <input type="text" name="companyUrl" class="field" size="50" style="border-radius: 10px;" value="${companyDto.companyUrl}">
 				</div>		
 
                 <div class="cell">
@@ -69,27 +68,30 @@
                     <h3>산업군</h3>
                     <select id="firstSelect"" class="selectBox field" name="companyIndustry" style="width: 200px; border-radius: 10px;" value="${companyDto.companyIndustry}">
                         <option value="">관련 산업군 선택</option>
-                        <option value="dev">개발</option>
-                        <option value="edu">교육</option>
-                        <option value="fin">금융/재무</option>
-                        <option value="pm">기획/경영</option>
-                        <option value="data">데이터</option>
-                        <option value="design">디자인</option>
-                        <option value="mr">마케팅/시장조사</option>
-                        <option value="mp">미디어/홍보</option>
-                        <option value="legal">법률/법무</option>
-                        <option value="mf">생산/제조</option>
-                        <option value="qc">생산관리/품질관리</option>
-                        <option value="sv">서비스/고객지원</option>
-                        <option value="eng">엔지니어링</option>
-                        <option value="rd">연구개발</option>
-                        <option value="db">영업/제휴</option>
-                        <option value="b2b">유통/무역</option>
-                        <option value="med">의약</option>
-                        <option value="hr">인사/총무</option>
-                        <option value="pro">전문직</option>
-                        <option value="csr">특수계층/공공</option>
+                        <option value="개발">개발</option>
+                        <option value="교육">교육</option>
+                        <option value="금융/재무">금융/재무</option>
+                        <option value="기획/경영">기획/경영</option>
+                        <option value="데이터">데이터</option>
+                        <option value="디자인">디자인</option>
+                        <option value="마케팅/시장조사">마케팅/시장조사</option>
+                        <option value="미디어/홍보">미디어/홍보</option>
+                        <option value="법률/법무">법률/법무</option>
+                        <option value="생산/제조">생산/제조</option>
+                        <option value="생산관리/품질관리">생산관리/품질관리</option>
+                        <option value="서비스/고객지원">서비스/고객지원</option>
+                        <option value="엔지니어링">엔지니어링</option>
+                        <option value="연구개발">연구개발</option>
+                        <option value="영업/제휴">영업/제휴</option>
+                        <option value="유통/무역">유통/무역</option>
+                        <option value="의약">의약</option>
+                        <option value="인사/총무">인사/총무</option>
+                        <option value="전문직">전문직</option>
+                        <option value="특수계층/공공">특수계층/공공</option>
                     </select>
+                    <select id="secondSelect" class="selectBox field" name="companyJob" style="display: none;">
+					<option value="2차 직종 선택">2차 직종 선택</option>
+				</select><br>
             	</div>
                     
                 <div class="cell">
@@ -113,7 +115,7 @@
    	    	 </div>
             <div class="cell center">
                 <button type="submit" class="btn btn-green2" style="border-radius: 10px;">수정</button>
-                <a href="/company/mycompany?memberCompanyNo=${memberDto.memberCompanyNo}" class="btn btn-red"> 취소</a>
+                <a href="/company/mycompany?companyNo=${memberDto.memberCompanyNo}" class="btn btn-red"> 취소</a>
             </div>
         </div>
     </div>
