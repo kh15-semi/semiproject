@@ -14,59 +14,57 @@
     $(function () {
         // 정보 수정 버튼 클릭 시
         $(".btn-edit").click(function() {
-            window.location.href = "/company/member/edit";
+            window.location.href = "/company/edit";
         });
-
-        // 비밀번호 변경 버튼 클릭 시
-        $(".btn-changePw").click(function() {
-            window.location.href = "/share/password";
-        });
-
-        // 계정 삭제 버튼 클릭 시
-        $(".btn-delete").click(function() {
-            window.location.href = "/share/exit";
-        });
-
         // 메인 버튼 클릭 시
         $(".btn-main").click(function() {
             window.location.href = "/";
         });
     });
 </script>
+
 <div class="container w-800">
         <div class="cell" style="margin: 10px; padding: 10px">
             <div class="cell">
-                <h2><i class="fa-solid fa-user blue"></i>&nbsp;기업 회원 정보</h2>
+                <h2><i class="fa-regular fa-building blue"></i>&nbsp;기업 상세 정보</h2>
             </div>
             <hr style="border: none; border-top: 1px solid rgb(196, 196, 196)"><br>
             <div class="cell" >
                <div class="cell">
-                   <h3><i class="fa-regular fa-square-check blue"></i>&nbsp;ID</h3>
-                   <p>${memberDto.memberId}</p>
+                   <h3><i class="fa-regular fa-square-check blue"></i>&nbsp;기업 이미지</h3>
+                   <p><img src="https://www.placehold.co/200x200"></p>
                </div>
                <div class="cell">
-                   <h3><i class="fa-regular fa-square-check blue"></i>&nbsp;이름</h3>
-                   <p>${memberDto.memberName}</p>
+                   <h3><i class="fa-regular fa-square-check blue"></i>&nbsp;상호명</h3>
+                   <p>${companyDto.companyName}</p>
                </div>
                <div class="cell">
-                   <h3><i class="fa-regular fa-square-check blue"></i>&nbsp;이메일</h3>
-                   <p>${memberDto.memberEmail}</p>
+                   <h3><i class="fa-regular fa-square-check blue"></i>&nbsp;업체 연락처</h3>
+                   <p>${companyDto.companyContact}</p>
                </div>
                <div class="cell">
-                   <h3><i class="fa-regular fa-square-check blue"></i>&nbsp;연락처</h3>
-                   <p>${memberDto.memberContact}</p>
+                   <h3><i class="fa-regular fa-square-check blue"></i>&nbsp;홈페이지 URL</h3>
+                   <p>${companyDto.companyURL}</p>
                </div>
                <div class="cell">
-                   <h3><i class="fa-regular fa-square-check blue"></i>&nbsp;직책</h3>
-                   <p>${memberDto.memberPosition}</p>
+                   <h3><i class="fa-regular fa-square-check blue"></i>&nbsp;사업자 등록번호</h3>
+                   <p>${companyDto.companyCrNumber}</p>
+               </div>
+               <div class="cell">
+                   <h3><i class="fa-regular fa-square-check blue"></i>&nbsp;산업군</h3>
+                   <p>${companyDto.companyIndustry}</p>
+               </div>
+               <div class="cell">
+                   <h3><i class="fa-regular fa-square-check blue"></i>&nbsp;주소</h3>
+                   <p>${companyDto.companyPost}</p>
+                   <p>${companyDto.companyAddress1}</p>
+                   <p>${companyDto.companyAddress2}</p>
                </div>
         	</div>
         <br>
         <hr style="border: none; border-top: 1px solid rgb(196, 196, 196)"><br>
         <div class="cell center" style="margin: 10px; padding: 10px;">
             <button type="button" class="btn-edit btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-pen-to-square"></i> 정보 수정</button>
-	        <button type="button" class="btn-changePw btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-lock"></i> 비밀번호 변경</button>
-	        <button type="button" class="btn-delete btn btn-red" style="border-radius: 10px;"><i class="fa-solid fa-exclamation"></i> 계정삭제</button>
 	        <button type="button" class="btn-main btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-house"></i> 메인</button>
         </div>
     </div>
