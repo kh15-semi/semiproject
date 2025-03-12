@@ -9,18 +9,18 @@
 	<div class="cell">
     	<label><i class="fa-solid fa-asterisk"></i> 데이터 관리</label>
    		<div class="cell">
-	   		<a href="/admin/member/list" class="btn btn-green2" style="border-radius: 10px;">회원 목록</a>
-	   		<a href="/admin/company/list" class="btn btn-green2" style="border-radius: 10px;">기업 목록</a>
+	   		<a href="/admin/member/list" class="btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-users"></i>&nbsp;회원 목록</a>
+	   		<a href="/admin/company/list" class="btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-building"></i>&nbsp;기업 목록</a>
    		</div>
 	</div>
 		<hr>
 	<div class="cell">
 			<label><i class="fa-solid fa-asterisk"></i> 데이터 현황</label>
 			<div class="cell">
-			    <a href="/admin/status/member" class="btn btn-green2" style="border-radius: 10px;">회원 현황</a>
-			    <a href="/admin/status/member-join" class="btn btn-green2" style="border-radius: 10px;">회원가입 현황</a>
-			    <a href="/admin/status/company" a class="btn btn-green2" style="border-radius: 10px;">기업 현황</a>
-			    <a href="/admin/status/review-write" class="btn btn-green2" style="border-radius: 10px;">게시글 현황</a>
+			    <a href="/admin/status/member" class="btn btn-green2" style="border-radius: 10px;"><i class="fa-regular fa-user"></i>&nbsp;회원 현황</a>
+			    <a href="/admin/status/member-join" class="btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-user-plus"></i>&nbsp;회원가입 현황</a>
+			    <a href="/admin/status/company" a class="btn btn-green2" style="border-radius: 10px;"><i class="fa-regular fa-building"></i>&nbsp;기업 현황</a>
+			    <a href="/admin/status/review-write" class="btn btn-green2" style="border-radius: 10px;"><i class="fa-regular fa-pen-to-square"></i>&nbsp;기업 리뷰 현황</a>
 			</div>
 	</div>
 
