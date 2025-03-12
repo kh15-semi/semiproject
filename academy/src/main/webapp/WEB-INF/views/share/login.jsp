@@ -18,13 +18,16 @@
 <script src="/js/job_select.js"></script>
 
 <style>
+	label {
+		accent-color: #479081;
+  	}
 	.field {
 		border-radius: 10px;
 		border-color: #ebecee;
 	}
 	.field:focus {
      	border-radius: 10px;
-      	border-color: #5fe075;
+      	border-color: #57ad9c;
     	outline: none;
    	}
 </style>
@@ -34,7 +37,7 @@
 	<div class="container center w-400" style="border: none; border-radius: 10px; background-color: rgb(241, 241, 241); padding: 40px;">
         <div class="cell">
             <a href="/">
-                <img src="/images/jobplanet_logo.png" width="250px"><br>
+                <img src="/images/semi_logo.png" width="200px"><br>
             </a>
             <p style="margin-top: 0; padding-bottom: 30px; font-size: 14px; color: #636e72;">
             회원님의 익명성을 보장하기 위해<br>
@@ -71,7 +74,7 @@
         	</div>
         	<hr>
         	<div class="cell">
-            	<p>아직 회원이 아니세요? &nbsp;&nbsp;<a href="/member/join" style="text-decoration: none; color: #32AA46; font-weight: 800;">회원가입</a></p>
+            	<p>아직 회원이 아니세요? &nbsp;&nbsp;<a href="/member/join" style="text-decoration: none; color: #479081; font-weight: 800;">회원가입</a></p>
         	</div>
     	</div>
     	

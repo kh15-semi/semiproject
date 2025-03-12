@@ -19,7 +19,7 @@
 	}
 	.field:focus {
      	border-radius: 10px;
-      	border-color: #5fe075;
+      	border-color: #57ad9c;
     	outline: none;
    	}
 	.selectBox {
@@ -46,8 +46,8 @@ $(function() {
 	$(".btn-edit-cancel").click(function() {
 		window.location.href = "/member/mypage";
 	});
-	
 });
+
 </script>
 
 <form action="/member/edit" method="post">
@@ -64,12 +64,16 @@ $(function() {
             <label><i class="fa-solid fa-angle-right"></i> 생년월일</label>
                 <input type="date" name="memberBirth" value="${memberDto.memberBirth}" ><br><br> 
             --%>
-            <div class="cell mt-20">
+            <div class="cell mt-30">
             	<label><i class="fa-solid fa-angle-right"></i> 연락처</label>
-                <input type="tel" name="memberContact" value="${memberDto.memberContact}" class="field"><br><br>
+            	<div class="cell">
+                	<input type="tel" name="memberContact" value="${memberDto.memberContact}" class="field">
+            	</div>
 	            <label><i class="fa-solid fa-angle-right"></i> 이메일</label>
-                <input type="email" name="memberEmail" value="${memberDto.memberEmail}" class="field"><br><br>
-            	<label><i class="fa-solid fa-angle-right"></i> 주소</label><br>
+            	<div class="cell">
+                	<input type="email" name="memberEmail" value="${memberDto.memberEmail}" class="field">
+            	</div>
+            	<label><i class="fa-solid fa-angle-right"></i> 주소</label>
             	<div class="cell">
 		       		<input type="text" name="memberPost" size="6" maxlength="6" class="field"  value="${memberDto.memberPost}">
                 	<button type="button" class="btn btn-neutral btn-address-search">
@@ -81,61 +85,73 @@ $(function() {
 					<div class="cell">
                     	<input type="text" name="memberAddress1" value="${memberDto.memberAddress1}"  class="field" size="40" maxlength="60">
                 	</div>
-                	<div class="cell">
+                	<div class="cell mb-30">
                     	<input type="text" name="memberAddress2" value="${memberDto.memberAddress2}"  class="field" size="40" maxlength="60">
                 	</div>
             	</div>
-                	<div class="cell mt-20">
-            		<label><i class="fa-solid fa-angle-right"></i> 관심 산업군</label><br>
+            	
+            	<hr style="border: 0; border-top: 1px solid rgb(196, 196, 196)">
+            	
+                <div class="cell mt-30">
+                	<h3><i class="fa-solid fa-star-of-life red"></i> 선택 입력 사항</h3>
+            		<label><i class="fa-solid fa-angle-right"></i> 관심 산업군</label>
+            		<div class="cell">
             			<select id="firstSelect" onchange="updateSecondSelect()" class="selectBox field" name="memberIndustry">
-		                	<option value="">산업군 선택</option>
-		                	<option value="dev">개발</option>
-		                	<option value="edu">교육</option>
-		                	<option value="fin">금융/재무</option>
-		                	<option value="pm">기획/경영</option>
-		                	<option value="data">데이터</option>
-		                	<option value="design">디자인</option>
-		                	<option value="mr">마케팅/시장조사</option>
-		                	<option value="mp">미디어/홍보</option>
-		                	<option value="legal">법률/법무</option>
-		                	<option value="mf">생산/제조</option>
-		                	<option value="qc">생산관리/품질관리</option>
-		                	<option value="sv">서비스/고객지원</option>
-		                	<option value="eng">엔지니어링</option>
-		                	<option value="rd">연구개발</option>
-		                	<option value="db">영업/제휴</option>
-		                	<option value="b2b">유통/무역</option>
-		                	<option value="med">의약</option>
-		                	<option value="hr">인사/총무</option>
-		                	<option value="pro">전문직</option>
-		                	<option value="csr">특수계층/공공</option>
-	            		</select><br>
-            		<label><i class="fa-solid fa-angle-right"></i> 관심 직종</label><br>
+		                	<option value="">관심 산업군 선택</option>
+		                	<option value="개발">개발</option>
+		                	<option value="교육">교육</option>
+		                	<option value="금융/재무">금융/재무</option>
+		                	<option value="기획/경영">기획/경영</option>
+		                	<option value="데이터">데이터</option>
+		                	<option value="디자인">디자인</option>
+		                	<option value="마케팅/시장조사">마케팅/시장조사</option>
+		                	<option value="미디어/홍보">미디어/홍보</option>
+		                	<option value="법률/법무">법률/법무</option>
+		                	<option value="생산/제조">생산/제조</option>
+		                	<option value="생산관리/품질관리">생산관리/품질관리</option>
+		                	<option value="서비스/고객지원">서비스/고객지원</option>
+		                	<option value="엔지니어링">엔지니어링</option>
+		                	<option value="연구개발">연구개발</option>
+		                	<option value="영업/제휴">영업/제휴</option>
+		                	<option value="유통/무역">유통/무역</option>
+		                	<option value="의약">의약</option>
+		                	<option value="인사/총무">인사/총무</option>
+		                	<option value="전문직">전문직</option>
+		                	<option value="특수계층/공공">특수계층/공공</option>
+	            		</select>
+            		</div>
+            			
+            		<label><i class="fa-solid fa-angle-right"></i> 관심 직종</label>
+            		<div class="cell">
 						<select id="secondSelect" class="selectBox field" name="memberJob">
 							<option value="">직종 선택</option>
 						</select>
-                	</div>
+            		</div>
+                </div>
             </div>
-            <div class="cell mt-30">
+            
+            <div class="cell mb-30">
             	<div class="cell">
             		<label><i class="fa-solid fa-angle-right red"></i> 비밀번호 확인</label>
             	</div>
                 <input type="password" name="memberPw" value="${memberDto.memberPw}" class="field"><br>
-        		<div class="fail-feedback">비밀번호가 일치하지 않습니다.</div>
-        	<div class="cell right mt-30">
-            	<button type="submit" class="btn-edit-complete btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-user-pen"></i> 수정 완료</button>
-            	<button type="button" class="btn-edit-cancel btn btn-red" style="border-radius: 10px;"><i class="fa-solid fa-xmark"></i> 취소</button>
-        	</div>
+        		<div class="fail-feedback">비밀번호가 맞지 않습니다, 다시 한번 확인해주세요.</div>
             </div>
+        	
+        	<hr style="border: 0; border: 1px solid rgb(196, 196, 196)">
+        	
+        	<div class="cell right">
+        		<div class="cell" style="display: inline-block; width: 50%; text-align: left;">
+            		<button type="submit" class="btn-edit-complete btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-user-pen"></i> 수정완료</button>
+        		</div>
+        		<div class="cell" style="display: inline-block; width: 49%; text-align: right;">
+            		<button type="button" class="btn-edit-cancel btn btn-red" style="border-radius: 10px;"><i class="fa-solid fa-xmark"></i> 취소</button>
+        		</div>
+        	</div>
     	</div>
-    	
+    
  	</div>
- 	
-    
-	<c:if test="${param.error != null}">
-		<h3 style="color:red">비밀번호가 일치하지 않습니다</h3>
-	</c:if>
-    
+
 </form>
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

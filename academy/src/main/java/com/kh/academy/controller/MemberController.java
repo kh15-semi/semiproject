@@ -160,7 +160,8 @@ public class MemberController {
 	@RequestMapping("/company/member/mypage")
 	public String mypageCompanyMember(HttpSession session, Model model) {
 		String userId = (String) session.getAttribute("userId"); // 내 아이디 추출
-		MemberDto memberDto = memberDao.selectOne(userId); 
+
+		MemberDto memberDto = memberDao.selectOne(userId);
 
 		// 세션에 회원 정보가 없다면 DB에서 조회
 //		if (memberDto == null) {
