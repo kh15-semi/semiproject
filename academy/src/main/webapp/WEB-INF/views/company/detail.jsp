@@ -60,7 +60,7 @@
                        </c:otherwise>
                    </c:choose>
                </div>
-           </div>
+           </div> 
         <div class="cell center p-10">
             <jsp:include page="/WEB-INF/views/template/pagination.jsp"></jsp:include>
         </div>
