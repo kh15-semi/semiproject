@@ -53,7 +53,7 @@ public class MemberController {
             memberDao.insertMember(memberDto); // 회원가입
             memberDao.updateMemberCompanyNoForIndividual(memberDto.getMemberId(), companyHistoryDto.getCompanyNo());
         }
-        System.out.println("memberDto = " + memberDto);
+        
         return "redirect:/share/joinFinish"; // joinFinish으로 쫓아내는 코드(상대경로)
 		
 	}
@@ -132,7 +132,6 @@ public class MemberController {
 		String companyName = memberDao.getCompanyNameByCrNumber(crNumber);
 		
 		response.put("companyName", companyName != null ? companyName : "");
-		System.out.println("response = " + response);
 
 		return response;
 	}
@@ -150,6 +149,7 @@ public class MemberController {
 
 		// MemberDto에는 companyName이 없으므로, 모델에 직접 추가
 		model.addAttribute("companyName", companyName);
+        model.addAttribute("memberName", memberDto.getMemberName());
 
 		memberDao.insertCompanyMember(memberDto); // 회원가입
 		memberDao.updateMemberCompanyNo(memberDto.getMemberId());
@@ -160,6 +160,7 @@ public class MemberController {
 	@RequestMapping("/company/member/mypage")
 	public String mypageCompanyMember(HttpSession session, Model model) {
 		String userId = (String) session.getAttribute("userId"); // 내 아이디 추출
+
 		MemberDto memberDto = memberDao.selectOne(userId);
 
 		// 세션에 회원 정보가 없다면 DB에서 조회
@@ -211,9 +212,7 @@ public class MemberController {
 		// member_company_no 업데이트 먼저 실행
 		// memberDao.updateMemberCompanyNo(findDto.getMemberId());
 
-		System.out.println("memberDto = " + memberDto);
 		memberDao.updateCompanyMember(findDto);
-
 		session.setAttribute("memberDto", findDto); // 세션에 업데이트된 정보를 저장
 
 		return "redirect:/company/member/mypage";
@@ -279,7 +278,10 @@ public class MemberController {
 	public String logout(HttpSession session) {
 		session.removeAttribute("userId");
 		session.removeAttribute("userType");
-		// session.invalidate(); //세션 소멸 명령
+		session.removeAttribute("memberDto");
+//		if (session != null) {
+//	        session.invalidate(); // 세션 소멸 명령
+//	    }
 		return "redirect:/";
 	}
 
@@ -339,11 +341,14 @@ public class MemberController {
 		}
 		
 		if(memberDto.getMemberType().equals("기업회원")) {
+			
 			companyDao.delete(memberDto.getMemberCompanyNo());
 		}
 		
 		memberDao.delete(userId);
-		session.removeAttribute("userId");
+		session.removeAttribute("memberDto");
+	    session.removeAttribute("userId");
+	    session.removeAttribute("userType");
 		return "redirect:exitFinish";
 	}
 

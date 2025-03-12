@@ -26,6 +26,7 @@
         });
     });
 </script>
+
 <div class="container w-700" style="border:0; border-radius: 10px; background-color: rgb(238, 238, 238);">
 	<div class="cell" style="margin: 30px; padding: 30px">
 		
