@@ -125,33 +125,37 @@
                 </div>
                 <div class="cell">
                 <p><i class="fa-solid fa-plus blue"></i> 선택 입력 사항</p>
+                <div class="cell">
 	            	<select id="firstSelect" onchange="updateSecondSelect()" class="selectBox field" name="memberIndustry">
 		                <option value="">관심 산업군 선택</option>
-		                <option value="dev">개발</option>
-		                <option value="edu">교육</option>
-		                <option value="fin">금융/재무</option>
-		                <option value="pm">기획/경영</option>
-		                <option value="data">데이터</option>
-		                <option value="design">디자인</option>
-		                <option value="mr">마케팅/시장조사</option>
-		                <option value="mp">미디어/홍보</option>
-		                <option value="legal">법률/법무</option>
-		                <option value="mf">생산/제조</option>
-		                <option value="qc">생산관리/품질관리</option>
-		                <option value="sv">서비스/고객지원</option>
-		                <option value="eng">엔지니어링</option>
-		                <option value="rd">연구개발</option>
-		                <option value="db">영업/제휴</option>
-		                <option value="b2b">유통/무역</option>
-		                <option value="med">의약</option>
-		                <option value="hr">인사/총무</option>
-		                <option value="pro">전문직</option>
-		                <option value="csr">특수계층/공공</option>
+		                <option value="개발">개발</option>
+		                <option value="교육">교육</option>
+		                <option value="금융재무">금융/재무</option>
+		                <option value="기획/경영">기획/경영</option>
+		                <option value="데이터">데이터</option>
+		                <option value="디자인">디자인</option>
+		                <option value="마케팅/시장조사">마케팅/시장조사</option>
+		                <option value="미디어/홍보">미디어/홍보</option>
+		                <option value="법률/법무">법률/법무</option>
+		                <option value="생산/제조">생산/제조</option>
+		                <option value="생산관리/품질관리">생산관리/품질관리</option>
+		                <option value="서비스/고객지원">서비스/고객지원</option>
+		                <option value="엔지니어링">엔지니어링</option>
+		                <option value="연구개발">연구개발</option>
+		                <option value="영업/제휴">영업/제휴</option>
+		                <option value="유통/무역">유통/무역</option>
+		                <option value="의약">의약</option>
+		                <option value="인사/총무">인사/총무</option>
+		                <option value="전문직">전문직</option>
+		                <option value="특수계층/공공">특수계층/공공</option>
 	            	</select>
-
+                </div>
+				
+				<div class="cell">
 		            <select id="secondSelect" class="selectBox field" name="memberJob">
 		                <option value="">관심 직종 선택</option>
 		            </select>
+				</div>
 		        </div>
 
            	</div>
