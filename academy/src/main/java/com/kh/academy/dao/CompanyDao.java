@@ -44,7 +44,7 @@ public class CompanyDao {
 		Object[] data = {
 				companyDto.getCompanyName(),companyDto.getCompanyUrl(),companyDto.getCompanyContact(),companyDto.getCompanyIndustry(),
 				companyDto.getCompanyJob(),companyDto.getCompanyPost(),companyDto.getCompanyAddress1(),companyDto.getCompanyAddress2(),
-				companyDto.getCompanyCrNumber()
+				companyDto.getCompanyCrNumber(), companyDto.getCompanyNo()
 		};
 		return jdbcTemplate.update(sql, data) > 0;
 	}	
