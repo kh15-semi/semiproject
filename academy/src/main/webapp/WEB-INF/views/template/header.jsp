@@ -62,17 +62,7 @@
 
 </head>
 
-<body>
-
-	<!-- 헤더 -->
-	<div class="container w-1200" style="height: 50px;">
-		<!-- 메뉴 -->
-		<div class="cell">
-            <ul class="menu">
-                <li class="logo">
-					<a href="/"></a>
-				</li>
-                <li>
+<!--                 <li>
 					<a href="#">회사 정보</a>
 					<ul>
                         <li><a href="#">항목1</a></li>
@@ -89,6 +79,19 @@
                         <li><a href="#">항목3</a></li>
                         <li><a href="#">항목4</a></li>
                     </ul>
+				</li> -->
+
+
+
+<body>
+
+	<!-- 헤더 -->
+	<div class="container w-1200" style="height: 50px;">
+		<!-- 메뉴 -->
+		<div class="cell">
+            <ul class="menu">
+                <li class="logo">
+					<a href="/"></a>
 				</li>
 
 				<c:choose>
@@ -118,7 +121,7 @@
                                 </a>
                                 <ul>
                                     <li><a href="/member/mypage">회원정보</a></li>
-                                    <li><a href="#">기업 리뷰</a></li>
+                                    <li><a href="/review/detail?companyNo=" + ${companyDto.companyNo}>기업 리뷰</a></li>
                                     <li><a href="/logout">로그아웃</a></li>
                                 </ul>
                             </li>
@@ -131,8 +134,8 @@
                                     <i class="fa-solid fa-chevron-down"></i>
                                 </a>
                                 <ul>
-                                    <li><a href="/company/member/mypage">기업회원정보</a></li>
-                                    <li><a href="#">기업 리뷰</a></li>
+                                    <li><a href="/company/member/mypage">My page</a></li>
+									<li><a href="/company/mycompany">My company</a></li>
                                     <li><a href="/logout">로그아웃</a></li>
                                 </ul>
                             </li>
