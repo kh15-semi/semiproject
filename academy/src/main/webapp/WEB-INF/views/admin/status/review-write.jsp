@@ -5,7 +5,7 @@
 
 <div class="container w-700">
 	<div class="cell">
-		<h2><i class="fa-solid fa-angles-right"></i> 기준 미정</h2>
+		<h2><i class="fa-solid fa-angles-right"></i> 리뷰 수 현황</h2>
 	</div>
 	<div class="cell">
 		<div class="cell">
@@ -18,7 +18,7 @@
 		</div>
 	</div>
 	<div class="cell">
-		<a href="/admin/home" class="btn btn-neutral"><i class="fa-solid fa-user-tie"></i> 관리자 홈</a>
+		<a href="/admin/home" class="btn btn-green2"><i class="fa-solid fa-user-tie"></i> 관리자 홈</a>
 		<a href="/" class="btn btn-blue" style="border-radius: 10px"><i class="fa-solid fa-house"></i> 메인</a>
 	</div>
 </div>

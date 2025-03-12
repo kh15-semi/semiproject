@@ -125,7 +125,7 @@
                 	<div class="fail-feedback">주소를 모두 작성해주세요.</div>
                 </div>
                 <div class="cell">
-                <p><i class="fa-solid fa-star-of-life red"></i> 선택 입력 사항</p>
+                <p><i class="fa-solid fa-plus blue"></i> 선택 입력 사항</p>
 	            	<select id="firstSelect" onchange="updateSecondSelect()" class="selectBox field" name="memberIndustry">
 		                <option value="">관심 산업군 선택</option>
 		                <option value="dev">개발</option>
