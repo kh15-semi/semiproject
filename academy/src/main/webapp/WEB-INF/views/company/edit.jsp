@@ -29,7 +29,7 @@
 </script>
 
 
-<form action="" method="post" enctype="multipart/form-data" autocomplete="off">
+<form action="/company/edit" method="post" enctype="multipart/form-data" autocomplete="off">
     <div class="container w-800">
         <div class="cell" style="margin: 10px; padding: 10px">
      	   <div class="cell">
@@ -57,7 +57,7 @@
 				    <h3>기업 홈페이지 URL</h3>
 				    <input type="text" name="companyUrl" class="field" size="50" style="border-radius: 10px;" value="${companyDto.companyUrl}">
 				    <h3>홈페이지 URL</h3>
-				    <input type="text" name="companyURL" class="field" size="50" style="border-radius: 10px;" value="${companyDto.companyURL}">
+				    <input type="text" name="companyUrl" class="field" size="50" style="border-radius: 10px;" value="${companyDto.companyUrl}">
 				</div>		
 
                 <div class="cell">
@@ -99,21 +99,21 @@
                         <button type="button" class="btn btn-neutral btn-address-search">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
-                        <button type="button" class="btn btn-negative btn-address-clear" style="display: none;" value="${companyDto.companyAddress1}">
+                        <button type="button" class="btn btn-negative btn-address-clear" style="display: none;">
                             <i class="fa-solid fa-xmark"></i>
                         </button>
                     </div>
                     <div class="cell">
-                        <input type="text" name="companyAddress1" class="field w-100" placeholder="기본주소" style="border-radius: 10px;" value="${companyDto.companyAddress2}">
+                        <input type="text" name="companyAddress1" class="field w-100" placeholder="기본주소" style="border-radius: 10px;" value="${companyDto.companyAddress1}">
                     </div>
                     <div class="cell">
-                        <input type="text" name="companyAddress2" class="field w-100" placeholder="상세주소" style="border-radius: 10px;">
+                        <input type="text" name="companyAddress2" class="field w-100" placeholder="상세주소" style="border-radius: 10px;" value="${companyDto.companyAddress2}">
                     </div>
             	</div><br>
    	    	 </div>
             <div class="cell center">
-                <button type="button" class="btn btn-green2" style="border-radius: 10px;">수정</button>
-                <a href="#" class="btn btn-red"> 취소</a>
+                <button type="submit" class="btn btn-green2" style="border-radius: 10px;">수정</button>
+                <a href="/company/mycompany?memberCompanyNo=${memberDto.memberCompanyNo}" class="btn btn-red"> 취소</a>
             </div>
         </div>
     </div>

@@ -44,7 +44,7 @@
                </div>
                <div class="cell">
                    <h3><i class="fa-regular fa-square-check blue"></i>&nbsp;홈페이지 URL</h3>
-                   <p>${companyDto.companyURL}</p>
+                   <p>${companyDto.companyUrl}</p>
                </div>
                <div class="cell">
                    <h3><i class="fa-regular fa-square-check blue"></i>&nbsp;사업자 등록번호</h3>
@@ -64,7 +64,9 @@
         <br>
         <hr style="border: none; border-top: 1px solid rgb(196, 196, 196)"><br>
         <div class="cell center" style="margin: 10px; padding: 10px;">
-            <button type="button" class="btn-edit btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-pen-to-square"></i> 정보 수정</button>
+        	<a href="/company/edit?memberCompanyNo=${memberDto.memberCompanyNo}">
+            	<button type="button" class="btn-edit btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-pen-to-square"></i> 정보 수정</button>
+        	</a>
 	        <button type="button" class="btn-main btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-house"></i> 메인</button>
         </div>
     </div>

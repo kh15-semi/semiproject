@@ -93,7 +93,7 @@
 	</div>
 </form>
 <div class="review-actions">
-	<a href="/company/review/write?companyNo=${companyDto.companyNo}">
+	<a href="/company/review/write?memberCompanyNo=${memberDto.memberCompanyNo}">
 		<button type="button" class="write-review-btn">리뷰 쓰러가기 →</button>
 	</a>
 </div>

@@ -135,7 +135,7 @@
                                 </a>
                                 <ul>
                                     <li><a href="/company/member/mypage">My page</a></li>
-									<li><a href="/company/mycompany">My company</a></li>
+									<li><a href="/company/mycompany?memberCompanyNo=${memberDto.memberCompanyNo}">My company</a></li>
                                     <li><a href="/logout">로그아웃</a></li>
                                 </ul>
                             </li>
