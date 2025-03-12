@@ -15,6 +15,8 @@ import com.kh.academy.dao.CompanyDao;
 import com.kh.academy.dao.ReviewDao;
 import com.kh.academy.dao.ReviewListViewDao;
 import com.kh.academy.dto.CompanyDto;
+import com.kh.academy.dto.ReviewDto;
+import com.kh.academy.dto.ReviewListViewDto;
 import com.kh.academy.vo.PageVO;
 
 @Controller
@@ -27,29 +29,31 @@ public class CompanyController {
 	private ReviewListViewDao reviewListViewDao;
 	@Autowired
 	private ReviewDao reviewDao;
-	
 
-	//기업목록을 가져와 home.jsp에 전달
+	// 기업목록을 가져와 home.jsp에 전달
 	@RequestMapping("/list")
 	public String list(Model model) {
 		List<CompanyDto> companyList = companyDao.selectList();
 		model.addAttribute("companyList", companyList);
 		return "/home";
 	}
+
 	@GetMapping("/detail")
 	public String companyDetail(@RequestParam("companyNo") int companyNo, Model model, @ModelAttribute("pageVO") PageVO pageVO) {
 		CompanyDto companyDto = companyDao.selectOne(companyNo);
-		System.out.println("companyCrNumber = " + companyDto.getCompanyCrNumber());
-		if(companyDto == null) {
+
+		if (companyDto == null) {
 			return "redirect:/company/list";
 		}
-		 //리뷰 목록 가져오기(reviewListDao필요)
-		 
 		model.addAttribute("companyDto", companyDto);
-		model.addAttribute("list", reviewListViewDao.selectList(pageVO));
-		//게시글 수
-		int count = reviewDao.count(pageVO);
+
+		// 특정 회사의 리뷰 목록 조회
+		List<ReviewListViewDto> list = reviewListViewDao.selectListByCompanyNo(pageVO, companyNo);
+		model.addAttribute("list", list);
+
+		int count = reviewDao.count(companyNo);
 		pageVO.setCount(count);
+
 		return "/WEB-INF/views/company/detail.jsp";
 	}
 //	@GetMapping("/insert")
@@ -82,8 +86,6 @@ public class CompanyController {
 		
 	
 }
-
-
 
 
 

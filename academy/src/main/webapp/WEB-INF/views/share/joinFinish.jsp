@@ -7,9 +7,6 @@
     <div class="cell">
         <h2>회원 가입이 완료 되었습니다!</h2>
     </div>
-    <div class="cell mt-50">
-    	<h4>${memberDto.memberName} 회원님</h4>
-    </div>
     <div class="cell" style="color: #343536">
     	<p>회원가입을 진심으로 환영합니다.</p>
     </div>

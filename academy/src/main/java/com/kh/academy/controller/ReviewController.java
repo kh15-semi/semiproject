@@ -15,7 +15,6 @@ import com.kh.academy.dao.ReviewListViewDao;
 import com.kh.academy.dto.MemberDto;
 import com.kh.academy.dto.ReviewDto;
 import com.kh.academy.error.TargetNotFoundException;
-import com.kh.academy.vo.PageVO;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -60,9 +59,13 @@ public class ReviewController {
 	public String write(@ModelAttribute ReviewDto reviewDto, @RequestParam int companyNo, HttpSession session) {
 
 		String userId = (String) session.getAttribute("userId");
+		String userType = (String) session.getAttribute("userType");
+		MemberDto memberDto = memberDao.selectOne(userId);
+		
+		
 		reviewDto.setReviewWriter(userId);
 
-		if (userId == null) {
+		if (userId == null || memberDto.getMemberCompanyNo() != companyNo || userType.equals("기업회원")) {
 			return "redirect:/company/review/write?error";
 		}
 		// 리뷰 DB 저장

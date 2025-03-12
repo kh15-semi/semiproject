@@ -72,7 +72,7 @@
                     </ul>
 				</li>
                 <li>
-					<a href="#">기업 리뷰 작성</a>
+					<a href="/company/review/write?companyNo=${sessionScope.memberDto.memberCompanyNo}">기업 리뷰 작성</a>
 					<ul>
                         <li><a href="#">항목1</a></li>
                         <li><a href="#">항목2</a></li>
