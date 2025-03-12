@@ -19,16 +19,17 @@ public class ReviewListViewDao {
 	@Autowired
 	private ReviewListViewMapper reviewListViewMapper;
 
-	public List<ReviewListViewDto> selectList(PageVO pageVO){
+	public List<ReviewListViewDto> selectListByCompanyNo(PageVO pageVO, int companyNo) {
 		if(pageVO.isList()) {
 			String sql = "select * from ("
 							+ "select rownum rn, TMP.* from ("
 								+ "select * from review_list_view "
+								+ "WHERE review_company_no = ? " // companyNo 조건 추가
 								+ "order by review_no desc"
 							+ ") TMP"
 						+ ") where rn between ? and ?";
 			Object[] data = {
-					pageVO.getStartRownum(), pageVO.getFinishRownum()
+					companyNo, pageVO.getStartRownum(), pageVO.getFinishRownum()
 			};
 			return jdbcTemplate.query(sql, reviewListViewMapper, data);
 		}

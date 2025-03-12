@@ -46,6 +46,13 @@ public class ReviewDao {
 		List<ReviewDto> list = jdbcTemplate.query(sql, reviewMapper, data);
 		return list.isEmpty() ? null : list.get(0);
 	}
+	
+	public ReviewDto selectOneByCompanyNo(int companyNo) {
+		String sql = "select * from review where review_company_no = ?";
+		Object[] data = { companyNo };
+		List<ReviewDto> list = jdbcTemplate.query(sql, reviewMapper, data);
+		return list.isEmpty() ? null : list.get(0);
+	}
 
 	public boolean update(ReviewDto reviewDto) {
 		String sql = "update review " + "set review_score = ?, review_comment = ?, review_etime = systimestamp, "
@@ -66,15 +73,22 @@ public class ReviewDao {
 	}
 
 	// 카운트 조회 명령
-	public int count() {
-		String sql = "select count(*) from review";
-		// return jdbcTemplate.queryForObject(sql, Integer.class); //int와 Integer의 차이는
-		// null이 나오느냐의 유무
-		return jdbcTemplate.queryForObject(sql, int.class); // int와 Integer의 차이는 null이 나오느냐의 유무
+//	public int count() {
+//		String sql = "select count(*) from review";
+//		// return jdbcTemplate.queryForObject(sql, Integer.class); //int와 Integer의 차이는
+//		// null이 나오느냐의 유무
+//		return jdbcTemplate.queryForObject(sql, int.class); // int와 Integer의 차이는 null이 나오느냐의 유무
+//	}
+	
+//	public int count(PageVO pageVO) {
+//		return count();
+//	}
+	
+
+	public int count(int companyNo) {
+	    String sql = "SELECT COUNT(*) FROM review WHERE review_company_no = ?";
+	    return jdbcTemplate.queryForObject(sql, Integer.class, companyNo);
 	}
 
-	public int count(PageVO pageVO) {
-		return count();
-	}
 
 }
