@@ -89,30 +89,35 @@
 
 			<div class="cell" style="margin: auto;">
 				<div class="cell left m-10">
-					<span style="display: flex; align-items: center;">
+					<span>
+					<a href="#" style="text-decoration: none; color: inherit;">
 						<img src="https://placehold.co/30x30"><!-- 기업 로고 -->
-						<b>&nbsp;기업명&nbsp;<i class="fa-regular fa-bookmark"></i></b>
-					</span>
+						<b>&nbsp;기업명&nbsp;</a><i class="fa-regular fa-bookmark"></i></b>
 				</div>
-                <div class="cell recommend-box">
-					<i class="fa-solid fa-quote-left grey"></i>
-					<p>체계적인 일처리가 좋음</p>
-					<i class="fa-solid fa-quote-right grey"></i>
-				</div>
+				<a href="#" style="text-decoration: none; color: inherit;">
+	                <div class="cell recommend-box">
+						<i class="fa-solid fa-quote-left grey"></i>
+						<p>체계적인 일처리가 좋음</p>
+						<i class="fa-solid fa-quote-right grey"></i>
+					</div>
+				</a>
             </div>
 
 			<div class="cell" style="margin: auto;">
 				<div class="cell left m-10">
-					<span style="display: flex; align-items: center;">
+					<span>
+					<a href="#" style="text-decoration: none; color: inherit;">
 						<img src="https://placehold.co/30x30"><!-- 기업 로고 -->
-						<b>&nbsp;기업명&nbsp;<i class="fa-regular fa-bookmark"></i></b>
+						<b>&nbsp;기업명&nbsp;</a><i class="fa-regular fa-bookmark"></i></b>
 					</span>
 				</div>
-                <div class="cell recommend-box">
-					<i class="fa-solid fa-quote-left grey"></i>
-					<p>기업 문화가 좋음, 노후화된 시스템</p>
-					<i class="fa-solid fa-quote-right grey"></i>
-				</div>
+				<a href="#" style="text-decoration: none; color: inherit;">
+	                <div class="cell recommend-box">
+						<i class="fa-solid fa-quote-left grey"></i>
+						<p>기업 문화가 좋음, 노후화된 시스템</p>
+						<i class="fa-solid fa-quote-right grey"></i>
+					</div>
+				</a>
 			</div>
 		</div>
 
@@ -121,30 +126,36 @@
 
 			<div class="cell" style="margin: auto;">
 				<div class="cell left m-10">
-					<span style="display: flex; align-items: center;">
+					<span>
+					<a href="#" style="text-decoration: none; color: inherit;">
 						<img src="https://placehold.co/30x30"><!-- 기업 로고 -->
-						<b>&nbsp;기업명&nbsp;<i class="fa-regular fa-bookmark"></i></b>
+						<b>&nbsp;기업명&nbsp;</a><i class="fa-regular fa-bookmark"></i></b>
 					</span>
 				</div>
-                <div class="cell recommend-box">
-					<i class="fa-solid fa-quote-left grey"></i>
-					<p>외국계 기업으로서 자유로운 분위기</p>
-					<i class="fa-solid fa-quote-right grey"></i>
-				</div>
+				<a href="#" style="text-decoration: none; color: inherit;">
+	                <div class="cell recommend-box">
+						<i class="fa-solid fa-quote-left grey"></i>
+						<p>외국계 기업으로서 자유로운 분위기</p>
+						<i class="fa-solid fa-quote-right grey"></i>
+					</div>
+				</a>
             </div>
 
 			<div class="cell" style="margin: auto;">
 				<div class="cell left m-10">
-					<span style="display: flex; align-items: center;">
+					<span>
+					<a href="#" style="text-decoration: none; color: inherit;">
 						<img src="https://placehold.co/30x30"><!-- 기업 로고 -->
-						<b>&nbsp;기업명&nbsp;<i class="fa-regular fa-bookmark"></i></b>
+						<b>&nbsp;기업명&nbsp;</a><i class="fa-regular fa-bookmark"></i></b>
 					</span>
 				</div>
-                <div class="cell recommend-box">
-					<i class="fa-solid fa-quote-left grey"></i>
-					<p>수평적인 문화, 워라밸 보장</p>
-					<i class="fa-solid fa-quote-right grey"></i>
-				</div>
+				<a href="#" style="text-decoration: none; color: inherit;">
+	                <div class="cell recommend-box">
+						<i class="fa-solid fa-quote-left grey"></i>
+						<p>수평적인 문화, 워라밸 보장</p>
+						<i class="fa-solid fa-quote-right grey"></i>
+					</div>
+				</a>
             </div>
 		</div>
 		<br>
