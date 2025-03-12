@@ -72,7 +72,7 @@
                     </ul>
 				</li>
                 <li>
-					<a href="#">기업 리뷰 작성</a>
+					<a href="/company/review/write?companyNo=${sessionScope.memberDto.memberCompanyNo}">기업 리뷰 작성</a>
 					<ul>
                         <li><a href="#">항목1</a></li>
                         <li><a href="#">항목2</a></li>
@@ -120,8 +120,8 @@
                                     <i class="fa-solid fa-chevron-down"></i>
                                 </a>
                                 <ul>
-                                    <li><a href="/member/mypage">회원정보</a></li>
-                                    <li><a href="/review/detail?companyNo=" + ${companyDto.companyNo}>기업 리뷰</a></li>
+                                    <li><a href="/member/mypage">My page</a></li>
+                                    <li><a href="/review/detail?companyNo=" + ${companyDto.companyNo}>My review</a></li>
                                     <li><a href="/logout">로그아웃</a></li>
                                 </ul>
                             </li>

@@ -32,8 +32,8 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
                         "/member/login",         // 로그인
                         "/member/join",          // 회원가입
                         "/member/joinFinish",    // 회원가입 완료
- //                       "/member/findPw",        // 비밀번호 찾기
-//                        "/member/reset"          // 비밀번호 재설정
+                        "/member/findPw",        // 비밀번호 찾기
+                        "/member/reset",          // 비밀번호 재설정
                         "/company/member/join"
                 ));
 
