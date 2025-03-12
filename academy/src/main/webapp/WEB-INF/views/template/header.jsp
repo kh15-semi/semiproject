@@ -120,8 +120,8 @@
                                     <i class="fa-solid fa-chevron-down"></i>
                                 </a>
                                 <ul>
-                                    <li><a href="/member/mypage">회원정보</a></li>
-                                    <li><a href="/review/detail?companyNo=" + ${companyDto.companyNo}>기업 리뷰</a></li>
+                                    <li><a href="/member/mypage">My page</a></li>
+                                    <li><a href="/review/detail?companyNo=" + ${companyDto.companyNo}>My review</a></li>
                                     <li><a href="/logout">로그아웃</a></li>
                                 </ul>
                             </li>
