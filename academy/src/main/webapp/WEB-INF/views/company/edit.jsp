@@ -45,7 +45,7 @@
 
                 <div class="cell">
                     <h3>상호명</h3>
-                    <input type="text" name="companyName" class="field" size="30" style="border-radius: 10px;" value="${companyDto.companyName}">
+                    <input type="text" name="companyName" class="field" size="30" style="border-radius: 10px;" value="${companyDto.companyName}" readonly>
                 </div>
 				
 				<div class="cell">
@@ -54,18 +54,18 @@
 				</div>
 
 				<div class="cell">
-				    <h3>기업 홈페이지 URL</h3>
+				    <h3>홈페이지 URL</h3>
 				    <input type="text" name="companyURL" class="field" size="50" style="border-radius: 10px;" value="${companyDto.companyURL}">
 				</div>		
 
                 <div class="cell">
                     <h3>사업자 등록번호</h3>
-                    <input type="text" name="companyCrNumber" class="field" maxlength="12" oninput="inputCrNum(this)" style="border-radius: 10px;" value="${companyDto.companyCrNumber}">
+                    <input type="text" name="companyCrNumber" class="field" maxlength="12" oninput="inputCrNum(this)" style="border-radius: 10px;" value="${companyDto.companyCrNumber}" readonly>
                 </div>
 
                 <div class="cell">
-                    <h3>산업군 및 직종</h3>
-                    <select id="firstSelect" onchange="updateSecondSelect()" class="selectBox field" name="companyIndustry" style="width: 200px; border-radius: 10px;" value="${companyDto.companyIndustry}">
+                    <h3>산업군</h3>
+                    <select id="firstSelect"" class="selectBox field" name="companyIndustry" style="width: 200px; border-radius: 10px;" value="${companyDto.companyIndustry}">
                         <option value="">관련 산업군 선택</option>
                         <option value="dev">개발</option>
                         <option value="edu">교육</option>
@@ -87,9 +87,6 @@
                         <option value="hr">인사/총무</option>
                         <option value="pro">전문직</option>
                         <option value="csr">특수계층/공공</option>
-                    </select>
-                    <select id="secondSelect" class="selectBox field" name="companyJob" style="border-radius: 10px; width: 200px;" value="${companyDto.companyJob}">
-                        <option value="">관련 직종 선택</option>
                     </select>
             	</div>
                     
