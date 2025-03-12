@@ -39,11 +39,12 @@ public class ReviewController {
 
 	// 리뷰 상세 매핑
 	@RequestMapping("/detail")
-	public String detail(@RequestParam int reviewNo, Model model) {
+	public String detail(@RequestParam int reviewNo, Model model, HttpSession session) {
 		ReviewDto reviewDto = reviewDao.selectOne(reviewNo);
 		if (reviewDto.getReviewWriter() != null) {
 			model.addAttribute("reviewDto", reviewDto);
 		}
+		model.addAttribute("reviewDto", reviewDto);
 		return "/WEB-INF/views/company/review/detail.jsp";
 	}
 

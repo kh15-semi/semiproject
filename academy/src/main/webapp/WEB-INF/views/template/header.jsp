@@ -121,7 +121,8 @@
                                 </a>
                                 <ul>
                                     <li><a href="/member/mypage">My page</a></li>
-                                    <li><a href="/review/detail?companyNo=" ${companyDto.companyNo}>My review</a></li>
+                                    <li><a href="/company/detail?companyNo=${memberDto.memberCompanyNo}">My company</a></li>
+                                    <%-- <li><a href="/company/review/detail?reviewNo=${reviewNo}">My review</a></li> --%>
                                     <li><a href="/logout">로그아웃</a></li>
                                 </ul>
                             </li>
@@ -135,7 +136,7 @@
                                 </a>
                                 <ul>
                                     <li><a href="/company/member/mypage">My page</a></li>
-									<li><a href="/company/mycompany?memberCompanyNo=${memberDto.memberCompanyNo}">My company</a></li>
+									<li><a href="/company/mycompany?companyNo=${memberDto.memberCompanyNo}">My company</a></li>
                                     <li><a href="/logout">로그아웃</a></li>
                                 </ul>
                             </li>
