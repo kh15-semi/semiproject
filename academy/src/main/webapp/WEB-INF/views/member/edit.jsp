@@ -93,7 +93,7 @@ $(function() {
             	<hr style="border: 0; border-top: 1px solid rgb(196, 196, 196)">
             	
                 <div class="cell mt-30">
-                	<h3><i class="fa-solid fa-star-of-life red"></i> 선택 입력 사항</h3>
+                	<h3><i class="fa-solid fa-plus blue"></i> 선택 입력 사항</h3>
             		<label><i class="fa-solid fa-angle-right"></i> 관심 산업군</label>
             		<div class="cell">
             			<select id="firstSelect" onchange="updateSecondSelect()" class="selectBox field" name="memberIndustry">
