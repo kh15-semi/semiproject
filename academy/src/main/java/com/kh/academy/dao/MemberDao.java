@@ -90,6 +90,14 @@ public class MemberDao {
 		return list.isEmpty() ? null : list.get(0);
 	}
 
+	// CompanyNo로 회원 조회
+	public MemberDto selectOneByCompanyNo(int companyNo) {
+		String sql = "select * from member where member_company_no = ?";
+		Object[] data = { companyNo };
+		List<MemberDto> list = jdbcTemplate.query(sql, memberMapper, data);
+		return list.isEmpty() ? null : list.get(0);
+	}
+	
 	// 수정 기능(일반회원)
 	public boolean updateMember(MemberDto memberDto) {
 		String sql = "update member set " 
@@ -214,5 +222,6 @@ public class MemberDao {
 	    
 	    return jdbcTemplate.update(sql, data) > 0;
 	}
+
 
 }

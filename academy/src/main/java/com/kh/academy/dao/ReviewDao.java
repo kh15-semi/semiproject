@@ -59,6 +59,13 @@ public class ReviewDao {
         Object[] data = { userId };
         return jdbcTemplate.queryForObject(sql, int.class, data);
     }
+	
+	public ReviewDto selectOneByCompanyNoAndMemberId(int companyNo, String memberId) {
+        String sql = "SELECT * FROM review WHERE review_company_no = ? AND review_writer = ?";
+        Object[] data = {companyNo, memberId};
+        List<ReviewDto> list = jdbcTemplate.query(sql, reviewMapper, data);
+        return list.isEmpty() ? null : list.get(0);
+	}
 
 	public boolean update(ReviewDto reviewDto) {
 		String sql = "update review " + "set review_score = ?, review_comment = ?, review_etime = systimestamp, "
@@ -89,12 +96,15 @@ public class ReviewDao {
 //	public int count(PageVO pageVO) {
 //		return count();
 //	}
-	
 
 	public int count(int companyNo) {
 	    String sql = "SELECT COUNT(*) FROM review WHERE review_company_no = ?";
 	    return jdbcTemplate.queryForObject(sql, Integer.class, companyNo);
 	}
-
-
+	
+	public int countReviewByUserIdAndCompanyNo(String userId, int companyNo) {
+	    String sql = "SELECT COUNT(*) FROM review WHERE review_writer = ? AND review_company_no = ?";
+	    return jdbcTemplate.queryForObject(sql, Integer.class, userId, companyNo);
+	}
+	
 }

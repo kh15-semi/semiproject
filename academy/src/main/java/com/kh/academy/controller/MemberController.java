@@ -19,6 +19,7 @@ import com.kh.academy.dao.MemberDao;
 import com.kh.academy.dto.CompanyDto;
 import com.kh.academy.dto.CompanyHistoryDto;
 import com.kh.academy.dto.MemberDto;
+import com.kh.academy.error.TargetNotFoundException;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
@@ -44,7 +45,16 @@ public class MemberController {
 
 	// 입력 처리(일반회원)
 	@PostMapping("/member/join") // POST방식만 처리하는 매핑
-	public String joinMember(@ModelAttribute MemberDto memberDto) {
+	public String joinMember(@ModelAttribute MemberDto memberDto, Model model) {
+		// 필수 입력값 검증
+	    if (memberDto.getMemberId() == null || memberDto.getMemberId().isEmpty() ||
+	        memberDto.getMemberPw() == null || memberDto.getMemberPw().isEmpty() ||
+	        memberDto.getMemberEmail() == null || memberDto.getMemberEmail().isEmpty() ||
+	        memberDto.getMemberIdCardNum() == null || memberDto.getMemberIdCardNum().isEmpty()) {
+	        
+	        throw new TargetNotFoundException("회원정보를 입력하세요");
+	    }
+		
 		// company_history 테이블 조회
         CompanyHistoryDto companyHistoryDto = companyHistoryDao.selectCompanyHistoryByMemberIdCardNum(memberDto.getMemberIdCardNum());
 

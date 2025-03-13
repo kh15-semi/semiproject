@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
@@ -8,7 +9,7 @@
 	<div class="cell m-20">
 		<div>
 			<p style="color: grey; font-size: 12px;">
-				${companyDto.companyIndustry} | ${companyDto.companyJob} | ${reviewDto.reviewWtime}
+				${memberDto.memberIndustry} | ${memberDto.memberJob} | 작성일 : <fmt:formatDate value="${reviewDto.reviewWtime}" pattern="yyyy-MM-dd"/>
 		    </p>
 		    <h2 style="margin: 20px;">${reviewDto.reviewComment}</h2> <!--한줄평(=제목)-->
 		</div>
@@ -44,7 +45,7 @@
 			    <h3>${reviewDto.reviewWeakness}</h3>
 			    <br>
 			</div>
-		</div>
+		</div> 
 		<hr>
 		<div class="cell m-10" style="padding: 5px;">
 		    <p><i class="fa-solid fa-user-tie"></i> 담당자 피드백</p>

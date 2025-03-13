@@ -85,80 +85,31 @@
 			<h2>&nbsp;기업 리뷰&nbsp;<i class="fa-regular fa-newspaper"></i></h2>
 		</div>
 
-		<div class="cell flex-box">
-
-			<div class="cell" style="margin: auto;">
-				<div class="cell left m-10">
-					<span>
-					<a href="#" style="text-decoration: none; color: inherit;">
-						<img src="https://placehold.co/30x30"><!-- 기업 로고 -->
-						<b>&nbsp;기업명&nbsp;</a><i class="fa-regular fa-bookmark"></i></b>
-				</div>
-				<a href="#" style="text-decoration: none; color: inherit;">
-	                <div class="cell recommend-box">
-						<i class="fa-solid fa-quote-left grey"></i>
-						<p>체계적인 일처리가 좋음</p>
-						<i class="fa-solid fa-quote-right grey"></i>
-					</div>
-				</a>
-            </div>
-
-			<div class="cell" style="margin: auto;">
-				<div class="cell left m-10">
-					<span>
-					<a href="#" style="text-decoration: none; color: inherit;">
-						<img src="https://placehold.co/30x30"><!-- 기업 로고 -->
-						<b>&nbsp;기업명&nbsp;</a><i class="fa-regular fa-bookmark"></i></b>
-					</span>
-				</div>
-				<a href="#" style="text-decoration: none; color: inherit;">
-	                <div class="cell recommend-box">
-						<i class="fa-solid fa-quote-left grey"></i>
-						<p>기업 문화가 좋음, 노후화된 시스템</p>
-						<i class="fa-solid fa-quote-right grey"></i>
-					</div>
-				</a>
-			</div>
-		</div>
-
-		
-		<div class="cell flex-box">
-
-			<div class="cell" style="margin: auto;">
-				<div class="cell left m-10">
-					<span>
-					<a href="#" style="text-decoration: none; color: inherit;">
-						<img src="https://placehold.co/30x30"><!-- 기업 로고 -->
-						<b>&nbsp;기업명&nbsp;</a><i class="fa-regular fa-bookmark"></i></b>
-					</span>
-				</div>
-				<a href="#" style="text-decoration: none; color: inherit;">
-	                <div class="cell recommend-box">
-						<i class="fa-solid fa-quote-left grey"></i>
-						<p>외국계 기업으로서 자유로운 분위기</p>
-						<i class="fa-solid fa-quote-right grey"></i>
-					</div>
-				</a>
-            </div>
-
-			<div class="cell" style="margin: auto;">
-				<div class="cell left m-10">
-					<span>
-					<a href="#" style="text-decoration: none; color: inherit;">
-						<img src="https://placehold.co/30x30"><!-- 기업 로고 -->
-						<b>&nbsp;기업명&nbsp;</a><i class="fa-regular fa-bookmark"></i></b>
-					</span>
-				</div>
-				<a href="#" style="text-decoration: none; color: inherit;">
-	                <div class="cell recommend-box">
-						<i class="fa-solid fa-quote-left grey"></i>
-						<p>수평적인 문화, 워라밸 보장</p>
-						<i class="fa-solid fa-quote-right grey"></i>
-					</div>
-				</a>
-            </div>
-		</div>
-		<br>
-	</div>
+		 <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px;">
+            <!-- 기업 정보와 리뷰가 모두 2개씩 한 줄에 뜨도록 수정 -->
+            <c:forEach var="companyReview" items="${companyReviews}">
+                <!-- 링크 추가: 회사 박스를 클릭하면 해당 회사의 상세 페이지로 이동 -->
+                <a href="company/detail?companyNo=${companyReview.company.companyNo}" style="text-decoration: none; width: 48%; box-sizing: border-box;">
+                    <div style="background-color: #f7f7f7; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                        <div style="display: flex; align-items: center;">
+                            <img src="https://placehold.co/30x30" alt="기업 로고" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
+                            <b style="font-size: 18px; color: #333;">${companyReview.company.companyName}</b>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-quote-left grey" style="color: #888;"></i>
+                            <p style="font-size: 16px; color: #333; margin-bottom: 15px;">
+                                <c:if test="${not empty companyReview.reviews}">
+                                    ${companyReview.reviews[0].reviewComment}
+                                </c:if>
+                                <c:if test="${empty companyReview.reviews}">
+                                    리뷰 없음
+                                </c:if>
+                            </p>
+                            <i class="fa-solid fa-quote-right grey" style="color: #888;"></i>
+                        </div>
+                    </div>
+                </a>
+            </c:forEach>
+        </div>
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

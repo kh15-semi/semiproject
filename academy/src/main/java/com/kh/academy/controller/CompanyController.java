@@ -19,6 +19,7 @@ import com.kh.academy.dao.ReviewDao;
 import com.kh.academy.dao.ReviewListViewDao;
 import com.kh.academy.dto.CompanyDto;
 import com.kh.academy.dto.MemberDto;
+import com.kh.academy.dto.ReviewDto;
 import com.kh.academy.dto.ReviewListViewDto;
 import com.kh.academy.service.AttachmentService;
 import com.kh.academy.vo.PageVO;
@@ -41,50 +42,68 @@ public class CompanyController {
 	private AttachmentService attachmentService;
 	
 	
-//	//기업목록을 가져와 home.jsp에 전달
-//	@RequestMapping("/list")
-//	public String list(Model model) {
-//		List<CompanyDto> companyList = companyDao.selectList();
-//		model.addAttribute("companyList", companyList);
-//		return "/home";
-//	}
-	// 기업목록을 가져와 home.jsp에 전달
-	@RequestMapping("/list")
-	public String list(Model model) {
-		List<CompanyDto> companyList = companyDao.selectList();
-		model.addAttribute("companyList", companyList);
-		return "/home";
-	}
+	@GetMapping("/list")
+	public String companyList( @RequestParam(required = false) String keyword, Model model) {
+		boolean search = keyword != null && !keyword.trim().isEmpty();
+		List<CompanyDto> list;
+		if (search) {
+	        list = companyDao.selectList("company_name", keyword); // 기본적으로 회사명을 검색
+	    } else {
+	        list = companyDao.selectList();
+	    }
 
+	    model.addAttribute("search", search);
+	    model.addAttribute("keyword", keyword);
+	    model.addAttribute("list", list);
+
+	    return "/WEB-INF/views/company/list.jsp";
+		
+	}
+	
 	@GetMapping("/detail")
-	public String companyDetail(@RequestParam("companyNo") int companyNo, Model model, @ModelAttribute("pageVO") PageVO pageVO) {
-		CompanyDto companyDto = companyDao.selectOne(companyNo);
+	public String companyDetail(@RequestParam int companyNo, Model model, @ModelAttribute PageVO pageVO, HttpSession session) {
+	    CompanyDto companyDto = companyDao.selectOne(companyNo);
 
-		if (companyDto == null) {
-			return "redirect:/company/list";
-		}
-		model.addAttribute("companyDto", companyDto);
+	    if (companyDto == null) {
+	        return "redirect:/company/list";
+	    }
+	    model.addAttribute("companyDto", companyDto);
 
-		// 특정 회사의 리뷰 목록 조회
-		List<ReviewListViewDto> list = reviewListViewDao.selectListByCompanyNo(pageVO, companyNo);
-		model.addAttribute("list", list);
+	    // 특정 회사의 리뷰 목록 조회
+	    List<ReviewListViewDto> list = reviewListViewDao.selectListByCompanyNo(pageVO, companyNo);
+	    model.addAttribute("list", list);
 
-		int count = reviewDao.count(companyNo);
-		pageVO.setCount(count);
+	    // 리뷰의 점수를 합산하여 평균 점수 계산
+	    int totalScore = 0;
+	    for (ReviewListViewDto review : list) {
+	        totalScore += review.getReviewScore();  // 각 리뷰의 점수 합산
+	    }
+	    double averageScore = list.isEmpty() ? 0 : (double) totalScore / list.size();  // 리뷰가 없으면 0점, 아니면 평균 계산
 
-		return "/WEB-INF/views/company/detail.jsp";
+	    // 평균 점수를 모델에 추가
+	    model.addAttribute("averageScore", averageScore);
+
+	    // 리뷰 개수 세기
+	    int count = reviewDao.count(companyNo);
+	    pageVO.setCount(count);
+	    
+	    // 현재 사용자가 작성한 리뷰가 있는지 확인
+        String userId = (String) session.getAttribute("userId");
+        ReviewDto reviewDto = null;
+        if (userId != null) {
+        	reviewDto = reviewDao.selectOneByCompanyNoAndMemberId(companyNo, userId);
+        }
+        model.addAttribute("reviewDto", reviewDto);
+
+	    return "/WEB-INF/views/company/detail.jsp";
 	}
+
+
 
 	@GetMapping("/edit")
     public String companyEdit(@RequestParam int companyNo, HttpSession session, Model model) {
         String userId = (String) session.getAttribute("userId");
         MemberDto memberDto = memberDao.selectOne(userId);  // 세션에서 사용자 정보 가져오기
-
-        // 세션에 memberDto가 없으면 DB에서 조회 후 세션에 저장
-//        if (memberDto == null) {
-//            memberDto = memberDao.selectOne(userId);
-//            session.setAttribute("memberDto", memberDto);
-//        }
 
         // 세션에서 memberDto를 통해 companyDto 가져오기
         CompanyDto companyDto = companyDao.selectOne(companyNo);  // memberCompanyNo로 회사 정보 조회
@@ -179,6 +198,7 @@ public class CompanyController {
 //
 //        return "/WEB-INF/views/company/mycompany.jsp";  // 수정된 회사 정보를 반영
 //    }
+	
 	
 
 	

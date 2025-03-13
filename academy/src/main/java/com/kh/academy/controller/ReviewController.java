@@ -1,5 +1,8 @@
 package com.kh.academy.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,10 +11,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.academy.dao.CompanyDao;
 import com.kh.academy.dao.MemberDao;
 import com.kh.academy.dao.ReviewDao;
 import com.kh.academy.dao.ReviewListViewDao;
+import com.kh.academy.dto.CompanyDto;
 import com.kh.academy.dto.MemberDto;
 import com.kh.academy.dto.ReviewDto;
 import com.kh.academy.error.TargetNotFoundException;
@@ -28,6 +34,8 @@ public class ReviewController {
 	private MemberDao memberDao;
 	@Autowired
 	private ReviewListViewDao reviewListViewDao;
+	@Autowired
+	private CompanyDao companyDao;
 
 	// 리뷰 목록 매핑
 //	@GetMapping("/list")
@@ -40,11 +48,15 @@ public class ReviewController {
 	// 리뷰 상세 매핑
 	@RequestMapping("/detail")
 	public String detail(@RequestParam int reviewNo, Model model, HttpSession session) {
+		
 		ReviewDto reviewDto = reviewDao.selectOne(reviewNo);
-		if (reviewDto.getReviewWriter() != null) {
-			model.addAttribute("reviewDto", reviewDto);
-		}
+		CompanyDto companyDto = companyDao.selectOne(reviewDto.getReviewCompanyNo());
+		MemberDto memberDto = memberDao.selectOne(reviewDto.getReviewWriter());
+		
 		model.addAttribute("reviewDto", reviewDto);
+	    model.addAttribute("companyDto", companyDto);
+		model.addAttribute("memberDto", memberDto);
+		
 		return "/WEB-INF/views/company/review/detail.jsp";
 	}
 
@@ -58,23 +70,35 @@ public class ReviewController {
 
 	@PostMapping("/write")
 	public String write(@ModelAttribute ReviewDto reviewDto, @RequestParam int companyNo, HttpSession session) {
-
 		String userId = (String) session.getAttribute("userId");
 		String userType = (String) session.getAttribute("userType");
 		MemberDto memberDto = memberDao.selectOne(userId);
-		
-		
 		reviewDto.setReviewWriter(userId);
 
 		if (userId == null || memberDto.getMemberCompanyNo() != companyNo || userType.equals("기업회원")) {
 			return "redirect:/company/review/write?error";
 		}
+		
 		// 리뷰 DB 저장
 		int reviewNo = reviewDao.sequence();
 		reviewDto.setReviewNo(reviewNo);
 		reviewDao.insert(reviewDto, companyNo);
-
+		
 		return "redirect:detail?reviewNo=" + reviewNo; // reviewNo 파라미터 전달
+	}
+	
+	@GetMapping("/checkReview")
+	@ResponseBody
+	public Map<String, Boolean> checkReview(@RequestParam String userId, @RequestParam int companyNo) {
+	    int reviewCount = reviewDao.countReviewByUserIdAndCompanyNo(userId, companyNo);
+	    boolean hasReview = reviewCount > 0;
+
+	    Map<String, Boolean> response = new HashMap<>();
+	    response.put("hasReview", hasReview);
+	    
+	    System.out.println("userId: " + userId + ", companyNo: " + companyNo + ", hasReview: " + hasReview); // 로그 추가
+	    
+	    return response;
 	}
 
 	// 리뷰 수정 매핑
