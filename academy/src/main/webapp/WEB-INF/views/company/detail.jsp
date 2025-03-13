@@ -25,7 +25,8 @@
             <img src="http://placehold.co/150x150">
             <div class="cell m-10">
             	<h2>${companyDto.companyName}</h2>
-            	<p style="font-weight: 700;"><i class="fa-solid fa-star green"></i>&nbsp;${reviewListViewDto.reviewScore}</p>
+            	<%-- <p style="font-weight: 700;"><i class="fa-solid fa-star green"></i>&nbsp;${reviewListViewDto.reviewScore}</p> --%>
+            	<p style="font-weight: 700;"><i class="fa-solid fa-star green"></i>&nbsp;${averageScore}</p>
 				<p>${companyDto.companyIndustry}&nbsp; / &nbsp;${companyDto.companyJob}</p>
            		<p>${companyDto.companyUrl}</p>
             	<p>${companyDto.companyPost}&nbsp;${companyDto.companyAddress1}&nbsp;${companyDto.companyAddress2}</p>
