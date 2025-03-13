@@ -64,7 +64,7 @@ $(function() {
                 </div>
                 <label><i class="fa-solid fa-angle-right"></i> 산업군</label>
                 <div class="cell">
-            		<select id="firstSelect" onchange="updateSecondSelect()" class="selectBox field" name="memberIndustry">
+            		<select id="firstSelect" onchange="updateSecondSelect()" class="selectBox field" name="memberIndustry" value ="${memberDto.memberIndustry}" selected >
 		                <option value="">산업군 선택</option>
 		                <option value="개발">개발</option>
 		                <option value="교육">교육</option>
