@@ -108,9 +108,14 @@ public class CompanyDao {
         }
     }
 
+	public List<CompanyDto> selectList(String string, String keyword) {
+		String sql = "select * from company where instr(company_name, ?) > 0 order by company_no asc";
+		Object[] data = { keyword };
+		return jdbcTemplate.query(sql, companyMapper, data);
+	}
 	public List<CompanyDto> selectList() {
-		String sql = "select * from company order by company_no asc";
-		return jdbcTemplate.query(sql, companyMapper);
+	    String sql = "select * from company order by company_no asc";
+	    return jdbcTemplate.query(sql, companyMapper);
 	}
 
     
