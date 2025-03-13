@@ -48,15 +48,20 @@
 						<c:otherwise>
 							<div class="cell">
 							<c:forEach var="reviewListViewDto" items="${list}">
-								<p style="margin: 10px; color:grey; font-size: 13px;">${reviewListViewDto.reviewWtime}</p>                              
-                                 <h3 style="margin: 20px; text-align: center;"><i class="fa-solid fa-quote-left grey"></i>&nbsp;
-                                 ${reviewListViewDto.reviewComment}
-                                 &nbsp;<i class="fa-solid fa-quote-right grey"></i></h3>
-							</div>
-                           <div class="cell  m-20 center" style="font-weight: 700;">
-                               <i class="fa-solid fa-star yellow"></i>&nbsp;
-                               ${reviewListViewDto.reviewScore}
-                           </div>
+                            	<a href="/company/review/detail?reviewNo=${reviewListViewDto.reviewNo}" 
+                                  	style="text-decoration: none; color: black;">
+									<p style="margin: 10px; color:grey; font-size: 13px;">${reviewListViewDto.reviewWtime}</p>                              
+                                 		<h3 style="margin: 20px; text-align: center;">
+                                 			<i class="fa-solid fa-quote-left grey"></i>&nbsp;
+                                 				${reviewListViewDto.reviewComment}
+                                 				&nbsp;<i class="fa-solid fa-quote-right grey"></i>
+                                 			</h3>
+										</div>
+                           				<div class="cell  m-20 center" style="font-weight: 700;">
+                               				<i class="fa-solid fa-star yellow"></i>&nbsp;
+                               					${reviewListViewDto.reviewScore}
+                           				</div>
+                                 	</a>	
                            </c:forEach>
                        </c:otherwise>
                    </c:choose>
