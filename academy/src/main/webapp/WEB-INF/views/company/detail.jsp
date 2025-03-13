@@ -77,9 +77,10 @@ function checkReviewAndRedirect(companyNo) {
             	<p style="font-weight: 700;"><i class="fa-solid fa-star green"></i>&nbsp;${averageScore}</p>
 				<p>${companyDto.companyIndustry}&nbsp; / &nbsp;${companyDto.companyJob}</p>
            		<p>${companyDto.companyUrl}</p>
+            	<p>사업자등록번호 : ${companyDto.companyCrNumber}</p>
             	<p>${companyDto.companyPost}&nbsp;${companyDto.companyAddress1}&nbsp;${companyDto.companyAddress2}</p>
             	<p id="map" style="width: 250px; height: 250px;"></p>
-            	<p>${companyDto.companyCrNumber}</p>
+            	
             </div>
         </div>
         <br><hr>
