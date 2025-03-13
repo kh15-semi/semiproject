@@ -164,9 +164,9 @@
     <!-- 메인 화면 -->
 
 	<!-- 검색창 -->
-	<div class="container" style="width: 1200px; height: 40px;">
-		<div class="cell center">
-			<form action="/company/list" method="get" style="display: flex; align-items: center;">
+	<div class="container center">
+		<div class="cell">
+			<form action="/company/list" method="get" class="search-form">
 				<b><label><i class="fa-solid fa-magnifying-glass"></i> Search</label></b>&nbsp;
 				<input type="text" name="keyword" value="${keyword}" style="width: 900px; height: 40px;" placeholder="&nbsp; * 검색어를 입력해주세요" autocomplete="off">
 				<button type="submit" class="btn btn-green2" style="height: 40px; width: 80px; padding: 0px;"><i class="fa-solid fa-check"></i>&nbsp;검색</button>

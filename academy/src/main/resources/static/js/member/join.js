@@ -16,13 +16,22 @@ $(function(){
       	}
 	};
 	
+	//폼 제출 시 입력값 처리
+	$("form").submit(function(event) {
+		if (!status.ok()) {
+	    	alert("회원가입하려면 모든 필수 정보를 입력해야 합니다.");
+	        event.preventDefault();
+	        return false;
+	    }
+	});
+	
 	//아이디 관련 처리
 	$("[name=memberId]").on("input",function(){
 		var current = $(this).val();
 		var convert = current.replace(/[^a-z0-9]+/g, "");
 		$(this).val(convert);
 	});
-	$("[name=memberId").blur(function(){
+	$("[name=memberId]").blur(function(){
 		var regex = /^[a-z][a-z0-9]{4,19}$/;
 		var memberId = $(this).val();
 		
@@ -132,7 +141,7 @@ $(function(){
 		var regex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 		var isValid = $(this).val().length == 0 || regex.test($(this).val());
 		$(this).removeClass("success fail").addClass(isValid ? "success" : "fail");
-		status.memberContact = isValid;
+		status.memberEmail = isValid;
 	});
 	
 	//주소 관련 처리
