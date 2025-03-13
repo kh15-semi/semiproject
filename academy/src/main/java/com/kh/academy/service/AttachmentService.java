@@ -22,7 +22,7 @@ public class AttachmentService {
 	public int save(MultipartFile attach) throws IllegalStateException, IOException {
 		if(attach.isEmpty()) return -1;
 		//저장위치 생성
-		File dir = new File("D:/upload");
+		File dir = new File("c:/upload");
 		dir.mkdirs();
 		//물리 파일 저장
 		int attachmentNo = attachmentDao.sequence();//시퀀스번호 추출
@@ -42,7 +42,7 @@ public class AttachmentService {
 	//파일 삭제
 	public void delete(int attachmentNo) {
 		//[1] 실제 파일을 지우고
-		File dir = new File("D:/upload");
+		File dir = new File("c:/upload");
 		File target = new File(dir, String.valueOf(attachmentNo));
 		if(target.isFile() == false) return;
 		
@@ -61,7 +61,7 @@ public class AttachmentService {
 		}
 		
 		//[2] 실제 파일이 존재하는지 확인
-		File dir = new File("D:/upload");
+		File dir = new File("c:/upload");
 		File target = new File(dir, String.valueOf(attachmentNo));
 		if(target.isFile() == false) {
 			throw new TargetNotFoundException("파일이 존재하지 않습니다");

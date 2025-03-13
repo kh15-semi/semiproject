@@ -32,7 +32,8 @@
             <div class="cell" >
                <div class="cell">
                    <h3><i class="fa-regular fa-square-check blue"></i>&nbsp;기업 이미지</h3>
-                   <p><img src="https://www.placehold.co/200x200"></p>
+                  <p><img src="/company/image?companyNo=${companyDto.companyNo}" width="200" height="200"></p>
+                   
                </div>
                <div class="cell">
                    <h3><i class="fa-regular fa-square-check blue"></i>&nbsp;상호명</h3>
