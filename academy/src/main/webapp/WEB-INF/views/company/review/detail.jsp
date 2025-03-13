@@ -9,7 +9,7 @@
 	<div class="cell m-20">
 		<div>
 			<p style="color: grey; font-size: 12px;">
-				${companyDto.companyIndustry} | 리뷰 작성일 : <fmt:formatDate value="${reviewDto.reviewWtime}" pattern="yyyy-MM-dd"/>
+				${memberDto.memberIndustry} | ${memberDto.memberJob} | 작성일 : <fmt:formatDate value="${reviewDto.reviewWtime}" pattern="yyyy-MM-dd"/>
 		    </p>
 		    <h2 style="margin: 20px;">${reviewDto.reviewComment}</h2> <!--한줄평(=제목)-->
 		</div>

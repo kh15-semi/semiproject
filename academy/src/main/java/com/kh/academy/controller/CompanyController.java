@@ -54,30 +54,9 @@ public class CompanyController {
 		
 	}
 	
-//	@GetMapping("/detail")
-//	public String companyDetail(@RequestParam("companyNo") int companyNo, Model model, @ModelAttribute("pageVO") PageVO pageVO) {
-//		CompanyDto companyDto = companyDao.selectOne(companyNo);
-//
-//		if (companyDto == null) {
-//			return "redirect:/company/list";
-//		}
-//		model.addAttribute("companyDto", companyDto);
-//
-//		// 특정 회사의 리뷰 목록 조회
-//		List<ReviewListViewDto> list = reviewListViewDao.selectListByCompanyNo(pageVO, companyNo);
-//		model.addAttribute("list", list);
-//
-//		int count = reviewDao.count(companyNo);
-//		pageVO.setCount(count);
-//
-//		return "/WEB-INF/views/company/detail.jsp";
-//	}
-	//@GetMapping("/detail")
 	@GetMapping("/detail")
 	public String companyDetail(@RequestParam int companyNo, Model model, @ModelAttribute PageVO pageVO, HttpSession session) {
 	    CompanyDto companyDto = companyDao.selectOne(companyNo);
-//	    MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
-//	    model.addAttribute("memberDto", memberDto);
 
 	    if (companyDto == null) {
 	        return "redirect:/company/list";
@@ -101,6 +80,14 @@ public class CompanyController {
 	    // 리뷰 개수 세기
 	    int count = reviewDao.count(companyNo);
 	    pageVO.setCount(count);
+	    
+	    // 현재 사용자가 작성한 리뷰가 있는지 확인
+        String userId = (String) session.getAttribute("userId");
+        ReviewDto reviewDto = null;
+        if (userId != null) {
+        	reviewDto = reviewDao.selectOneByCompanyNoAndMemberId(companyNo, userId);
+        }
+        model.addAttribute("reviewDto", reviewDto);
 
 	    return "/WEB-INF/views/company/detail.jsp";
 	}
@@ -111,12 +98,6 @@ public class CompanyController {
     public String companyEdit(@RequestParam int companyNo, HttpSession session, Model model) {
         String userId = (String) session.getAttribute("userId");
         MemberDto memberDto = memberDao.selectOne(userId);  // 세션에서 사용자 정보 가져오기
-
-        // 세션에 memberDto가 없으면 DB에서 조회 후 세션에 저장
-//        if (memberDto == null) {
-//            memberDto = memberDao.selectOne(userId);
-//            session.setAttribute("memberDto", memberDto);
-//        }
 
         // 세션에서 memberDto를 통해 companyDto 가져오기
         CompanyDto companyDto = companyDao.selectOne(companyNo);  // memberCompanyNo로 회사 정보 조회
