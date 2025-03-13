@@ -51,7 +51,7 @@
 
            </div>
            <div class="cell m-10">
-               <div class="cell" style="border: 2px solid rgb(184, 183, 183); border-radius: 10px;">
+               <div class="cell">
                    <c:choose>
                        <c:when test="${list.isEmpty()}">
                            <h3 style="text-align: center;">
@@ -59,22 +59,23 @@
                            </h3>
                        </c:when>
 						<c:otherwise>
-							<div class="cell">
-							<c:forEach var="reviewListViewDto" items="${list}">
-                            	<a href="/company/review/detail?reviewNo=${reviewListViewDto.reviewNo}" 
-                                  	style="text-decoration: none; color: black;">
-									<p style="margin: 10px; color:grey; font-size: 13px;">${reviewListViewDto.reviewWtime}</p>                              
-                                 		<h3 style="margin: 20px; text-align: center;">
-                                 			<i class="fa-solid fa-quote-left grey"></i>&nbsp;
-                                 				${reviewListViewDto.reviewComment}
-                                 				&nbsp;<i class="fa-solid fa-quote-right grey"></i>
-                                 			</h3>
-										</div>
-                           				<div class="cell  m-20 center" style="font-weight: 700;">
-                               				<i class="fa-solid fa-star yellow"></i>&nbsp;
-                               					${reviewListViewDto.reviewScore}
-                           				</div>
-                                 	</a>	
+								<c:forEach var="reviewListViewDto" items="${list}">
+	                        	<a href="/company/review/detail?reviewNo=${reviewListViewDto.reviewNo}" style="text-decoration: none; color: black;">
+								<div class="cell" style="border: 2px solid rgb(184, 183, 183); border-radius: 10px;">
+										<p style="margin: 10px; color:grey; font-size: 13px;">
+											<fmt:formatDate value="${reviewListViewDto.reviewWtime}" pattern="작성일 | yyyy일 MM월 dd일"/></p>  
+										</p>                              
+	                              		<h3 style="margin: 20px; text-align: center;">
+	                             			<i class="fa-solid fa-quote-left grey"></i>&nbsp;
+	                             				${reviewListViewDto.reviewComment}
+	                             				&nbsp;<i class="fa-solid fa-quote-right grey"></i>
+	                           			</h3>
+	                           				<div class="cell  m-20 center" style="font-weight: 700;">
+	                               				<i class="fa-solid fa-star yellow"></i>&nbsp;
+	                               					${reviewListViewDto.reviewScore}
+	                           				</div>
+								</div>
+                             </a>	
                            </c:forEach>
                        </c:otherwise>
                    </c:choose>

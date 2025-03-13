@@ -45,7 +45,7 @@
 			    <h3>${reviewDto.reviewWeakness}</h3>
 			    <br>
 			</div>
-		</div>
+		</div> 
 		<hr>
 		<div class="cell m-10" style="padding: 5px;">
 		    <p><i class="fa-solid fa-user-tie"></i> 담당자 피드백</p>
