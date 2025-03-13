@@ -56,26 +56,26 @@
                     <h3>산업군</h3>
                     <select id="firstSelect"" class="selectBox field" name="companyIndustry" style="width: 200px; border-radius: 10px;">
                         <option value="">관련 산업군 선택</option>
-                        <option value="개발">개발</option>
-                        <option value="교육">교육</option>
-                        <option value="금융/재무">금융/재무</option>
-                        <option value="기획/경영">기획/경영</option>
-                        <option value="데이터">데이터</option>
-                        <option value="디자인">디자인</option>
-                        <option value="마케팅/시장조사">마케팅/시장조사</option>
-                        <option value="미디어/홍보">미디어/홍보</option>
-                        <option value="법률/법무">법률/법무</option>
-                        <option value="생산/제조">생산/제조</option>
-                        <option value="생산관리/품질관리">생산관리/품질관리</option>
-                        <option value="서비스/고객지원">서비스/고객지원</option>
-                        <option value="엔지니어링">엔지니어링</option>
-                        <option value="연구개발">연구개발</option>
-                        <option value="영업/제휴">영업/제휴</option>
-                        <option value="유통/무역">유통/무역</option>
-                        <option value="의약">의약</option>
-                        <option value="인사/총무">인사/총무</option>
-                        <option value="전문직">전문직</option>
-                        <option value="특수계층/공공">특수계층/공공</option>
+                        <option value="개발" <c:if test="${companyDto.companyIndustry eq '개발'}">selected</c:if>>개발</option>
+                        <option value="교육" <c:if test="${companyDto.companyIndustry eq '교육'}">selected</c:if>>교육</option>
+                        <option value="금융/재무" <c:if test="${companyDto.companyIndustry eq '금융/재무'}">selected</c:if>>금융/재무</option>
+                        <option value="기획/경영" <c:if test="${companyDto.companyIndustry eq '기획/경영'}">selected</c:if>>기획/경영</option>
+                        <option value="데이터" <c:if test="${companyDto.companyIndustry eq '데이터'}">selected</c:if>>데이터</option>
+                        <option value="디자인" <c:if test="${companyDto.companyIndustry eq '디자인'}">selected</c:if>>디자인</option>
+                        <option value="마케팅/시장조사" <c:if test="${companyDto.companyIndustry eq '마케팅/시장조사'}">selected</c:if>>마케팅/시장조사</option>
+                        <option value="미디어/홍보" <c:if test="${companyDto.companyIndustry eq '미디어/홍보'}">selected</c:if>>미디어/홍보</option>
+                        <option value="법률/법무" <c:if test="${companyDto.companyIndustry eq '법률/법무'}">selected</c:if>>법률/법무</option>
+                        <option value="생산/제조" <c:if test="${companyDto.companyIndustry eq '생산/제조'}">selected</c:if>>생산/제조</option>
+                        <option value="생산관리/품질관리" <c:if test="${companyDto.companyIndustry eq '생산관리/품질관리'}">selected</c:if>>생산관리/품질관리</option>
+                        <option value="서비스/고객지원" <c:if test="${companyDto.companyIndustry eq '서비스/고객지원'}">selected</c:if>>서비스/고객지원</option>
+                        <option value="엔지니어링" <c:if test="${companyDto.companyIndustry eq '엔지니어링'}">selected</c:if>>엔지니어링</option>
+                        <option value="연구개발" <c:if test="${companyDto.companyIndustry eq '연구개발'}">selected</c:if>>연구개발</option>
+                        <option value="영업/제휴" <c:if test="${companyDto.companyIndustry eq '영업/제휴'}">selected</c:if>>영업/제휴</option>
+                        <option value="유통/무역" <c:if test="${companyDto.companyIndustry eq '유통/무역'}">selected</c:if>>유통/무역</option>
+                        <option value="의약" <c:if test="${companyDto.companyIndustry eq '의약'}">selected</c:if>>의약</option>
+                        <option value="인사/총무" <c:if test="${companyDto.companyIndustry eq '인사/총무'}">selected</c:if>>인사/총무</option>
+                        <option value="전문직" <c:if test="${companyDto.companyIndustry eq '전문직'}">selected</c:if>>전문직</option>
+                        <option value="특수계층/공공" <c:if test="${companyDto.companyIndustry eq '특수계층/공공'}">selected</c:if>>특수계층/공공</option>
                     </select>
                     <select id="secondSelect" class="selectBox field" name="companyJob" style="display: none;">
 					<option value="2차 직종 선택">2차 직종 선택</option>
