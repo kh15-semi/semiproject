@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kh.academy.dao.CompanyDao;
 import com.kh.academy.dao.MemberDao;
 import com.kh.academy.dao.ReviewDao;
 import com.kh.academy.dao.ReviewListViewDao;
+import com.kh.academy.dto.CompanyDto;
 import com.kh.academy.dto.MemberDto;
 import com.kh.academy.dto.ReviewDto;
 import com.kh.academy.error.TargetNotFoundException;
@@ -28,6 +30,8 @@ public class ReviewController {
 	private MemberDao memberDao;
 	@Autowired
 	private ReviewListViewDao reviewListViewDao;
+	@Autowired
+	private CompanyDao companyDao;
 
 	// 리뷰 목록 매핑
 //	@GetMapping("/list")
@@ -41,10 +45,15 @@ public class ReviewController {
 	@RequestMapping("/detail")
 	public String detail(@RequestParam int reviewNo, Model model, HttpSession session) {
 		ReviewDto reviewDto = reviewDao.selectOne(reviewNo);
-		if (reviewDto.getReviewWriter() != null) {
-			model.addAttribute("reviewDto", reviewDto);
-		}
+//		if (reviewDto.getReviewWriter() != null) {
+//			model.addAttribute("reviewDto", reviewDto);
+//		}
+		// 회사 정보 조회
+		CompanyDto companyDto = companyDao.selectOne(reviewDto.getReviewCompanyNo());
+		
+	    model.addAttribute("companyDto", companyDto);
 		model.addAttribute("reviewDto", reviewDto);
+		
 		return "/WEB-INF/views/company/review/detail.jsp";
 	}
 
@@ -62,8 +71,6 @@ public class ReviewController {
 		String userId = (String) session.getAttribute("userId");
 		String userType = (String) session.getAttribute("userType");
 		MemberDto memberDto = memberDao.selectOne(userId);
-		
-		
 		reviewDto.setReviewWriter(userId);
 
 		if (userId == null || memberDto.getMemberCompanyNo() != companyNo || userType.equals("기업회원")) {
