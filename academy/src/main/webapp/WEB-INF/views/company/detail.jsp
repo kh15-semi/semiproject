@@ -12,13 +12,36 @@
 
 <!-- font awesome cdn -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 <script type="text/javascript">
+function checkReviewAndRedirect(companyNo) {
+    var userId = "${sessionScope.userId}"; // JSP EL 사용
+    if (!userId) {
+        alert("로그인이 필요합니다.");
+        return;
+    }
 
+    // API 호출하여 리뷰 작성 여부 확인
+    $.ajax({
+        url: "/company/review/checkReview", // 리뷰 작성 여부 확인 API
+        type: "GET",
+        data: {
+            userId: userId,
+            companyNo: companyNo
+        },
+        success: function(data) {
+            if (data.hasReview) {
+                alert("이미 리뷰를 작성하셨습니다.");
+            } else {
+                window.location.href = "/company/review/write?companyNo=" + companyNo;
+            }
+        },
+        error: function() {
+            alert("오류가 발생했습니다.");
+        }
+    });
+}
 </script>
 
-
-<form action="change" method="post">
 
  <div class="container w-700">
         <div class="cell" style="border: 2px solid rgb(184, 183, 183); padding: 20px; border-radius: 10px;">
@@ -39,8 +62,8 @@
                <h2>기업 리뷰</h2>
            </div>        
            <div class="cell m-10">
-			<a href="/company/review/write?companyNo=${companyDto.companyNo}" class="btn btn-green2">
-				<i class="fa-solid fa-user-pen"></i>&nbsp;리뷰 작성
+			<a href="#" class="btn btn-green2" onclick="checkReviewAndRedirect(${companyDto.companyNo})">
+    			<i class="fa-solid fa-user-pen"></i>&nbsp;리뷰 작성
 			</a>
 
 			<c:if test="${sessionScope.memberId != null}">
@@ -63,14 +86,14 @@
 	                        	<a href="/company/review/detail?reviewNo=${reviewListViewDto.reviewNo}" style="text-decoration: none; color: black;">
 								<div class="cell" style="border: 2px solid rgb(184, 183, 183); border-radius: 10px;">
 										<p style="margin: 10px; color:grey; font-size: 13px;">
-											<fmt:formatDate value="${reviewListViewDto.reviewWtime}" pattern="작성일 | yyyy일 MM월 dd일"/></p>  
+											<fmt:formatDate value="${reviewListViewDto.reviewWtime}" pattern="작성일 | yyyy일 MM월 dd일"/>
 										</p>                              
 	                              		<h3 style="margin: 20px; text-align: center;">
 	                             			<i class="fa-solid fa-quote-left grey"></i>&nbsp;
 	                             				${reviewListViewDto.reviewComment}
 	                             				&nbsp;<i class="fa-solid fa-quote-right grey"></i>
 	                           			</h3>
-	                           				<div class="cell  m-20 center" style="font-weight: 700;">
+	                           				<div class="cell m-20 center" style="font-weight: 700;">
 	                               				<i class="fa-solid fa-star yellow"></i>&nbsp;
 	                               					${reviewListViewDto.reviewScore}
 	                           				</div>
@@ -86,5 +109,4 @@
         </div>
     </div>
 </div>
-</form>
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

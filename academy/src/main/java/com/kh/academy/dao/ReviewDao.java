@@ -89,11 +89,15 @@ public class ReviewDao {
 //	public int count(PageVO pageVO) {
 //		return count();
 //	}
-	
 
 	public int count(int companyNo) {
 	    String sql = "SELECT COUNT(*) FROM review WHERE review_company_no = ?";
 	    return jdbcTemplate.queryForObject(sql, Integer.class, companyNo);
+	}
+	
+	public int countReviewByUserIdAndCompanyNo(String userId, int companyNo) {
+	    String sql = "SELECT COUNT(*) FROM review WHERE review_writer = ? AND review_company_no = ?";
+	    return jdbcTemplate.queryForObject(sql, Integer.class, userId, companyNo);
 	}
 
 
