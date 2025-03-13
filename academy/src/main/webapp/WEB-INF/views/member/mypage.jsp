@@ -70,11 +70,14 @@ $(function() {
 
 		<div class="cell">     
 		     <!-- 관심산업/직종 추가 -->
-		     <c:if test="${memberDto.memberIndustry == null}">
+		     <c:if test="${memberDto.memberIndustry != null}">
 		     <h3><i class="fa-regular fa-square-check blue"></i>&nbsp;관심 산업군 및 직종</h3>
+		     	<p>${memberDto.memberIndustry} | ${memberDto.memberJob}</p>
+		     </c:if>
+		     <c:if test="${memberDto.memberIndustry == null}">
+		     	<h3><i class="fa-regular fa-square-check blue"></i>&nbsp;관심 산업군 및 직종</h3>
 		     	<p>미선택</p>
 		     </c:if>
-		     	<p>${memberDto.memberIndustry} ${memberDto.memberJob}</p>
 		</div>
 
 	<div class="cell mb-20">

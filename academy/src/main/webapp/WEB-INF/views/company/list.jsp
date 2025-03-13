@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
@@ -68,7 +69,9 @@
                         			</a>
                     			</h3>
                     			<p style="font-size: 14px; color: #666;">${company.companyIndustry}</p>
-                    			<p style="font-size: 14px; color: #999;">${company.companyContact}</p>
+                    			<p style="font-size: 14px; color: #999;"><i class="fa-solid fa-phone"></i> 
+                    				<fmt:parseNumber var="number" value="${company.companyContact}" integerOnly="true" />
+									<fmt:formatNumber value="${number}" pattern="0-0000-0000" /></p>
                 			</div>
             			</div>
         			</c:forEach>

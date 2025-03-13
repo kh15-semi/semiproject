@@ -20,6 +20,7 @@
 <script type="text/javascript">
 function checkReviewAndRedirect(companyNo) {
     var userId = "${sessionScope.userId}"; // JSP EL 사용
+    var userType = "${sessionScope.userType}";
     if (!userId) {
         alert("로그인이 필요합니다.");
         return;
@@ -36,7 +37,11 @@ function checkReviewAndRedirect(companyNo) {
         success: function(data) {
             if (data.hasReview) {
                 alert("이미 리뷰를 작성하셨습니다.");
-            } else {
+            } 
+            else if (userType == '기업회원'){
+            	alert("기업회원은 리뷰를 작성할 수 없습니다.");
+            }            
+            else {
                 window.location.href = "/company/review/write?companyNo=" + companyNo;
             }
         },
@@ -73,12 +78,14 @@ function checkReviewAndRedirect(companyNo) {
             <img src="http://placehold.co/150x150">
             <div class="cell m-10">
             	<h2>${companyDto.companyName}</h2>
-            	<%-- <p style="font-weight: 700;"><i class="fa-solid fa-star green"></i>&nbsp;${reviewListViewDto.reviewScore}</p> --%>
+            	<p style="font-size: 13px; color: grey;"><i class="fa-solid fa-phone"></i> ${companyDto.companyContact}</p>
             	<p style="font-weight: 700;"><i class="fa-solid fa-star green"></i>&nbsp;${averageScore}</p>
-				<p>${companyDto.companyIndustry}&nbsp; / &nbsp;${companyDto.companyJob}</p>
-           		<p>${companyDto.companyUrl}</p>
-            	<p>사업자등록번호 : ${companyDto.companyCrNumber}</p>
-            	<p>${companyDto.companyPost}&nbsp;${companyDto.companyAddress1}&nbsp;${companyDto.companyAddress2}</p>
+				<p>산업군 | ${companyDto.companyIndustry}&nbsp;</p>
+           		<p>홈페이지 | ${companyDto.companyUrl}</p>
+            	<p>사업자등록번호 | ${companyDto.companyCrNumber}</p>
+            	<p>우편번호 | ${companyDto.companyPost}</p>
+            	<p>기본주소 | ${companyDto.companyAddress1}</p>
+            	<p>상세주소 | ${companyDto.companyAddress2}</p>
             	<p id="map" style="width: 250px; height: 250px;"></p>
             	
             </div>
