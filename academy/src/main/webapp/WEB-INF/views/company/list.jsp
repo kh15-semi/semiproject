@@ -11,58 +11,72 @@
 
 <!-- font awesome cdn -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+	
+</style>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>회사 리스트</title>
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-</head>
-<body>
+<script>
 
+</script>
 
-    <!-- 검색 결과가 있을 경우 검색어 표시 -->
-    <c:if test="${search}">
-        <p style="font-size: 18px; font-weight: bold;">"${keyword}" 검색 결과</p>
-    </c:if>
+<form action="" method="post">
 
-    <!-- 회사 리스트 테이블 -->
-    <table border="1" width="100%" style="text-align: center;">
-        <thead>
-            <tr>
-                <th>회사명</th>
-                <th>업종</th>
-                <th>직무</th>
-                <th>연락처</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- 검색 결과가 없는 경우 -->
-            <c:choose>
-                <c:when test="${empty list}">
-                    <tr>
-                        <td colspan="4">검색 결과가 없습니다.</td>
-                    </tr>
-                </c:when>
-                <c:otherwise>
-                    <c:forEach var="company" items="${list}">
-                        <tr>
-                            <td>
-                                <a href="/company/detail?companyNo=${company.companyNo}">
-                                    ${company.companyName}
-                                </a>
-                            </td>
-                            <td>${company.companyIndustry}</td>
-                            <td>${company.companyJob}</td>
-                            <td>${company.companyContact}</td>
-                        </tr>
-                    </c:forEach>
-                </c:otherwise>
-            </c:choose>
-        </tbody>
-    </table>
+	<div class="container w-1200" style="margin: auto;">
+	
+		<div class="cell ms-10">
+			<h2><i class="fa-solid fa-list"></i> 기업 목록</h2>
+		</div>
+		
+		<hr style="border: none; border: 1px solid rgb(196, 196, 196)">
+		
+		<div class="cell m-30" style="color: #2d3436">
+			<div class="cell">
+			    <!-- 검색 결과가 있을 경우 검색어 표시 -->
+			    <p style="font-size: 18px; font-weight: bold;">
+			    	<c:choose>
+			        	<c:when test="${not empty keyword}">
+			            	"${keyword}"
+			        	</c:when>
+			    	</c:choose> 검색 결과
+				</p>
+			</div>
+			
+			<hr style="border: none; border-top: 1px solid rgb(196, 196, 196)">
+		
+		</div>
+	    
+	   	<div class="cell m-40">
+	        <!-- 검색 결과가 없는 경우 -->
+	        <c:choose>
+	            <c:when test="${empty list}">
+	                <div class="cell">
+	                    <h3>검색 결과가 없습니다.</h3>
+	                </div>
+	            </c:when>
+	            <c:otherwise>
+	                <c:forEach var="company" items="${list}">
+            			<div class="cell p-20" style="width: calc(33% - 10px); border: 1px solid #ccc; border-radius: 8px;">
+            				<div class="cell center">
+	                			<a href="/company/detail?companyNo=${company.companyNo}">
+	                    			<img src="https://www.placehold.co/300x200" style= "border-radius: 5px;">
+	                			</a>
+            				</div>
+                			<div class="cell mt-10 ms-10">
+                    			<h3>
+                        			<a href="/company/detail?companyNo=${company.companyNo}" style="text-decoration: none; color: #333; font-weight: bold;">
+                            			${company.companyName}
+                        			</a>
+                    			</h3>
+                    			<p style="font-size: 14px; color: #666;">${company.companyIndustry}</p>
+                    			<p style="font-size: 14px; color: #999;">${company.companyContact}</p>
+                			</div>
+            			</div>
+        			</c:forEach>
+	            </c:otherwise>
+	        </c:choose>
+	    </div>
+	
+	</div>
+</form>
 
-</body>
-</html>
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
