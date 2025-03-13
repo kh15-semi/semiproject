@@ -37,71 +37,60 @@ $(function() {
 	
 });
 </script>
-<div class="container w-700" style="border:0; border-radius: 10px; background-color: rgb(238, 238, 238);">
-    <div class="cell" style="margin: 30px; padding: 30px">
-
+<div class="container w-800" >
+    <div class="cell" style="margin: 10px; padding: 10px">
         <div class="cell">
             <h2><i class="fa-regular fa-user green"></i> 회원 정보</h2>
         </div>
         
-        <hr style="border: 0; border: 1px solid rgb(196, 196, 196)">
+        <hr>
         
-	<div class="cell" style="padding: 15px;">
+	<div class="cell" style="padding: 10px;">
+        <div class="cell">
+            <h3><i class="fa-regular fa-square-check blue"></i>&nbsp;이름</h3>
+            <p>${memberDto.memberName}</p>
+        </div>
         
         <div class="cell">
-            <h3>이름</h3>
-            <p><i class="fa-solid fa-angle-right"></i> ${memberDto.memberName}</p>
+            <h3><i class="fa-regular fa-square-check blue"></i>&nbsp;연락처</h3>
+            <p>${memberDto.memberContact}</p>
         </div>
-
-	<hr style="border: 0; border-top: 1px solid rgb(196, 196, 196)">
-
+        
         <div class="cell">
-            <h3>연락처</h3>
-            <p><i class="fa-solid fa-angle-right"></i> ${memberDto.memberContact}</p>
+            <h3><i class="fa-regular fa-square-check blue"></i>&nbsp;이메일</h3>
+            <p>${memberDto.memberEmail}</p>
         </div>
-
-	<hr style="border: 0; border-top: 1px solid rgb(196, 196, 196)">
-
+		
         <div class="cell">
-            <h3>이메일</h3>
-            <p><i class="fa-solid fa-angle-right"></i> ${memberDto.memberEmail}</p>
-        </div>
-
-	<hr style="border: 0; border-top: 1px solid rgb(196, 196, 196)">
-
-        <div class="cell">
-            <h3>주소</h3>
-            <p><i class="fa-solid fa-angle-right"></i> 우편번호 : ${memberDto.memberPost}</p>
-            <p><i class="fa-solid fa-angle-right"></i> 기본주소 : ${memberDto.memberAddress1}</p>
-            <p><i class="fa-solid fa-angle-right"></i> 상세주소 : ${memberDto.memberAddress2}</p>
+            <h3><i class="fa-regular fa-square-check blue"></i>&nbsp;주소</h3>
+            <p>${memberDto.memberPost}</p>
+            <p>${memberDto.memberAddress1}</p>
+            <p>${memberDto.memberAddress2}</p>
        </div>
-       
-	<hr style="border: 0; border-top: 1px solid rgb(196, 196, 196)">
 
-       <div class="cell">     
-            <!-- 관심산업/직종 추가 -->
-            <h3>관심 산업군 및 직종</h3>
-            <p><i class="fa-solid fa-angle-right"></i> 관심 산업군 : ${memberDto.memberIndustry}</p>
-            <p><i class="fa-solid fa-angle-right"></i> 관심 직종 : ${memberDto.memberJob}</p>            
-        </div>
-        
-    
-    <hr style="border: 0; border-top: 1px solid rgb(196, 196, 196)">
+		<div class="cell">     
+		     <!-- 관심산업/직종 추가 -->
+		     <c:if test="${memberDto.memberIndustry == null}">
+		     <h3><i class="fa-regular fa-square-check blue"></i>&nbsp;관심 산업군 및 직종</h3>
+		     	<p>미선택</p>
+		     </c:if>
+		     	<p>${memberDto.memberIndustry} ${memberDto.memberJob}</p>
+		</div>
 
-		<div class="cell mb-20">
-			<c:if test="${companyHistoryDto == null}">
-				<h3>재직 이력</h3>
-        		<p><i class="fa-solid fa-angle-right"></i> 재직 이력이 없습니다.</p>
-    		</c:if>
-        	<h3>재직 이력</h3>
-    		<p><i class="fa-solid fa-angle-right"></i> 기업명 : ${companyName}</p>
-        	<p><i class="fa-solid fa-angle-right"></i> 입사일 : ${companyHistoryDto.companyHistoryJoinDate}</p>
-        	<p><i class="fa-solid fa-angle-right"></i> 퇴사일 : ${companyHistoryDto.companyHistoryLeaveDate}</p>
-    	</div>
+	<div class="cell mb-20">
+		<c:if test="${companyHistoryDto == null}">
+			<h3><i class="fa-regular fa-square-check blue"></i>&nbsp;재직 이력</h3>
+       		<p>재직 이력 없음</p>
+   		</c:if>
+       	<h3><i class="fa-regular fa-square-check blue"></i>&nbsp;재직 이력</h3>
+   		<p>업체명 | ${companyName}</p>
+       	<p>입사일 | ${companyHistoryDto.companyHistoryJoinDate}</p> 
+       	<p>퇴사일 | ${companyHistoryDto.companyHistoryLeaveDate}</p>
+   	</div>
 
     </div>
     
-   	<hr style="border: none; border: 1px solid rgb(196, 196, 196)">
+   	<hr>
 
     <div class="cell">
         <!-- <button type="button" class="btn-addCompany btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-pen-to-square"></i> 회사등록</button> -->    
