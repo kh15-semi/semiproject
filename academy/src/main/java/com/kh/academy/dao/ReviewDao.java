@@ -53,6 +53,12 @@ public class ReviewDao {
 		List<ReviewDto> list = jdbcTemplate.query(sql, reviewMapper, data);
 		return list.isEmpty() ? null : list.get(0);
 	}
+	
+	public Integer selectReviewNoByUserId(String userId) {
+        String sql = "select review_no from review where review_writer = ?";
+        Object[] data = { userId };
+        return jdbcTemplate.queryForObject(sql, int.class, data);
+    }
 
 	public boolean update(ReviewDto reviewDto) {
 		String sql = "update review " + "set review_score = ?, review_comment = ?, review_etime = systimestamp, "
