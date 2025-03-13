@@ -12,6 +12,11 @@
 
 <!-- font awesome cdn -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- kakao map -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5228eef19df72db9682c03e15b8f1205&libraries=services"></script>
+
+<link rel="stylesheet" type="text/css" href="/css/commons.css">
+
 <script type="text/javascript">
 function checkReviewAndRedirect(companyNo) {
     var userId = "${sessionScope.userId}"; // JSP EL 사용
@@ -40,10 +45,30 @@ function checkReviewAndRedirect(companyNo) {
         }
     });
 }
+	$(function(){
+        var container = document.getElementById('map')
+        var options = {
+		        center: new kakao.maps.LatLng(33.450701, 126.570667),
+		        draggable: false,
+		        level: 3
+		};
+		var map = new kakao.maps.Map(container, options);
+		
+		var geocoder = new kakao.maps.services.Geocoder();
+		geocoder.addressSearch('${companyDto.companyAddress1}', function(result, status) {
+				if (status === kakao.maps.services.Status.OK) {
+				var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+				var marker = new kakao.maps.Marker({
+		            map: map,
+		            position: coords,
+		        });
+		        map.setCenter(coords);
+			}
+		});
+	});
 </script>
 
-
- <div class="container w-700">
+<div class="container w-700">
         <div class="cell" style="border: 2px solid rgb(184, 183, 183); padding: 20px; border-radius: 10px;">
             <img src="http://placehold.co/150x150">
             <div class="cell m-10">
@@ -53,6 +78,7 @@ function checkReviewAndRedirect(companyNo) {
 				<p>${companyDto.companyIndustry}&nbsp; / &nbsp;${companyDto.companyJob}</p>
            		<p>${companyDto.companyUrl}</p>
             	<p>${companyDto.companyPost}&nbsp;${companyDto.companyAddress1}&nbsp;${companyDto.companyAddress2}</p>
+            	<p id="map" style="width: 250px; height: 250px;"></p>
             	<p>${companyDto.companyCrNumber}</p>
             </div>
         </div>
