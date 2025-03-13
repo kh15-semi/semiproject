@@ -48,7 +48,8 @@ function checkReviewAndRedirect(companyNo) {
             <img src="http://placehold.co/150x150">
             <div class="cell m-10">
             	<h2>${companyDto.companyName}</h2>
-            	<p style="font-weight: 700;"><i class="fa-solid fa-star green"></i>&nbsp;${reviewListViewDto.reviewScore}</p>
+            	<%-- <p style="font-weight: 700;"><i class="fa-solid fa-star green"></i>&nbsp;${reviewListViewDto.reviewScore}</p> --%>
+            	<p style="font-weight: 700;"><i class="fa-solid fa-star green"></i>&nbsp;${averageScore}</p>
 				<p>${companyDto.companyIndustry}&nbsp; / &nbsp;${companyDto.companyJob}</p>
            		<p>${companyDto.companyUrl}</p>
             	<p>${companyDto.companyPost}&nbsp;${companyDto.companyAddress1}&nbsp;${companyDto.companyAddress2}</p>
@@ -65,13 +66,11 @@ function checkReviewAndRedirect(companyNo) {
 			<a href="#" class="btn btn-green2" onclick="checkReviewAndRedirect(${companyDto.companyNo})">
     			<i class="fa-solid fa-user-pen"></i>&nbsp;리뷰 작성
 			</a>
-
-			<c:if test="${sessionScope.memberId != null}">
-				<c:if test="${sessionScope.memberId == reviewDto.reviewWriter}">
-					<a href="/company/review/detail?reviewNo=${reviewDto.reviewNo}" class="btn btn-blue">내 리뷰</a>
-				</c:if>
-			</c:if>
-
+			<c:if test="${sessionScope.userId != null}">
+		    	<c:if test="${sessionScope.userId == reviewDto.reviewWriter}">
+		   			<a href="/company/review/detail?reviewNo=${reviewDto.reviewNo}" class="btn btn-blue">내 리뷰</a>
+	 	    	</c:if>
+	 	    </c:if>
            </div>
            <div class="cell m-10">
                <div class="cell">

@@ -48,15 +48,14 @@ public class ReviewController {
 	// 리뷰 상세 매핑
 	@RequestMapping("/detail")
 	public String detail(@RequestParam int reviewNo, Model model, HttpSession session) {
-		ReviewDto reviewDto = reviewDao.selectOne(reviewNo);
-//		if (reviewDto.getReviewWriter() != null) {
-//			model.addAttribute("reviewDto", reviewDto);
-//		}
-		// 회사 정보 조회
-		CompanyDto companyDto = companyDao.selectOne(reviewDto.getReviewCompanyNo());
 		
-	    model.addAttribute("companyDto", companyDto);
+		ReviewDto reviewDto = reviewDao.selectOne(reviewNo);
+		CompanyDto companyDto = companyDao.selectOne(reviewDto.getReviewCompanyNo());
+		MemberDto memberDto = memberDao.selectOne(reviewDto.getReviewWriter());
+		
 		model.addAttribute("reviewDto", reviewDto);
+	    model.addAttribute("companyDto", companyDto);
+		model.addAttribute("memberDto", memberDto);
 		
 		return "/WEB-INF/views/company/review/detail.jsp";
 	}
