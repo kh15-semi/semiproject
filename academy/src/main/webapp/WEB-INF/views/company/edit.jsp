@@ -13,19 +13,7 @@
 <script src="/js/member/join.js"></script>
 <script src="/js/job_select.js"></script>
 <script type="text/javascript">
-	
-	// 사업자 등록 번호 입력
-	function inputCrNum(input) {
-	    let value = input.value.replace(/[^0-9]/g, '');
-	    if (value.length <= 3) {
-	    input.value = value;
-	    } else if (value.length <= 5) {
-	        input.value = value.slice(0, 3) + '-' + value.slice(3);
-	    } else {
-	        input.value = value.slice(0, 3) + '-' + value.slice(3, 5) + '-' + value.slice(5, 10);
-	    }
-	}
-	
+
 </script>
 
 
@@ -66,7 +54,7 @@
 
                 <div class="cell">
                     <h3>산업군</h3>
-                    <select id="firstSelect"" class="selectBox field" name="companyIndustry" style="width: 200px; border-radius: 10px;" value="${companyDto.companyIndustry}">
+                    <select id="firstSelect"" class="selectBox field" name="companyIndustry" style="width: 200px; border-radius: 10px;">
                         <option value="">관련 산업군 선택</option>
                         <option value="개발" <c:if test="${companyDto.companyIndustry eq '개발'}">selected</c:if>>개발</option>
                         <option value="교육" <c:if test="${companyDto.companyIndustry eq '교육'}">selected</c:if>>교육</option>
