@@ -8,22 +8,25 @@ $(function(){
 		memberEmail: true,
 		memberContact: true,
 		memberAddress: true,
+		companyAddress: true,
 		ok: function () {
         	return this.memberId && this.memberPw
 				&& this.memberPwCheck && this.memberName
 				&& this.memberEmail && this.memberContact 
-				&& this.memberAddress
+				&& this.memberAddress && this.companyAddress
       	}
 	};
 	
 	//폼 제출 시 입력값 처리
-	$("form").submit(function(event) {
-		if (!status.ok()) {
-	    	alert("회원가입하려면 모든 필수 정보를 입력해야 합니다.");
-	        event.preventDefault();
-	        return false;
-	    }
-	});
+	if (window.location.href.indexOf("/member/join") !== -1 || window.location.href.indexOf("/company/member/join") !== -1) {  // URL에 'signup'이 포함된 경우
+	    $("form").submit(function(event) {
+	        if (!status.ok()) {
+	            alert("회원가입하려면 모든 필수 정보를 입력해야 합니다.");
+	            event.preventDefault();
+	            return false;
+	        }
+	    });
+	}
 	
 	//아이디 관련 처리
 	$("[name=memberId]").on("input",function(){
@@ -202,6 +205,65 @@ $(function(){
             	$(".btn-address-clear").fadeOut();
             }
         }
+		
+		//주소 관련 처리
+		    $("[name=companyPost]").on("input", function () {
+		    	var current = $(this).val();
+		        var convert = current.replace(/[^0-9]+/g, "");
+		        $(this).val(convert);
+		   	});
+		    $("[name=companyPost], [name=companyAddress1], .btn-address-search").click(function () {
+		    	new daum.Postcode({
+		        oncomplete: function (data) {
+		        var addr = '';
+		        var extraAddr = '';
+		        	if (data.userSelectedType === 'R') {
+		            	addr = data.roadAddress;
+		            } else {
+		                addr = data.jibunAddress;
+		            }
+		            document.querySelector("[name=companyPost]").value = data.zonecode;
+		            document.querySelector("[name=companyAddress1]").value = addr;
+		            document.querySelector("[name=companyAddress2]").focus();
+		                        
+		            displayClearButton();
+		            }
+		     	}).open();
+		  	});
+		    $("[name=companyAddress2]").blur(function () {
+		    	var companyPost = $("[name=companyPost]").val();
+		      	var companyAddress1 = $("[name=companyAddress1]").val();
+		      	var companyAddress2 = $("[name=companyAddress2]").val();
+		      	var isEmpty = companyPost.length == 0 && companyAddress1.length == 0 && companyAddress2.length == 0;
+		      	var isFill = companyPost.length > 0 && companyAddress1.length > 0 && companyAddress2.length > 0;
+		       	var isValid = isEmpty || isFill;
+		     $("[name=companyPost], [name=companyAddress1], [name=companyAddress2]")
+		     		.removeClass("success fail").addClass(isValid ? "success" : "fail");
+		     	status.companyAddress = isValid;
+		     });
+			 $("[name=companyAddress2]").on("input", function () {
+		         	displayClearButton();
+		     });
+		     $(".btn-address-clear").click(function () {
+		     	$("[name=companyPost]").val("");
+		        $("[name=companyAddress1]").val("");
+		        $("[name=companyAddress2]").val("").trigger("blur");
+		        status.companyAddress = true;
+		        	displayClearButton();
+				});
+		     //주소 삭제 버튼을 표시/제거하는 함수
+		     	function displayClearButton() {
+		        	var post = $("[name=companyPost]").val();
+		        	var address1 = $("[name=companyAddress1]").val();
+		        	var address2 = $("[name=companyAddress2]").val();
+		       		var exist = post.length > 0 || address1.length > 0 || address2.length > 0;
+		            if (exist) {
+		            	$(".btn-address-clear").fadeIn();
+		            }
+		            else {
+		            	$(".btn-address-clear").fadeOut();
+		            }
+		        }
 			
 	//선택 사항 입력 처리
 	$("[name=memberIndustry], [name=memberJob]").on("change", function() {
