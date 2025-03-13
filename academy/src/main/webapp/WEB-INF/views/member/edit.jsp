@@ -76,10 +76,10 @@ $(function() {
             	<label><i class="fa-solid fa-angle-right"></i> 주소</label>
             	<div class="cell">
 		       		<input type="text" name="memberPost" size="6" maxlength="6" class="field"  value="${memberDto.memberPost}">
-                	<button type="button" class="btn btn-neutral btn-address-search">
+                	<button type="button" class="btn btn-neutral btn-member-address-search">
                 		<i class="fa-solid fa-magnifying-glass"></i>
                 	</button>
-                	<button type="button" class="btn btn-negative btn-address-clear" style="display: none;">
+                	<button type="button" class="btn btn-negative btn-member-address-clear" style="display: none;">
                 		<i class="fa-solid fa-xmark"></i>
                 	</button>
 					<div class="cell">

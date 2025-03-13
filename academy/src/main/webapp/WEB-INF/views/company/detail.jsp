@@ -20,6 +20,7 @@
 <script type="text/javascript">
 function checkReviewAndRedirect(companyNo) {
     var userId = "${sessionScope.userId}"; // JSP EL 사용
+    var userType = "${sessionScope.userType}";
     if (!userId) {
         alert("로그인이 필요합니다.");
         return;
@@ -36,7 +37,11 @@ function checkReviewAndRedirect(companyNo) {
         success: function(data) {
             if (data.hasReview) {
                 alert("이미 리뷰를 작성하셨습니다.");
-            } else {
+            } 
+            else if (userType == '기업회원'){
+            	alert("기업회원은 리뷰를 작성할 수 없습니다.");
+            }            
+            else {
                 window.location.href = "/company/review/write?companyNo=" + companyNo;
             }
         },

@@ -125,10 +125,10 @@ $(function() {
                 </div>
                 <div class="cell left">
 			    	<input type="text" name="memberPost" size="14" maxlength="6" class="field" placeholder="우편번호" readonly>
-			    	<button type="button" class="btn btn-neutral btn-address-search">
+			    	<button type="button" class="btn btn-neutral btn-member-address-search">
 			        	<i class="fa-solid fa-magnifying-glass"></i>
 			    	</button>
-			    	<button type="button" class="btn btn-negative btn-address-clear" style="display: none;">
+			    	<button type="button" class="btn btn-negative btn-member-address-clear" style="display: none;">
 			            <i class="fa-solid fa-xmark"></i>
 			      	 </button>
 			    </div>
