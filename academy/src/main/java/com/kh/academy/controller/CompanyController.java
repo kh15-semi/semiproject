@@ -36,21 +36,24 @@ public class CompanyController {
 	@Autowired
 	private MemberDao memberDao;
 	
-//	//기업목록을 가져와 home.jsp에 전달
-//	@RequestMapping("/list")
-//	public String list(Model model) {
-//		List<CompanyDto> companyList = companyDao.selectList();
-//		model.addAttribute("companyList", companyList);
-//		return "/home";
-//	}
-	// 기업목록을 가져와 home.jsp에 전달
-	@RequestMapping("/list")
-	public String list(Model model) {
-		List<CompanyDto> companyList = companyDao.selectList();
-		model.addAttribute("companyList", companyList);
-		return "/home";
-	}
+	@GetMapping("/list")
+	public String companyList( @RequestParam(required = false) String keyword, Model model) {
+		boolean search = keyword != null && !keyword.trim().isEmpty();
+		List<CompanyDto> list;
+		if (search) {
+	        list = companyDao.selectList("company_name", keyword); // 기본적으로 회사명을 검색
+	    } else {
+	        list = companyDao.selectList();
+	    }
 
+	    model.addAttribute("search", search);
+	    model.addAttribute("keyword", keyword);
+	    model.addAttribute("list", list);
+
+	    return "/WEB-INF/views/company/list.jsp";
+		
+	}
+	
 	@GetMapping("/detail")
 	public String companyDetail(@RequestParam("companyNo") int companyNo, Model model, @ModelAttribute("pageVO") PageVO pageVO) {
 		CompanyDto companyDto = companyDao.selectOne(companyNo);
@@ -135,18 +138,8 @@ public class CompanyController {
 	    model.addAttribute("companyDto", companyDto);
 	    return "/WEB-INF/views/company/mycompany.jsp";
 	}
-//    @RequestMapping("/mycompany")
-//    public String mycompany(HttpSession session, Model model) {
-//        String userId = (String) session.getAttribute("userId");
-//        MemberDto memberDto = memberDao.selectOne(userId);  // 세션에서 사용자 정보 가져오기
-//
-//        CompanyDto companyDto = companyDao.selectOne(memberDto.getMemberCompanyNo());  // 사용자에게 속한 기업 정보 가져오기
-//
-//        model.addAttribute("memberDto", memberDto);
-//        model.addAttribute("companyDto", companyDto);
-//
-//        return "/WEB-INF/views/company/mycompany.jsp";  // 수정된 회사 정보를 반영
-//    }
+	
+	
 	
 }
 
