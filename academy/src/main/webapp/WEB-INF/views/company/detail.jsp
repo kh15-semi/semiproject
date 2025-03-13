@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
@@ -11,6 +12,11 @@
 
 <!-- font awesome cdn -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<script type="text/javascript">
+
+</script>
+
 
 <form action="change" method="post">
 
@@ -35,7 +41,14 @@
            <div class="cell m-10">
 			<a href="/company/review/write?companyNo=${companyDto.companyNo}" class="btn btn-green2">
 				<i class="fa-solid fa-user-pen"></i>&nbsp;리뷰 작성
-			</a>            
+			</a>
+
+			<c:if test="${sessionScope.memberId != null}">
+				<c:if test="${sessionScope.memberId == reviewDto.reviewWriter}">
+					<a href="/company/review/detail?reviewNo=${reviewDto.reviewNo}" class="btn btn-blue">내 리뷰</a>
+				</c:if>
+			</c:if>
+
            </div>
            <div class="cell m-10">
                <div class="cell" style="border: 2px solid rgb(184, 183, 183); border-radius: 10px;">
@@ -48,15 +61,20 @@
 						<c:otherwise>
 							<div class="cell">
 							<c:forEach var="reviewListViewDto" items="${list}">
-								<p style="margin: 10px; color:grey; font-size: 13px;">${reviewListViewDto.reviewWtime}</p>                              
-                                 <h3 style="margin: 20px; text-align: center;"><i class="fa-solid fa-quote-left grey"></i>&nbsp;
-                                 ${reviewListViewDto.reviewComment}
-                                 &nbsp;<i class="fa-solid fa-quote-right grey"></i></h3>
-							</div>
-                           <div class="cell  m-20 center" style="font-weight: 700;">
-                               <i class="fa-solid fa-star yellow"></i>&nbsp;
-                               ${reviewListViewDto.reviewScore}
-                           </div>
+                            	<a href="/company/review/detail?reviewNo=${reviewListViewDto.reviewNo}" 
+                                  	style="text-decoration: none; color: black;">
+									<p style="margin: 10px; color:grey; font-size: 13px;">${reviewListViewDto.reviewWtime}</p>                              
+                                 		<h3 style="margin: 20px; text-align: center;">
+                                 			<i class="fa-solid fa-quote-left grey"></i>&nbsp;
+                                 				${reviewListViewDto.reviewComment}
+                                 				&nbsp;<i class="fa-solid fa-quote-right grey"></i>
+                                 			</h3>
+										</div>
+                           				<div class="cell  m-20 center" style="font-weight: 700;">
+                               				<i class="fa-solid fa-star yellow"></i>&nbsp;
+                               					${reviewListViewDto.reviewScore}
+                           				</div>
+                                 	</a>	
                            </c:forEach>
                        </c:otherwise>
                    </c:choose>
