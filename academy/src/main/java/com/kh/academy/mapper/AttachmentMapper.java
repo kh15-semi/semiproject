@@ -16,7 +16,7 @@ public class AttachmentMapper implements RowMapper<AttachmentDto>{
 		AttachmentDto attachmentDto = new AttachmentDto();
 		attachmentDto.setAttachmentNo(rs.getInt("attachment_no"));
 		attachmentDto.setAttachmentName(rs.getString("attachment_name"));
-		attachmentDto.setAttachmentType(rs.getString("attahment_type"));
+		attachmentDto.setAttachmentType(rs.getString("attachment_type"));
 		attachmentDto.setAttachmentSize(rs.getInt("attachment_size"));
 		return attachmentDto;
 	}

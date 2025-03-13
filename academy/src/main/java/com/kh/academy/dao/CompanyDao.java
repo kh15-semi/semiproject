@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.academy.dto.CompanyDto;
-import com.kh.academy.dto.ReplyDto;
 import com.kh.academy.mapper.CompanyMapper;
 import com.kh.academy.vo.PageVO;
 
@@ -113,5 +112,36 @@ public class CompanyDao {
 		return jdbcTemplate.query(sql, companyMapper);
 	}
 
-    
+	public int sequence() {
+		String sql = "select company_seq.nextval from dual";
+		return jdbcTemplate.queryForObject(sql, int.class);
+	}
+
+	public void insert2(CompanyDto companyDto) {
+		String sql ="insert into company(company_no, company_name, company_url, "
+				+ "company_contact, company_industry, company_job, company_post, "
+				+ "company_address1, company_address2, company_cr_number) "
+				+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		Object[] data= {companyDto.getCompanyNo(),companyDto.getCompanyName(),companyDto.getCompanyUrl(),companyDto.getCompanyContact(),
+				companyDto.getCompanyIndustry(),companyDto.getCompanyJob(),companyDto.getCompanyPost(),
+				companyDto.getCompanyAddress1(),companyDto.getCompanyAddress2(),companyDto.getCompanyCrNumber()};
+		jdbcTemplate.update(sql, data);
+	}
+	
+	//회사 이미지 등록(연결)
+	public void connect(int companyNo, int attachmentNo) {
+		String sql = "insert into company_image ("
+							+ "company_no, attachment_no"
+					+ ") values(?, ?)";
+		Object[] data = { companyNo, attachmentNo };
+		jdbcTemplate.update(sql, data);
+	}
+	
+	
+	public int findAttachment(int companyNo) {
+		String sql = "select attachment_no from company_image "
+						+ "where company_no=?";
+		Object[] data = {companyNo};
+		return jdbcTemplate.queryForObject(sql, int.class, data);
+	}
 }
