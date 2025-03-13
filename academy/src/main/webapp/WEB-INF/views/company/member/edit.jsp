@@ -12,7 +12,7 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="/js/member/join.js"></script>
 <script src="/js/job_select.js"></script>
-<script type="text/javascript"></script>
+
 <style>
 	.field {
 		border-radius: 10px;
