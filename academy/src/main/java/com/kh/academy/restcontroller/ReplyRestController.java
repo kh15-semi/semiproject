@@ -1,7 +1,10 @@
 package com.kh.academy.restcontroller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,10 +19,17 @@ import jakarta.servlet.http.HttpSession;
 
 
 @RestController
-@RequestMapping("/reply")
+@RequestMapping("/rest/reply")
 public class ReplyRestController {
 	@Autowired
 	private ReplyDao replyDao;
+	
+	//댓글 목록
+	@RequestMapping("/list")
+	public List<ReplyDto> list(@RequestParam int replyOrigin) {
+		return replyDao.selectList(replyOrigin);
+	}
+	
 	
 	//댓글 삭제
 	@PostMapping("/delete")
@@ -35,7 +45,8 @@ public class ReplyRestController {
 		 
 		 int replyNo = replyDao.sequence(); 
 		 replyDto.setReplyNo(replyNo);//댓글 등록
-	 }
+		 replyDao.insert(replyDto);
+	 }	
 	
 	 //댓글 수정
 	 @PostMapping("/edit")
