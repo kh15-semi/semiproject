@@ -85,8 +85,9 @@ public class CompanyController {
 
 	    // 리뷰 개수 세기
 	    int count = reviewDao.count(companyNo);
+	    model.addAttribute("count", count);
 	    pageVO.setCount(count);
-	    
+	    	    
 	    // 현재 사용자가 작성한 리뷰가 있는지 확인
         String userId = (String) session.getAttribute("userId");
         ReviewDto reviewDto = null;
@@ -203,11 +204,3 @@ public class CompanyController {
 
 	
 }
-
-
-
-
-
-
-
-
