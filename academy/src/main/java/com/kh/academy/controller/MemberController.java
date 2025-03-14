@@ -77,11 +77,17 @@ public class MemberController {
 		String userId = (String) session.getAttribute("userId"); // 내 아이디 추출
 		MemberDto memberDto = memberDao.selectOne(userId); //내 정보 획득
 		CompanyHistoryDto companyHistoryDto = companyHistoryDao.selectCompanyHistoryByMemberIdCardNum(memberDto.getMemberIdCardNum());
-		CompanyDto companyDto = companyDao.selectOne(companyHistoryDto.getCompanyNo());
+		//CompanyDto companyDto = companyDao.selectOne(companyHistoryDto.getCompanyNo());
+		
+		String companyName = null;
+		if (companyHistoryDto != null) {
+		    CompanyDto companyDto = companyDao.selectOne(companyHistoryDto.getCompanyNo());
+		    companyName = companyDto.getCompanyName();
+		}
 		
 		model.addAttribute("memberDto", memberDto);
 		model.addAttribute("companyHistoryDto", companyHistoryDto);
-		model.addAttribute("companyName", companyDto.getCompanyName());
+		model.addAttribute("companyName", companyName);
 
 		return "/WEB-INF/views/member/mypage.jsp";
 	}
@@ -229,49 +235,53 @@ public class MemberController {
 	}
 
 	@PostMapping("/share/login")
-	public String login(@ModelAttribute MemberDto memberDto, @RequestParam(required = false) String remember, 
-			HttpSession session, HttpServletResponse response) { // 사용자가 입력한 정보 //아이디와 비밀번호를 String으로 받을지, Dto로 받을지 선택의 문제
-		
-		MemberDto findDto = memberDao.selectOne(memberDto.getMemberId()); // 데이터베이스에 있는 정보 - findDto
-		// 아이디가 없으면 findDto는 null이다
-		if (findDto == null) {
-			return "redirect:login?error"; // 로그인페이지로 쫒아낸다 //GET의 login으로 리다이렉트된다. 원래 리다이렉트는 get밖에 안되긴 함
-		}
-		// 아이디가 있으면 비밀번호 검사를 진행
-		boolean isValid = findDto.getMemberPw().equals(memberDto.getMemberPw());
-		if (isValid) {// 로그인 성공 시
+    public String login(@ModelAttribute MemberDto memberDto, @RequestParam(required = false) String remember, 
+            HttpSession session, HttpServletResponse response) { // 사용자가 입력한 정보 //아이디와 비밀번호를 String으로 받을지, Dto로 받을지 선택의 문제
 
-			session.setAttribute("userId", findDto.getMemberId());
-			session.setAttribute("userType", findDto.getMemberType());
-			session.setAttribute("memberDto", findDto); // memberDto를 세션에 저장
+        MemberDto findDto = memberDao.selectOne(memberDto.getMemberId()); // 데이터베이스에 있는 정보 - findDto
+        // 아이디가 없으면 findDto는 null이다
+        if (findDto == null) {
+            return "redirect:login?error"; // 로그인페이지로 쫒아낸다 //GET의 login으로 리다이렉트된다. 원래 리다이렉트는 get밖에 안되긴 함
+        }
+        // 아이디가 있으면 비밀번호 검사를 진행
+        boolean isValid = findDto.getMemberPw().equals(memberDto.getMemberPw());
+        if (isValid) {// 로그인 성공 시
 
-			// 관리자인 경우 companyNo를 null로 설정
-	        Integer companyNo = null;
-	        if (!findDto.getMemberType().equals("관리자")) {
-	            companyNo = memberDao.selectMemberCompanyNo(memberDto.getMemberId());
-	        }
-			session.setAttribute("userCompanyNo", companyNo);
-			
-			//(+추가)최종 로그인 시각을 갱신 처리
-			memberDao.updateMemberLogin(findDto.getMemberId());
-			
-			//(+추가) 아이디 저장하기에 대해 쿠키 생성/소멸 처리
-			if(remember == null) {//쿠키 소멸
-				Cookie cookie = new Cookie("saveId", memberDto.getMemberId());
-				cookie.setMaxAge(0);
-				response.addCookie(cookie);
-			}
-			else {//쿠키 생성
-				Cookie cookie = new Cookie("saveId", memberDto.getMemberId());
-				cookie.setMaxAge(4*7*24*60*60);//4주
-				response.addCookie(cookie);
-			}
-		
-			return "redirect:/";
-		} else {// 비밀번호 다름
-			return "redirect:login?error";// 로그인 페이지로 쫓아낸다
-		}
-	}
+            session.setAttribute("userId", findDto.getMemberId());
+            session.setAttribute("userType", findDto.getMemberType());
+            session.setAttribute("memberDto", findDto); // memberDto를 세션에 저장
+
+            
+            // 관리자인 경우 companyNo를 null로 설정
+            Integer companyNo = null;
+            if (!findDto.getMemberType().equals("관리자")) {
+            	companyNo = memberDao.selectMemberCompanyNo(memberDto.getMemberId());
+                if (companyNo == null) {
+                    companyNo = 0; // 또는 적절한 기본값 설정
+                }
+            }
+            session.setAttribute("userCompanyNo", companyNo);
+
+            //(+추가)최종 로그인 시각을 갱신 처리
+            memberDao.updateMemberLogin(findDto.getMemberId());
+
+            //(+추가) 아이디 저장하기에 대해 쿠키 생성/소멸 처리
+            if(remember == null) {//쿠키 소멸
+                Cookie cookie = new Cookie("saveId", memberDto.getMemberId());
+                cookie.setMaxAge(0);
+                response.addCookie(cookie);
+            }
+            else {//쿠키 생성
+                Cookie cookie = new Cookie("saveId", memberDto.getMemberId());
+                cookie.setMaxAge(47246060);//4주
+                response.addCookie(cookie);
+            }
+
+            return "redirect:/";
+        } else {// 비밀번호 다름
+            return "redirect:login?error";// 로그인 페이지로 쫓아낸다
+        }
+    }
 
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {

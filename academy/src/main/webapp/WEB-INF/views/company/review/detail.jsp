@@ -110,7 +110,7 @@
 		    <c:if test="${sessionScope.userId == reviewDto.reviewWriter}">
 				<a href="/company/review/delete?reviewNo=${reviewDto.reviewNo}" class="btn btn-negative btn-review-delete"><i class="fa-solid fa-trash-can"></i>&nbsp;삭제</a>
 			</c:if>
-		</c:if>2
+		</c:if>
 	</div>
 </div>
 
