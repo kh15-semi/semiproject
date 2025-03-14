@@ -145,7 +145,7 @@
 	    <div class="cell center">
 	        <form action="/company/list" method="get" style="display: flex; align-items: center;">
 	            <b><label><i class="fa-solid fa-magnifying-glass"></i> Search</label></b>&nbsp;&nbsp;
-	            <input type="text" name="keyword" value="${keyword}" style="width: 900px; height: 40px; border-radius: 10px;" placeholder="&nbsp; * 검색어를 입력해주세요" autocomplete="off">&nbsp;
+	            <input type="text" name="keyword" value="${keyword}" style="width: 900px; height: 40px; border-radius: 10px; padding-left: 10px;" placeholder="&nbsp; * 검색어를 입력해주세요" autocomplete="off" >&nbsp;
 	            <button type="submit" class="btn btn-green2" style="height: 40px; width: 80px; padding: 0px;"><i class="fa-solid fa-check"></i>&nbsp;검색</button>
 	        </form>
 	    </div>
