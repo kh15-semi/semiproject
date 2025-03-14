@@ -146,7 +146,7 @@ function checkReviewAndRedirect(companyNo) {
 		<br><hr>
 		<div class="cell"><br>
 			<div class="cell left p-20" style="border: 2px solid rgb(184, 183, 183); border-radius: 10px;">
-				<h2><i class="fa-solid fa-chart-simple blue"></i>&nbsp;전체 리뷰 통계<label style="color: grey; font-size: 13px;">&nbsp;${count}</label></h2>
+				<h2><i class="fa-solid fa-chart-simple blue"></i>&nbsp;전체 리뷰 통계<label style="color: grey; font-size: 14px;">&nbsp;(${count}명)</label></h2>
 				<div id="chart_div"></div>
 			</div>
 		</div>
@@ -182,14 +182,6 @@ function checkReviewAndRedirect(companyNo) {
 								<div class="cell" style="border: 2px solid rgb(184, 183, 183); border-radius: 10px;">
 										<p style="margin: 10px; color:grey; font-size: 13px; width: inherit;">
 											<fmt:formatDate value="${reviewListViewDto.reviewWtime}" pattern="작성일 | yyyy일 MM월 dd일"/>
-										</p>										
-	                              		<h3 style="margin: 20px; text-align: center;">
-	                             			<i class="fa-solid fa-quote-left grey"></i>&nbsp;
-	                             				${reviewListViewDto.reviewComment}
-	                             				&nbsp;<i class="fa-solid fa-quote-right grey"></i>
-	                           			</h3>
-	                           				<div class="cell m-20 center" style="font-weight: 700;">
-
 										</p>
 <!-- 										텍스트 박스 넘어가는 현상을 처리하기 위해 스타일 추가  word-wrap: break-word; overflow: hidden; text-overflow: ellipsis; -->
 										<h3 style="margin: 20px; text-align: center; white-space: normal; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">
