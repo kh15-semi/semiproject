@@ -129,11 +129,11 @@ public class ReviewController {
 	
 	//리뷰 삭제 매핑
 	@RequestMapping("/delete")
-	public String delete(@RequestParam int reivewNo) {
-		ReviewDto reviewDto = reviewDao.selectOne(reivewNo);
-		if(reviewDto == null) throw new TargetNotFoundException("존재하지 않는 글");
-		reviewDao.delete(reivewNo);
-		return "redirect:/WEB-INF/views/company/detail.jsp";
+	public String delete(@RequestParam int reviewNo) {
+		ReviewDto reviewDto = reviewDao.selectOne(reviewNo);
+		int companyNo = reviewDto.getReviewCompanyNo();
+		reviewDao.delete(reviewNo);
+		return "redirect:/company/detail?companyNo=" + companyNo;
 	}
 	
 	

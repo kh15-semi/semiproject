@@ -66,6 +66,7 @@
         <hr style="border: none; border-top: 1px solid rgb(196, 196, 196)"><br>
         <div class="cell center" style="margin: 10px; padding: 10px;">
         	<a href="/company/edit?companyNo=${memberDto.memberCompanyNo}" class="btn-edit btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-pen-to-square"></i> 정보 수정</a>
+	        <a href="/company/detail?companyNo=${memberDto.memberCompanyNo}" class="btn-edit btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-list-check"></i></i> 리뷰 관리</a>
 	        <button type="button" class="btn-main btn btn-green2" style="border-radius: 10px;"><i class="fa-solid fa-house"></i> 메인</button>
 	        <a href="/company/detail?companyNo=${companyDto.companyNo}" class="btn btn-blue" style="border-radius: 10px;"><i class="fa-solid fa-reply"></i> 리뷰 관리</a>
 		</div>
