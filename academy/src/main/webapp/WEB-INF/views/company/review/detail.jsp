@@ -5,6 +5,8 @@
     
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
+<script src="/js/reply.js"></script>
+
 <div class="container w-700" style="border: 1px solid rgb(197, 197, 197); border-radius: 10px;">
 	<div class="cell m-20">
 		<div>
@@ -47,31 +49,59 @@
 			</div>
 		</div> 
 		<hr>
+		<div class="reply-wrapper mt-20"></div>
+		<script type="text/template" id="reply-template">
+		<div>
+			<h3>담당자 댓글</h3>
+			<div class="reply-item"
+				style="margin-bottom: 15px; border-bottom: 1px solid #ddd; padding-bottom: 10px;">
+				<!-- 댓글 내용 출력 -->
+				<span class="reply-writer" style="font-weight: bold;">작성자</span>
+				<span class="reply-content" >내용</span>
+				<span class="reply-wtime">yyyy-MM-dd HH:mm:ss</span>
+
+				<!-- 댓글 삭제 버튼 (작성자만 보임) -->
+				<c:if test="${sessionScope.userId == replyDto.replyWriter}">
+					<form action="/rest/reply/delete" method="post">
+						<input type="hidden" name="replyNo" value="${reply.replyNo}">
+						<button type="submit" class="btn btn-negative">
+							<i class="fa-solid fa-trash-can"></i>&nbsp;삭제
+						</button>
+					</form>
+				</c:if>
+			</div>
+			<c:if test="${empty reply}">
+				<p>작성된 댓글이 없습니다.</p>
+			</c:if>
+
+		</script>
+			
+		</div>
 		<div class="cell m-10" style="padding: 5px;">
 		    <p><i class="fa-solid fa-user-tie"></i> 담당자 피드백</p>
 		    <c:if test="${sessionScope.userType != null}">
 		    	<c:if test="${sessionScope.userType == '기업회원'}">
 		    		<c:if test="${sessionScope.userCompanyNo == reviewDto.reviewCompanyNo}">
 				    	<div style="display: flex; align-items: center;">
-					    	<textarea class="field" style="width: 85%;" rows="4" placeholder="해당 기업의 담당자만 피드백을 할 수 있습니다"></textarea>
-					    	<button type="submit" class="btn btn-green2"style="margin-left: 10px;"><i class="fa-solid fa-check"></i>&nbsp;등록</button>
+					    	<textarea class="field reply-input" style="width: 85%;" rows="4" placeholder="해당 기업의 담당자만 피드백을 할 수 있습니다"></textarea>
+					    	<button class="btn btn-green2 btn-reply-write"style="margin-left: 10px;"><i class=" fa-solid fa-check"></i>&nbsp;등록</button>
 			   			</div>
 			   		</c:if>
 			   		<c:if test="${sessionScope.userCompanyNo != reviewDto.reviewCompanyNo}">
 			    	<div style="display: flex; align-items: center;">
-				    	<textarea class="field" style="width: 85%;" rows="4" placeholder="해당 기업의 담당자만 피드백을 할 수 있습니다" disabled></textarea>
-				    	<button type="submit" class="btn btn-green2"style="margin-left: 10px;"><i class="fa-solid fa-check"></i>&nbsp;등록</button>
+				    	<textarea class="field reply-input" style="width: 85%;" rows="4" placeholder="해당 기업의 담당자만 피드백을 할 수 있습니다" disabled></textarea>
+				    	<button  class="btn btn-green2 btn-reply-write"style="margin-left: 10px;"><i class="fa-solid fa-check"></i>&nbsp;등록</button>
 			  			</div>
 					</c:if>
 			   	</c:if>
 		    	<c:if test="${sessionScope.userType == '일반회원'}">
 			    	<div style="display: flex; align-items: center;">
 				    	<textarea class="field" style="width: 85%;" rows="4" placeholder="해당 기업의 담당자만 피드백을 할 수 있습니다" disabled></textarea>
-				    	<button type="submit" class="btn btn-green2"style="margin-left: 10px;"><i class="fa-solid fa-check"></i>&nbsp;등록</button>
+				    	<button class="btn btn-green2"style="margin-left: 10px;"><i class="fa-solid fa-check"></i>&nbsp;등록</button>
 			  			</div>
 				</c:if>
 			</c:if>
-	    </div>
+	    </div> 
 	</div>
 	<div class="cell center">
 		<a href="/company/detail?companyNo=${companyDto.companyNo}" class="btn btn-green2"><i class="fa-solid fa-arrow-left"></i>&nbsp;이전</a>
@@ -80,7 +110,7 @@
 		    <c:if test="${sessionScope.userId == reviewDto.reviewWriter}">
 				<a href="/company/review/delete?reviewNo=${reviewDto.reviewNo}" class="btn btn-negative btn-review-delete"><i class="fa-solid fa-trash-can"></i>&nbsp;삭제</a>
 			</c:if>
-		</c:if>
+		</c:if>2
 	</div>
 </div>
 
