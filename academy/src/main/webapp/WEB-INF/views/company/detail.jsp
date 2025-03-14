@@ -150,7 +150,7 @@ function checkReviewAndRedirect(companyNo) {
 		   			<a href="/company/review/detail?reviewNo=${reviewDto.reviewNo}" class="btn btn-blue">내 리뷰</a>
 	 	    	</c:if>
 	 	    </c:if>
-           </div>
+           </div> 
            <div class="cell m-10">
                <div class="cell">
                    <c:choose>
