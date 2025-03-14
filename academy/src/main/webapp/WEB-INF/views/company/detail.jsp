@@ -63,57 +63,60 @@ function checkReviewAndRedirect(companyNo) {
         }
     });
 }
-	$(function(){
-        var container = document.getElementById('map')
-        var options = {
-		        center: new kakao.maps.LatLng(33.450701, 126.570667),
-		        draggable: false,
-		        level: 3
-		};
-		var map = new kakao.maps.Map(container, options);
-		
-		var geocoder = new kakao.maps.services.Geocoder();
-		geocoder.addressSearch('${companyDto.companyAddress1}', function(result, status) {
-				if (status === kakao.maps.services.Status.OK) {
-				var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-				var marker = new kakao.maps.Marker({
-		            map: map,
-		            position: coords,
-		        });
-		        map.setCenter(coords);
-			}
-		});
+
+/* 카카오맵 API */
+$(function(){
+       var container = document.getElementById('map')
+       var options = {
+	        center: new kakao.maps.LatLng(33.450701, 126.570667),
+	        draggable: false,
+	        level: 3
+	};
+	var map = new kakao.maps.Map(container, options);
+	
+	var geocoder = new kakao.maps.services.Geocoder();
+	geocoder.addressSearch('${companyDto.companyAddress1}', function(result, status) {
+			if (status === kakao.maps.services.Status.OK) {
+			var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+			var marker = new kakao.maps.Marker({
+	            map: map,
+	            position: coords,
+	        });
+	        map.setCenter(coords);
+		}
 	});
-	google.charts.load('current', {packages: ['corechart', 'bar']});
-	google.charts.setOnLoadCallback(drawBasic);
+});
 
-	function drawBasic() {
+/* Google Chart API */
+google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawBasic);
 
-	      var data = google.visualization.arrayToDataTable([
-	        ['별점', '별점',],
-	        ['승진기회', ${reviewDto.reviewPromotion}],
-	        ['복지/급여', ${reviewDto.reviewSalary}],
-	        ['워라밸', ${reviewDto.reviewWorkAndLife}],
-	        ['사내문화', ${reviewDto.reviewCulture}],
-	        ['경영진', ${reviewDto.reviewDirector}]
-	      ]);
+function drawBasic() {
+      var data = google.visualization.arrayToDataTable([
+        ['항목', '별점',],
+        ['승진기회', ${avgPromotion}],
+        ['복지/급여', ${avgSalary}],
+        ['워라밸', ${avgWorkAndLife}],
+        ['사내문화', ${avgCulture}],
+        ['경영진', ${avgDirector}]
+      ]);
 
-	      var options = {
-	        title: '',
-	        chartArea: {width: '70%'},
-	        hAxis: {
-	          title: '',
-	          minValue: 5
-	        },
-	        vAxis: {
-	          title: ''
-	        }
-	      };
+      var options = {
+        title: '',
+        chartArea: {width: '70%'},
+        hAxis: {
+          title: '',
+          minValue: 5
+        },
+        vAxis: {
+          title: ''
+        }
+      };
 
-	      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+  var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
 
-	      chart.draw(data, options);
-	    }
+  chart.draw(data, options);
+}
 	
 </script>
 <style>

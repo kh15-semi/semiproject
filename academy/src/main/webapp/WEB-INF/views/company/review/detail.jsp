@@ -23,15 +23,15 @@
 			    	${reviewDto.reviewScore}
 			    </h3>
 			    <label>승진기회</label>
-			    <p style="font-weight: 700;">${avgPromotion}</p>
+			    <p style="font-weight: 700;">${reviewDto.reviewPromotion}</p>
 			    <label>복지/급여</label>
-			    <p style="font-weight: 700;">${avgSalary}</p>
+			    <p style="font-weight: 700;">${reviewDto.reviewSalary}</p>
 			    <label>워라밸</label>
-			    <p style="font-weight: 700;">${avgWorkAndLife}</p>
+			    <p style="font-weight: 700;">${reviewDto.reviewWorkAndLife}</p>
 			    <label>사내문화</label>
-			    <p style="font-weight: 700;">${avgCulture}</p>
+			    <p style="font-weight: 700;">${reviewDto.reviewCulture}</p>
 			    <label>경영진</label>
-			    <p style="font-weight: 700;">${avgDirector}</p>
+			    <p style="font-weight: 700;">${reviewDto.reviewDirector}</p>
 			</div>
 			
 			<div class="cell" style="width: 500px;">
