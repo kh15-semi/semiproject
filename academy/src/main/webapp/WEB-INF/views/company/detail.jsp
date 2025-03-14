@@ -114,7 +114,7 @@ function checkReviewAndRedirect(companyNo) {
 
 <div class="container w-700">
         <div class="cell" style="border: 2px solid rgb(184, 183, 183); padding: 20px; border-radius: 10px;">
-            <img src="http://placehold.co/150x150">
+            <img src="/company/image?companyNo=${companyDto.companyNo}" width="200" height="200" style="border-radius: 15px;">
             <div class="cell m-10">
             	<h2>
 	            	${companyDto.companyName}
@@ -150,7 +150,7 @@ function checkReviewAndRedirect(companyNo) {
 		   			<a href="/company/review/detail?reviewNo=${reviewDto.reviewNo}" class="btn btn-blue">내 리뷰</a>
 	 	    	</c:if>
 	 	    </c:if>
-           </div>
+           </div> 
            <div class="cell m-10">
                <div class="cell">
                    <c:choose>
@@ -165,14 +165,16 @@ function checkReviewAndRedirect(companyNo) {
 								<div class="cell" style="border: 2px solid rgb(184, 183, 183); border-radius: 10px;">
 										<p style="margin: 10px; color:grey; font-size: 13px; width: inherit;">
 											<fmt:formatDate value="${reviewListViewDto.reviewWtime}" pattern="작성일 | yyyy일 MM월 dd일"/>
+										</p>
+<!-- 										텍스트 박스 넘어가는 현상을 처리하기 위해 스타일 추가  word-wrap: break-word; overflow: hidden; text-overflow: ellipsis; -->
+										<h3 style="margin: 20px; text-align: center; white-space: normal; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">
+											<i class="fa-solid fa-quote-left grey"></i>&nbsp;
+											${reviewListViewDto.reviewComment} &nbsp;<i
+												class="fa-solid fa-quote-right grey"></i>
+										</h3>
+
+									<div class="cell m-20 center" style="font-weight: 700;">
 											
-										</p>										
-	                              		<h3 style="margin: 20px; text-align: center;">
-	                             			<i class="fa-solid fa-quote-left grey"></i>&nbsp;
-	                             				${reviewListViewDto.reviewComment}
-	                             				&nbsp;<i class="fa-solid fa-quote-right grey"></i>
-	                           			</h3>
-	                           				<div class="cell m-20 center" style="font-weight: 700;">
 	                               				<i class="fa-solid fa-star yellow"></i>&nbsp;
 	                               					${reviewListViewDto.reviewScore}
 	                           				</div>
@@ -180,7 +182,7 @@ function checkReviewAndRedirect(companyNo) {
                              </a>	
                            </c:forEach>
                        </c:otherwise>
-                   </c:choose>
+                   </c:choose>	
                </div>
            </div> 
         <div class="cell center p-10">
