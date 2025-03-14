@@ -38,9 +38,19 @@
 <script type="text/javascript">
 $(function() {
 	// 정보 수정 완료 버튼 클릭 시
-	$(".btn-edit-complete").click(function() {
-		window.location.href = "/member/mypage";
-	});
+	$(".btn-edit-complete").click(function(event) {
+        event.preventDefault();
+        
+        var inputPassword = $("input[name='memberPw']").val();
+        var userPassword = "${memberDto.memberPw}";
+        
+        if (inputPassword != userPassword) {
+            alert("수정하려면 비밀번호를 확인해주세요.");
+            return false;
+        }
+        
+        $("form").submit();
+    });
 	
 	// 정보 수정 취소 버튼 클릭 시
 	$(".btn-edit-cancel").click(function() {
@@ -134,9 +144,8 @@ $(function() {
             	<div class="cell">
             		<label><i class="fa-solid fa-angle-right red"></i> 비밀번호 확인</label>
             	</div>
-                <input type="password" name="memberPw" value="${memberDto.memberPw}" class="field"><br>
-        		<div class="fail-feedback">비밀번호가 맞지 않습니다, 다시 한번 확인해주세요.</div>
-            </div>
+                <input type="password" name="memberPw" class="field"><br>
+            </div>				
         	
         	<hr style="border: 0; border: 1px solid rgb(196, 196, 196)">
         	
