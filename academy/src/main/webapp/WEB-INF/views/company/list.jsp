@@ -65,7 +65,7 @@
 	            </c:when>
 	            <c:otherwise>
 	                <c:forEach var="companyWithScore" items="${filteredCompaniesWithScore}">
-            			<div class="cell p-20 flex-item"  style="border: 1px solid #ccc; border-radius: 8px;">
+            			<div class="cell p-20 flex-item" style="border: 1px solid #ccc; border-radius: 8px;">
             				<div class="cell center">
 	                			<a href="/company/detail?companyNo=${companyWithScore.company.companyNo}">
 	                    			<img src="/company/image?companyNo=${companyWithScore.company.companyNo}" width="300" height="200" style="border-radius: 15px;">
@@ -77,7 +77,14 @@
                             			${companyWithScore.company.companyName}
                         			</a>
                     			</h3>
-                    			<p><i class="fa-solid fa-star yellow"></i>&nbsp;<fmt:formatNumber value="${companyWithScore.averageScore}" pattern="#.0" /></p>
+                    			<p><i class="fa-solid fa-star yellow"></i>&nbsp;
+                    			<c:if test = "${companyWithScore.averageScore == '0.0'}">
+                                	<fmt:formatNumber value = "0.0" pattern = "0.0"/>
+                            	</c:if>
+                            	<c:if test = "${companyWithScore.averageScore != '0.0'}">
+                                	<fmt:formatNumber value ="${companyWithScore.averageScore}" pattern="#.0"/>
+                            	</c:if>
+                    			</p>
                     			<p style="font-size: 14px; color: #666;">${companyWithScore.company.companyIndustry}</p>
                 			</div>
             			</div>
