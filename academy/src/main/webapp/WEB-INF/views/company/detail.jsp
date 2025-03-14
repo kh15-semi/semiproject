@@ -63,57 +63,60 @@ function checkReviewAndRedirect(companyNo) {
         }
     });
 }
-	$(function(){
-        var container = document.getElementById('map')
-        var options = {
-		        center: new kakao.maps.LatLng(33.450701, 126.570667),
-		        draggable: false,
-		        level: 3
-		};
-		var map = new kakao.maps.Map(container, options);
-		
-		var geocoder = new kakao.maps.services.Geocoder();
-		geocoder.addressSearch('${companyDto.companyAddress1}', function(result, status) {
-				if (status === kakao.maps.services.Status.OK) {
-				var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-				var marker = new kakao.maps.Marker({
-		            map: map,
-		            position: coords,
-		        });
-		        map.setCenter(coords);
-			}
-		});
+
+/* 카카오맵 API */
+$(function(){
+       var container = document.getElementById('map')
+       var options = {
+	        center: new kakao.maps.LatLng(33.450701, 126.570667),
+	        draggable: false,
+	        level: 3
+	};
+	var map = new kakao.maps.Map(container, options);
+	
+	var geocoder = new kakao.maps.services.Geocoder();
+	geocoder.addressSearch('${companyDto.companyAddress1}', function(result, status) {
+			if (status === kakao.maps.services.Status.OK) {
+			var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+			var marker = new kakao.maps.Marker({
+	            map: map,
+	            position: coords,
+	        });
+	        map.setCenter(coords);
+		}
 	});
-	google.charts.load('current', {packages: ['corechart', 'bar']});
-	google.charts.setOnLoadCallback(drawBasic);
+});
 
-	function drawBasic() {
+/* Google Chart API */
+google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawBasic);
 
-	      var data = google.visualization.arrayToDataTable([
-	        ['기준', '만족도',],
-	        ['승진기회', ${reviewDto.reviewPromotion}],
-	        ['복지/급여', ${reviewDto.reviewSalary}],
-	        ['워라밸', ${reviewDto.reviewWorkAndLife}],
-	        ['사내문화', ${reviewDto.reviewCulture}],
-	        ['경영진', ${reviewDto.reviewDirector}]
-	      ]);
+function drawBasic() {
+      var data = google.visualization.arrayToDataTable([
+        ['항목', '별점',],
+        ['승진기회', ${avgPromotion}],
+        ['복지/급여', ${avgSalary}],
+        ['워라밸', ${avgWorkAndLife}],
+        ['사내문화', ${avgCulture}],
+        ['경영진', ${avgDirector}]
+      ]);
 
-	      var options = {
-	        title: '전체 리뷰 통계 ',
-	        chartArea: {width: '50%'},
-	        hAxis: {
-	          title: '',
-	          minValue: 0
-	        },
-	        vAxis: {
-	          title: ''
-	        }
-	      };
+      var options = {
+        title: '',
+        chartArea: {width: '70%'},
+        hAxis: {
+          title: '',
+          minValue: 5
+        },
+        vAxis: {
+          title: ''
+        }
+      };
 
-	      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+  var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
 
-	      chart.draw(data, options);
-	    }
+  chart.draw(data, options);
+}
 	
 </script>
 <style>
@@ -144,8 +147,13 @@ function checkReviewAndRedirect(companyNo) {
             </div>
         </div>
 		<br><hr>
+		<div class="cell"><br>
+			<div class="cell left p-20" style="border: 2px solid rgb(184, 183, 183); border-radius: 10px;">
+				<h2><i class="fa-solid fa-chart-simple blue"></i>&nbsp;전체 리뷰 통계<label style="color: grey; font-size: 14px;">&nbsp;(${count}명)</label></h2>
+				<div id="chart_div"></div>
+			</div>
+		</div>
 		
-		<div id="chart_div"></div>
 		
         <br><hr>
         <div class="cell">
@@ -178,7 +186,7 @@ function checkReviewAndRedirect(companyNo) {
 										<p style="margin: 10px; color:grey; font-size: 13px; width: inherit;">
 											<fmt:formatDate value="${reviewListViewDto.reviewWtime}" pattern="작성일 | yyyy일 MM월 dd일"/>
 										</p>
-<!-- 										텍스트 박스 넘어가는 현상을 처리하기 위해 스타일 추가  word-wrap: break-word; overflow: hidden; text-overflow: ellipsis; -->
+								<!--텍스트 박스 넘어가는 현상을 처리하기 위해 스타일 추가  word-wrap: break-word; overflow: hidden; text-overflow: ellipsis; -->
 										<h3 style="margin: 20px; text-align: center; white-space: normal; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">
 											<i class="fa-solid fa-quote-left grey"></i>&nbsp;
 											${reviewListViewDto.reviewComment} &nbsp;<i
@@ -186,7 +194,6 @@ function checkReviewAndRedirect(companyNo) {
 										</h3>
 
 									<div class="cell m-20 center" style="font-weight: 700;">
-											
 	                               				<i class="fa-solid fa-star yellow"></i>&nbsp;
 	                               					${reviewListViewDto.reviewScore}
 	                           				</div>

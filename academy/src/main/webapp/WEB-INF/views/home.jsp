@@ -22,7 +22,19 @@
                     <a href="company/detail?companyNo=${company.companyNo}" style="text-decoration: none; color: inherit;">
                         <b>${company.companyName}</b>
                     </a><br>
-                    <p style="font-size: 13px; color: grey;">기업 정보 제공</p>
+                    <p style="font-size: 13px; color: grey;">
+                        ${company.companyAddress1 != null ? company.companyAddress1 : "주소 없음"}
+                    </p>
+
+                    <!-- 평균 별점 출력 -->
+                    <%--  <p style="font-weight: 700; font-size: 18px;">
+                        <i class="fa-solid fa-star yellow"></i>&nbsp;${company.averageScore != null ? company.averageScore : "없음"}
+                    </p> --%>
+
+                    <!-- 산업군 출력 -->
+                    <p style="font-size: 14px; color: grey;">
+                        <b>${company.companyIndustry != null ? company.companyIndustry : "미정"}</b>
+                    </p>
                 </span>
             </div>
         </div>

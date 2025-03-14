@@ -55,6 +55,8 @@ public class HomeController {
         List<Map<String, Object>> companyReviews = new ArrayList<>();
         
         for (CompanyDto company : companyList) {
+        	
+        	
             // 회사에 해당하는 리뷰 가져오기 (예: 첫 번째 리뷰만 가져오기)
             List<ReviewListViewDto> reviews = reviewListViewDao.selectListByCompanyNo(new PageVO(), company.getCompanyNo());
             Map<String, Object> companyReview = new HashMap<>();
@@ -63,7 +65,7 @@ public class HomeController {
 
             companyReviews.add(companyReview);  // 전체 목록에 추가
         }
-     // 리뷰 리스트도 섞기
+        // 리뷰 리스트도 섞기
         Collections.shuffle(companyReviews);
         List<Map<String, Object>> limitedCompanyReviews = companyReviews.subList(0, Math.min(4, companyReviews.size()));
         
@@ -73,5 +75,6 @@ public class HomeController {
         model.addAttribute("companyReviews", companyReviews);
 
         return "/WEB-INF/views/home.jsp";
-    }
+        
+	}
 }
