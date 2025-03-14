@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <!-- kakao map -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5228eef19df72db9682c03e15b8f1205&libraries=services"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <link rel="stylesheet" type="text/css" href="/css/commons.css">
 
@@ -71,25 +72,69 @@ function checkReviewAndRedirect(companyNo) {
 			}
 		});
 	});
+	google.charts.load('current', {packages: ['corechart', 'bar']});
+	google.charts.setOnLoadCallback(drawBasic);
+
+	function drawBasic() {
+
+	      var data = google.visualization.arrayToDataTable([
+	        ['기준', '만족도',],
+	        ['승진기회', ${reviewDto.reviewPromotion}],
+	        ['복지/급여', ${reviewDto.reviewSalary}],
+	        ['워라밸', ${reviewDto.reviewWorkAndLife}],
+	        ['사내문화', ${reviewDto.reviewCulture}],
+	        ['경영진', ${reviewDto.reviewDirector}]
+	      ]);
+
+	      var options = {
+	        title: '전체 리뷰 통계 ',
+	        chartArea: {width: '50%'},
+	        hAxis: {
+	          title: '',
+	          minValue: 0
+	        },
+	        vAxis: {
+	          title: ''
+	        }
+	      };
+
+	      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+	      chart.draw(data, options);
+	    }
+	
 </script>
+<style>
+	.labelDesign {
+		display: inline-block;
+		width: 140px;
+		font-weight:600;
+	}
+</style>
 
 <div class="container w-700">
         <div class="cell" style="border: 2px solid rgb(184, 183, 183); padding: 20px; border-radius: 10px;">
-            <img src="http://placehold.co/150x150">
+            <img src="/company/image?companyNo=${companyDto.companyNo}" width="200" height="200" style="border-radius: 15px;">
             <div class="cell m-10">
-            	<h2>${companyDto.companyName}</h2>
-            	<p style="font-size: 13px; color: grey;"><i class="fa-solid fa-phone"></i> ${companyDto.companyContact}</p>
-            	<p style="font-weight: 700;"><i class="fa-solid fa-star green"></i>&nbsp;${averageScore}</p>
-				<p>산업군 | ${companyDto.companyIndustry}&nbsp;</p>
-           		<p>홈페이지 | ${companyDto.companyUrl}</p>
-            	<p>사업자등록번호 | ${companyDto.companyCrNumber}</p>
-            	<p>우편번호 | ${companyDto.companyPost}</p>
-            	<p>기본주소 | ${companyDto.companyAddress1}</p>
-            	<p>상세주소 | ${companyDto.companyAddress2}</p>
+            	<h2>
+	            	${companyDto.companyName}
+	            	<label style="font-size: 20px;">
+	            		<a href="tel:+${companyDto.companyContact}"><i class="fa-solid fa-square-phone blue"></i></a>
+	            	</label>
+            	</h2>
+            	<p style="font-weight: 700; font-size: 18px;"><i class="fa-solid fa-star yellow"></i>&nbsp;${averageScore}</p>
+           		<p><label class="labelDesign">홈페이지</label>${companyDto.companyUrl}</p>
+				<p><label class="labelDesign">업종</label>${companyDto.companyIndustry}&nbsp;</p>
+            	<p><label class="labelDesign">사업자 등록번호</label>${companyDto.companyCrNumber}</p>
+            	<p><label class="labelDesign">주소</label>${companyDto.companyAddress1} ${companyDto.companyAddress2} (${companyDto.companyPost})</p>
+            	<br>
             	<p id="map" style="width: 250px; height: 250px;"></p>
-            	
             </div>
         </div>
+		<br><hr>
+		
+		<div id="chart_div"></div>
+		
         <br><hr>
         <div class="cell">
            <div class="cell left p-20">
@@ -105,7 +150,7 @@ function checkReviewAndRedirect(companyNo) {
 		   			<a href="/company/review/detail?reviewNo=${reviewDto.reviewNo}" class="btn btn-blue">내 리뷰</a>
 	 	    	</c:if>
 	 	    </c:if>
-           </div>
+           </div> 
            <div class="cell m-10">
                <div class="cell">
                    <c:choose>
@@ -118,15 +163,18 @@ function checkReviewAndRedirect(companyNo) {
 								<c:forEach var="reviewListViewDto" items="${list}">
 	                        	<a href="/company/review/detail?reviewNo=${reviewListViewDto.reviewNo}" style="text-decoration: none; color: black;">
 								<div class="cell" style="border: 2px solid rgb(184, 183, 183); border-radius: 10px;">
-										<p style="margin: 10px; color:grey; font-size: 13px;">
+										<p style="margin: 10px; color:grey; font-size: 13px; width: inherit;">
 											<fmt:formatDate value="${reviewListViewDto.reviewWtime}" pattern="작성일 | yyyy일 MM월 dd일"/>
-										</p>                              
-	                              		<h3 style="margin: 20px; text-align: center;">
-	                             			<i class="fa-solid fa-quote-left grey"></i>&nbsp;
-	                             				${reviewListViewDto.reviewComment}
-	                             				&nbsp;<i class="fa-solid fa-quote-right grey"></i>
-	                           			</h3>
-	                           				<div class="cell m-20 center" style="font-weight: 700;">
+										</p>
+<!-- 										텍스트 박스 넘어가는 현상을 처리하기 위해 스타일 추가  word-wrap: break-word; overflow: hidden; text-overflow: ellipsis; -->
+										<h3 style="margin: 20px; text-align: center; white-space: normal; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">
+											<i class="fa-solid fa-quote-left grey"></i>&nbsp;
+											${reviewListViewDto.reviewComment} &nbsp;<i
+												class="fa-solid fa-quote-right grey"></i>
+										</h3>
+
+									<div class="cell m-20 center" style="font-weight: 700;">
+											
 	                               				<i class="fa-solid fa-star yellow"></i>&nbsp;
 	                               					${reviewListViewDto.reviewScore}
 	                           				</div>
@@ -134,7 +182,7 @@ function checkReviewAndRedirect(companyNo) {
                              </a>	
                            </c:forEach>
                        </c:otherwise>
-                   </c:choose>
+                   </c:choose>	
                </div>
            </div> 
         <div class="cell center p-10">

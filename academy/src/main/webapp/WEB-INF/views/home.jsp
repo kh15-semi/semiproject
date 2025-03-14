@@ -57,7 +57,7 @@
                         </div>
                         <div>
                             <i class="fa-solid fa-quote-left grey" style="color: #888;"></i>
-                            <p style="font-size: 16px; color: #333; margin-bottom: 15px;">
+                            <p style="font-size: 16px; color: #333; margin-bottom: 15px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">
                                 <c:if test="${not empty companyReview.reviews}">
                                     ${companyReview.reviews[0].reviewComment}
                                 </c:if>

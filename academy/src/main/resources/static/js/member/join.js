@@ -17,8 +17,8 @@ $(function() {
 		}
 	};
 
-	//폼 제출 시 입력값 처리
-	if (window.location.href.indexOf("/member/join") !== -1 || window.location.href.indexOf("/company/member/join") !== -1) {  // URL에 'signup'이 포함된 경우
+	//회원가입 정보 미입력 처리
+	if (window.location.href.indexOf("/member/join") != -1 || window.location.href.indexOf("/company/member/join") != -1) {
 		$("form").submit(function(event) {
 			if (!status.ok()) {
 				alert("회원가입하려면 모든 필수 정보를 입력해야 합니다.");
@@ -147,7 +147,7 @@ $(function() {
 		status.memberEmail = isValid;
 	});
 
-	//멤머 주소 관련 처리
+	//개인회원 주소 관련 처리
 	$("[name=memberPost]").on("input", function() {
 		var current = $(this).val();
 		var convert = current.replace(/[^0-9]+/g, "");
@@ -206,7 +206,7 @@ $(function() {
 		}
 	}
 
-	//회사 주소 관련 처리
+	//기업회원 주소 관련 처리
 	$("[name=companyPost]").on("input", function() {
 		var current = $(this).val();
 		var convert = current.replace(/[^0-9]+/g, "");
