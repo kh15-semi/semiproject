@@ -134,10 +134,9 @@ function drawBasic() {
             	<h2>
 	            	${companyDto.companyName}
 	            	<label style="font-size: 20px;">
-	            		<a href="tel:+${companyDto.companyContact}"><i class="fa-solid fa-square-phone blue"></i></a>
 	            	</label>
             	</h2>
-            	<p style="font-weight: 700; font-size: 18px;"><i class="fa-solid fa-star yellow"></i>&nbsp;${averageScore}</p>
+            	<p style="font-weight: 700; font-size: 18px;"><i class="fa-solid fa-star yellow"></i>&nbsp;<fmt:formatNumber value="${averageScore}" pattern="#.0" /></p>
            		<p><label class="labelDesign">홈페이지</label>${companyDto.companyUrl}</p>
 				<p><label class="labelDesign">업종</label>${companyDto.companyIndustry}&nbsp;</p>
             	<p><label class="labelDesign">사업자 등록번호</label>${companyDto.companyCrNumber}</p>
@@ -167,7 +166,7 @@ function drawBasic() {
 			</a>
 			<c:if test="${sessionScope.userId != null}">
 		    	<c:if test="${sessionScope.userId == reviewDto.reviewWriter}">
-		   			<a href="/company/review/detail?reviewNo=${reviewDto.reviewNo}" class="btn btn-blue">내 리뷰</a>
+		   			<a href="detail?reviewNo=${reviewDto.reviewNo}" class="btn btn-blue">내 리뷰</a>
 	 	    	</c:if>
 	 	    </c:if>
            </div> 

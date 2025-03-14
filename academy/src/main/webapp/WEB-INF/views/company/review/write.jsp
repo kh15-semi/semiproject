@@ -13,6 +13,10 @@
         $(".btn-prev").click(function() {
             $(this).closest(".page").hide().prev(".page").show();
         });
+        
+        $("answerSubmit").click(function() {
+			window.location.replace("/company/detail?companyNo=${companyDto.companyNo}");
+        })
     });
  
     window.addEventListener("load", function(){
@@ -38,6 +42,7 @@
             });
         }
     });
+   
 </script>
 
 <style>
@@ -188,7 +193,7 @@
                 <br><br>
                 <div class="w-100 center">
                     <button type="button" class="btn btn-neutral btn-prev"><i class="fa-solid fa-left-long"></i> 이전</button>
-                    <button type="submit" class="btn btn-green2">작성 완료</button>
+                    <button type="submit" class="btn btn-green2 answerSubmit">작성 완료</button>
                 </div>
         </div>
     </div>

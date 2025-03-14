@@ -1,7 +1,10 @@
 package com.kh.academy.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,7 +45,7 @@ public class CompanyController {
 	private AttachmentService attachmentService;
 	
 	@GetMapping("/list")
-	public String companyList(@RequestParam(required = false) String keyword, Model model) {
+	public String companyList(@RequestParam(required = false) String keyword, Model model, @RequestParam(required = false) Integer companyNo, @ModelAttribute PageVO pageVO) {
 	    boolean search = keyword != null && !keyword.trim().isEmpty();
 	    List<CompanyDto> list;
 
@@ -52,6 +55,18 @@ public class CompanyController {
 	    } else {
 	        list = companyDao.selectList();
 	    }
+	    // 검색 결과에 따라 allCompaniesWithScore 필터링
+        List<Map<String, Object>> filteredCompaniesWithScore = new ArrayList<>();
+        for (CompanyDto company : list) {
+            double averageScore = reviewDao.getAverageScoreByCompanyNo(company.getCompanyNo());
+            
+            Map<String, Object> companyWithScore = new HashMap<>();
+            companyWithScore.put("company", company);
+            companyWithScore.put("averageScore", averageScore);
+            
+            filteredCompaniesWithScore.add(companyWithScore);
+        }
+        model.addAttribute("filteredCompaniesWithScore", filteredCompaniesWithScore);
 
 	    // JSP로 전달
 	    model.addAttribute("search", search);
