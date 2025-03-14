@@ -61,6 +61,12 @@ $(function() {
 
 
 <form action="/company/member/edit" method="post">
+	<input type="hidden" name="memberIndustry" value="${memberDto.memberIndustry}" class="field">
+	<input type="hidden" name="memberJob" value="${memberDto.memberJob}" class="field">
+	<input type="hidden" name="memberPost" value="${memberDto.memberPost}" class="field">
+	<input type="hidden" name="memberAddress1" value="${memberDto.memberAddress1}" class="field">
+	<input type="hidden" name="memberAddress2" value="${memberDto.memberAddress2}" class="field">
+	<input type="hidden" name="memberCrNumber" value="${memberDto.memberCrNumber}" class="field">
 	<div class="container w-700">
         <div class="cell" style="margin: 30px; padding: 30px">
             <div class="cell">

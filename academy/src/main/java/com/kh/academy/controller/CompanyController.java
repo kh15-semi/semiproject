@@ -22,7 +22,6 @@ import com.kh.academy.dto.MemberDto;
 import com.kh.academy.dto.ReviewDto;
 import com.kh.academy.dto.ReviewListViewDto;
 import com.kh.academy.service.AttachmentService;
-import com.kh.academy.service.CompanyService;
 import com.kh.academy.vo.PageVO;
 
 import jakarta.servlet.http.HttpSession;
@@ -41,9 +40,6 @@ public class CompanyController {
 	private MemberDao memberDao;
 	@Autowired
 	private AttachmentService attachmentService;
-	@Autowired
-	private CompanyService companyService;
-	
 	
 	@GetMapping("/list")
 	public String companyList(@RequestParam(required = false) String keyword, Model model) {
@@ -55,12 +51,6 @@ public class CompanyController {
 	        list = companyDao.selectList("company_name", keyword);
 	    } else {
 	        list = companyDao.selectList();
-	    }
-
-	    // 전화번호 포맷팅 처리 (10자리)
-	    for (CompanyDto company : list) {
-	        String formattedContact = companyService.formatPhoneNumber(company.getCompanyContact());
-	        company.setCompanyContact(formattedContact); // 포맷된 번호로 설정
 	    }
 
 	    // JSP로 전달
@@ -122,7 +112,6 @@ public class CompanyController {
         if (companyDto == null || companyDto.getCompanyNo() != memberDto.getMemberCompanyNo()) {
             return "redirect:/company/mycompany";  // 권한 오류 시 마이페이지로 리다이렉트
         }
-
         model.addAttribute("companyDto", companyDto);
         
         return "/WEB-INF/views/company/edit.jsp";  // 기업 정보 수정 페이지
@@ -132,19 +121,10 @@ public class CompanyController {
     @PostMapping("/edit")
     public String companyEdit( @RequestParam int companyNo, @ModelAttribute CompanyDto companyDto,@RequestParam MultipartFile attach, HttpSession session) throws IllegalStateException, IOException {
         String userId = (String) session.getAttribute("userId");
-        //MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
         MemberDto memberDto = memberDao.selectOne(userId);
-      //1. 기업정보 조회
+        //1. 기업정보 조회
         CompanyDto findDto = companyDao.selectOne(memberDto.getMemberCompanyNo());
         
-//        findDto.setCompanyContact(companyDto.getCompanyContact());
-//        findDto.setCompanyUrl(companyDto.getCompanyUrl());
-//        findDto.setCompanyIndustry(companyDto.getCompanyIndustry());
-//        findDto.setCompanyPost(companyDto.getCompanyPost());
-//        findDto.setCompanyAddress1(companyDto.getCompanyAddress1());
-//        findDto.setCompanyAddress2(companyDto.getCompanyAddress2());
-//        findDto.setCompanyNo(companyNo); 
-
         // 회원이 속한 기업 정보와 일치하는지 확인
         if (memberDto.getMemberCompanyNo() != companyDto.getCompanyNo()) {
         	return "redirect:/company/mycompany";
@@ -153,7 +133,7 @@ public class CompanyController {
         // 기업 정보 업데이트
         companyDao.update(companyDto);
         
-        //4. 이미지 첨부 처리
+        //이미지 첨부 처리
         if(!attach.isEmpty()) {//첨부 파일이 없다면
 			try {//기존 이미지 삭제 처리(없으면 예외 발생)
 				int attachmentNo = companyDao.findAttachment(companyDto.getCompanyNo());
@@ -164,15 +144,15 @@ public class CompanyController {
     	int attachmentNo = attachmentService.save(attach);
     	//회사 이미지 등록(연결)
     	companyDao.connect(companyNo, attachmentNo);
-        // 수정 후 기업 마이페이지로 리다이렉트
+        
+    	// 수정 후 기업 마이페이지로 리다이렉트
         return "redirect:/company/mycompany";
     }
-    
 
 	@RequestMapping("/mycompany")
 	public String mycompany(HttpSession session, Model model) {
-		 String userId = (String) session.getAttribute("userId");
-		    MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
+		String userId = (String) session.getAttribute("userId");
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
 		if(memberDto == null) {
 			memberDto = memberDao.selectOne(userId);
 			session.setAttribute("memberDto", memberDto); // 세션에 정보 저장
@@ -181,6 +161,7 @@ public class CompanyController {
 
 	    model.addAttribute("memberDto", memberDto);
 	    model.addAttribute("companyDto", companyDto);
+	    
 	    return "/WEB-INF/views/company/mycompany.jsp";
 	}
 	
@@ -196,22 +177,6 @@ public class CompanyController {
 		}
 	}
 
-//    @RequestMapping("/mycompany")
-//    public String mycompany(HttpSession session, Model model) {
-//        String userId = (String) session.getAttribute("userId");
-//        MemberDto memberDto = memberDao.selectOne(userId);  // 세션에서 사용자 정보 가져오기
-//
-//        CompanyDto companyDto = companyDao.selectOne(memberDto.getMemberCompanyNo());  // 사용자에게 속한 기업 정보 가져오기
-//
-//        model.addAttribute("memberDto", memberDto);
-//        model.addAttribute("companyDto", companyDto);
-//
-//        return "/WEB-INF/views/company/mycompany.jsp";  // 수정된 회사 정보를 반영
-//    }
-	
-	
-
-	
 }
 
 
