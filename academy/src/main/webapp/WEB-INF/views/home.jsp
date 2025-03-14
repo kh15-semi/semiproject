@@ -10,7 +10,7 @@
 			<h2><i class="fa-solid fa-exclamation red"></i>&nbsp; ${memberDto.memberName} 님을 위한 기업 추천</h2>
 		</div>
 
-        <div class="cell flex-box">
+ <div class="cell flex-box mb-20">
     <c:forEach var="companyWithScore" items="${recommendedCompaniesWithScore}">
         <div class="cell" style="margin: auto;">
                 <div class="cell center flex-box">
@@ -83,7 +83,7 @@
                                     ${companyReview.reviews[0].reviewComment}
                                 </c:if>
                                 <c:if test="${empty companyReview.reviews}">
-                                    리뷰 없음
+                                    기업에 대한 리뷰가 없습니다.
                                 </c:if>
                             </p>
                             <i class="fa-solid fa-quote-right grey" style="color: #888;"></i>
