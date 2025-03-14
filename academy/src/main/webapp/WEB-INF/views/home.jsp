@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
@@ -9,7 +10,7 @@
 			<h2><i class="fa-solid fa-exclamation red"></i>&nbsp; ${memberDto.memberName} 님을 위한 기업 추천</h2>
 		</div>
 
-        <div class="cell flex-box">
+ <div class="cell flex-box mb-20">
     <c:forEach var="companyWithScore" items="${recommendedCompaniesWithScore}">
         <div class="cell" style="margin: auto;">
                 <div class="cell center flex-box">
@@ -47,15 +48,10 @@
 </div>
 
 
-		<hr class="custom-line">
 
+<hr class="custom-line">
+<!-- 기업 리뷰 -->
 
-		<!-- 기업 리뷰 -->
-		
-		<!-- 
-				기업명 옆의 북마크 선택 시
-				<i class="fa-solid fa-bookmark"></i>
-		-->
 	<div class="cell" style="height: 100%;">		
 		<div class="cell m-30">
 			<p><i class="fa-solid fa-user-pen grey"></i>&nbsp;기업의 전/현직자가 직접 평가하는</p>
