@@ -10,64 +10,24 @@
 		</div>
 
         <div class="cell flex-box">
-           
-			<div class="cell" style="margin: auto;">
-                <div class="cell center flex-box">
-                	<a href="#">
-                    	<img src="/images/뤼이드.png" style="border-radius: 15px; width: 360px; height: 250px;">
-                	</a>
-                </div>
-				<div class="cell left m-10">
-					<span>
-						<a href="#" style="text-decoration: none; color: inherit;">
-							<b>(주) 뤼이드</b>
-						</a><br>
-						<a href="#" style="text-decoration: none; color: inherit;">
-							<b>[Riiid] 사내 법무 담당자 (재택 근무 병행)</b> 
-						</a><br>
-						<p style=" font-size: 13px; color: grey;">5년 이상, 법무, 법률 사무</p>
-					</span>
-				</div>
+    <c:forEach var="company" items="${recommendedCompanies}">
+        <div class="cell" style="margin: auto;">
+            <div class="cell center flex-box">
+                <a href="company/detail?companyNo=${company.companyNo}">
+                    <img src="https://www.placehold.co/300x200" style="border-radius: 15px; width: 360px; height: 250px;">
+                </a>
             </div>
-            
-			<div class="cell" style="margin: auto;">
-                <div class="cell center flex-box">
-                	<a href="#">
-                    	<img src="/images/쿠팡.png" style="border-radius: 15px; width: 360px; height: 250px;">
-                	</a>
-                </div>
-				<div class="cell left m-10">
-					<span>
-						<a href="#" style="text-decoration: none; color: inherit;">
-							<b>쿠팡(주)</b>
-						</a><br>
-						<a href="#" style="text-decoration: none; color: inherit;">
-							<b>[Coupang] Privacy Compliance</b> 
-						</a><br>
-						<p style=" font-size: 13px; color: grey;">5년 이상, 법무, 법률 사무</p>
-					</span>
-				</div>
-            </div>
-
-			<div class="cell" style="margin: auto;">
-                <div class="cell center flex-box">
-                	<a href="#">
-                    <img src="/images/코인원.png" style="border-radius: 15px; width: 360px; height: 250px;">
-                    </a>
-                </div>
-				<div class="cell left m-10">
-					<span>
-						<a href="#" style="text-decoration: none; color: inherit;">
-							<b>(주) 코인원</b>
-						</a><br>
-						<a href="#" style="text-decoration: none; color: inherit;">
-							<b>컴플라이언스 담당자</b> 
-						</a><br>
-						<p style=" font-size: 13px; color: grey;">5년 이상, 내부 통제, 컴플라이언스, 준법감시</p>
-					</span>
-				</div>
+            <div class="cell left m-10">
+                <span>
+                    <a href="company/detail?companyNo=${company.companyNo}" style="text-decoration: none; color: inherit;">
+                        <b>${company.companyName}</b>
+                    </a><br>
+                    <p style="font-size: 13px; color: grey;">기업 정보 제공</p>
+                </span>
             </div>
         </div>
+    </c:forEach>
+</div>
 
 
 		<hr class="custom-line">
