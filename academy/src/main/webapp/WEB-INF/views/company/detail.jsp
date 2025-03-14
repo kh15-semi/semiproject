@@ -134,7 +134,7 @@ function checkReviewAndRedirect(companyNo) {
 	            		<a href="tel:+${companyDto.companyContact}"><i class="fa-solid fa-square-phone blue"></i></a>
 	            	</label>
             	</h2>
-            	<p style="font-weight: 700; font-size: 18px;"><i class="fa-solid fa-star yellow"></i>&nbsp;${averageScore}</p>
+            	<p style="font-weight: 700; font-size: 18px;"><i class="fa-solid fa-star yellow"></i>&nbsp;<fmt:formatNumber value="${averageScore}" pattern="#.0" /></p>
            		<p><label class="labelDesign">홈페이지</label>${companyDto.companyUrl}</p>
 				<p><label class="labelDesign">업종</label>${companyDto.companyIndustry}&nbsp;</p>
             	<p><label class="labelDesign">사업자 등록번호</label>${companyDto.companyCrNumber}</p>
