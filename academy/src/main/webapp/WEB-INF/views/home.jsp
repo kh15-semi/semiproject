@@ -30,10 +30,10 @@
                         <p style="font-weight: 700; font-size: 18px;">
                             <i class="fa-solid fa-star yellow"></i>&nbsp;
                             <c:if test ="${companyWithScore.averageScore == '0.0'}">
-                            	<fmt:formatNumber value = "0.0" pattern = "0.0"/>
+                                <fmt:formatNumber value = "0.0" pattern = "0.0"/>
                             </c:if>
                             <c:if test = "${companyWithScore.averageScore != '0.0'}">
-                            	<fmt:formatNumber value ="${companyWithScore.averageScore}" pattern="#.0"/>
+                                <fmt:formatNumber value ="${companyWithScore.averageScore}" pattern="#.0"/>
                             </c:if>
                         </p>
 
