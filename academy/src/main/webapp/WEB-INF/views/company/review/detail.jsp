@@ -11,7 +11,7 @@
 			<p style="color: grey; font-size: 12px;">
 				${memberDto.memberIndustry} | ${memberDto.memberJob} | 작성일 : <fmt:formatDate value="${reviewDto.reviewWtime}" pattern="yyyy-MM-dd"/>
 		    </p>
-		    <h2 style="margin: 20px;">${reviewDto.reviewComment}</h2> <!--한줄평(=제목)-->
+		    <h2 style="margin: 20px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">${reviewDto.reviewComment}</h2> <!--한줄평(=제목)-->
 		</div>
 		<hr>
 		<div class="cell" style="display: flex; justify-content: center; align-items:inherit; ;">
@@ -38,11 +38,11 @@
 			    <label style="font-size: 15px; border-radius: 3px; text-align: center; color: white; background-color: rgb(111, 182, 240); padding: 2px;">
 			        장점
 			    </label>
-			    <h3>${reviewDto.reviewStrength}</h3>
+			    <h3 style="word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">${reviewDto.reviewStrength}</h3>
 			    <label style="font-size: 15px; border-radius: 3px; text-align: center; color: white; background-color: rgb(250, 138, 138); padding: 2px;">
 			        단점
 			    </label>
-			    <h3>${reviewDto.reviewWeakness}</h3>
+			    <h3 style="word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">${reviewDto.reviewWeakness}</h3>
 			    <br>
 			</div>
 		</div> 
@@ -68,8 +68,13 @@
 	    </div>
 	</div>
 	<div class="cell center">
-		<a href="/company/detail?companyNo=${companyDto.companyNo}" class="btn btn-green2"><i class="fa-solid fa-arrow-left"></i>&nbsp;뒤로</a>
+		<a href="/company/detail?companyNo=${companyDto.companyNo}" class="btn btn-green2"><i class="fa-solid fa-arrow-left"></i>&nbsp;이전</a>
 		<a href="/" class="btn btn-neutral"><i class="fa-solid fa-house"></i>&nbsp;메인</a>
+		<c:if test="${sessionScope.userId != null}">
+		    <c:if test="${sessionScope.userId == reviewDto.reviewWriter}">
+				<a href="#" class="btn btn-negative"><i class="fa-solid fa-trash-can"></i>&nbsp;삭제</a>
+			</c:if>
+		</c:if>
 	</div>
 </div>
 

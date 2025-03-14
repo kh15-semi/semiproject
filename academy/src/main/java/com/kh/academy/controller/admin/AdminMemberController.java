@@ -86,16 +86,17 @@ public class AdminMemberController {
 	    
 	    return "/WEB-INF/views/admin/company/list.jsp";
 	}
+	
 	//기업 상세 정보
-	 @RequestMapping("/company/detail")
-	    public String companyDetail(@RequestParam int companyNo, Model model) {
-	        CompanyDto companyDto = companyDao.selectOne(companyNo);
-	        if (companyDto == null) {
-	            throw new TargetNotFoundException("존재하지 않는 기업");
-	        }
-	        model.addAttribute("companyDto", companyDto);
-	        return "/WEB-INF/views/admin/company/detail.jsp";
+	@RequestMapping("/company/detail")
+	public String companyDetail(@RequestParam int companyNo, Model model) {
+	    CompanyDto companyDto = companyDao.selectOne(companyNo);
+	    if (companyDto == null) {
+	        throw new TargetNotFoundException("존재하지 않는 기업");
 	    }
+	    model.addAttribute("companyDto", companyDto);
+	    return "/WEB-INF/views/admin/company/detail.jsp";
+	}
 	
 }
 

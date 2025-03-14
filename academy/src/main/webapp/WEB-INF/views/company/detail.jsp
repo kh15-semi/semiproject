@@ -22,6 +22,8 @@
 function checkReviewAndRedirect(companyNo) {
     var userId = "${sessionScope.userId}"; // JSP EL 사용
     var userType = "${sessionScope.userType}";
+    var userCompanyNo = "${sessionScope.userCompanyNo}";
+    
     if (!userId) {
         alert("로그인이 필요합니다.");
         return;
@@ -38,10 +40,20 @@ function checkReviewAndRedirect(companyNo) {
         success: function(data) {
             if (data.hasReview) {
                 alert("이미 리뷰를 작성하셨습니다.");
+                return;
             } 
-            else if (userType == '기업회원'){
+            if (userType == '기업회원'){
             	alert("기업회원은 리뷰를 작성할 수 없습니다.");
-            }            
+            	return;
+            }
+            if (userType == '관리자'){
+    			alert("관리자는 리뷰를 작성할 수 없습니다.");
+    			return;
+   			}
+            if (userCompanyNo != companyNo) {
+                alert("현재 근무 중인 회사에 대해서만 리뷰를 작성할 수 있습니다.");
+                return;
+            }
             else {
                 window.location.href = "/company/review/write?companyNo=" + companyNo;
             }
@@ -114,7 +126,7 @@ function checkReviewAndRedirect(companyNo) {
 
 <div class="container w-700">
         <div class="cell" style="border: 2px solid rgb(184, 183, 183); padding: 20px; border-radius: 10px;">
-            <img src="http://placehold.co/150x150">
+            <img src="/company/image?companyNo=${companyDto.companyNo}" width="200" height="200" style="border-radius: 15px;">
             <div class="cell m-10">
             	<h2>
 	            	${companyDto.companyName}
@@ -155,7 +167,7 @@ function checkReviewAndRedirect(companyNo) {
 		   			<a href="/company/review/detail?reviewNo=${reviewDto.reviewNo}" class="btn btn-blue">내 리뷰</a>
 	 	    	</c:if>
 	 	    </c:if>
-           </div>
+           </div> 
            <div class="cell m-10">
                <div class="cell">
                    <c:choose>
@@ -177,6 +189,16 @@ function checkReviewAndRedirect(companyNo) {
 	                             				&nbsp;<i class="fa-solid fa-quote-right grey"></i>
 	                           			</h3>
 	                           				<div class="cell m-20 center" style="font-weight: 700;">
+
+										</p>
+<!-- 										텍스트 박스 넘어가는 현상을 처리하기 위해 스타일 추가  word-wrap: break-word; overflow: hidden; text-overflow: ellipsis; -->
+										<h3 style="margin: 20px; text-align: center; white-space: normal; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">
+											<i class="fa-solid fa-quote-left grey"></i>&nbsp;
+											${reviewListViewDto.reviewComment} &nbsp;<i
+												class="fa-solid fa-quote-right grey"></i>
+										</h3>
+
+									<div class="cell m-20 center" style="font-weight: 700;">
 	                               				<i class="fa-solid fa-star yellow"></i>&nbsp;
 	                               					${reviewListViewDto.reviewScore}
 	                           				</div>
@@ -184,11 +206,13 @@ function checkReviewAndRedirect(companyNo) {
                              </a>	
                            </c:forEach>
                        </c:otherwise>
-                   </c:choose>
+                   </c:choose>	
                </div>
            </div> 
         <div class="cell center p-10">
-            <jsp:include page="/WEB-INF/views/template/pagination.jsp"></jsp:include>
+             <jsp:include page="/WEB-INF/views/template/pagination.jsp">
+        		<jsp:param name="companyNo" value="${companyDto.companyNo}" />
+    		</jsp:include>
         </div>
     </div>
 </div>

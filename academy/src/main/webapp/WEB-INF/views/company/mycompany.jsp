@@ -32,7 +32,7 @@
             <div class="cell" >
                <div class="cell">
                    <h3><i class="fa-regular fa-square-check blue"></i>&nbsp;기업 이미지</h3>
-                  <p><img src="/company/image?companyNo=${companyDto.companyNo}" width="200" height="200"></p>
+                  <p><img src="/company/image?companyNo=${companyDto.companyNo}" width="200" height="200" style="border-radius: 15px;"></p>
                    
                </div>
                <div class="cell">

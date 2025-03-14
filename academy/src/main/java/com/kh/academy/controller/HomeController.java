@@ -2,6 +2,7 @@
 package com.kh.academy.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,6 +44,12 @@ public class HomeController {
     public String home(Model model) {
         // 모든 회사 리스트 가져오기
         List<CompanyDto> companyList = companyDao.selectList(); // 모든 회사 리스트
+        
+        
+        // 기업 추천을 위해 리스트 섞기
+        Collections.shuffle(companyList);
+        List<CompanyDto> recommendedCompanies = companyList.subList(0, Math.min(3, companyList.size()));
+        
 
         // 각 회사에 대해 리뷰 정보 가져오기
         List<Map<String, Object>> companyReviews = new ArrayList<>();
@@ -56,8 +63,13 @@ public class HomeController {
 
             companyReviews.add(companyReview);  // 전체 목록에 추가
         }
+     // 리뷰 리스트도 섞기
+        Collections.shuffle(companyReviews);
+        List<Map<String, Object>> limitedCompanyReviews = companyReviews.subList(0, Math.min(4, companyReviews.size()));
+        
 
-        // 모델에 기업 리스트와 리뷰 정보 추가
+
+        model.addAttribute("recommendedCompanies", recommendedCompanies);
         model.addAttribute("companyReviews", companyReviews);
 
         return "/WEB-INF/views/home.jsp";
