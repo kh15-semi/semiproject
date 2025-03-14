@@ -44,7 +44,7 @@
 			<p><i class="fa-solid fa-user-pen grey"></i>&nbsp;기업의 전/현직자가 직접 평가하는</p>
 			<h2>&nbsp;기업 리뷰&nbsp;<i class="fa-regular fa-newspaper"></i></h2>
 		</div>
-
+		<div class="cell m-20">
 		 <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px;">
             <!-- 기업 정보와 리뷰가 모두 2개씩 한 줄에 뜨도록 수정 -->
             <c:forEach var="companyReview" items="${companyReviews}">
@@ -55,7 +55,7 @@
                             <img src="https://placehold.co/30x30" alt="기업 로고" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
                             <b style="font-size: 18px; color: #333;">${companyReview.company.companyName}</b>
                         </div>
-                        <div>
+                        <div class="cell m-10">
                             <i class="fa-solid fa-quote-left grey" style="color: #888;"></i>
                             <p style="font-size: 16px; color: #333; margin-bottom: 15px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">
                                 <c:if test="${not empty companyReview.reviews}">
@@ -70,6 +70,7 @@
                     </div>
                 </a>
             </c:forEach>
-        </div>
+		</div>
+     </div><br>
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
