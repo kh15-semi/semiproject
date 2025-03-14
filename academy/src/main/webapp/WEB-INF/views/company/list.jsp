@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
 <!-- google font -->
@@ -63,21 +64,22 @@
 	                </div>
 	            </c:when>
 	            <c:otherwise>
-	                <c:forEach var="company" items="${list}">
+	                <c:forEach var="companyWithScore" items="${allCompaniesWithScore}">
             			<div class="cell p-20 flex-item"  style="border: 1px solid #ccc; border-radius: 8px;">
             				<div class="cell center">
-	                			<a href="/company/detail?companyNo=${company.companyNo}">
-	                    			<img src="/company/image?companyNo=${company.companyNo}" width="200" height="200" style="border-radius: 15px;">
+	                			<a href="/company/detail?companyNo=${companyWithScore.company.companyNo}">
+	                    			<img src="/company/image?companyNo=${companyWithScore.company.companyNo}" width="200" height="200" style="border-radius: 15px;">
 	                			</a>
             				</div>
                 			<div class="cell mt-10 ms-10">
                     			<h3>
-                        			<a href="/company/detail?companyNo=${company.companyNo}" style="text-decoration: none; color: #333; font-weight: bold;">
-                            			${company.companyName}
+                        			<a href="/company/detail?companyNo=${companyWithScore.company.companyNo}" style="text-decoration: none; color: #333; font-weight: bold;">
+                            			${companyWithScore.company.companyName}
                         			</a>
                     			</h3>
-                    			<p style="font-size: 14px; color: #666;">${company.companyIndustry}</p>
-                    			<p style="font-size: 14px; color: #999;">${company.companyContact}</p>
+                    			<p><i class="fa-solid fa-star yellow"></i>&nbsp;<fmt:formatNumber value="${companyWithScore.averageScore}" pattern="#.0" /></p>
+                    			<p style="font-size: 14px; color: #666;">${companyWithScore.company.companyIndustry}</p>
+                    			<p style="font-size: 14px; color: #999;">${companyWithScore.company.companyContact}</p>
                 			</div>
             			</div>
         			</c:forEach>      			

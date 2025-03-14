@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
@@ -10,34 +11,33 @@
 		</div>
 
         <div class="cell flex-box">
-    <c:forEach var="company" items="${recommendedCompanies}">
+    <c:forEach var="companyWithScore" items="${recommendedCompaniesWithScore}">
         <div class="cell" style="margin: auto;">
-            <div class="cell center flex-box">
-                <a href="company/detail?companyNo=${company.companyNo}">
-                    <img src="/company/image?companyNo=${company.companyNo}" width="300" height="200" style="border-radius: 15px;">
-                </a>
-            </div>
-            <div class="cell left m-10">
-                <span>
-                    <a href="company/detail?companyNo=${company.companyNo}" style="text-decoration: none; color: inherit;">
-                        <b>${company.companyName}</b>
-                    </a><br>
-                    <p style="font-size: 13px; color: grey;">
-                        ${company.companyAddress1 != null ? company.companyAddress1 : "주소 없음"}
-                    </p>
+                <div class="cell center flex-box">
+                    <a href="company/detail?companyNo=${companyWithScore.company.companyNo}">
+                        <img src="/company/image?companyNo=${company.companyNo}" width="300" height="200" style="border-radius: 15px;">
+                    </a>
+                </div>
+                <div class="cell left m-10">
+                    <span>
+                        <a href="company/detail?companyNo=${companyWithScore.company.companyNo}" style="text-decoration: none; color: inherit;">
+                            <b>${companyWithScore.company.companyName}</b>
+                        </a><br>
+                        <p style="font-size: 13px; color: grey;">
+                            ${companyWithScore.company.companyAddress1 != null ? companyWithScore.company.companyAddress1 : '주소 없음'}
+                        </p>
+                        <!-- 평균 별점 출력 -->
+                        <p style="font-weight: 700; font-size: 18px;">
+                            <i class="fa-solid fa-star yellow"></i>&nbsp;<fmt:formatNumber value="${companyWithScore.averageScore}" pattern="#.0" />
+                        </p>
 
-                    <!-- 평균 별점 출력 -->
-                    <%--  <p style="font-weight: 700; font-size: 18px;">
-                        <i class="fa-solid fa-star yellow"></i>&nbsp;${company.averageScore != null ? company.averageScore : "없음"}
-                    </p> --%>
-
-                    <!-- 산업군 출력 -->
-                    <p style="font-size: 14px; color: grey;">
-                        <b>${company.companyIndustry != null ? company.companyIndustry : "미정"}</b>
-                    </p>
-                </span>
+                        <!-- 산업군 출력 -->
+                        <p style="font-size: 14px; color: grey;">
+                            <b>${companyWithScore.company.companyIndustry != null ? companyWithScore.company.companyIndustry : '미정'}</b>
+                        </p>
+                    </span>
+                </div>
             </div>
-        </div>
     </c:forEach>
 </div>
 
