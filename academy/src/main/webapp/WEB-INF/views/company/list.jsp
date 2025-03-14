@@ -13,7 +13,17 @@
 <!-- font awesome cdn -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
-	
+.flex-box {
+    display: flex;
+    flex-wrap: wrap; 
+    width: 100%;
+    gap: 10px;
+}
+
+.flex-item {
+    width: calc((100% - 20px) / 3); /* gap을 고려한 크기 */
+    box-sizing: border-box;
+}
 </style>
 
 <script>
@@ -22,7 +32,7 @@
 
 <form action="" method="post">
 
-	<div class="container w-1200" style="margin: auto;">
+	<div class="container" style="margin: auto; width: 1200px;">
 	
 		<div class="cell ms-10">
 			<h2><i class="fa-solid fa-list"></i> 기업 목록</h2>
@@ -44,9 +54,8 @@
 			
 			<hr style="border: none; border-top: 1px solid rgb(196, 196, 196)">
 		
-		</div>
 	    
-	   	<div class="cell m-40">
+	   	<div class="cell p-40 flex-box" style="display: flex; flex-wrap: wrap; gap: 10px;">
 	        <!-- 검색 결과가 없는 경우 -->
 	        <c:choose>
 	            <c:when test="${empty list}">
@@ -56,7 +65,7 @@
 	            </c:when>
 	            <c:otherwise>
 	                <c:forEach var="companyWithScore" items="${allCompaniesWithScore}">
-            			<div class="cell p-20" style="width: calc(33% - 10px); border: 1px solid #ccc; border-radius: 8px;">
+            			<div class="cell p-20 flex-item"  style="border: 1px solid #ccc; border-radius: 8px;">
             				<div class="cell center">
 	                			<a href="/company/detail?companyNo=${companyWithScore.company.companyNo}">
 	                    			<img src="/company/image?companyNo=${companyWithScore.company.companyNo}" width="200" height="200" style="border-radius: 15px;">
@@ -73,10 +82,12 @@
                     			<p style="font-size: 14px; color: #999;">${companyWithScore.company.companyContact}</p>
                 			</div>
             			</div>
-        			</c:forEach>
+        			</c:forEach>      			
 	            </c:otherwise>
 	        </c:choose>
 	    </div>
+	        
+		</div>
 	
 	</div>
 </form>
