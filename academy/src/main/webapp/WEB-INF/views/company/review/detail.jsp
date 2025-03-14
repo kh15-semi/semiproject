@@ -5,6 +5,7 @@
     
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
+
 <div class="container w-700" style="border: 1px solid rgb(197, 197, 197); border-radius: 10px;">
 	<div class="cell m-20">
 		<div>
