@@ -64,5 +64,6 @@ public class ReviewListViewDao {
         List<String> validColumns = List.of("review_no", "review_writer", "review_comment", "member_name", "member_industry", "member_job" /* ... 기타 컬럼 ... */);
         return validColumns.contains(column.toLowerCase()); // 대소문자 구분 없이 비교
     }
+    
 	
 }

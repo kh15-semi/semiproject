@@ -60,6 +60,7 @@ public class CompanyController {
 
 	    return "/WEB-INF/views/company/list.jsp"; // JSP 파일 이름
 	}
+	
 	@GetMapping("/detail")
 	public String companyDetail(@RequestParam int companyNo, Model model, @ModelAttribute PageVO pageVO, HttpSession session) {
 	    CompanyDto companyDto = companyDao.selectOne(companyNo);
@@ -72,7 +73,8 @@ public class CompanyController {
 	    // 특정 회사의 리뷰 목록 조회
 	    List<ReviewListViewDto> list = reviewListViewDao.selectListByCompanyNo(pageVO, companyNo);
 	    model.addAttribute("list", list);
-
+	    
+	 
 	    // 리뷰의 점수를 합산하여 평균 점수 계산
 	    int totalScore = 0;
 	    for (ReviewListViewDto review : list) {
@@ -85,7 +87,56 @@ public class CompanyController {
 
 	    // 리뷰 개수 세기
 	    int count = reviewDao.count(companyNo);
+	    model.addAttribute("count", count);
 	    pageVO.setCount(count);
+	    
+	    List<ReviewDto> list2 = reviewDao.selectList();
+	    model.addAttribute("list2", list2);
+	    
+	    // 승진기회 리뷰 평균
+	    int totalPromotion = 0;
+	    for(ReviewDto review : list2) {
+	    	totalPromotion += review.getReviewPromotion();
+	    	System.out.println(review);
+	    } int avgPromotion = list2.isEmpty() ? 0 : totalPromotion / list2.size();
+	    
+	    model.addAttribute("avgPromotion", avgPromotion);
+	    
+	    // 복지/급여 리뷰 평균
+	    int totalSalary = 0;
+	    for(ReviewDto review : list2) {
+	    	totalSalary += review.getReviewSalary();
+	    } int avgSalary = list2.isEmpty() ? 0 : totalSalary / list2.size();
+	    model.addAttribute("avgSalary", avgSalary);
+	    
+	    // 워라밸 리뷰 평균
+	    int totalWorkAndLife = 0;
+	    for(ReviewDto review : list2) {
+	    	totalWorkAndLife += review.getReviewWorkAndLife();
+	    } int avgWorkAndLife = list2.isEmpty() ? 0 : totalWorkAndLife / list2.size();
+	    model.addAttribute("avgWorkAndLife", avgWorkAndLife);
+	     
+	    // 사내문화 리뷰 평균
+	    int totalCulture = 0;
+	    for(ReviewDto review : list2) {
+	    	totalCulture += review.getReviewCulture();
+	    } int avgCulture = list2.isEmpty() ? 0 : totalCulture / list2.size();
+	    model.addAttribute("avgCulture", avgCulture);
+	    
+	    // 경영진 리뷰 평균
+	    int totalDirector = 0;
+	    for(ReviewDto review : list2) {
+	    	totalDirector += review.getReviewDirector();
+	    } int avgDirector = list2.isEmpty() ? 0 : totalDirector / list2.size();
+	    model.addAttribute("avgDirector", avgDirector);
+
+	    for (ReviewDto review : list2) {
+	        System.out.println("Review Promotion: " + review.getReviewPromotion());
+	        System.out.println("Review Salary: " + review.getReviewSalary());
+	        System.out.println("Review Salary: " + review.getReviewWorkAndLife());
+	        System.out.println("Review Salary: " + review.getReviewDirector());
+	        System.out.println("Review Salary: " + review.getReviewCulture());
+	    }
 	    
 	    // 현재 사용자가 작성한 리뷰가 있는지 확인
         String userId = (String) session.getAttribute("userId");
@@ -177,12 +228,17 @@ public class CompanyController {
 		}
 	}
 
+//    @RequestMapping("/mycompany")
+//    public String mycompany(HttpSession session, Model model) {
+//        String userId = (String) session.getAttribute("userId");
+//        MemberDto memberDto = memberDao.selectOne(userId);  // 세션에서 사용자 정보 가져오기
+//
+//        CompanyDto companyDto = companyDao.selectOne(memberDto.getMemberCompanyNo());  // 사용자에게 속한 기업 정보 가져오기
+//
+//        model.addAttribute("memberDto", memberDto);
+//        model.addAttribute("companyDto", companyDto);
+//
+//        return "/WEB-INF/views/company/mycompany.jsp";  // 수정된 회사 정보를 반영
+//    }
+
 }
-
-
-
-
-
-
-
-
