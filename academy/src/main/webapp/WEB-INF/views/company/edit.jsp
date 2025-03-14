@@ -85,8 +85,10 @@
                 <div class="cell">
                     <h3>기업 주소</h3>
                     <div class="cell left">
-                        <input type="text" name="companyPost" size="14" maxlength="6" class="field btn-address-search" placeholder="우편번호" style="border-radius: 10px;" value="${companyDto.companyPost}">
-                        <button type="button" class="btn btn-neutral btn-address-search">
+						<input type="text" name="companyPost" size="14" maxlength="6"
+							class="field" placeholder="우편번호"
+							style="border-radius: 10px;" value="${companyDto.companyPost}">
+						<button type="button" class="btn btn-neutral btn-company-address-search">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
                         <button type="button" class="btn btn-negative btn-address-clear" style="display: none;">
@@ -94,7 +96,7 @@
                         </button>
                     </div>
                     <div class="cell">
-                        <input type="text" name="companyAddress1" class="field w-100 btn-address-search" placeholder="기본주소" style="border-radius: 10px;" value="${companyDto.companyAddress1}">
+                        <input type="text" name="companyAddress1" class="field w-100" placeholder="기본주소" style="border-radius: 10px;" value="${companyDto.companyAddress1}">
                     </div>
                     <div class="cell">
                         <input type="text" name="companyAddress2" class="field w-100" placeholder="상세주소" style="border-radius: 10px;" value="${companyDto.companyAddress2}">

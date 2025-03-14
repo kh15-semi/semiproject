@@ -147,7 +147,7 @@ $(function(){
 		status.memberEmail = isValid;
 	});
 	
-	//주소 관련 처리
+	//멤머 주소 관련 처리
     $("[name=memberPost]").on("input", function () {
     	var current = $(this).val();
         var convert = current.replace(/[^0-9]+/g, "");
@@ -206,13 +206,13 @@ $(function(){
             }
         }
 		
-		//주소 관련 처리
+		//회사 주소 관련 처리
 		    $("[name=companyPost]").on("input", function () {
 		    	var current = $(this).val();
 		        var convert = current.replace(/[^0-9]+/g, "");
 		        $(this).val(convert);
 		   	});
-		    $("[name=companyPost], [name=companyAddress1], .btn-address-search").click(function () {
+		    $("[name=companyPost], [name=companyAddress1], .btn-company-address-search").click(function () {
 		    	new daum.Postcode({
 		        oncomplete: function (data) {
 		        var addr = '';

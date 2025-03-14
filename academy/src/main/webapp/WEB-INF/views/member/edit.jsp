@@ -77,7 +77,7 @@ $(function() {
             	<div class="cell">
 		       		<input type="text" name="memberPost" size="6" maxlength="6" class="field"  value="${memberDto.memberPost}">
                 	<button type="button" class="btn btn-neutral btn-address-search">
-                		<i class="fa-solid fa-magnifying-glass"></i>
+                		<i class="fa-solid fa-magnifying-glass"></i>e
                 	</button>
                 	<button type="button" class="btn btn-negative btn-address-clear" style="display: none;">
                 		<i class="fa-solid fa-xmark"></i>
