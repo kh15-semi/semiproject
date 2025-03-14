@@ -141,12 +141,5 @@ public class CompanyDao {
 		Object[] data = { companyNo, attachmentNo };
 		jdbcTemplate.update(sql, data);
 	}
-	
-	
-	public int findAttachment(int companyNo) {
-		String sql = "select attachment_no from company_image "
-						+ "where company_no=?";
-		Object[] data = {companyNo};
-		return jdbcTemplate.queryForObject(sql, int.class, data);
-	}
+
 }
