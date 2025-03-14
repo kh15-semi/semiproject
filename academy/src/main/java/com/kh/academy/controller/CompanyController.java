@@ -74,8 +74,6 @@ public class CompanyController {
 	    List<ReviewListViewDto> list = reviewListViewDao.selectListByCompanyNo(pageVO, companyNo);
 	    model.addAttribute("list", list);
 	    
-	    List<ReviewDto> list2 = reviewDao.selectList();
-	    model.addAttribute("list2", list2);
 	 
 	    // 리뷰의 점수를 합산하여 평균 점수 계산
 	    int totalScore = 0;
@@ -92,37 +90,54 @@ public class CompanyController {
 	    model.addAttribute("count", count);
 	    pageVO.setCount(count);
 	    
+	    List<ReviewDto> list2 = reviewDao.selectList();
+	    model.addAttribute("list2", list2);
+	    
 	    // 승진기회 리뷰 평균
 	    int totalPromotion = 0;
 	    for(ReviewDto review : list2) {
 	    	totalPromotion += review.getReviewPromotion();
-	    } int avgPromotion = list.isEmpty() ? 0 : totalPromotion / list.size();
+	    	System.out.println(review);
+	    } int avgPromotion = list2.isEmpty() ? 0 : totalPromotion / list2.size();
+	    
+	    model.addAttribute("avgPromotion", avgPromotion);
 	    
 	    // 복지/급여 리뷰 평균
 	    int totalSalary = 0;
 	    for(ReviewDto review : list2) {
 	    	totalSalary += review.getReviewSalary();
-	    } int avgSalary = list.isEmpty() ? 0 : totalPromotion / list.size();
+	    } int avgSalary = list2.isEmpty() ? 0 : totalSalary / list2.size();
+	    model.addAttribute("avgSalary", avgSalary);
 	    
 	    // 워라밸 리뷰 평균
 	    int totalWorkAndLife = 0;
 	    for(ReviewDto review : list2) {
 	    	totalWorkAndLife += review.getReviewWorkAndLife();
-	    } int avgWorkAndLife = list.isEmpty() ? 0 : totalPromotion / list.size();
-	    
+	    } int avgWorkAndLife = list2.isEmpty() ? 0 : totalWorkAndLife / list2.size();
+	    model.addAttribute("avgWorkAndLife", avgWorkAndLife);
+	     
 	    // 사내문화 리뷰 평균
 	    int totalCulture = 0;
 	    for(ReviewDto review : list2) {
 	    	totalCulture += review.getReviewCulture();
-	    } int avgCulture = list.isEmpty() ? 0 : totalPromotion / list.size();
+	    } int avgCulture = list2.isEmpty() ? 0 : totalCulture / list2.size();
+	    model.addAttribute("avgCulture", avgCulture);
 	    
 	    // 경영진 리뷰 평균
 	    int totalDirector = 0;
 	    for(ReviewDto review : list2) {
-	    	totalDirector += review.getReviewPromotion();
-	    } int avgDirector = list.isEmpty() ? 0 : totalPromotion / list.size();
+	    	totalDirector += review.getReviewDirector();
+	    } int avgDirector = list2.isEmpty() ? 0 : totalDirector / list2.size();
+	    model.addAttribute("avgDirector", avgDirector);
+
+	    for (ReviewDto review : list2) {
+	        System.out.println("Review Promotion: " + review.getReviewPromotion());
+	        System.out.println("Review Salary: " + review.getReviewSalary());
+	        System.out.println("Review Salary: " + review.getReviewWorkAndLife());
+	        System.out.println("Review Salary: " + review.getReviewDirector());
+	        System.out.println("Review Salary: " + review.getReviewCulture());
+	    }
 	    
-	    	    
 	    // 현재 사용자가 작성한 리뷰가 있는지 확인
         String userId = (String) session.getAttribute("userId");
         ReviewDto reviewDto = null;
