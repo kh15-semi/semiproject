@@ -48,15 +48,10 @@
 </div>
 
 
-		<hr class="custom-line">
 
+<hr class="custom-line">
+<!-- 기업 리뷰 -->
 
-		<!-- 기업 리뷰 -->
-		
-		<!-- 
-				기업명 옆의 북마크 선택 시
-				<i class="fa-solid fa-bookmark"></i>
-		-->
 	<div class="cell" style="height: 100%;">		
 		<div class="cell m-30">
 			<p><i class="fa-solid fa-user-pen grey"></i>&nbsp;기업의 전/현직자가 직접 평가하는</p>
@@ -64,7 +59,6 @@
 		</div>
 
 		 <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 30px;">
-
             <!-- 기업 정보와 리뷰가 모두 2개씩 한 줄에 뜨도록 수정 -->
             <c:forEach var="companyReview" items="${companyReviews}">
                 <!-- 링크 추가: 회사 박스를 클릭하면 해당 회사의 상세 페이지로 이동 -->
@@ -73,17 +67,18 @@
                     	 width:100%; height: 200px; box-sizing: border-box; overflow: hidden;">
                         <div style="display: flex; align-items: center;">
 <!--                             <img src="https://placehold.co/30x30" alt="기업 로고" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;"> -->
-                            <img src="/company/image?companyNo=${companyReview.company.companyNo}" width="30" height="30" style="border-radius: 50%;" alt="기업 로고">&nbsp; &nbsp;
-                            <b style="font-size: 18px; color: #333;">${companyReview.company.companyName}</b>
+                           <img src="/company/image?companyNo=${companyReview.company.companyNo}" width="30" height="30" style="border-radius: 50%;" alt="기업 로고">&nbsp; &nbsp;
+                           <b style="font-size: 18px; color: #333;">${companyReview.company.companyName}</b>
                         </div>
-                        <div class="cell m-10">
+                        <div style="text-align: center; padding-top: 10px;">
                             <i class="fa-solid fa-quote-left grey" style="color: #888;"></i>
-                            <p style="font-size: 16px; color: #333; margin-bottom: 15px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">
+                            <p style="font-size: 16px; color: #333; margin-bottom: 15px; overflow: hidden; word-break: break-word;
+                            	  text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
                                 <c:if test="${not empty companyReview.reviews}">
                                     ${companyReview.reviews[0].reviewComment}
                                 </c:if>
                                 <c:if test="${empty companyReview.reviews}">
-                                    기업에 대한 리뷰가 없습니다.
+                                	<label>아직 해당 기업에 대한 리뷰가 없어요</label>
                                 </c:if>
                             </p>
                             <i class="fa-solid fa-quote-right grey" style="color: #888;"></i>
@@ -91,8 +86,7 @@
                     </div>
                 </a>
             </c:forEach>
-
-		</div>
-     </div><br>
+        </div>
+	</div>
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

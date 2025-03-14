@@ -77,6 +77,7 @@
                             			${companyWithScore.company.companyName}
                         			</a>
                     			</h3>
+                    			<!-- 평균 별점 출력 -->
                     			<p><i class="fa-solid fa-star yellow"></i>&nbsp;
                     			<c:if test = "${companyWithScore.averageScore == '0.0'}">
                                 	<fmt:formatNumber value = "0.0" pattern = "0.0"/>
