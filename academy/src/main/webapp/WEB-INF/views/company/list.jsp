@@ -68,7 +68,7 @@
             			<div class="cell p-20 flex-item"  style="border: 1px solid #ccc; border-radius: 8px;">
             				<div class="cell center">
 	                			<a href="/company/detail?companyNo=${companyWithScore.company.companyNo}">
-	                    			<img src="/company/image?companyNo=${companyWithScore.company.companyNo}" width="200" height="200" style="border-radius: 15px;">
+	                    			<img src="/company/image?companyNo=${companyWithScore.company.companyNo}" width="300" height="200" style="border-radius: 15px;">
 	                			</a>
             				</div>
                 			<div class="cell mt-10 ms-10">
