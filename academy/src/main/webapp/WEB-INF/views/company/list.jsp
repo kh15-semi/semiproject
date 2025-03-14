@@ -64,7 +64,7 @@
 	                </div>
 	            </c:when>
 	            <c:otherwise>
-	                <c:forEach var="companyWithScore" items="${allCompaniesWithScore}">
+	                <c:forEach var="companyWithScore" items="${filteredCompaniesWithScore}">
             			<div class="cell p-20 flex-item"  style="border: 1px solid #ccc; border-radius: 8px;">
             				<div class="cell center">
 	                			<a href="/company/detail?companyNo=${companyWithScore.company.companyNo}">
@@ -79,7 +79,6 @@
                     			</h3>
                     			<p><i class="fa-solid fa-star yellow"></i>&nbsp;<fmt:formatNumber value="${companyWithScore.averageScore}" pattern="#.0" /></p>
                     			<p style="font-size: 14px; color: #666;">${companyWithScore.company.companyIndustry}</p>
-                    			<p style="font-size: 14px; color: #999;">${companyWithScore.company.companyContact}</p>
                 			</div>
             			</div>
         			</c:forEach>      			

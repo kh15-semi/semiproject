@@ -15,7 +15,7 @@
         <div class="cell" style="margin: auto;">
                 <div class="cell center flex-box">
                     <a href="company/detail?companyNo=${companyWithScore.company.companyNo}">
-                        <img src="/company/image?companyNo=${company.companyNo}" width="300" height="200" style="border-radius: 15px;">
+                        <img src="/company/image?companyNo=${companyWithScore.company.companyNo}" width="300" height="200" style="border-radius: 15px;">
                     </a>
                 </div>
                 <div class="cell left m-10">

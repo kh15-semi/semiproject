@@ -55,19 +55,18 @@ public class CompanyController {
 	    } else {
 	        list = companyDao.selectList();
 	    }
-	    
-	   List<CompanyDto> allCompanies = companyDao.selectList();
-       List<Map<String, Object>> allCompaniesWithScore = new ArrayList<>();
-       for (CompanyDto company : allCompanies) {
-        	 double averageScore = reviewDao.getAverageScoreByCompanyNo(company.getCompanyNo());
+	    // 검색 결과에 따라 allCompaniesWithScore 필터링
+        List<Map<String, Object>> filteredCompaniesWithScore = new ArrayList<>();
+        for (CompanyDto company : list) {
+            double averageScore = reviewDao.getAverageScoreByCompanyNo(company.getCompanyNo());
             
             Map<String, Object> companyWithScore = new HashMap<>();
             companyWithScore.put("company", company);
             companyWithScore.put("averageScore", averageScore);
             
-            allCompaniesWithScore.add(companyWithScore);
+            filteredCompaniesWithScore.add(companyWithScore);
         }
-        model.addAttribute("allCompaniesWithScore", allCompaniesWithScore);
+        model.addAttribute("filteredCompaniesWithScore", filteredCompaniesWithScore);
 
 	    // JSP로 전달
 	    model.addAttribute("search", search);
