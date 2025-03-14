@@ -126,4 +126,20 @@ public class ReviewController {
 		return "redirect:detail?reviewNo=" + reviewDto.getReviewNo();
 
 	}
+	
+	//리뷰 삭제 매핑
+	@RequestMapping("/delete")
+	public String delete(@RequestParam int reivewNo) {
+		ReviewDto reviewDto = reviewDao.selectOne(reivewNo);
+		if(reviewDto == null) throw new TargetNotFoundException("존재하지 않는 글");
+		reviewDao.delete(reivewNo);
+		return "redirect:/WEB-INF/views/company/detail.jsp";
+	}
+	
+	
+	
+	
+	
+	
+	
 }
