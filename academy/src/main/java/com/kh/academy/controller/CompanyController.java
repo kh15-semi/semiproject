@@ -115,7 +115,7 @@ public class CompanyController {
 	    	totalWorkAndLife += review.getReviewWorkAndLife();
 	    } int avgWorkAndLife = list2.isEmpty() ? 0 : totalWorkAndLife / list2.size();
 	    model.addAttribute("avgWorkAndLife", avgWorkAndLife);
-	    
+	     
 	    // 사내문화 리뷰 평균
 	    int totalCulture = 0;
 	    for(ReviewDto review : list2) {
