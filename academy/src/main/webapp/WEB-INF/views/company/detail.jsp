@@ -134,7 +134,6 @@ function drawBasic() {
             	<h2>
 	            	${companyDto.companyName}
 	            	<label style="font-size: 20px;">
-	            		<a href="tel:+${companyDto.companyContact}"><i class="fa-solid fa-square-phone blue"></i></a>
 	            	</label>
             	</h2>
             	<p style="font-weight: 700; font-size: 18px;"><i class="fa-solid fa-star yellow"></i>&nbsp;${averageScore}</p>
@@ -167,7 +166,7 @@ function drawBasic() {
 			</a>
 			<c:if test="${sessionScope.userId != null}">
 		    	<c:if test="${sessionScope.userId == reviewDto.reviewWriter}">
-		   			<a href="/company/review/detail?reviewNo=${reviewDto.reviewNo}" class="btn btn-blue">내 리뷰</a>
+		   			<a href="detail?reviewNo=${reviewDto.reviewNo}" class="btn btn-blue">내 리뷰</a>
 	 	    	</c:if>
 	 	    </c:if>
            </div> 
