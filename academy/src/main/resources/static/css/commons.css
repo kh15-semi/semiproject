@@ -831,4 +831,4 @@ textarea.field {
     .field.fail ~ .fail-feedback,
     .field.fail2 ~ .fail2-feedback {
     display: block;
-}
+	}

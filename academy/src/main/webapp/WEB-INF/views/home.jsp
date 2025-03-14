@@ -58,6 +58,7 @@
 		</div>
 
 		 <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 30px;">
+
             <!-- 기업 정보와 리뷰가 모두 2개씩 한 줄에 뜨도록 수정 -->
             <c:forEach var="companyReview" items="${companyReviews}">
                 <!-- 링크 추가: 회사 박스를 클릭하면 해당 회사의 상세 페이지로 이동 -->
@@ -69,7 +70,7 @@
                             <img src="/company/image?companyNo=${companyReview.company.companyNo}" width="30" height="30" style="border-radius: 50%;" alt="기업 로고">&nbsp; &nbsp;
                             <b style="font-size: 18px; color: #333;">${companyReview.company.companyName}</b>
                         </div>
-                        <div>
+                        <div class="cell m-10">
                             <i class="fa-solid fa-quote-left grey" style="color: #888;"></i>
                             <p style="font-size: 16px; color: #333; margin-bottom: 15px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">
                                 <c:if test="${not empty companyReview.reviews}">
@@ -84,7 +85,8 @@
                     </div>
                 </a>
             </c:forEach>
-        </div>
-	</div>
+
+		</div>
+     </div><br>
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

@@ -122,6 +122,7 @@ $(function() {
                 </div>
                 <div class="cell">
                     <input type="text" name="memberPosition" class="field w-100" placeholder="직책">
+                    <div class="fail-feedback">직책을 입력해주세요.</div>
                 </div>
                 <div class="cell left">
 			    	<input type="text" name="memberPost" size="14" maxlength="6" class="field" placeholder="우편번호" readonly>
@@ -172,12 +173,14 @@ $(function() {
 	                	<option value="전문직">전문직</option>
 	                	<option value="특수계층/공공">특수계층/공공</option>
             		</select>
+            		<div class="fail-feedback">산업군을 선택해주세요.</div>
 	        	</div>
 				
 				<div class="cell">
 	            	<select id="secondSelect" class="selectBox field" name="memberJob">
 	                	<option value="">직종 선택</option>
 	            	</select>
+	            	<div class="fail-feedback">직종을 선택해주세요.</div>
 				</div>
             </div>
             
