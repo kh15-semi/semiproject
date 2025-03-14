@@ -68,8 +68,13 @@
 	    </div>
 	</div>
 	<div class="cell center">
-		<a href="/company/detail?companyNo=${companyDto.companyNo}" class="btn btn-green2"><i class="fa-solid fa-arrow-left"></i>&nbsp;뒤로</a>
+		<a href="/company/detail?companyNo=${companyDto.companyNo}" class="btn btn-green2"><i class="fa-solid fa-arrow-left"></i>&nbsp;이전</a>
 		<a href="/" class="btn btn-neutral"><i class="fa-solid fa-house"></i>&nbsp;메인</a>
+		<c:if test="${sessionScope.userId != null}">
+		    <c:if test="${sessionScope.userId == reviewDto.reviewWriter}">
+				<a href="#" class="btn btn-negative"><i class="fa-solid fa-trash-can"></i>&nbsp;삭제</a>
+			</c:if>
+		</c:if>
 	</div>
 </div>
 
