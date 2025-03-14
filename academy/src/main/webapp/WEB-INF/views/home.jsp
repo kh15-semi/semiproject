@@ -14,7 +14,7 @@
         <div class="cell" style="margin: auto;">
             <div class="cell center flex-box">
                 <a href="company/detail?companyNo=${company.companyNo}">
-                    <img src="https://www.placehold.co/300x200" style="border-radius: 15px; width: 360px; height: 250px;">
+                    <img src="/company/image?companyNo=${company.companyNo}" width="300" height="200" style="border-radius: 15px;">
                 </a>
             </div>
             <div class="cell left m-10">
@@ -64,7 +64,8 @@
                 <a href="company/detail?companyNo=${companyReview.company.companyNo}" style="text-decoration: none; width: 48%; box-sizing: border-box;">
                     <div style="background-color: #f7f7f7; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
                         <div style="display: flex; align-items: center;">
-                            <img src="https://placehold.co/30x30" alt="기업 로고" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
+<!--                             <img src="https://placehold.co/30x30" alt="기업 로고" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;"> -->
+                            <img src="/company/image?companyNo=${companyReview.company.companyNo}" width="30" height="30" style="border-radius: 50%;" alt="기업 로고">&nbsp; &nbsp;
                             <b style="font-size: 18px; color: #333;">${companyReview.company.companyName}</b>
                         </div>
                         <div>
