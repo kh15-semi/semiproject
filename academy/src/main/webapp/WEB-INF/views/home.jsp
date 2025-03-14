@@ -66,17 +66,18 @@
                     	 width:100%; height: 200px; box-sizing: border-box; overflow: hidden;">
                         <div style="display: flex; align-items: center;">
 <!--                             <img src="https://placehold.co/30x30" alt="기업 로고" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;"> -->
-                            <img src="/company/image?companyNo=${companyReview.company.companyNo}" width="30" height="30" style="border-radius: 50%;" alt="기업 로고">&nbsp; &nbsp;
-                            <b style="font-size: 18px; color: #333;">${companyReview.company.companyName}</b>
+                           <img src="/company/image?companyNo=${companyReview.company.companyNo}" width="30" height="30" style="border-radius: 50%;" alt="기업 로고">&nbsp; &nbsp;
+                           <b style="font-size: 18px; color: #333;">${companyReview.company.companyName}</b>
                         </div>
-                        <div>
+                        <div style="text-align: center; padding-top: 10px;">
                             <i class="fa-solid fa-quote-left grey" style="color: #888;"></i>
-                            <p style="font-size: 16px; color: #333; margin-bottom: 15px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">
+                            <p style="font-size: 16px; color: #333; margin-bottom: 15px; overflow: hidden; word-break: break-word;
+                            	  text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
                                 <c:if test="${not empty companyReview.reviews}">
                                     ${companyReview.reviews[0].reviewComment}
                                 </c:if>
                                 <c:if test="${empty companyReview.reviews}">
-                                    리뷰 없음
+                                	<label>아직 해당 기업에 대한 리뷰가 없어요</label>
                                 </c:if>
                             </p>
                             <i class="fa-solid fa-quote-right grey" style="color: #888;"></i>
