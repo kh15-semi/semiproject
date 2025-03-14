@@ -7,12 +7,14 @@ $(function() {
 		memberName: false,
 		memberEmail: true,
 		memberContact: true,
+		memberPosition: false,
 		memberAddress: true,
 		companyAddress: true,
 		ok: function() {
 			return this.memberId && this.memberPw
 				&& this.memberPwCheck && this.memberName
 				&& this.memberEmail && this.memberContact
+				&& this.memberPosition
 				&& this.memberAddress && this.companyAddress
 		}
 	};
@@ -264,7 +266,29 @@ $(function() {
 			$(".btn-company-address-clear").fadeOut();
 		}
 	}
+	
+	// 기업회원 직책 관련 처리
+	$("[name=memberPosition]").on("input", function() {
+	    var current = $(this).val();
+	    var convert = current.replace(/[^가-힣ㄱ-ㅎ]+/g, "");
+	    $(this).val(convert);
+	});
 
+	$("[name=memberPosition]").blur(function() {
+	    var regex = /^[가-힣ㄱ-ㅎ]{2,8}$/;
+	    var isValid = regex.test($(this).val());
+	    var memberPosition = $(this).val();
+	    $(this).removeClass("success fail");
+	    
+	    if (memberPosition.length == 0) {
+	        $(this).addClass("fail");
+	    }
+	    else if (isValid) {
+	        $(this).addClass("success");
+	        status.memberPosition = true;
+		}
+	});
+	
 	//선택 사항 입력 처리
 	$("[name=memberIndustry], [name=memberJob]").on("change", function() {
 		var isValid = $(this).val().length > 0;
