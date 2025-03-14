@@ -147,5 +147,6 @@ public class CompanyDao {
         Object[] data = {companyNo};
         return jdbcTemplate.queryForObject(sql, int.class, data);
     }
- 
+	
+
 }
