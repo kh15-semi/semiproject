@@ -21,6 +21,8 @@
 function checkReviewAndRedirect(companyNo) {
     var userId = "${sessionScope.userId}"; // JSP EL 사용
     var userType = "${sessionScope.userType}";
+    var userCompanyNo = "${sessionScope.userCompanyNo}";
+    
     if (!userId) {
         alert("로그인이 필요합니다.");
         return;
@@ -37,10 +39,20 @@ function checkReviewAndRedirect(companyNo) {
         success: function(data) {
             if (data.hasReview) {
                 alert("이미 리뷰를 작성하셨습니다.");
+                return;
             } 
-            else if (userType == '기업회원'){
+            if (userType == '기업회원'){
             	alert("기업회원은 리뷰를 작성할 수 없습니다.");
-            }            
+            	return;
+            }
+            if (userType == '관리자'){
+    			alert("관리자는 리뷰를 작성할 수 없습니다.");
+    			return;
+   			}
+            if (userCompanyNo != companyNo) {
+                alert("현재 근무 중인 회사에 대해서만 리뷰를 작성할 수 있습니다.");
+                return;
+            }
             else {
                 window.location.href = "/company/review/write?companyNo=" + companyNo;
             }
@@ -138,7 +150,9 @@ function checkReviewAndRedirect(companyNo) {
                </div>
            </div> 
         <div class="cell center p-10">
-            <jsp:include page="/WEB-INF/views/template/pagination.jsp"></jsp:include>
+             <jsp:include page="/WEB-INF/views/template/pagination.jsp">
+        		<jsp:param name="companyNo" value="${companyDto.companyNo}" />
+    		</jsp:include>
         </div>
     </div>
 </div>
