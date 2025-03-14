@@ -22,6 +22,7 @@ import com.kh.academy.dto.MemberDto;
 import com.kh.academy.dto.ReviewDto;
 import com.kh.academy.dto.ReviewListViewDto;
 import com.kh.academy.service.AttachmentService;
+import com.kh.academy.service.CompanyService;
 import com.kh.academy.vo.PageVO;
 
 import jakarta.servlet.http.HttpSession;
@@ -40,25 +41,34 @@ public class CompanyController {
 	private MemberDao memberDao;
 	@Autowired
 	private AttachmentService attachmentService;
+	@Autowired
+	private CompanyService companyService;
 	
 	@GetMapping("/list")
-	public String companyList( @RequestParam(required = false) String keyword, Model model) {
-		boolean search = keyword != null && !keyword.trim().isEmpty();
-		List<CompanyDto> list;
-		if (search) {
-	        list = companyDao.selectList("company_name", keyword); // 기본적으로 회사명을 검색
+	public String companyList(@RequestParam(required = false) String keyword, Model model) {
+	    boolean search = keyword != null && !keyword.trim().isEmpty();
+	    List<CompanyDto> list;
+
+	    if (search) {
+	        // 기본적으로 회사명을 검색
+	        list = companyDao.selectList("company_name", keyword);
 	    } else {
 	        list = companyDao.selectList();
 	    }
 
+	    // 전화번호 포맷팅 처리 (10자리)
+	    for (CompanyDto company : list) {
+	        String formattedContact = companyService.formatPhoneNumber(company.getCompanyContact());
+	        company.setCompanyContact(formattedContact); // 포맷된 번호로 설정
+	    }
+
+	    // JSP로 전달
 	    model.addAttribute("search", search);
 	    model.addAttribute("keyword", keyword);
 	    model.addAttribute("list", list);
 
-	    return "/WEB-INF/views/company/list.jsp";
-		
+	    return "/WEB-INF/views/company/list.jsp"; // JSP 파일 이름
 	}
-	
 	@GetMapping("/detail")
 	public String companyDetail(@RequestParam int companyNo, Model model, @ModelAttribute PageVO pageVO, HttpSession session) {
 	    CompanyDto companyDto = companyDao.selectOne(companyNo);
