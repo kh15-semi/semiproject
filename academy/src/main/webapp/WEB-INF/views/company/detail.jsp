@@ -90,7 +90,7 @@ function checkReviewAndRedirect(companyNo) {
 	function drawBasic() {
 
 	      var data = google.visualization.arrayToDataTable([
-	        ['기준', '만족도',],
+	        ['별점', '별점',],
 	        ['승진기회', ${reviewDto.reviewPromotion}],
 	        ['복지/급여', ${reviewDto.reviewSalary}],
 	        ['워라밸', ${reviewDto.reviewWorkAndLife}],
@@ -99,11 +99,11 @@ function checkReviewAndRedirect(companyNo) {
 	      ]);
 
 	      var options = {
-	        title: '전체 리뷰 통계 ',
-	        chartArea: {width: '50%'},
+	        title: '',
+	        chartArea: {width: '70%'},
 	        hAxis: {
 	          title: '',
-	          minValue: 0
+	          minValue: 5
 	        },
 	        vAxis: {
 	          title: ''
@@ -144,8 +144,13 @@ function checkReviewAndRedirect(companyNo) {
             </div>
         </div>
 		<br><hr>
+		<div class="cell"><br>
+			<div class="cell left p-20" style="border: 2px solid rgb(184, 183, 183); border-radius: 10px;">
+				<h2><i class="fa-solid fa-chart-simple blue"></i>&nbsp;전체 리뷰 통계<label style="color: grey; font-size: 13px;">&nbsp;${count}</label></h2>
+				<div id="chart_div"></div>
+			</div>
+		</div>
 		
-		<div id="chart_div"></div>
 		
         <br><hr>
         <div class="cell">
@@ -177,6 +182,14 @@ function checkReviewAndRedirect(companyNo) {
 								<div class="cell" style="border: 2px solid rgb(184, 183, 183); border-radius: 10px;">
 										<p style="margin: 10px; color:grey; font-size: 13px; width: inherit;">
 											<fmt:formatDate value="${reviewListViewDto.reviewWtime}" pattern="작성일 | yyyy일 MM월 dd일"/>
+										</p>										
+	                              		<h3 style="margin: 20px; text-align: center;">
+	                             			<i class="fa-solid fa-quote-left grey"></i>&nbsp;
+	                             				${reviewListViewDto.reviewComment}
+	                             				&nbsp;<i class="fa-solid fa-quote-right grey"></i>
+	                           			</h3>
+	                           				<div class="cell m-20 center" style="font-weight: 700;">
+
 										</p>
 <!-- 										텍스트 박스 넘어가는 현상을 처리하기 위해 스타일 추가  word-wrap: break-word; overflow: hidden; text-overflow: ellipsis; -->
 										<h3 style="margin: 20px; text-align: center; white-space: normal; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">
@@ -186,7 +199,6 @@ function checkReviewAndRedirect(companyNo) {
 										</h3>
 
 									<div class="cell m-20 center" style="font-weight: 700;">
-											
 	                               				<i class="fa-solid fa-star yellow"></i>&nbsp;
 	                               					${reviewListViewDto.reviewScore}
 	                           				</div>

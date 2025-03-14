@@ -60,6 +60,7 @@ public class CompanyController {
 
 	    return "/WEB-INF/views/company/list.jsp"; // JSP 파일 이름
 	}
+	
 	@GetMapping("/detail")
 	public String companyDetail(@RequestParam int companyNo, Model model, @ModelAttribute PageVO pageVO, HttpSession session) {
 	    CompanyDto companyDto = companyDao.selectOne(companyNo);
@@ -85,8 +86,9 @@ public class CompanyController {
 
 	    // 리뷰 개수 세기
 	    int count = reviewDao.count(companyNo);
+	    model.addAttribute("count", count);
 	    pageVO.setCount(count);
-	    
+	    	    
 	    // 현재 사용자가 작성한 리뷰가 있는지 확인
         String userId = (String) session.getAttribute("userId");
         ReviewDto reviewDto = null;
@@ -177,12 +179,17 @@ public class CompanyController {
 		}
 	}
 
+//    @RequestMapping("/mycompany")
+//    public String mycompany(HttpSession session, Model model) {
+//        String userId = (String) session.getAttribute("userId");
+//        MemberDto memberDto = memberDao.selectOne(userId);  // 세션에서 사용자 정보 가져오기
+//
+//        CompanyDto companyDto = companyDao.selectOne(memberDto.getMemberCompanyNo());  // 사용자에게 속한 기업 정보 가져오기
+//
+//        model.addAttribute("memberDto", memberDto);
+//        model.addAttribute("companyDto", companyDto);
+//
+//        return "/WEB-INF/views/company/mycompany.jsp";  // 수정된 회사 정보를 반영
+//    }
+
 }
-
-
-
-
-
-
-
-
