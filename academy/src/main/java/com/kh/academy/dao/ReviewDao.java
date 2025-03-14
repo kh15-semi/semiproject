@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.academy.dto.ReviewDto;
+import com.kh.academy.error.TargetNotFoundException;
 import com.kh.academy.mapper.ReviewMapper;
 import com.kh.academy.vo.PageVO;
  
@@ -107,11 +108,16 @@ public class ReviewDao {
 	    return jdbcTemplate.queryForObject(sql, Integer.class, userId, companyNo);
 	}
 	
+	
 	//각 회사의 리뷰의 평균평점을 계산하는 메소드 
-	public double getAverageScoreByCompanyNo(int companyNo) {
+    public double getAverageScoreByCompanyNo(int companyNo) {
         String sql = "SELECT AVG(review_score) FROM review WHERE review_company_no = ?";
-        Object[] data = { companyNo };
-        return jdbcTemplate.queryForObject(sql, Double.class, data);
+        try {
+            Double averageScore = jdbcTemplate.queryForObject(sql, Double.class, companyNo);
+            return averageScore != null ? averageScore : 0.0; // null인 경우 0.0 반환
+        } catch (TargetNotFoundException e) {
+            return 0.0; // 리뷰가 없는 경우 0.0 반환
+        }
     }
 	
 }
