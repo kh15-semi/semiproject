@@ -48,7 +48,7 @@ public class CompanyController {
 	private ReplyDao replyDao;
 	
 	@GetMapping("/list")
-	public String companyList(@RequestParam(required = false) String keyword, Model model, @RequestParam(required = false) Integer companyNo, @ModelAttribute PageVO pageVO) {
+	public String companyList(@RequestParam(required = false) String keyword, Model model, @ModelAttribute PageVO pageVO) {
 	    boolean search = keyword != null && !keyword.trim().isEmpty();
 	    List<CompanyDto> list;
 

@@ -3,6 +3,7 @@ package com.kh.academy.dao;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -56,10 +57,14 @@ public class ReviewDao {
 	}
 	
 	public Integer selectReviewNoByUserId(String userId) {
-        String sql = "select review_no from review where review_writer = ?";
-        Object[] data = { userId };
-        return jdbcTemplate.queryForObject(sql, int.class, data);
-    }
+	    String sql = "select review_no from review where review_writer = ?";
+	    Object[] data = { userId };
+	    try {
+	        return jdbcTemplate.queryForObject(sql, Integer.class, data);
+	    } catch (EmptyResultDataAccessException e) {
+	        return null; // 또는 적절한 기본값
+	    }
+	}
 	
 	public ReviewDto selectOneByCompanyNoAndMemberId(int companyNo, String memberId) {
         String sql = "SELECT * FROM review WHERE review_company_no = ? AND review_writer = ?";
@@ -115,7 +120,7 @@ public class ReviewDao {
         try {
             Double averageScore = jdbcTemplate.queryForObject(sql, Double.class, companyNo);
             return averageScore != null ? averageScore : 0.0; // null인 경우 0.0 반환
-        } catch (TargetNotFoundException e) {
+        } catch (EmptyResultDataAccessException e) {
             return 0.0; // 리뷰가 없는 경우 0.0 반환
         }
     }
