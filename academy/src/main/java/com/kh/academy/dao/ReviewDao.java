@@ -119,5 +119,7 @@ public class ReviewDao {
             return 0.0; // 리뷰가 없는 경우 0.0 반환
         }
     }
+
+    
 	
 }

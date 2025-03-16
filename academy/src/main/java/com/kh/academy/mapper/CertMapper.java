@@ -23,5 +23,4 @@ public class CertMapper implements RowMapper<CertDto>{
 				.certConfirm(rs.getTimestamp("cert_confirm"))
 				.build();
 	}
-	
 }

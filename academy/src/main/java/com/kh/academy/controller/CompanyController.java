@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.academy.dao.CompanyDao;
 import com.kh.academy.dao.MemberDao;
+import com.kh.academy.dao.ReplyDao;
 import com.kh.academy.dao.ReviewDao;
 import com.kh.academy.dao.ReviewListViewDao;
 import com.kh.academy.dto.CompanyDto;
@@ -43,6 +44,8 @@ public class CompanyController {
 	private MemberDao memberDao;
 	@Autowired
 	private AttachmentService attachmentService;
+	@Autowired
+	private ReplyDao replyDao;
 	
 	@GetMapping("/list")
 	public String companyList(@RequestParam(required = false) String keyword, Model model, @RequestParam(required = false) Integer companyNo, @ModelAttribute PageVO pageVO) {
@@ -78,6 +81,7 @@ public class CompanyController {
 	
 	@GetMapping("/detail")
 	public String companyDetail(@RequestParam int companyNo, Model model, @ModelAttribute PageVO pageVO, HttpSession session) {
+				
 	    CompanyDto companyDto = companyDao.selectOne(companyNo);
 
 	    if (companyDto == null) {
@@ -162,6 +166,9 @@ public class CompanyController {
         model.addAttribute("reviewDto", reviewDto);
 
 	    return "/WEB-INF/views/company/detail.jsp";
+	    
+	 
+	    
 	}
 
 
@@ -242,6 +249,7 @@ public class CompanyController {
 			return "redirect:/images/empty.jpg";
 		}
 	}
+	
 
 //    @RequestMapping("/mycompany")
 //    public String mycompany(HttpSession session, Model model) {
