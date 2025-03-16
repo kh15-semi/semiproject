@@ -21,13 +21,11 @@ public class ReviewListMapper implements RowMapper<ReviewDto> {
 		reviewDto.setReviewLike(rs.getInt("review_like"));
 		reviewDto.setReviewWtime(rs.getTimestamp("review_wtime"));
 		reviewDto.setReviewEtime(rs.getTimestamp("review_etime"));
-		//reviewDto.setReviewStrength(rs.getString("review_strength"));
-		//reviewDto.setReviewWeakness(rs.getString("review_weakness"));
-		//reviewDto.setReviewSalary(rs.getInt("review_salary"));
-		//reviewDto.setReviewWorkAndLife(rs.getInt("review_work_and_life"));
-		//reviewDto.setReviewPromotion(rs.getInt("review_promotion"));
-		//reviewDto.setReviewCulture(rs.getInt("review_culture"));
-		//reviewDto.setReviewDirector(rs.getInt("review_director"));
+		reviewDto.setReviewSalary(rs.getInt("review_salary"));
+		reviewDto.setReviewWorkAndLife(rs.getInt("review_work_and_life"));
+		reviewDto.setReviewPromotion(rs.getInt("review_promotion"));
+		reviewDto.setReviewCulture(rs.getInt("review_culture"));
+		reviewDto.setReviewDirector(rs.getInt("review_director"));
 		
 		return reviewDto;
 	}

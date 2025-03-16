@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -88,13 +89,13 @@ public class CompanyController {
 	    // 특정 회사의 리뷰 목록 조회
 	    List<ReviewListViewDto> list = reviewListViewDao.selectListByCompanyNo(pageVO, companyNo);
 	    model.addAttribute("list", list);
-	    
 	 
 	    // 리뷰의 점수를 합산하여 평균 점수 계산
 	    int totalScore = 0;
 	    for (ReviewListViewDto review : list) {
 	        totalScore += review.getReviewScore();  // 각 리뷰의 점수 합산
 	    }
+	    
 	    double averageScore = list.isEmpty() ? 0 : (double) totalScore / list.size();  // 리뷰가 없으면 0점, 아니면 평균 계산
 
 	    // 평균 점수를 모델에 추가
@@ -105,54 +106,42 @@ public class CompanyController {
 	    model.addAttribute("count", count);
 	    pageVO.setCount(count);
 	    
-	    List<ReviewDto> list2 = reviewDao.selectList();
-	    model.addAttribute("list2", list2);
-	    
 	    // 승진기회 리뷰 평균
 	    int totalPromotion = 0;
-	    for(ReviewDto review : list2) {
+	    for(ReviewListViewDto review : list) {
 	    	totalPromotion += review.getReviewPromotion();
-	    	System.out.println(review);
-	    } int avgPromotion = list2.isEmpty() ? 0 : totalPromotion / list2.size();
-	    
+	    } 
+	    double avgPromotion = list.isEmpty() ? 0.0d : (double)totalPromotion / list.size();
 	    model.addAttribute("avgPromotion", avgPromotion);
 	    
 	    // 복지/급여 리뷰 평균
 	    int totalSalary = 0;
-	    for(ReviewDto review : list2) {
+	    for(ReviewListViewDto review : list) {
 	    	totalSalary += review.getReviewSalary();
-	    } int avgSalary = list2.isEmpty() ? 0 : totalSalary / list2.size();
+	    } double avgSalary = list.isEmpty() ? 0.0d : (double)totalSalary / list.size();
 	    model.addAttribute("avgSalary", avgSalary);
 	    
 	    // 워라밸 리뷰 평균
 	    int totalWorkAndLife = 0;
-	    for(ReviewDto review : list2) {
+	    for(ReviewListViewDto review : list) {
 	    	totalWorkAndLife += review.getReviewWorkAndLife();
-	    } int avgWorkAndLife = list2.isEmpty() ? 0 : totalWorkAndLife / list2.size();
+	    } double avgWorkAndLife = list.isEmpty() ? 0.0d : (double)totalWorkAndLife / list.size();
 	    model.addAttribute("avgWorkAndLife", avgWorkAndLife);
 	     
 	    // 사내문화 리뷰 평균
 	    int totalCulture = 0;
-	    for(ReviewDto review : list2) {
+	    for(ReviewListViewDto review : list) {
 	    	totalCulture += review.getReviewCulture();
-	    } int avgCulture = list2.isEmpty() ? 0 : totalCulture / list2.size();
+	    } double avgCulture = list.isEmpty() ? 0.0d : (double)totalCulture / list.size();
 	    model.addAttribute("avgCulture", avgCulture);
 	    
 	    // 경영진 리뷰 평균
 	    int totalDirector = 0;
-	    for(ReviewDto review : list2) {
+	    for(ReviewListViewDto review : list) {
 	    	totalDirector += review.getReviewDirector();
-	    } int avgDirector = list2.isEmpty() ? 0 : totalDirector / list2.size();
+	    } double avgDirector = list.isEmpty() ? 0.0d : (double)totalDirector / list.size();
 	    model.addAttribute("avgDirector", avgDirector);
 
-	    for (ReviewDto review : list2) {
-	        System.out.println("Review Promotion: " + review.getReviewPromotion());
-	        System.out.println("Review Salary: " + review.getReviewSalary());
-	        System.out.println("Review Salary: " + review.getReviewWorkAndLife());
-	        System.out.println("Review Salary: " + review.getReviewDirector());
-	        System.out.println("Review Salary: " + review.getReviewCulture());
-	    }
-	    
 	    // 현재 사용자가 작성한 리뷰가 있는지 확인
         String userId = (String) session.getAttribute("userId");
         ReviewDto reviewDto = null;
@@ -185,11 +174,9 @@ public class CompanyController {
 
     // POST 요청: 수정된 기업 정보 처리 후 리다이렉트
     @PostMapping("/edit")
-    public String companyEdit( @RequestParam int companyNo, @ModelAttribute CompanyDto companyDto,@RequestParam MultipartFile attach, HttpSession session) throws IllegalStateException, IOException {
+    public String companyEdit(@RequestParam int companyNo, @ModelAttribute CompanyDto companyDto, @RequestParam(required = false) MultipartFile attach, HttpSession session) throws IllegalStateException, IOException {
         String userId = (String) session.getAttribute("userId");
         MemberDto memberDto = memberDao.selectOne(userId);
-        //1. 기업정보 조회
-        CompanyDto findDto = companyDao.selectOne(memberDto.getMemberCompanyNo());
         
         // 회원이 속한 기업 정보와 일치하는지 확인
         if (memberDto.getMemberCompanyNo() != companyDto.getCompanyNo()) {
@@ -199,17 +186,31 @@ public class CompanyController {
         // 기업 정보 업데이트
         companyDao.update(companyDto);
         
-        //이미지 첨부 처리
-        if(!attach.isEmpty()) {//첨부 파일이 없다면
-			try {//기존 이미지 삭제 처리(없으면 예외 발생)
-				int attachmentNo = companyDao.findAttachment(companyDto.getCompanyNo());
-				attachmentService.delete(attachmentNo);
-			} catch(Exception e) {/*아무것도 안함*/}
+        // 첨부 파일 처리
+        if (attach != null && !attach.isEmpty()) {
+            // 새로운 첨부 파일 등록
+            int attachmentNo = attachmentService.save(attach);
+
+            // 회사 이미지 등록 (연결)
+            // 기존 연결된 attachmentNo가 있는지 확인
+            try {
+                int oldAttachmentNo = companyDao.findAttachment(companyDto.getCompanyNo());
+                // 기존 연결된 attachmentNo가 있다면 연결 해제
+                companyDao.disconnect(companyDto.getCompanyNo(), oldAttachmentNo);
+                // 기존 attachment 삭제
+                attachmentService.delete(oldAttachmentNo);
+            } catch (EmptyResultDataAccessException e) {
+                // 기존 첨부 파일이 없는 경우 예외 발생 -> 무시
+                // - EmptyResultDataAccessException은 Spring JDBC에서 데이터가 없을 때 발생하는 예외
+                // - catch 블록이 비어 있으면, 기존 첨부 파일이 없을 때 아무 작업도 하지 않음
+            } catch (Exception e) {
+                // 그 외 예외 발생 시 로그 출력 또는 예외 처리
+                e.printStackTrace();
+            }
+
+            // 새로운 attachmentNo와 연결
+            companyDao.connect(companyNo, attachmentNo);
         }
-    	//첨부파일 등록
-    	int attachmentNo = attachmentService.save(attach);
-    	//회사 이미지 등록(연결)
-    	companyDao.connect(companyNo, attachmentNo);
         
     	// 수정 후 기업 마이페이지로 리다이렉트
         return "redirect:/company/mycompany";

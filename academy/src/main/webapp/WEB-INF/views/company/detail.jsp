@@ -166,7 +166,7 @@ function drawBasic() {
 			</a>
 			<c:if test="${sessionScope.userId != null}">
 		    	<c:if test="${sessionScope.userId == reviewDto.reviewWriter}">
-		   			<a href="detail?reviewNo=${reviewDto.reviewNo}" class="btn btn-blue">내 리뷰</a>
+		   			<a href="/company/review/detail?reviewNo=${reviewDto.reviewNo}" class="btn btn-blue">내 리뷰</a>
 	 	    	</c:if>
 	 	    </c:if>
            </div> 

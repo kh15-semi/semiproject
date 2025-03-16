@@ -11,7 +11,14 @@
 	<div class="cell m-20">
 		<div>
 			<p style="color: grey; font-size: 12px;">
-				${memberDto.memberIndustry} | ${memberDto.memberJob} | 작성일 : <fmt:formatDate value="${reviewDto.reviewWtime}" pattern="yyyy-MM-dd"/>
+				<c:choose>
+    				<c:when test="${not empty memberDto.memberIndustry}">
+       					${memberDto.memberIndustry} | ${memberDto.memberJob} | 작성일 : <fmt:formatDate value="${reviewDto.reviewWtime}" pattern="yyyy-MM-dd"/>
+    				</c:when>
+    				<c:otherwise>
+        				산업군(미선택) | 작성일 : <fmt:formatDate value="${reviewDto.reviewWtime}" pattern="yyyy-MM-dd"/>
+    				</c:otherwise>
+				</c:choose>
 		    </p>
 		    <h2 style="margin: 20px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">${reviewDto.reviewComment}</h2> <!--한줄평(=제목)-->
 		</div>

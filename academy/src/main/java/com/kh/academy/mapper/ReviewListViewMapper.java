@@ -25,6 +25,11 @@ public class ReviewListViewMapper implements RowMapper<ReviewListViewDto> {
 		reviewListViewDto.setReviewLike(rs.getInt("review_like"));
 		reviewListViewDto.setReviewWtime(rs.getTimestamp("review_wtime"));
 		reviewListViewDto.setReviewEtime(rs.getTimestamp("review_etime"));
+		reviewListViewDto.setReviewSalary(rs.getInt("review_salary"));
+		reviewListViewDto.setReviewWorkAndLife(rs.getInt("review_work_and_life"));
+		reviewListViewDto.setReviewPromotion(rs.getInt("review_promotion"));
+		reviewListViewDto.setReviewCulture(rs.getInt("review_culture"));
+		reviewListViewDto.setReviewDirector(rs.getInt("review_director"));
 		
 		//member 부분
 		reviewListViewDto.setMemberName(rs.getString("member_name"));
