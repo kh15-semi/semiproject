@@ -14,6 +14,22 @@
 <script src="/js/job_select.js"></script>
 <script type="text/javascript">
 
+	$(function(){
+		var status = {
+				memberIndustry: false,
+			ok: function() {
+				return this.memberIndustry
+			}
+		};
+		
+		$("[name=memberIndustry]").blur(function() {
+			
+			
+			$(this).removeClass("success fail fail2").addClass(isValid ? "success" : "fail");
+			status.memberIndustry = isValid;
+		});
+	});
+
 </script>
 
 
@@ -54,9 +70,9 @@
 
                 <div class="cell">
                     <h3>산업군</h3>
-                    <select id="firstSelect"" class="selectBox field" name="companyIndustry" style="width: 200px; border-radius: 10px;">
+                    <select id="firstSelect"  class="selectBox field" name="companyIndustry" style="width: 200px; border-radius: 10px; ">
                         <option value="">관련 산업군 선택</option>
-                        <option value="개발" <c:if test="${companyDto.companyIndustry eq '개발'}">selected</c:if>>개발</option>
+                        <option value="IT" <c:if test="${companyDto.companyIndustry eq 'IT'}">selected</c:if>>IT</option>
                         <option value="교육" <c:if test="${companyDto.companyIndustry eq '교육'}">selected</c:if>>교육</option>
                         <option value="금융/재무" <c:if test="${companyDto.companyIndustry eq '금융/재무'}">selected</c:if>>금융/재무</option>
                         <option value="기획/경영" <c:if test="${companyDto.companyIndustry eq '기획/경영'}">selected</c:if>>기획/경영</option>
@@ -77,6 +93,7 @@
                         <option value="전문직" <c:if test="${companyDto.companyIndustry eq '전문직'}">selected</c:if>>전문직</option>
                         <option value="특수계층/공공" <c:if test="${companyDto.companyIndustry eq '특수계층/공공'}">selected</c:if>>특수계층/공공</option>
                     </select>
+                    <div class="fail-feedback">산업군을 선택해주세요</div>
                     <select id="secondSelect" class="selectBox field" name="companyJob" style="display: none;">
 					<option value="2차 직종 선택">2차 직종 선택</option>
 				</select><br>
