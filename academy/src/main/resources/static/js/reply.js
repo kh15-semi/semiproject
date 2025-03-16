@@ -22,6 +22,7 @@ $(function() {
 			data:{
 				replyOrigin : reviewNo,
 				replyContent : replyContent,
+				compantNo : companyNo
 			},
 			success:function(response){
 				$(".reply-input").val("");//입력값 제거

@@ -20,7 +20,7 @@
 		
 			<div class="cell" style="width: 100px;">
 			    <h3>
-			    	<i class="fa-solid fa-star green"></i>
+			    	<i class="fa-solid fa-star green"></`i>
 			    	<!--총 평점-->
 			    	${reviewDto.reviewScore}
 			    </h3>
