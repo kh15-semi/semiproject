@@ -25,20 +25,23 @@ public class ReplyDao {
 		public void insert(ReplyDto replyDto) {
 			String sql = "insert into reply("
 									+ "reply_no, reply_writer, "
-									+ "reply_origin, reply_content"
+									+ "reply_origin, reply_content, "
+									+ "company_no"
 							+ ") "
-							+ "values(?, ?, ?, ?)";
+							+ "values(?, ?, ?, ?, ?)";
 			Object[] data = {
 				replyDto.getReplyNo(), replyDto.getReplyWriter(),
-				replyDto.getReplyOrigin(), replyDto.getReplyContent()
+				replyDto.getReplyOrigin(), replyDto.getReplyContent(),
+				replyDto.getReplyCompanyNo()
 			};
 			jdbcTemplate.update(sql, data);
 		}
-		public List<ReplyDto> selectList(int replyOrigin) {
+		public List<ReplyDto> selectList(int replyOrigin, int companyNo) {
 			String sql = "select * from reply "
 							+ "where reply_origin=? "
+							+ "and company_no=? "
 							+ "order by reply_no asc";
-			Object[] data = {replyOrigin};
+			Object[] data = {replyOrigin, companyNo};
 			return jdbcTemplate.query(sql, replyMapper, data);
 		}
 

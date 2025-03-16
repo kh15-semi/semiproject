@@ -7,22 +7,25 @@ $(function() {
 		memberName: false,
 		memberEmail: true,
 		memberContact: true,
-		memberPosition: false,
+		memberPosition: false, // 초기값은 false로 설정
 		memberAddress: true,
 		companyAddress: true,
-		ok: function() {
-			return this.memberId && this.memberPw
-				&& this.memberPwCheck && this.memberName
-				&& this.memberEmail && this.memberContact
-				&& this.memberPosition
-				&& this.memberAddress && this.companyAddress
+		ok: function(isCompany) { // isCompany 매개변수 추가
+			var base = this.memberId && this.memberPw
+			                && this.memberPwCheck && this.memberName
+			                && this.memberEmail && this.memberContact
+			                && this.memberAddress && this.companyAddress;
+
+			            // 기업회원일 경우에만 memberPosition을 검사
+			            return isCompany ? base && this.memberPosition : base;
 		}
 	};
 
 	//회원가입 정보 미입력 처리
 	if (window.location.href.indexOf("/member/join") != -1 || window.location.href.indexOf("/company/member/join") != -1) {
 		$("form").submit(function(event) {
-			if (!status.ok()) {
+			var isCompany = window.location.href.indexOf("/company/member/join") != -1;
+			if (!status.ok(isCompany)) {
 				alert("회원가입하려면 모든 필수 정보를 입력해야 합니다.");
 				event.preventDefault();
 				return false;
@@ -276,16 +279,25 @@ $(function() {
 
 	$("[name=memberPosition]").blur(function() {
 	    var regex = /^[가-힣ㄱ-ㅎ]{2,8}$/;
-	    var isValid = regex.test($(this).val());
+	    //var isValid = regex.test($(this).val());
 	    var memberPosition = $(this).val();
+		var isCompany = window.location.href.indexOf("/company/member/join") != -1;
+		
 	    $(this).removeClass("success fail");
 	    
 	    if (memberPosition.length == 0) {
 	        $(this).addClass("fail");
+			status.memberPosition = false; //추가!
 	    }
-	    else if (isValid) {
+	    else if (regex.test(memberPosition)) {
 	        $(this).addClass("success");
 	        status.memberPosition = true;
+		}
+		else { //추가!
+			//$(this).addClass("fail");
+			//status.memberPosition = false;
+			// 개인회원의 경우, 항상 true로 설정하여 유효성 검사 통과
+			status.memberPosition = true;
 		}
 	});
 	
