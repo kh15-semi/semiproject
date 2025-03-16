@@ -252,12 +252,13 @@
 							value="${reviewDto.reviewWtime}" pattern="yyyy-MM-dd" />
 					</c:otherwise>
 				</c:choose>
-			</p>
-			<h2
-				style="margin: 20px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">${reviewDto.reviewComment}</h2>
-			<!--한줄평(=제목)-->
+		    </p>
+		    <div class="cell">
+		    	<h2 style="margin: 20px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">${reviewDto.reviewComment}</h2> <!--한줄평(=제목)-->
+		    </div>
 		</div>
 		<hr>
+<%-- <<<<<<< HEAD
 		<div class="cell"
 			style="display: flex; justify-content: center; align-items: inherit;">
 
@@ -277,20 +278,66 @@
 				<p style="font-weight: 700;">${reviewDto.reviewCulture}</p>
 				<label>경영진</label>
 				<p style="font-weight: 700;">${reviewDto.reviewDirector}</p>
+======= --%>
+		<div class="cell" style="display: flex; justify-content: center;">
+		
+			<div class="cell" style="width: 100px; margin-right: 20px;">
+			    <h3>
+			    	<i class="fa-solid fa-star yellow"></i>
+			    	<!--총 평점-->
+			    	${reviewDto.reviewScore}
+			    </h3>
+			    <label style="font-weight: 700;">승진기회</label>
+			    <c:set var="starCount" value="${reviewDto.reviewPromotion}" />
+			    <p style="font-size: 13px;">
+				    <c:forEach var="i" begin="1" end="${starCount}">
+				        <span><i class="fa-solid fa-star yellow"></i></span>
+				    </c:forEach>
+			    </p>
+
+			    <label style="font-weight: 700;">복지/급여</label>
+			    <c:set var="starCount" value="${reviewDto.reviewSalary}" />
+			    <p style="font-size: 13px;">
+				    <c:forEach var="i" begin="1" end="${starCount}">
+				        <span><i class="fa-solid fa-star yellow"></i></span>
+				    </c:forEach>
+			    </p>
+			    
+			    <label style="font-weight: 700;">워라밸</label>
+			    <c:set var="starCount" value="${reviewDto.reviewWorkAndLife}" />
+			    <p style="font-size: 13px;">
+				    <c:forEach var="i" begin="1" end="${starCount}">
+				        <span><i class="fa-solid fa-star yellow"></i></span>
+				    </c:forEach>
+			    </p>
+			    
+			    <label style="font-weight: 700;">사내문화</label>
+			    <c:set var="starCount" value="${reviewDto.reviewCulture}" />
+			    <p style="font-size: 13px;">
+				    <c:forEach var="i" begin="1" end="${starCount}">
+				        <span><i class="fa-solid fa-star yellow"></i></span>
+				    </c:forEach>
+			    </p>			    
+			    
+			    <label style="font-weight: 700;">경영진</label>
+			    <c:set var="starCount" value="${reviewDto.reviewDirector}" />
+			    <p style="font-size: 13px;">
+				    <c:forEach var="i" begin="1" end="${starCount}">
+				        <span><i class="fa-solid fa-star yellow"></i></span>
+				    </c:forEach>
+			    </p>	
 			</div>
 
-			<div class="cell" style="width: 500px;">
-				<label
-					style="font-size: 15px; border-radius: 3px; text-align: center; color: white; background-color: rgb(111, 182, 240); padding: 2px;">
-					장점 </label>
-				<h3
-					style="word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">${reviewDto.reviewStrength}</h3>
-				<label
-					style="font-size: 15px; border-radius: 3px; text-align: center; color: white; background-color: rgb(250, 138, 138); padding: 2px;">
-					단점 </label>
-				<h3
-					style="word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">${reviewDto.reviewWeakness}</h3>
-				<br>
+			<div class="cell" style="width: 500px; padding-top: 20px; padding-left: 10px;">
+			    <label style="font-size: 15px; border-radius: 3px; text-align: center; color: white; background-color: rgb(111, 182, 240); padding: 2px;">
+			        장점
+			    </label>
+			    <h3 style="word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">${reviewDto.reviewStrength}</h3>
+			    <label style="font-size: 15px; border-radius: 3px; text-align: center; color: white; background-color: rgb(250, 138, 138); padding: 2px;">
+			        단점
+			    </label>
+			    <h3 style="word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">${reviewDto.reviewWeakness}</h3>
+			    <br>
 			</div>
 		</div>
 
