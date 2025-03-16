@@ -65,4 +65,8 @@ public class ReplyDao {
 			};
 			return jdbcTemplate.update(sql, data) > 0;
 		}
+		public int count(int companyNo) {
+		    String sql = "SELECT COUNT(*) FROM reply WHERE reply_no = ?";
+		    return jdbcTemplate.queryForObject(sql, Integer.class, companyNo);
+		}
 }
