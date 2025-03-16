@@ -33,8 +33,9 @@ public class ReplyRestController {
 	
 	//댓글 삭제
 	@PostMapping("/delete")
-	public void delete(@RequestParam int replyNo) {
-		replyDao.delete(replyNo);//댓글 삭제
+	public void delete(@RequestParam Integer replyNo) {
+
+	    replyDao.delete(replyNo);  // 댓글 삭제
 	}
 	
 	//댓글 작성
