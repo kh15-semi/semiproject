@@ -26,25 +26,24 @@
 
 <form action="exit" method="post">
 
-<div class="container w-400" style="border:0; border-radius: 10px; background-color: rgb(238, 238, 238);  padding: 20px;">
+<div class="container w-400" style="border:0; border-radius: 10px; padding: 20px;">
 	<div class="cell center">
     	<h2>회원 탈퇴</h2>
     	<p style="margin-top: 0; padding-bottom: 30px; font-size: 14px; color: #636e72;">
             회원님의 개인정보를 보호하기 위해<br>
-            회원 탈퇴 시 모든 개인정보는 삭제 됩니다.
+            탈퇴 시 모든 개인정보는 삭제 됩니다.
         </p>
     </div>
     <div class="cell center">
-        <p><i class="fa-solid fa-star-of-life red"></i> 회원 탈퇴를 위해 계정 비밀번호를 입력해주세요.</p>
+        <p><i class="fa-solid fa-exclamation red"></i> 회원 탈퇴를 위해 계정 비밀번호를 입력해주세요</p>
     </div>
     <div class="cell center mt-20">
-    	<input type="password" name="memberPw" class="field w-75" placeholder="비밀번호 입력">
+    	<input type="password" name="memberPw" class="field w-75" placeholder="* 비밀번호 입력">
         <button class="btn btn-green2">확인</button>
     </div>
     <c:if test="${param.error != null}">
-		<div class="cell center mt-20" style="color:#d63031">비밀번호가 일치하지 않습니다.</div>
+		<div class="cell center mt-20" style="color:#d63031"><i class="fa-solid fa-circle-exclamation red"></i> 비밀번호가 일치하지 않아요</div>
 	</c:if>
-        
 </div>
 
 </form>

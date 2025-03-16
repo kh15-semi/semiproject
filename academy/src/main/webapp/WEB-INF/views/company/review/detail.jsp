@@ -2,11 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-    
+
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
 <script src="/js/reply.js"></script>
-
 <div class="container w-700" style="border: 1px solid rgb(197, 197, 197); border-radius: 10px;">
 	<div class="cell m-20">
 		<div>
@@ -50,7 +49,10 @@
 		</div> 
 		<hr>
 		<div class="reply-wrapper mt-20"></div>
+		
 		<script type="text/template" id="reply-template">
+
+
 <div class="flex-box">
     <div class="w-100 p-10">
         <h4>담당자 댓글</h4>
@@ -79,6 +81,7 @@
         </div>
     </div>
 </div>
+
 		</script>
 			
 		<div class="cell m-10" style="padding: 5px;">

@@ -4,13 +4,13 @@
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
-<div class="container w-500">
-	<div class="cell center">
-		<h1>${message}</h1>
-	</div>
-	<div class="cell center">
-		다시 한번 확인해주세요
-	</div>
-</div>
+    <div class="container w-600" style="border: 1px solid #60cc6b; border-radius: 10px;">
+        <div class="cell center">
+            <h2><i class="fa-solid fa-exclamation red"></i>&nbsp;입력하신 정보를 다시 한번 확인해주세요</h2>
+        </div>
+        <div class="cell center">
+            <p>${message}</p>
+        </div>
+    </div>
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

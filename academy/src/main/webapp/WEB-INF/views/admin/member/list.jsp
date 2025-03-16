@@ -14,7 +14,7 @@
 		border: none;
 		border-radius: 10px;
 		border-style: none;
-		background-color: #2abb2d;
+		background-color: #58b19f;
 		padding: 5px 10px;
 		color: white;
 		font-weight: 400;
@@ -27,7 +27,7 @@
 </style>
 <div class="container w-1000">
 	<div class="cell">
-	    <h2><i class="fa-regular fa-user green"></i>&nbsp; 회원 관리</h2>
+	    <h2><i class="fa-regular fa-user green"></i>&nbsp; 회원 목록</h2>
 	</div>
 	<div class="cell">
 	    <form action="list" method="get" autocomplete="off">

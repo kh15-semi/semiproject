@@ -37,10 +37,17 @@ $(function() {
 	
 });
 </script>
+<style>
+	.labelDesign {
+		display: inline-block;
+		width: 70px;
+		font-weight:600;
+	}
+</style>
 <div class="container w-800" >
     <div class="cell" style="margin: 10px; padding: 10px">
         <div class="cell">
-            <h2><i class="fa-regular fa-user green"></i> 회원 정보</h2>
+            <h2><i class="fa-regular fa-user blue"></i> 회원 정보 (개인 회원)</h2>
         </div>
         
         <hr>
@@ -86,9 +93,17 @@ $(function() {
        		<p>재직 이력 없음</p>
    		</c:if>
        	<h3><i class="fa-regular fa-square-check blue"></i>&nbsp;재직 이력</h3>
-   		<p>업체명 | ${companyName}</p>
-       	<p>입사일 | ${companyHistoryDto.companyHistoryJoinDate}</p> 
-       	<p>퇴사일 | ${companyHistoryDto.companyHistoryLeaveDate}</p>
+       	<p><label class="labelDesign">- 업체명</label>${companyName}</p>
+       	<p><label class="labelDesign">- 입사일</label>${companyHistoryDto.companyHistoryJoinDate}</p>
+       	<p>
+       	<label class="labelDesign">- 퇴사일</label>
+       		<c:choose>
+       	       	<c:when test="${empty companyHistoryDto.companyHistoryLeaveDate}">
+		      		재직 중
+		      	</c:when>
+       			<c:otherwise>${companyHistoryDto.companyHistoryLeaveDate}</c:otherwise>
+       		</c:choose>
+       	</p>
    	</div>
 
     </div>
