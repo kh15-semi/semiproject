@@ -2,11 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-    
+
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
 <script src="/js/reply.js"></script>
-
 <div class="container w-700" style="border: 1px solid rgb(197, 197, 197); border-radius: 10px;">
 	<div class="cell m-20">
 		<div>
@@ -50,7 +49,9 @@
 		</div> 
 		<hr>
 		<div class="reply-wrapper mt-20"></div>
+		
 		<script type="text/template" id="reply-template">
+
 		<div>
 			<h3>담당자 댓글</h3>
 			<div class="reply-item"
@@ -58,7 +59,7 @@
 				<!-- 댓글 내용 출력 -->
 				<span class="reply-writer" style="font-weight: bold;">작성자</span>
 				<span class="reply-content" >내용</span>
-				<span class="reply-wtime">yyyy-MM-dd HH:mm:ss</span>
+				<span class="reply-wtime">yyyy년 MM월 dd일</span>
 
 				<!-- 댓글 삭제 버튼 (작성자만 보임) -->
 				<c:if test="${sessionScope.userId == replyDto.replyWriter}">

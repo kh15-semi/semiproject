@@ -70,7 +70,7 @@ $(function() {
 
 <form action="join" method="post" enctype="multipart/form-data" autocomplete="off">
 
-    <div class="container w-500" style="border:0; border-radius: 10px; background-color: rgb(238, 238, 238);">
+    <div class="container w-500" style="border: none; border-radius: 15px; margin:10px auto; padding: 20px;  background:linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(82,185,113,0.4204379562043795) 100%);"">
         
         
     	<div class="cell p-20">

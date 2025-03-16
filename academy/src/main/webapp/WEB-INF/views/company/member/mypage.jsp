@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
@@ -50,15 +50,36 @@
                </div>
                <div class="cell">
                    <h3><i class="fa-regular fa-square-check blue"></i>&nbsp;이메일</h3>
-                   <p>${memberDto.memberEmail}</p>
+					<c:choose>
+					    <c:when test="${empty memberDto.memberEmail}">
+					        <p>이메일 미등록</p>
+					    </c:when>
+					    <c:otherwise>
+					        <p>${memberDto.memberEmail}</p>
+					    </c:otherwise>
+					</c:choose>
                </div>
                <div class="cell">
                    <h3><i class="fa-regular fa-square-check blue"></i>&nbsp;연락처</h3>
-                   <p>${memberDto.memberContact}</p>
+					<c:choose>
+					    <c:when test="${empty memberDto.memberContact}">
+					        <p>연락처 미등록</p>
+					    </c:when>
+					    <c:otherwise>
+					        <p>${memberDto.memberContact}</p>
+					    </c:otherwise>
+					</c:choose>
                </div>
                <div class="cell">
                    <h3><i class="fa-regular fa-square-check blue"></i>&nbsp;직책</h3>
-                   <p>${memberDto.memberPosition}</p>
+					<c:choose>
+					    <c:when test="${empty memberDto.memberPosition}">
+					        <p>미등록</p>
+					    </c:when>
+					    <c:otherwise>
+					        <p>${memberDto.memberPosition}</p>
+					    </c:otherwise>
+					</c:choose>
                </div>
         	</div>
         <br>

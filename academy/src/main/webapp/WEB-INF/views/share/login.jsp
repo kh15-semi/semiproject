@@ -34,7 +34,7 @@
 
 <form action="login" method="post" class = "form-login">
 
-	<div class="container center w-400" style="border: none; border-radius: 10px; background-color: rgb(241, 241, 241); padding: 40px;">
+	<div class="container center w-400" style="border: none; border-radius: 15px; margin:10px auto; padding: 20px;  background:linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(82,185,113,0.4204379562043795) 100%);">
         <div class="cell">
             <a href="/">
                 <img src="/images/semi_logo.png" width="200px"><br>
