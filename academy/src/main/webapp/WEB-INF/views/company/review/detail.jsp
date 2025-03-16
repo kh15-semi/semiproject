@@ -6,7 +6,7 @@
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
 <script src="/js/reply.js"></script>
-<div class="container w-700" style="border: 1px solid rgb(197, 197, 197); border-radius: 10px;">
+<div class="container w-700" style="border: 1px solid rgb(197, 197, 197); border-radius: 10px; display: block;">
 	<div class="cell m-20">
 		<div>
 			<p style="color: grey; font-size: 12px;">
@@ -54,41 +54,40 @@
 			    <br>
 			</div>
 		</div> 
+		
 		<hr>
+		
 		<div class="reply-wrapper mt-20"></div>
 		
 		<script type="text/template" id="reply-template">
-
-
-<div class="flex-box">
-    <div class="w-100 p-10">
-        <h4>담당자 댓글</h4>
-        <div>
-            <div class="reply-item w-100" style="margin-bottom: 15px; border-bottom: 1px solid #ddd; padding-bottom: 10px;">
-                <!-- 댓글 내용 출력 -->
-                <div style="display: flex; align-items: center;">
-                    <span class="reply-writer" style="font-weight: bold; margin-right: 10px;">작성자</span>  
-                    <span class="reply-content">내용</span>
-                </div>
-                <div>
-                    <span class="reply-wtime">yyyy-MM-dd HH:mm:ss</span>
-                </div>
-                <!-- 댓글 삭제 버튼 (작성자만 보임) -->
-                <div>
-                    <c:if test="${sessionScope.userId != replyDto.replyWriter}">
-                        <form action="/rest/reply/delete" method="post">
-                            <input type="hidden" name="replyNo" value="${reply.replyNo}">
-                            <button type="submit" class="btn btn-negative btn-reply-delete">
-                                <i class="fa-solid fa-trash-can "></i>&nbsp;삭제
-                            </button>
-                        </form>
-                    </c:if>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
+			<div class="flex-box">
+    			<div class="w-100 p-10">
+        			<h4>	담당자 댓글</h4>
+        			<div>
+            			<div class="reply-item w-100" style="margin-bottom: 15px; border-bottom: 1px solid #ddd; padding-bottom: 10px;">
+                			<!-- 댓글 내용 출력 -->
+                			<div style="display: flex; align-items: center;">
+                    			<span class="reply-writer" style="font-weight: bold; margin-right: 10px;">작성자</span>  
+                    			<span class="reply-content">내용</span>
+                			</div>
+                			<div>
+                    			<span class="reply-wtime">yyyy-MM-dd HH:mm:ss</span>
+                			</div>
+                			<!-- 댓글 삭제 버튼 (작성자만 보임) -->
+                			<div>
+                    			<c:if test="${sessionScope.userId != replyDto.replyWriter}">
+                        			<form action="/rest/reply/delete" method="post">
+                            		<input type="hidden" name="replyNo" value="${reply.replyNo}">
+                            		<button type="submit" class="btn btn-negative btn-reply-delete">
+                                	<i class="fa-solid fa-trash-can "></i>&nbsp;삭제
+                            		</button>
+                    	    		</form>
+                	    		</c:if>
+                			</div>
+            			</div>
+        			</div>
+    			</div>
+			</div>
 		</script>
 			
 		<div class="cell m-10" style="padding: 5px;">
@@ -116,14 +115,16 @@
 				</c:if>
 			</c:if>
 	    </div> 
-	<div class="cell center">
-		<a href="/company/detail?companyNo=${companyDto.companyNo}" class="btn btn-green2"><i class="fa-solid fa-arrow-left"></i>&nbsp;이전</a>
-		<a href="/" class="btn btn-neutral"><i class="fa-solid fa-house"></i>&nbsp;메인</a>
-		<c:if test="${sessionScope.userId != null}">
-		    <c:if test="${sessionScope.userId == reviewDto.reviewWriter}">
-				<a href="/company/review/delete?reviewNo=${reviewDto.reviewNo}" class="btn btn-negative btn-review-delete"><i class="fa-solid fa-trash-can"></i>&nbsp;삭제</a>
+		<div class="cell center">
+			<a href="/company/detail?companyNo=${companyDto.companyNo}" class="btn btn-green2"><i class="fa-solid fa-arrow-left"></i>&nbsp;이전</a>
+			<a href="/" class="btn btn-neutral"><i class="fa-solid fa-house"></i>&nbsp;메인</a>
+			<c:if test="${sessionScope.userId != null}">
+			    <c:if test="${sessionScope.userId == reviewDto.reviewWriter}">
+					<a href="/company/review/delete?reviewNo=${reviewDto.reviewNo}" class="btn btn-negative btn-review-delete"><i class="fa-solid fa-trash-can"></i>&nbsp;삭제</a>
+				</c:if>
 			</c:if>
-		</c:if>
+		</div>
 	</div>
+</div>
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
