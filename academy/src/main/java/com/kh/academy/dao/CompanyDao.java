@@ -142,6 +142,12 @@ public class CompanyDao {
 		jdbcTemplate.update(sql, data);
 	}
 	
+	//회사 이미지 등록 해제(연결 해제)
+	public void disconnect(int companyNo, int attachmentNo) {
+	    String sql = "DELETE FROM company_image WHERE company_no = ? AND attachment_no = ?";
+	    jdbcTemplate.update(sql, companyNo, attachmentNo);
+	}
+	
 	public int findAttachment(int companyNo) {
         String sql = "select attachment_no from company_image "
                         + "where company_no=?";

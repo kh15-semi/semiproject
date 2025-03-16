@@ -20,6 +20,11 @@ public class ReviewListViewDto { //자바 입장에서는 view가 실제로 테�
 	private int reviewLike;//리뷰좋아요
 	private Timestamp reviewWtime;//작성일
 	private Timestamp reviewEtime;//수정일
+	private int reviewSalary;//급여 만족도(별점)
+	private int reviewWorkAndLife;//워라벨 만족도(별점)
+	private int reviewPromotion;//승진기회 만족도(별점)
+	private int reviewCulture;//사내문화 만족도(별점)
+	private int reviewDirector;//경영진 만족도(별점)
 	
 	private int reviewReply;
 	//답변형 게시판을 위해 추가한 데이터
