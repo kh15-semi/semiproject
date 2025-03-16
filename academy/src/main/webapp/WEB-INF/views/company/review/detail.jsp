@@ -19,30 +19,61 @@
     				</c:otherwise>
 				</c:choose>
 		    </p>
-		    <h2 style="margin: 20px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">${reviewDto.reviewComment}</h2> <!--한줄평(=제목)-->
+		    <div class="cell">
+		    	<h2 style="margin: 20px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">${reviewDto.reviewComment}</h2> <!--한줄평(=제목)-->
+		    </div>
 		</div>
 		<hr>
-		<div class="cell" style="display: flex; justify-content: center; align-items:inherit; ;">
+		<div class="cell" style="display: flex; justify-content: center;">
 		
-			<div class="cell" style="width: 100px;">
+			<div class="cell" style="width: 100px; margin-right: 20px;">
 			    <h3>
-			    	<i class="fa-solid fa-star green"></i>
+			    	<i class="fa-solid fa-star yellow"></i>
 			    	<!--총 평점-->
 			    	${reviewDto.reviewScore}
 			    </h3>
-			    <label>승진기회</label>
-			    <p style="font-weight: 700;">${reviewDto.reviewPromotion}</p>
-			    <label>복지/급여</label>
-			    <p style="font-weight: 700;">${reviewDto.reviewSalary}</p>
-			    <label>워라밸</label>
-			    <p style="font-weight: 700;">${reviewDto.reviewWorkAndLife}</p>
-			    <label>사내문화</label>
-			    <p style="font-weight: 700;">${reviewDto.reviewCulture}</p>
-			    <label>경영진</label>
-			    <p style="font-weight: 700;">${reviewDto.reviewDirector}</p>
+			    <label style="font-weight: 700;">승진기회</label>
+			    <c:set var="starCount" value="${reviewDto.reviewPromotion}" />
+			    <p style="font-size: 13px;">
+				    <c:forEach var="i" begin="1" end="${starCount}">
+				        <span><i class="fa-solid fa-star yellow"></i></span>
+				    </c:forEach>
+			    </p>
+
+			    <label style="font-weight: 700;">복지/급여</label>
+			    <c:set var="starCount" value="${reviewDto.reviewSalary}" />
+			    <p style="font-size: 13px;">
+				    <c:forEach var="i" begin="1" end="${starCount}">
+				        <span><i class="fa-solid fa-star yellow"></i></span>
+				    </c:forEach>
+			    </p>
+			    
+			    <label style="font-weight: 700;">워라밸</label>
+			    <c:set var="starCount" value="${reviewDto.reviewWorkAndLife}" />
+			    <p style="font-size: 13px;">
+				    <c:forEach var="i" begin="1" end="${starCount}">
+				        <span><i class="fa-solid fa-star yellow"></i></span>
+				    </c:forEach>
+			    </p>
+			    
+			    <label style="font-weight: 700;">사내문화</label>
+			    <c:set var="starCount" value="${reviewDto.reviewCulture}" />
+			    <p style="font-size: 13px;">
+				    <c:forEach var="i" begin="1" end="${starCount}">
+				        <span><i class="fa-solid fa-star yellow"></i></span>
+				    </c:forEach>
+			    </p>			    
+			    
+			    <label style="font-weight: 700;">경영진</label>
+			    <c:set var="starCount" value="${reviewDto.reviewDirector}" />
+			    <p style="font-size: 13px;">
+				    <c:forEach var="i" begin="1" end="${starCount}">
+				        <span><i class="fa-solid fa-star yellow"></i></span>
+				    </c:forEach>
+			    </p>	
 			</div>
 			
-			<div class="cell" style="width: 500px;">
+			<div class="cell" style="width: 500px; padding-top: 20px; padding-left: 10px;">
 			    <label style="font-size: 15px; border-radius: 3px; text-align: center; color: white; background-color: rgb(111, 182, 240); padding: 2px;">
 			        장점
 			    </label>
