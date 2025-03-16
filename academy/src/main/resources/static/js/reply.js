@@ -20,8 +20,8 @@ $(function() {
 			url:"/rest/reply/write", 
 			method:"post",
 			data:{
-				replyOrigin : replyNo,
-				replyContent : replyContent
+				replyOrigin : reviewNo,
+				replyContent : replyContent,
 			},
 			success:function(response){
 				$(".reply-input").val("");//입력값 제거
@@ -73,5 +73,25 @@ $(function() {
 			}
 		});
 	}		
+		
+	$(document).on("click", ".btn-reply-delete", function(){//문서전체 감시(에너지 소모 큼)
+		//this == 클릭한 삭제버튼
+		var choice = window.confirm("정말 댓글을 삭제하시겠습니까?");
+		if(choice == false) return;
+		
+		var replyNo = $(this).data("reply-no");
+		//var replyNo = $(this).attr("data-reply-no");
+		
+		$.ajax({
+			url:"/rest/reply/delete",
+			method:"post",
+			data:{
+				replyNo : replyNo
+			},
+			success:function(response){
+				loadList();
+			}
+		});
+	});
 	
 });
