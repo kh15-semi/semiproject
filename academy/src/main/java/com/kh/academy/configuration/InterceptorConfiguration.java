@@ -32,7 +32,8 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
                 ))
                 .excludePathPatterns(List.of(
                 		"/share/login",           // 로그인
-                        "/share/join",            // 회원가입
+                        "/member/join",            // 회원가입
+                        "/company/member/join",
                         "/share/joinFinish",      // 회원가입 완료
                         "/company/member/join"
                 ));
