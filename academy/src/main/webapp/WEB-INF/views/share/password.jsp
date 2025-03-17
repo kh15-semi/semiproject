@@ -14,6 +14,9 @@
       	border-color: #57ad9c;
     	outline: none;
    	}
+   	h3 {
+   		font-size: 15px;
+   	}
 </style>
 
 <form action="password" method="post">
@@ -27,13 +30,13 @@
         <div class="cell">
             <input type="password" name="newPw" class="field w-100" placeholder="변경할 비밀번호 입력">
         </div>
-        <div class="cell mt-20">
+        <div class="cell mt-20 mb-30">
             <button type="submit" class="btn btn-positive w-100">비밀번호 변경</button>
         </div>
         <!-- error message -->
 		<c:if test="${param.error == '1'}">
 		<div class="cell center">
-			<h3 class="red">비밀번호가 일치하지 않습니다.</h3>
+			<h3 class="red">비밀번호가 일치하지 않습니다. 다시 입력해주세요.</h3>
 		</div>
 		</c:if>
 		<c:if test="${param.error == '2'}">
