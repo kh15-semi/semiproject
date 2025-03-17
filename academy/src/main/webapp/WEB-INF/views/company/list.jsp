@@ -38,7 +38,7 @@
 			<h2><i class="fa-solid fa-list"></i> 기업 목록</h2>
 		</div>
 		
-		<hr style="border: none; border: 1px solid rgb(196, 196, 196)">
+		<hr style="border: none; border: 1px solid rgb(196, 196, 196); margin: 10px;">
 		
 		<div class="cell m-30" style="color: #2d3436">
 			<div class="cell">
