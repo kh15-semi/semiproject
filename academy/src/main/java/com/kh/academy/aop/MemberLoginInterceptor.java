@@ -33,10 +33,15 @@ public class MemberLoginInterceptor implements HandlerInterceptor {
 
         String requestUri = request.getRequestURI();
 
-        if ("일반회원".equals(userType) && (requestUri.contains("/company/member/mypage") || requestUri.contains("/company/member/edit"))) {
+        if ("일반회원".equals(userType) && (requestUri.contains("/company/member/") || requestUri.startsWith("/company/edit"))) {
             throw new NoPermissionException("일반회원은 해당 경로에 접근할 수 없습니다.");
         }
-
+        
+        // 기업회원 차단 경로
+        if ("기업회원".equals(userType) && 
+            (requestUri.startsWith("/member/edit") || requestUri.startsWith("/member/mypage") || requestUri.startsWith("/company/review/write"))) {
+            throw new NoPermissionException("기업회원은 해당 경로에 접근할 수 없습니다.");
+        }
         // 로그인된 사용자는 모두 접근 가능
         return true;
     }
