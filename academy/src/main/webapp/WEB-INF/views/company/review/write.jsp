@@ -86,7 +86,7 @@
         <div class="cell">
             <h3>기업 한 줄 평</h3>
             <div class="cell">
-                <p style="font-size: 13px; color: green;">이 기업을 한마디로 소개한다면 어떤 기업인가요?</p>
+                <p style="font-size: 13px; color: #3c796d;">(Q) 이 기업을 한마디로 소개한다면 어떤 기업인가요?</p>
                 <!-- 입력 칸이 선택되었을 때, 해당 구문이 나타날 수 있도록 구현 필요 -->
                 <input name="reviewComment" type="text" class="field w-100 review-title" placeholder="기업에 대해 작성해 주세요.">
                 <div style="font-size: 12px; color: grey; float: right;">
@@ -105,7 +105,7 @@
     <div class="page">
         <div class="cell">
             <h3>기업의 장점</h3>
-            <p style="font-size: 13px; color: grey;">이 기업을 다니며 좋았던 점을 남겨주세요</p>
+            <p style="font-size: 13px; color: grey;">이 기업을 다니며 좋았던 점을 남겨주세요.</p>
             <div class="cell">
                 <textarea name="reviewStrength" class="field w-100 field-answer"  rows="8" oninput="checkCnt();" placeholder="만족스러운 점을 작성해 주세요."></textarea>
                 <div style="font-size: 12px; color: grey; float: right;">
@@ -116,7 +116,7 @@
         </div>
         <div class="cell">
             <h3>기업의 단점</h3>
-            <p style="font-size: 13px; color: grey;">기업의 단점을 객관적인 시각에서 적어주세요</p>
+            <p style="font-size: 13px; color: grey;">기업의 단점을 객관적인 시각에서 적어주세요.</p>
             <div class="cell">
                 <textarea name="reviewWeakness" class="field w-100 field-answer"  rows="8" oninput="checkCnt();" placeholder="아쉬운 점을 작성해 주세요."></textarea>
                 <div style="font-size: 12px; color: grey; float: right;">

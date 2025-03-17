@@ -19,21 +19,22 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
 	private MemberLoginInterceptor memberLoginInterceptor;
 	
 	@Override
-    public void addInterceptors(InterceptorRegistry registry) {
+    public void addInterceptors(InterceptorRegistry registry) {		
         // 회원 전용 기능에 대해 인터셉터를 등록
         registry.addInterceptor(memberLoginInterceptor)
                 .addPathPatterns(List.of(
-                        //"/member/**",            // 회원 관련 페이지
-                        //"/company/member/**",    // 기업회원 관련 페이지
-                        "/share/exit",           // 회원 탈퇴
-                        "/share/password"        // 비밀번호 변경
+                		"/member/**",             // 회원 관련 페이지
+                        "/company/member/**",     // 기업회원 관련 페이지
+                        "/company/edit",          // 기업 수정
+                        "/company/review/write",  // 기업 리뷰 작성
+                        "/share/exit",            // 회원 탈퇴
+                        "/share/password"         // 비밀번호 변경
                 ))
                 .excludePathPatterns(List.of(
-                        "/member/login",         // 로그인
-                        "/member/join",          // 회원가입
-                        "/member/joinFinish",    // 회원가입 완료
-                        "/member/findPw",        // 비밀번호 찾기
-                        "/member/reset",          // 비밀번호 재설정
+                		"/share/login",           // 로그인
+                        "/member/join",            // 회원가입
+                        "/company/member/join",
+                        "/share/joinFinish",      // 회원가입 완료
                         "/company/member/join"
                 ));
 
