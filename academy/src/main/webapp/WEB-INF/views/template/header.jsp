@@ -140,7 +140,7 @@
         </div>
 	</div>
  
-	<hr class="custom-line">
+	<hr style="border: none; border-top: 1px solid rgb(196, 196, 196);" width="1200px">
 	
     <!-- 메인 화면 -->
 
@@ -154,8 +154,8 @@
 	        </form>
 	    </div>
 	</div>
-
-	<hr class="custom-line">
+	
+	<hr style="border: none; border-top: 1px solid rgb(196, 196, 196);" width="1200px">
 
 	<!-- 메인 구성 -->
 

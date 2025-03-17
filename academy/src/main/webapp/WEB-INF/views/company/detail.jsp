@@ -129,7 +129,9 @@ function drawBasic() {
 
 <div class="container w-700">
         <div class="cell" style="border: 2px solid rgb(184, 183, 183); padding: 20px; border-radius: 10px;">
-            <img src="/company/image?companyNo=${companyDto.companyNo}" width="200" height="200" style="border-radius: 15px;">
+        	<div class="cell center">
+            	<img src="/company/image?companyNo=${companyDto.companyNo}" width="650" height="400" style="border-radius: 15px;">
+        	</div>
             <div class="cell m-10">
             	<h2>
 	            	${companyDto.companyName}
@@ -149,8 +151,9 @@ function drawBasic() {
 				<p><label class="labelDesign">업종</label>${companyDto.companyIndustry}&nbsp;</p>
             	<p><label class="labelDesign">사업자 등록번호</label>${companyDto.companyCrNumber}</p>
             	<p><label class="labelDesign">주소</label>${companyDto.companyAddress1} ${companyDto.companyAddress2} (${companyDto.companyPost})</p>
-            	<br>
-            	<p id="map" style="width: 250px; height: 250px;"></p>
+            
+            	<label class="labelDesign">위치</label>
+            	<p id="map" style="width: 400px; height: 250px;"></p>
             </div>
         </div>
 		<br><hr>
@@ -164,11 +167,11 @@ function drawBasic() {
 		
         <br><hr>
         <div class="cell">
-           <div class="cell left p-20">
+           <div class="cell left m-20">
                <p><i class="fa-regular fa-comment grey"></i> 실제 근무자가 작성하는</p>
                <h2>기업 리뷰</h2>
            </div>        
-           <div class="cell m-10">
+           <div class="cell right m-10">
 			<a href="#" class="btn btn-green2" onclick="checkReviewAndRedirect(${companyDto.companyNo})">
     			<i class="fa-solid fa-user-pen"></i>&nbsp;리뷰 작성
 			</a>

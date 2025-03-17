@@ -115,10 +115,11 @@ $(function() {
                 </div>
                 <div class="cell">
                     <input type="text" name="memberEmail" class="field w-100" placeholder="명함에 기재된 이메일">
+                    <div class="fail-feedback">이메일을 형식에 맞게 작성해주세요.</div>
                 </div>
                 <div class="cell">
                     <input type="tel" name="memberContact" class="field w-100" placeholder="연락처">
-                    <div class="fail-feedback">연락처를 작성해주세요.</div>
+                    <div class="fail-feedback">연락처를 형식에 맞게 작성해주세요.</div>
                 </div>
                 <div class="cell">
                     <input type="text" name="memberPosition" class="field w-100" placeholder="직책">
