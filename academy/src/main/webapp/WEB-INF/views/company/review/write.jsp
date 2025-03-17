@@ -107,7 +107,7 @@
             <h3>기업의 장점</h3>
             <p style="font-size: 13px; color: grey;">이 기업을 다니며 좋았던 점을 남겨주세요</p>
             <div class="cell">
-                <textarea name="reviewStrength" class="field w-100 field-answer"  rows="8" oninput="checkCnt();" placeholder="(30자 이상) 만족스러운 점을 작성해 주세요."></textarea>
+                <textarea name="reviewStrength" class="field w-100 field-answer"  rows="8" oninput="checkCnt();" placeholder="만족스러운 점을 작성해 주세요."></textarea>
                 <div style="font-size: 12px; color: grey; float: right;">
                     <span>0</span>
                     <span> / 최대 1,000자</span>
@@ -118,7 +118,7 @@
             <h3>기업의 단점</h3>
             <p style="font-size: 13px; color: grey;">기업의 단점을 객관적인 시각에서 적어주세요</p>
             <div class="cell">
-                <textarea name="reviewWeakness" class="field w-100 field-answer"  rows="8" oninput="checkCnt();" placeholder="(30자 이상) 아쉬운 점을 작성해 주세요."></textarea>
+                <textarea name="reviewWeakness" class="field w-100 field-answer"  rows="8" oninput="checkCnt();" placeholder="아쉬운 점을 작성해 주세요."></textarea>
                 <div style="font-size: 12px; color: grey; float: right;">
                     <span>0</span>
                     <span> / 최대 1,000자</span>

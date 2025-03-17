@@ -21,6 +21,7 @@ public class ReplyMapper implements RowMapper<ReplyDto>{
 				.replyContent(rs.getString("reply_content"))
 				.replyWtime(rs.getTimestamp("reply_wtime"))
 				.replyEtime(rs.getTimestamp("reply_etime"))
+				.replyCompanyNo(rs.getInt("company_no"))
 				.build();
 	}
 

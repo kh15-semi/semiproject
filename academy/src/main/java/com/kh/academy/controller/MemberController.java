@@ -250,12 +250,11 @@ public class MemberController {
             session.setAttribute("userId", findDto.getMemberId());
             session.setAttribute("userType", findDto.getMemberType());
             session.setAttribute("memberDto", findDto); // memberDto를 세션에 저장
-
             
             // 관리자인 경우 companyNo를 null로 설정
             Integer companyNo = null;
             if (!findDto.getMemberType().equals("관리자")) {
-            	companyNo = memberDao.selectMemberCompanyNo(memberDto.getMemberId());
+            	companyNo = memberDao.selectMemberCompanyNo(findDto.getMemberId());
                 if (companyNo == null) {
                     companyNo = 0; // 또는 적절한 기본값 설정
                 }
@@ -349,11 +348,7 @@ public class MemberController {
 		if (isValidPw == false) {
 			return "redirect:exit?error";
 		}
-		
-		if(memberDto.getMemberType().equals("기업회원")) {
-			companyDao.delete(memberDto.getMemberCompanyNo());
-		}
-		
+
 		memberDao.delete(userId);
 		
 		session.removeAttribute("memberDto");
