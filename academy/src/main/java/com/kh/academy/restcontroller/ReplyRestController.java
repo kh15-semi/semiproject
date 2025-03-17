@@ -26,8 +26,8 @@ public class ReplyRestController {
 	
 	//댓글 목록
 	@RequestMapping("/list")
-	public List<ReplyDto> list(@RequestParam int replyOrigin) {
-		return replyDao.selectList(replyOrigin);
+	public List<ReplyDto> list(@RequestParam int replyOrigin, @RequestParam int companyNo) {
+		return replyDao.selectList(replyOrigin, companyNo);
 	}
 	
 	
@@ -40,9 +40,10 @@ public class ReplyRestController {
 	
 	//댓글 작성
 	 @PostMapping("/write")
-	 public void write(@ModelAttribute ReplyDto replyDto, HttpSession session) {
+	 public void write(@ModelAttribute ReplyDto replyDto, HttpSession session, @RequestParam int companyNo) {
 		 String userId = (String) session.getAttribute("userId");
 		 replyDto.setReplyWriter(userId);
+		 replyDto.setReplyCompanyNo(companyNo);
 		 
 		 int replyNo = replyDao.sequence(); 
 		 replyDto.setReplyNo(replyNo);//댓글 등록

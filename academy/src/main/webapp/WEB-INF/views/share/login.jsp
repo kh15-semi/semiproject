@@ -70,7 +70,6 @@
            					${cookie.saveId !=null ? 'checked' : ''}>
            			<span>아이디 기억하기</span>
            		</label>
-            	<a href="/member/findPw" style="text-decoration: none; color: inherit;">비밀번호 찾기</a>
         	</div>
         	<hr>
         	<div class="cell">

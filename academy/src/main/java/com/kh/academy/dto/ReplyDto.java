@@ -15,5 +15,8 @@ public class ReplyDto {
 	private String replyContent;//댓글내용
 	private Timestamp replyWtime;//댓글작성시각
 	private Timestamp replyEtime;//댓글수정시각
+	
+	private int replyCompanyNo; //회사번호	
+	
 }
 
