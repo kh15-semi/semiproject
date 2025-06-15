@@ -255,6 +255,7 @@ public class MemberController {
             Integer companyNo = null;
             if (!findDto.getMemberType().equals("관리자")) {
             	companyNo = memberDao.selectMemberCompanyNo(findDto.getMemberId());
+            	System.out.println("companyNo = " + companyNo);
                 if (companyNo == null) {
                     companyNo = 0; // 또는 적절한 기본값 설정
                 }
